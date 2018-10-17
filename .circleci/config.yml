@@ -4,5 +4,5 @@ jobs:
      docker:
        - image: danteev/texlive
      steps:
-       - push
+       - checkout
        - run: latexmk -pdf -jobname=RASD/build/$(date +%y%m%d-%H%M%S)-snapshot RASD/main.tex
