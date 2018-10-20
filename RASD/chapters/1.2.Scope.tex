@@ -14,19 +14,28 @@ The system-to-be uses 3 components with different roles in order to work:
     \item \textbf{Data4Help SmartWatch App}: Acquires the data from the smartwatch sensors (heart rate, sleep quality, position, phisical activities) and sends them via Bluetooth to the Data4Help Mobile App
     \item \textbf{Data4Help Mobile App}: Gathers data from the smartwatch, shows various statistics, and sends them to the Data4Help Core Database. Each user can choose which service subscribe to
     \item \textbf{Data4Help Website}: Gives third-party companies the ability to request data, either anonymized or user specific.
-    \item \textbf{Track4Me Core}: is intended to connects all other components together providing the logic of the application. It is also responsible for the acceptance of all third-parties requests of data. It also evaluate health status of individuals deciding whether is at risk or not.
+    \item \textbf{Data4Help Core}: is intended to connects all other components together providing the logic of the application. It is also responsible for the acceptance of all third-parties requests of data. It also evaluate health status of individuals deciding whether is at risk or not.
 \end{itemize}
 
 The list below shows the main goals the system should be able to accomplish:
 
 \begin{itemize}
-    \item \textbf{G1}: 
+    \item \textbf{G1}: The system should be able to read sensor data from smart devices.
+    \item \textbf{G2}: The system should be able to show acquired data via the Mobile App and the Website.
+    \item \textbf{G3}: The system should allow users to register.
+    \item \textbf{G4}: The system should allow companies to register.
+    \item \textbf{G5}: The system should allow registered companies to request data either from specific individuals or from an anonymized group of individuals.
+    \item \textbf{G6}: The system should allow users to accept or decline a company request for their specific data.
+    \item \textbf{G7}: The system should provide a payment method to registered companies requesting user data.
+    \item \textbf{G8}: The system should be able to communicate directly to ambulances.
+    \item \textbf{G9}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance. 
+    % \item \textbf{G10}: The system should should allow organizers to define the path for the run.
+    \item \textbf{G10}: The system should be able to communicate iteroperably with its services: \textit{AutomatedSOS} and \textit{Track4Run}
 \end{itemize}
 
 %A health data aggregator app that gives the user the ability to monitor all 
 
 %is intended to offer all the functionalities of the service to the individuals, including heart rate monitoring, sleep monitoring
 
-%% Add As a reference
-% The world and the machine - paper
-% http://mcs.open.ac.uk/mj665/icse17kn.pdf
+
+
