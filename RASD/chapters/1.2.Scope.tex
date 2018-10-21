@@ -13,7 +13,7 @@ The system-to-be uses 3 components with different roles in order to work:
 \begin{itemize}
     \item \textbf{Data4Help SmartWatch App}: Acquires the data from the smartwatch sensors (heart rate, sleep quality, position, phisical activities) and sends them via Bluetooth to the Data4Help Mobile App
     \item \textbf{Data4Help Mobile App}: Gathers data from the smartwatch, shows various statistics, and sends them to the Data4Help Core Database. Each user can choose which service subscribe to
-    \item \textbf{Data4Help Website}: Gives third-party companies the ability to request data, either anonymized or user specific.
+    \item \textbf{Data4Help Website}: Gives third-party companies the ability to request data, either anonymized or user specific. Moreover, it allows run organizers to define the path of the run and the spectators to see the position of all runners on a map.
     \item \textbf{Data4Help Core}: is intended to connects all other components together providing the logic of the application. It is also responsible for the acceptance of all third-parties requests of data. It also evaluate health status of individuals deciding whether is at risk or not.
 \end{itemize}
 
@@ -26,11 +26,15 @@ The list below shows the main goals the system should be able to accomplish:
     \item \textbf{G4}: The system should allow companies to register.
     \item \textbf{G5}: The system should allow registered companies to request data either from specific individuals or from an anonymized group of individuals.
     \item \textbf{G6}: The system should allow users to accept or decline a company request for their specific data.
-    \item \textbf{G7}: The system should provide a payment method to registered companies requesting user data.
+    \item \textbf{G7}: The system should provide a payment method to registered companies requesting user data. %eviterei di specificare payment system
     \item \textbf{G8}: The system should be able to communicate directly to ambulances.
-    \item \textbf{G9}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance. 
+    \item \textbf{G9}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance system. 
     % \item \textbf{G10}: The system should should allow organizers to define the path for the run.
-    \item \textbf{G10}: The system should be able to communicate iteroperably with its services: \textit{AutomatedSOS} and \textit{Track4Run}
+    \item \textbf{G10}: The system should be able to communicate interoperably with its services: \textit{AutomatedSOS} and \textit{Track4Run}
+    \item \textbf{G11} The system should allow run organizers to register.
+    \item \textbf{G12} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow.
+    \item \textbf{G13} A user should be able to enroll to a run.
+    \item \textbf{G14} Spectators of a run should be able to see each participant's position on a map.
 \end{itemize}
 
 %A health data aggregator app that gives the user the ability to monitor all 
