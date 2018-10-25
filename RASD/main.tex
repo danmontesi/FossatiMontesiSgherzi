@@ -1,8 +1,10 @@
 \documentclass[a4paper,oneside,11pt]{article}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{titling}
 \usepackage{blindtext}
 \usepackage{enumitem}
+\usepackage{eurosym}
 \title{RASD}
 \author{Daniele Montesi, Nicola Fossati, Francesco Sgherzi}
 \date{\today}
@@ -42,24 +44,53 @@
             \input{chapters/1.3.DefinitionAcronymAbbreviations.tex}
         \subsection{Revision history}
         \subsection{Reference documents}
+            \input{chapters/1.5.ReferenceDocuments.tex}
         \subsection{Document structure}
+        \input{chapters/1.6.DocumentStructure.tex}
         
         
     \section{Overall description}
         \subsection{Product perspective}
+            \input{chapters/2.1.ProductPerspective.tex}
+            \subsubsection{User Interfaces}
+                \input{chapters/2.1.1UserInterfaces.tex}
+            \subsubsection{Hardware Interfaces}
+                \input{chapters/2.1.2.HardwareInterfaces.tex}
+            \subsubsection{Software Interfaces}
+                \input{chapters/2.1.3.SoftwareInterfaces.tex}
+            \subsubsection{Communication Interfaces}
+                \input{chapters/2.1.4.CommunicationInterfaces.tex}
+            \subsubsection{Memory Constraints}
+                \input{chapters/2.1.5.MemoryConstraints.tex}
+        
+        
+        
         \subsection{Product functions}
+            \input{chapters/2.2.ProductFunctions.tex}
+            \subsubsection{Functional requirements}
+            \input{chapters/2.2.1.FunctionalRequirements.tex}
+            \subsubsection{Non Functional requirements}
+            \input{chapters/2.2.2.NonFunctionalRequirements.tex}
+            \subsubsection{Company pricing policies}
+            \input{chapters/2.2.3.CompanyPricingPolicies.tex}
         \subsection{User characteristics}
+        \input{chapters/2.3.UserCharacteristics.tex}
+        
         \subsection{Assumptions}
         
         
     \section{Specific requirements}
     
-    
-    
-    \section{Hours tracking}
+        \section{Hours tracking}
         \begin{tabular}{l*{6}{c}r}
             Date & Nicola Fossati & Daniele Montesi & Francesco Sgherzi \\
             \hline
             15/10/2018 & 2,5 & 2,5 & 2,5   \\
+            \hline
+            20/10/2018 & 0 & 4,0 & 4,0 \\
+            \hline
+            21/10/2018 & 1,5 & 1,5 & 2,5 \\
+            \hline
+            24/10/2018 & 0 & 2,5 & 0 \\
         \end{tabular}
 \end{document}

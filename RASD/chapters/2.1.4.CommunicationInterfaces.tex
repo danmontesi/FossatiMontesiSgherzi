@@ -1,0 +1,39 @@
+
+In the system there are 2 types of communication.
+\begin{enumerate}
+    \item The Mobile App and the Web Site need a bidirectional channel with the Core component of the system to operate properly. \\
+    This can be achived by providing a REST API on the \textit{Data4Help Core} component.
+    
+    \item The Smartwatch App needs a direct connection with the Mobile app to give it user's data.\\ The communication between the smart device and the smartphone is achieved via \textit{BLE} and, once the channel is established, the Smartwatch App sends JSON messages to the Mobile App concerning all activities performend from the last syncronization.
+
+\end{enumerate}
+
+\begin{center}
+    \begin{small}
+    \begin{verbatim}
+    {
+        userId: "ka8c57pno3",
+        last_synchronization: "1512518400",
+        heart_rate: {
+            "1512518400": 60,
+            "1512519000": 61,
+            ...
+        },
+        activities: {
+           "1512518400": {
+                "_lat": "",
+                "_long": ""
+            },
+            "1512519000": {
+                "_lat": "",
+                "_long": ""
+            },
+            ...
+        }
+    }
+    \end{verbatim}
+    \end{small}
+\end{center}
+
+%% Reference Document
+%% https://developer.android.com/guide/topics/connectivity/bluetooth

@@ -1,0 +1,56 @@
+Functional requirements for every system component:
+\newline
+Data4Help Mobile App
+\begin{itemize}
+    \item Users can register
+    \item Users can log-in
+    \item Users can only have one account
+    \item Logged-in users can edit their account info
+    \item Logged-in users can see their data statistics
+    \item Logged-in can specify the nature of the daily activities (i.e. running, biking, swimming, hiking)
+    \item Logged-in users can edit their account info
+    \item Logged-in users can define a path for their running activity
+    \item Logged-in users, if subscribed to AutomatedSOS service, can see the monitoring status of their health
+    \item Logged-in users, if subscribed to Track4Run service, can register to a run, if organized via the Track4Run service
+    \item Logged-in users, if subscribed to Track4Run service, can organize a run
+    \item Organizers of a run, if subscribed to Track4Run service, can define the path for that run
+    \item Logged-in users can see a run information, if organized via the Track4Run service
+\end{itemize}
+
+\noindent Data4Help Smartwatch App
+\begin{itemize}
+    \item Users can see their health data in real time (i.e heart rate, pressure)
+    \item Users can see their sleep monitoring of the previous night
+    \item Users can configure the widgets showing their health activity
+    \item Users who are participating in a run can see their timing and position through the screen of their Smartwatch, if the run is organized via Track4Run service
+\end{itemize}
+
+\noindent Data4Help Website
+\begin{itemize}
+    \item Companies can register
+    \item Companies can log-in
+    \item Logged-in companies can see their history and account information
+    \item Logged-in companies can subscribe to a payment service of Data4Help
+    \item Logged-in companies can update their account information
+    \item Logged-in companies can query on some group of individuals data
+    previous subscription to an appropriate payment service 
+    \item Logged-in companies can access to an individual data, if has the rights to do it (i.e. an Hospital that wants to monitor health status of a patient
+    \item Logged-in companies can send support requests
+    \item Logged-in companies can export data previously queried using Data4Help
+\end{itemize}
+
+\noindent Data4Help Core
+\begin{itemize}
+\item Can compute queries coming from Webpage component in the TrackMe Database
+\item Can charge companies on their payment method respecting Track4Me pricing policy
+\item Can access the Track4Me database
+\item Can send online notifications  via SMS to all users 
+\item Can send online notifications via email to all users
+\item Can send online notifications via the Mobile app to its users
+
+\item Can call the Ambulance providing geographical position and critical health parameters to the emergency employee 
+\item Can compute for every AutomatedSOS user which are the threshold value to take care of for each health parameter
+
+\item Can detect the geographical position of runners who are using the service Track4Run
+\item Can handle run notifications from devices of users using Track4Run (i.e. current runner position and timing)
+\end{itemize}
