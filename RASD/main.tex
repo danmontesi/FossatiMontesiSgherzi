@@ -1,5 +1,6 @@
 \documentclass[a4paper,oneside,11pt]{article}
 \usepackage{graphicx}
+\usepackage{ tipa }
 \usepackage{hyperref}
 \usepackage{titling}
 \usepackage{blindtext}
@@ -48,7 +49,7 @@
         \subsection{Document structure}
         \input{chapters/1.6.DocumentStructure.tex}
         
-        
+    \newpage
     \section{Overall description}
         \subsection{Product perspective}
             \input{chapters/2.1.ProductPerspective.tex}
@@ -78,9 +79,15 @@
         \subsection{Constraints}
             \input{chapters/2.4.Constraints.tex}
         \subsection{Assumptions}
+            \input{chapters/2.5.DomainAssumptions.tex}
         
-        
+    \newpage
     \section{Specific requirements}
+    
+        \subsection{Functional requirements}
+            \input{chapters/3.1.FunctionalRequirements.tex}
+        \subsubsection{Scenarios}
+            \input{chapters/3.1.1.Scenarios.tex}
     
         \section{Hours tracking}
         \begin{tabular}{l*{6}{c}r}
@@ -94,6 +101,8 @@
             \hline
             24/10/2018 & 0 & 2,5 & 0 \\
              \hline
-            27/10/2018 & 3 & 0 & 0 \\
+            27/10/2018 & 3 & 2 & 0 \\
+             \hline
+            29/10/2018 & 5 & 5 & 5 \\
         \end{tabular}
 \end{document}

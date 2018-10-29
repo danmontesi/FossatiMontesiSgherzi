@@ -1,0 +1,47 @@
+Each part of the system is based on the following domain assumptions.
+\begin{itemize}
+    \item \textbf{Data4Help SmartWatch App} 
+    
+         \begin{description}
+            \item \textbf{\textpipe \vspace{0.2cm} D1 \vspace{0.2cm} \textpipe} The \textit{SmartWatch App} stays always connected via \textbf{BLE}, during synchronization, to the \textit{Mobile App} 
+            \item \textbf{\textpipe \vspace{0.2cm} D2 \vspace{0.2cm} \textpipe} The \textit{Mobile App} is always installed on a SmartWatch.
+            \item \textbf{\textpipe \vspace{0.2cm} D3 \vspace{0.2cm} \textpipe} The SmartWatch on which the \textit{Mobile App} is installed has an accelerometer, a gyroscope, a GPS antenna, and an heart rate sensor. % at least?
+            \item \textbf{\textpipe \vspace{0.2cm} D4 \vspace{0.2cm} \textpipe} Data taken from the previously mentioned sensors are always trusted.
+            \item \textbf{\textpipe \vspace{0.2cm} D5 \vspace{0.2cm} \textpipe} Data taken from the previously mentioned sensor are always consistent.
+            %\item \textbf{\textpipe \vspace{0.2cm} D6 \vspace{0.2cm} \textpipe} The synchronization is so light on system resources that the user can continue using the app while doing it. %% Under discussion
+            \item \textbf{\textpipe \vspace{0.2cm} D6 \vspace{0.2cm} \textpipe} The user keeps the SmartWatch on his/her wrist during day and night.
+             \item \textbf{\textpipe \vspace{0.2cm} D7\vspace{0.2cm} \textpipe} User position is known with absolute certainty.
+              \item \textbf{\textpipe \vspace{0.2cm} D8 \vspace{0.2cm} \textpipe} GPS signal is stable.
+        \end{description}
+        
+    \item \textbf{Data4Help SmartWatch Mobile App}
+    
+        \begin{description}
+             \item \textbf{\textpipe \vspace{0.2cm} D7 \vspace{0.2cm} \textpipe} Every phone on which the app will be installed have sufficient system resources to properly display the app \textit{UI}. %% under discussion [FS]
+             \item \textbf{\textpipe \vspace{0.2cm} D8 \vspace{0.2cm} \textpipe} Syncronization always happens, even if the app is backgrounded, when it has to.
+             \item \textbf{\textpipe \vspace{0.2cm} D9 \vspace{0.2cm} \textpipe} The \textit{Mobile App} stays always connected with the \textit{Core Component} during any data exchange (being login, registration, synchronization, etc).
+             \item \textbf{\textpipe \vspace{0.2cm} D10 \vspace{0.2cm} \textpipe} The phone on which the app will be installed has an internet access and a GPS antenna.
+              \item \textbf{\textpipe \vspace{0.2cm} D11 \vspace{0.2cm} \textpipe} If the user uninstalls the \textit{Mobile App} it also uninstalls the \textit{SmartWatch App}
+               \item \textbf{\textpipe \vspace{0.2cm} D12 \vspace{0.2cm} \textpipe} Users of \textit{Automated SOS} have a stable internet connection.
+        \end{description}
+        
+        \item \textbf{Data4Help Core} 
+        \begin{description}
+            \item \textbf{\textpipe \vspace{0.2cm} D11 \vspace{0.2cm} \textpipe} The component can handle multiple request simultaneously.
+            \item \textbf{\textpipe \vspace{0.2cm} D12 \vspace{0.2cm} \textpipe} The component's database has proper redundancy.
+            \item \textbf{\textpipe \vspace{0.2cm} D13 \vspace{0.2cm} \textpipe} Data received by the app are instantly stored in the database. 
+            \item \textbf{\textpipe \vspace{0.2cm} D14 \vspace{0.2cm} \textpipe} Every Hospital in which the \textit{AutomatedSOS} service is active has an \textit{API} to call the ambulances.
+            \item \textbf{\textpipe \vspace{0.2cm} D15 \vspace{0.2cm} \textpipe} The Hospital \textit{API} service is active 24/7
+            \item \textbf{\textpipe \vspace{0.2cm} D16 \vspace{0.2cm} \textpipe} Every company willing to buy or subscribe to data has a credit card. 
+            \item \textbf{\textpipe \vspace{0.2cm} D16 \vspace{0.2cm} \textpipe} The user has a valid Fiscal Code or Social Security Number.
+            
+        \end{description}
+        
+        \item\textbf{Data4Help Website}
+        \begin{description}
+            \item \textbf{\textpipe \vspace{0.2cm} D14 \vspace{0.2cm} \textpipe} The website is hosted on a server close enough to the users to ensure minimum latency.
+            \item \textbf{\textpipe \vspace{0.2cm} D15 \vspace{0.2cm} \textpipe} The user has one of the following browsers: Google Chrome, Opera, FireFox, Microsoft Edge.
+            \item \textbf{\textpipe \vspace{0.2cm} D16 \vspace{0.2cm} \textpipe} If a company wants to access some data 
+        \end{description}
+        
+\end{itemize}

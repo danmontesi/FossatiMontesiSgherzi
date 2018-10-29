@@ -20,21 +20,24 @@ The system-to-be uses 3 components with different roles in order to work:
 The list below shows the main goals the system should be able to accomplish:
 
 \begin{itemize}
-    \item \textbf{G1}: The system should be able to read sensor data from smart devices.
-    \item \textbf{G2}: The system should be able to show acquired data via the Mobile App and the Website.
-    \item \textbf{G3}: The system should allow users to register.
-    \item \textbf{G4}: The system should allow companies to register.
-    \item \textbf{G5}: The system should allow registered companies to request data either from specific individuals or from an anonymized group of individuals.
+    \item \textbf{G0}: The system should be able to monitor user's health parameter.
+    \item \textbf{G1}: The system should be able to show acquired data via the Mobile App and the Website.
+    \item \textbf{G2}: The system should allow users to register by providing his Fiscal Code or his Social Security Number, an email and a password.
+    \item \textbf{G3}: The system should allow companies to register.
+    \item \textbf{G4}: The system should allow registered companies to request data from an anonymized group of individuals, only if individuals in the group are more than 1000.
+    \item \textbf{G5}: The system should allow registered companies to request data from an individual person, only if individuals accept the request.
     \item \textbf{G6}: The system should allow users to accept or decline a company request for their specific data.
-    \item \textbf{G7}: The system should provide a payment method to registered companies requesting user data. %eviterei di specificare payment system
-    \item \textbf{G8}: The system should be able to communicate directly to ambulances.
+    \item \textbf{G7}: The company should be able to pay through the system in order to buy data queries/subscribe to plans.
+
+    \item \textbf{G8}: A user should be able to enroll in the \textit{AutomatedSOS} at any time.
     \item \textbf{G9}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance system. 
+    
     % \item \textbf{G10}: The system should should allow organizers to define the path for the run.
-    \item \textbf{G10}: The system should be able to communicate interoperably with its services: \textit{AutomatedSOS} and \textit{Track4Run}
-    \item \textbf{G11} The system should allow run organizers to register.
-    \item \textbf{G12} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow.
-    \item \textbf{G13} A user should be able to enroll to a run.
-    \item \textbf{G14} Spectators of a run should be able to see each participant's position on a map.
+    %\item \textbf{G10}: The system should be able to communicate interoperably with its services: \textit{AutomatedSOS} and \textit{Track4Run}
+    \item \textbf{G10} The system should allow run organizers to register.
+    \item \textbf{G11} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow.
+    \item \textbf{G12} A user should be able to enroll to a run.
+    \item \textbf{G13} Spectators of a run should be able to see each participant's position on a map.
 \end{itemize}
 
 %A health data aggregator app that gives the user the ability to monitor all 
