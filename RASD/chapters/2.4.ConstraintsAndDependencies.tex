@@ -1,0 +1,25 @@
+\subsubsection{Constraints}And
+The constraints for the System-to-be are listed below:
+\begin{itemize}
+    \item Users are located in Italy
+    \item Users must have a Smartwarth and a Mobile phone with a OS compatible with the applications
+    \item Users must have Internet connection on their devices
+    \item The system must ask the users the permission to store their data following the GDPR policy
+    \item The system must ask users to use GPS position on their devices
+    \item Companies must have a computer with a compatible browser to use the Data4Help services
+\end{itemize}
+
+\subsubsection{Regulatory policies}
+As Data4Help will handle sensitive user data (e.g. name, birth date, location, state of health) the Application must treat them respecting the local laws, in particular the GDPR European law. Data attributable to the user must be anonymized in order to appear in a Company's query, unless the user has given explicit authorization to that company.
+
+\subsubsection{Security consideration}
+All data transferred between Data4Help Mobile App and Data4Help Core must be encrypted in order to minimize the possibility of a man-in-the-middle attack or any unauthorized access.
+For the same reason, all communication between Data4Help Web site and Data4Help Core must be encrypted.
+The Bluetooth communication between Data4Help SmartWatch App and Data4Help Mobile app is already encrypted by the Bluetooth stack itself.
+
+\subsubsection{Dependencies}
+\begin{itemize}
+    \item The system requires a DBMS to store and retrieve data
+    \item Maps used by the system to store data relative to geographical position of ther users are provided by external APIs
+    \item The system must rely on external Hospitals API in order to call ambulances for \textit{[R9]} of the Core component
+\end{itemize}

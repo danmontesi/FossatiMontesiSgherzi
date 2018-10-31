@@ -2,72 +2,68 @@ Functional requirements for every system component:
 \newline
 Data4Help Mobile App
 \begin{itemize}
-    \item Users can register, after providing a username, a password and a Fiscal Code/Social Security Number and have connected a compatible Smartwatch
-    \item Users can log-in
-    \item Users can only have one account
-    \item Logged-in users can edit their account info
-    \item Logged-in users can see their data statistics
-    \item Logged-in can specify the nature of the daily activities (i.e. running, biking, swimming, hiking)
-    \item Logged-in users can accept/decline a company individual monitoring request
-    %\item Logged-in users can define a path for their running activity
-    \item Logged-in users, if subscribed to \textit{AutomatedSOS} service, can see the monitoring status of the service
-    \item Logged-in users can register to a run before the start time
-    \item Logged-in users can see a run information
-    \item Logged-in users can see participant position on a map, if the run has started
+    \item \textbf{[RM$_M$]}: Users can register, after providing a username, a password and a Fiscal Code/Social Security Number and have connected a compatible Smartwatch
+    \item \textbf{[R1$_M$]}: Users can log-in
+    \item \textbf{[R2$_M$]}: Users can only have one account
+    \item \textbf{[R3$_M$]}: Logged-in users can edit their account info
+    \item \textbf{[R4$_M$]}: Logged-in users can see their data statistics
+    \item \textbf{[R5$_M$]}: Logged-in can specify the nature of the daily activities (i.e. running, biking, swimming, hiking)
+    \item \textbf{[R6$_M$]}: Logged-in users can accept/decline a company individual monitoring request
+    \item \textbf{[R7$_M$]}: Logged-in users, if subscribed to \textit{AutomatedSOS} service, can see the monitoring status of the service
+    \item \textbf{[R8$_M$]}: Logged-in users can register to a run before the start time
+    \item \textbf{[R9$_M$]}: Logged-in users can see a run information
+    \item \textbf{[R10$_M$]}: Logged-in users can see participant position on a map, if the run has started
 \end{itemize}
 
 \noindent Data4Help Smartwatch App
 \begin{itemize}
-    \item App can read data from sensor and store it locally.
-    \item App can send data registered locally to Data4Help Mobile App
-    \item Users can see their health data in real time (i.e heart rate, pressure)
-    \item Users can see their sleep monitoring of the previous night
-    \item Users can configure the widgets showing their health activity
-    \item Users who are participating in a run can see their timing and position through the screen of their Smartwatch
+    \item \textbf{[R1$_S$]}: App can read data from sensor and store it locally.
+    \item \textbf{[R2$_S$]}: App can send data registered locally to Data4Help Mobile App
+    \item \textbf{[R3$_S$]}: Users can see their health data in real time (i.e heart rate, pressure)
+    \item \textbf{[R4$_S$]}: Users can see their sleep monitoring of the previous night
+    \item \textbf{[R5$_S$]}: Users can configure the widgets showing their health activity
+    \item \textbf{[R6$_S$]}: Users who are participating in a run can see their timing and position through the screen of their Smartwatch
     
 \end{itemize}
 
 \noindent Data4Help Website
 \begin{itemize}
-    \item Companies can register, after providing a username, a password and a payment method
-    \item Companies can log-in
-    \item Logged-in companies can see their history and account information
-    \item Logged-in companies can subscribe to a payment service of Data4Help
-    \item Logged-in companies can update their account information
-    \item Logged-in companies can query on some group of individuals data
-    \item Registered companies can request access to data of individuals
-    \item Logged-in companies can access to an individual data, if the user has given approval
-    \item Logged-in companies can export data previously queried using Data4Help
+    \item \textbf{[R1$_W$}: Companies can register, after providing a username, a password and a payment method
+    \item \textbf{[R2$_W$}: Companies can log-in
+    \item \textbf{[R3$_W$]}: Logged-in companies can see their history and account information
+    \item \textbf{[R4$_W$]}: Logged-in companies can subscribe to a payment service of Data4Help
+    \item \textbf{[R5$_W$]}: Logged-in companies can update their account information
+    \item \textbf{[R6$_W$]}: Logged-in companies can query on some group of individuals data
+    \item \textbf{[R6bis$_W$]}: Logged-in companies can subscribe to a query data
+    \item \textbf{[R7$_W$]}: Registered companies can request access to data of individuals
+    \item \textbf{[R8$_W$]}: Logged-in companies can access to an individual data, if the user has given approval
+    \item \textbf{[R9$_W$]}: Logged-in companies can export data previously queried using Data4Help
     
-    \item Run organizers can register
-    \item Run organizers can login
-    \item Logged-in run organizers can organize a run
-    \item Organizers of a run can define the path and additional information for that run
-    \item Organizers of a run can start the run
+    \item \textbf{[R10$_W$]}: Run organizers can register
+    \item \textbf{[R11$_W$]}: Run organizers can login
+    \item \textbf{[R12$_W$]}: Logged-in run organizers can organize a run
+    \item \textbf{[R13$_W$]}: Organizers of a run can define the path and additional information for that run
+    \item \textbf{[R14$_W$]}: Organizers of a run can start the run
     
 \end{itemize}
 
 \noindent Data4Help Core
 \begin{itemize}
-\item Can validates information provided by the user during registration
-\item Can compute queries coming from Webpage component using TrackMe Database
-\item Can charge companies on their payment method respecting Track4Me pricing policy
-
-\item Can send online notifications via SMS to all users 
-\item Can send online notifications via email to all users
-\item Can send online notifications via the Mobile app to its users
-\item Can save and store permanently user data
-\item Can receive and store health parameters and geographical position of registered users
-\item Can execute queries of companies on individuals if the user has accepted the monitoring request from the company
-\item Can execute queries of companies checking if the searches involve more than 1000 anonimyzed users 
-\item Can provide a payment method for data requested by companies.
-
-\item Can communicate directly with the nearest hospital \textit{API}.
-\item Can provide geographical position and critical health parameters to the emergency employee using the \textit{API}
-\item Can compute for every AutomatedSOS user which are the threshold value to take care of for each health parameter
-
-\item Can compute each athlete's rank in a run and send it to each user device.
-\item Can send the position and rank of athletes during a run to spectator's devices.
+\item \textbf{[R1$_C$]}: Can send online notifications via SMS to all users 
+\item \textbf{[R2$_C$]}: Can send online notifications via email to all users
+\item \textbf{[R3$_C$]}: Can send online notifications via the Mobile app to its users
+\item \textbf{[R4$_C$]}: Can save and store permanently user data
+\item \textbf{[R5$_C$]}: Can receive and store health parameters and geographical position of registered users
+\item \textbf{[R6$_C$]}: Can execute queries of companies on individuals if the user has accepted the monitoring request from the company
+\item \textbf{[R7$_C$]}: Can execute queries of companies checking if the searches involve more than 1000 anonimyzed users 
+\item \textbf{[R8$_C$]}: Can provide a payment method for data requested by companies.
+\item \textbf{[R9$_C$]}: Can communicate directly with the nearest hospital \textit{API}.
+\item \textbf{[R10$_C$]}: Can provide geographical position and critical health parameters to the emergency employee using the \textit{API}
+\item \textbf{[R11$_C$]}: Can compute for every AutomatedSOS user which are the threshold value to take care of for each health parameter
+\item \textbf{[R12$_C$]}: Can compute each athlete's rank in a run and send it to each user device.
+\item \textbf{[R13$_C$]}: Can send the position and rank of athletes during a run to spectator's devices.
+\item \textbf{[R14$_C$]}: Can validates information provided by the user during registration
+\item \textbf{[R15$_C$]}: Can charge companies on their payment method respecting Track4Me pricing policy
 
 
 
