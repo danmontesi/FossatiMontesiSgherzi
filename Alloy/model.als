@@ -1,5 +1,4 @@
 open util/boolean
-open util/integer
 
 sig UserName in String {} {
 	all userName: UserName | one c: Customer | c.username = userName
@@ -16,8 +15,12 @@ sig PressureSensor extends Sensor {}
 sig SmartWatch {
 	sensors: set Sensor,
 	user: one User
+}{
+	all s: Sensor {
+		s in sensors <=> s.available = True
+		#sensors >= 3
+	}
 }
-
 
 fact atLeastSleepMonitoring {
 	all sw: SmartWatch, sms: SleepMonitoringSensor | #sw.sensors = 1 => sms in sw.sensors
@@ -82,6 +85,18 @@ sig PersonalQuery extends Query {
 	#accepted = 0 => company in person.(notifications.company)
 }
 
+fact PersonalQueryAlwaysOnRegisteredUsers {
+	all u: User, q: PersonalQuery{
+		q.user = u => u.isRegistered = True
+	}
+}
+
+fact CompanyQueryAlwaysOnRegisteredUsers {
+	all u: User, q: CompanyQuery {
+		u in q.people => u.isRegistered = True
+	}
+}
+
 fact QueryAlwaysBelongsToCompany {
 	all q: CompanyQuery {
 		one c: Company {
@@ -91,6 +106,11 @@ fact QueryAlwaysBelongsToCompany {
 }
 
 // Goal G2: User can register
+
+fact NonEqualUsername {
+	no disj u, u': User | u.username = u'.username
+}
+
 fact UserIsRegistered {
 	all u: User {
 		u.isRegistered = True => u.hasCompatibleSmartwatch = True and #u.fiscalCodeOrSSN = 1 and #u.username = 1 and #u.password = 1 
@@ -140,15 +160,13 @@ assert CompaniesCanMakeIndividualQueries {
 
 check CompaniesCanMakeIndividualQueries for 5
 
+pred showWithValidQueries{
+	#User > 5
+}
 
+pred showWithInvalidQueries {
+	#User < 5
+}
 
-// pred showWithValidQueries{
-// 	#User > 5
-// }
-
-// pred showWithInvalidQueries {
-// 	#User < 5
-// }
-
-// run showWithValidQueries for 5 but 2 Company, 4 PersonalQuery, 2 CompanyQuery, 3 Notification, 5 User
-// run showWithInvalidQueries for 5 but 2 Company, 4 PersonalQuery, 2 CompanyQuery, 3 Notification, exactly 4 User
+run showWithValidQueries for 5 but 2 Company, 4 PersonalQuery, 2 CompanyQuery, 3 Notification
+run showWithInvalidQueries for 5 but 2 Company, 4 PersonalQuery, 2 CompanyQuery, 3 Notification

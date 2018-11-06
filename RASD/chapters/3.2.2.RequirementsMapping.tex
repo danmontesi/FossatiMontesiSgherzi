@@ -18,7 +18,7 @@ In the following section are explained the functional requirements of the applic
     \item  \textbf{D4}  The user keeps the SmartWatch on his/her wrist during day and night.
    \end{itemize}
    
-    \item \textbf{G2}: The system should allow users to register by providing his Fiscal Code or his Social Security Number, an email and a password.
+    \item \textbf{G2}: The system should allow users to register by providing his Fiscal Code or his Social Security Number, an username and a password.
     \paragraph{Requirements}
    \begin{itemize}
     \item \textbf{[RM$_M$]}: Users can register, after providing a username, a password and a Fiscal Code/Social Security Number and have connected a compatible Smartwatch
@@ -55,16 +55,8 @@ In the following section are explained the functional requirements of the applic
     \item \textbf{[R2$_C$]}: Can send online notifications via email to all users
     \item \textbf{[R3$_C$]}: Can send online notifications via the Mobile app to its users
    \end{itemize}
-    \item \textbf{G6}: The system should allow users to accept or decline a company request for their specific data.
-    \paragraph{Requirements}
-   \begin{itemize}
-       \item 
-   \end{itemize}
-   \paragraph{Domain assumptions}
-   \begin{itemize}
-       \item 
-   \end{itemize}
-    \item \textbf{G7}: The company should be able to pay through the system in order to buy data queries/subscribe to plans.
+    
+    \item \textbf{G6}: The company should be able to pay through the system in order to buy data queries/subscribe to plans.
     \paragraph{Requirements}
    \begin{itemize}
        \item \textbf{[R4$_W$]}: Logged-in companies can subscribe to a payment service of Data4Help
@@ -75,7 +67,7 @@ In the following section are explained the functional requirements of the applic
        \item  D8  Every company willing to buy or subscribe to data has a credit card.
    \end{itemize}
    
-    \item \textbf{G8}: The system should allow a company to subscribe to new data and receive them as soon as they are produced.
+    \item \textbf{G7}: The system should allow a company to subscribe to new data and receive them as soon as they are produced.
     \paragraph{Requirements}
    \begin{itemize}
        \item \textbf{[R6bis$_W$]}: Logged-in companies can subscribe to a query data
@@ -90,50 +82,92 @@ In the following section are explained the functional requirements of the applic
         \item  D3  Data taken from the previously mentioned sensors are always trusted and consistent.
    \end{itemize}
    
-    \item \textbf{G9}: The system should be able to monitor user's health parameter.
+    \item \textbf{G8}: The system should be able to monitor user's health parameter.
     \paragraph{Requirements}
    \begin{itemize}
-       \item 
+       \item \textbf{[R1$_S$]}: App can read data from sensor and store it locally.
+        \item \textbf{[R2$_S$]}: App can send data registered locally to Data4Help Mobile App
+        \item \textbf{[R4$_C$]}: Can save and store permanently user data
+    \item \textbf{[R5$_C$]}: Can receive and store health parameters and geographical position of registered users
+
    \end{itemize}
    \paragraph{Domain assumptions}
    \begin{itemize}
-       \item 
+    \item  D1  The Storage System is reliable.
+    
+    \item  D2  The SmartWatch on which the \textit{Mobile App} is installed has an accelerometer, a gyroscope, a GPS antenna, and an heart rate sensor and they are always turned on.
+    
+    \item  D3  Data taken from the previously mentioned sensors are always trusted and consistent.
+            
+    \item  D4  The user keeps the SmartWatch on his/her wrist during day and night.
+    
+     \item  D7  The phone on which the app will be installed has an internet access.
+ 
    \end{itemize}
-    \item \textbf{G10}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance system. 
+   
+   
+    \item \textbf{G9}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance system. 
     \paragraph{Requirements}
    \begin{itemize}
-       \item 
+    \item \textbf{[R1$_S$]}: App can read data from sensor and store it locally.
+    \item \textbf{[R2$_S$]}: App can send data registered locally to Data4Help Mobile App
+
+    \item \textbf{[R5$_C$]}: Can receive and store health parameters and geographical position of registered users
+
+    \item \textbf{[R9$_C$]}: Can communicate directly with the nearest hospital \textit{API}.
+    \item \textbf{[R10$_C$]}: Can provide geographical position and critical health parameters to the emergency employee using the \textit{API}
+    \item \textbf{[R11$_C$]}: Can compute for every AutomatedSOS user which are the threshold value to take care of for each health parameter
+
    \end{itemize}
    \paragraph{Domain assumptions}
    \begin{itemize}
-       \item 
+    \item  D2  The SmartWatch on which the \textit{Mobile App} is installed has an accelerometer, a gyroscope, a GPS antenna, and an heart rate sensor and they are always turned on.
+    
+     \item  D3  Data taken from the previously mentioned sensors are always trusted and consistent.
+            
+     \item  D4  The user keeps the SmartWatch on his/her wrist during day and night.
+    
+     \item  D7  The phone on which the app will be installed has an internet access.
+     
+    \item  D9  Users of \textit{Automated SOS} have a stable internet connection.
+    
+    \item  D10  Every Hospital in which the \textit{AutomatedSOS} service is active has an \textit{API} to call the ambulances.
+    
+    \item  D11  The Hospital \textit{API} service is active 24/7.
    \end{itemize}
-    \item \textbf{G11} The system should allow run organizers to register.
-    \item \textbf{G12} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow.
+   
+   
+    \item \textbf{G10} The system should allow run organizers to register.
     \paragraph{Requirements}
    \begin{itemize}
-       \item 
+    \item \textbf{[R10$_W$]}: Run organizers can register
+    \item \textbf{[R11$_W$]}: Run organizers can login
+    \item \textbf{[R14$_C$]}: Can validates information provided by the user during registration
    \end{itemize}
-   \paragraph{Domain assumptions}
-   \begin{itemize}
-       \item 
-   \end{itemize}
-    \item \textbf{G13} A user should be able to enroll to a run, if he is close to the starting point and has a valid inscription code.
+    
+    
+    \item \textbf{G11} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow.
     \paragraph{Requirements}
    \begin{itemize}
-       \item 
+    \item \textbf{[R12$_W$]}: Logged-in run organizers can organize a run
+    \item \textbf{[R13$_W$]}: Organizers of a run can define the path and additional information for that run
+    \item \textbf{[R14$_W$]}: Organizers of a run can start the run
    \end{itemize}
-   \paragraph{Domain assumptions}
-   \begin{itemize}
-       \item 
-   \end{itemize}
-    \item \textbf{G14} Spectators of a run should be able to see each participant's position on a map.
+   
+   
+    \item \textbf{G12} A user should be able to enroll to a run, if he is close to the starting point and has a valid inscription code.
     \paragraph{Requirements}
    \begin{itemize}
-       \item 
+    \item \textbf{[R8$_M$]}: Logged-in users can register to a run before the start time
+    \item \textbf{[R9$_M$]}: Logged-in users can see a run information
    \end{itemize}
-   \paragraph{Domain assumptions}
+
+   
+   
+    \item \textbf{G13} Spectators of a run should be able to see each participant's position on a map.
+    \paragraph{Requirements}
    \begin{itemize}
-       \item 
+    \item \textbf{[R12$_C$]}: Can compute each athlete's rank in a run and send it to each user device.
+    \item \textbf{[R13$_C$]}: Can send the position and rank of athletes during a run to spectator's devices.
    \end{itemize}
-\end{itemize}
+   \end{itemize}
