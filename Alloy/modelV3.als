@@ -2,55 +2,39 @@ open util/boolean
 
 // Signatures
 
-abstract sig Sensor {
-    available: one Bool
-}
-
-sig HeartRateSensor extends Sensor{}
-sig BloodPressureSensor extends Sensor{}
-sig SleepMonitoringSensor extends Sensor{}
+sig CharSet {}
 
 
 sig Smartwatch {
     user: one User,
-    sensors: set Sensor,
     compatible: one Bool
-} {
-    // Must have at least 3 different sensors:
-    // HeartRateSensor, BloodPressureSensor, SleepMonitoringSensor
-    all disj s, s', s'': Sensor {
-        ((s in sensors && s' in sensors && s'' in sensors) &&
-        (s != s' && s' != s'' && s != s'') && 
-    ( s.available = True && s'.available = True && s''.available = True)) <=> compatible = True
-    }
 }
 
-
 abstract sig Customer {
-    username: lone String, 
-    password: lone String,
+    username: lone CharSet, 
+    password: lone CharSet,
     canRegister: one Bool,
     isRegistered: one Bool
 } {
     isRegistered = True => canRegister = True
     canRegister = False => isRegistered = False
-    (#username = 0 || #password = 0) => canRegister = False 
+    (#username = 0 || #password = 0) => isRegistered = False 
 }
 
 sig User extends Customer {
-    fiscalCodeOrSSN: lone String,
+    fiscalCodeOrSSN: lone CharSet,
     smartwatch: one Smartwatch,
     notifications: set Notification, 
     acceptsDataRequestFrom: set Company
 } {
-    (#fiscalCodeOrSSN = 0 || smartwatch.compatible = False) => (canRegister = False)
+    (#fiscalCodeOrSSN = 0 || smartwatch.compatible = False) <=> (canRegister = False)
 }
 
 sig Company extends Customer {
-    paymentMethod: lone String,
+    paymentMethod: lone CharSet,
     queries: set Query
 } {
-    #paymentMethod = 0 => isRegistered = False
+    #paymentMethod = 0 <=> canRegister = False
     isRegistered = False => #queries = 0
 }
 
@@ -62,22 +46,25 @@ sig AnonQuery extends Query {
     people: set User,
     isValid: one Bool
 } {
-    isValid = True <=> #people >= 5
+    isValid = True <=> #people >= 3
 }
 
 sig IndividualQuery extends Query {
     person: one User,
     userAccepts: lone Bool, // lone cause if #userAccepts = 0 it must mean that a notification had been received by the user
 } {
-    all u: User {
-        u = person => userAccepts = True else #userAccepts = 0 && #person.notifications > 0
-    }
+    // all u: User {
+    //     u = person => userAccepts = True else #userAccepts = 0 && #person.notifications > 0
+    // }
+    // (userAccepts = True) || (#userAccepts = 0 && #person.notification)
+    
 }
 
 sig Notification {
     user: one User,
     company: one Company
 }
+
 
 // Facts: Consistency
 
@@ -122,7 +109,6 @@ assert UserCanRegister {
             #u.username = 1 && 
             #u.password = 1 && 
             #u.fiscalCodeOrSSN = 1 &&
-            u.isRegistered = False && 
             u.(smartwatch.compatible) = True
         ) => u.canRegister = True
     }
@@ -141,8 +127,7 @@ assert CompaniesCanRegister {
         ) => c.canRegister = True
     }
 }
-
-// check CompaniesCanRegister for 5
+check CompaniesCanRegister for 5
 
 // Goal G4: The system should allow registered companies to request data
 // from an anonymized group of individuals, only if individuals in the
@@ -159,7 +144,7 @@ assert CompaniesCanMakeAnonimizedQueries {
     }
 }
 
-// check CompaniesCanMakeAnonimizedQueries for 5
+check CompaniesCanMakeAnonimizedQueries for 5
 
 // Goal G5: The system should allow registered companies to request data
 // from an individual person, only if individuals accept the request.
@@ -186,10 +171,38 @@ assert CompaniesCanMakeIndividualQueries {
 
 }
 
-// check CompaniesCanMakeAnonimizedQueries for 5
+check CompaniesCanMakeAnonimizedQueries for 5
 
-pred show {
-   
+
+pred showWithAnonQueryAllowed{
+    #User > 6
+    some u: User {
+        u.isRegistered = True
+        #u.acceptsDataRequestFrom > 2
+    }
+    some aq: AnonQuery {
+        #aq.people > 3
+    }
+    #Company > 2
+    #AnonQuery > 1
+    #IndividualQuery > 1
+    #Notification > 3
 }
 
-run show for 10
+pred showWithAnonQueryNotAllowed {
+    #User > 3
+    some u: User {
+        u.isRegistered = True
+        #u.acceptsDataRequestFrom > 2
+    }
+    some aq: AnonQuery {
+        #aq.people > 3
+    }
+    #Company > 2
+    #AnonQuery > 1
+    #IndividualQuery > 1
+    #Notification > 3
+}
+
+run showWithAnonQueryAllowed for 10
+run showWithAnonQueryNotAllowed for 10
