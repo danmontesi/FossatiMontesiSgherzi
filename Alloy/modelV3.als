@@ -4,7 +4,6 @@ open util/boolean
 
 sig CharSet {}
 
-
 sig Smartwatch {
     user: one User,
     compatible: one Bool
@@ -25,9 +24,27 @@ sig User extends Customer {
     fiscalCodeOrSSN: lone CharSet,
     smartwatch: one Smartwatch,
     notifications: set Notification, 
-    acceptsDataRequestFrom: set Company
+    acceptsDataRequestFrom: set Company,
+    hasInscriptionCode: lone Bool,
 } {
     (#fiscalCodeOrSSN = 0 || smartwatch.compatible = False) <=> (canRegister = False)
+}
+
+sig Elderly extends User {
+    isInDanger: one Bool,
+    inDangerFrom: lone Int
+} {
+    inDangerFrom >= 0 => isInDanger = True
+    #inDangerFrom = 0 => isInDanger = False
+}
+
+sig AmbulanceRequest {
+    hospital: one Company,
+    person: one Elderly,
+    timeElapsed: one Int,
+    accepted: one Bool
+} {
+    timeElapsed >= 5 => accepted = True
 }
 
 sig Company extends Customer {
@@ -52,13 +69,7 @@ sig AnonQuery extends Query {
 sig IndividualQuery extends Query {
     person: one User,
     userAccepts: lone Bool, // lone cause if #userAccepts = 0 it must mean that a notification had been received by the user
-} {
-    // all u: User {
-    //     u = person => userAccepts = True else #userAccepts = 0 && #person.notifications > 0
-    // }
-    // (userAccepts = True) || (#userAccepts = 0 && #person.notification)
-    
-}
+} 
 
 sig Notification {
     user: one User,
@@ -96,6 +107,10 @@ fact NotificationConsistency {
     // the user must have it in the set of 
     // all notifications
     all n: Notification, u: User | n.user = u <=> n in u.notifications
+}
+
+fact AmbulanceRequestConsistency {
+    all e: Elderly, a: AmbulanceRequest | a.person = e <=> a.hospital in e.acceptsDataRequestFrom
 }
 
 // Assertions 
@@ -168,11 +183,22 @@ assert CompaniesCanMakeIndividualQueries {
             )) 
         )
     }
-
 }
 
 check CompaniesCanMakeAnonimizedQueries for 5
 
+
+// Goal G9: The system should be able to react to the lowering of the health
+// parameters below threshold in less than 5 seconds 
+// and send the position of the person to the ambulance system
+
+assert SystemProcessesRequestInLessThan5Seconds {
+    no ar: AmbulanceRequest {
+        ar.timeElapsed > 5 && ar.accepted = False
+    }
+}
+
+check SystemProcessesRequestInLessThan5Seconds for 5
 
 pred showWithAnonQueryAllowed{
     #User > 6
