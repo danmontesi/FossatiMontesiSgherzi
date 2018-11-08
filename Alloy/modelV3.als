@@ -4,6 +4,10 @@ open util/boolean
 
 sig CharSet {}
 
+sig Position {
+    _lat: one CharSet,
+    _long: one CharSet
+}
 
 sig Smartwatch {
     user: one User,
@@ -28,6 +32,13 @@ sig User extends Customer {
     acceptsDataRequestFrom: set Company
 } {
     (#fiscalCodeOrSSN = 0 || smartwatch.compatible = False) <=> (canRegister = False)
+}
+
+sig RunOrganizer extends User {
+    runPath: set Position,
+    runOrganized: lone Run
+} {
+    isRegistered = False => (#runPath = 0 && #runOrganized = 0)
 }
 
 sig Company extends Customer {
@@ -65,6 +76,11 @@ sig Notification {
     company: one Company
 }
 
+sig Run {
+    hasStarted: one Bool,
+    participants: set User,
+    organizer: one RunOrganizer
+}
 
 // Facts: Consistency
 
@@ -96,6 +112,12 @@ fact NotificationConsistency {
     // the user must have it in the set of 
     // all notifications
     all n: Notification, u: User | n.user = u <=> n in u.notifications
+}
+
+fact RunAndRunOrganizerConsistency {
+    all r: Run, ro: RunOrganizer {
+        r.organizer = ro <=> ro.runOrganized = r
+    }
 }
 
 // Assertions 
@@ -173,6 +195,16 @@ assert CompaniesCanMakeIndividualQueries {
 
 check CompaniesCanMakeAnonimizedQueries for 5
 
+// Goal G11: If a run organizer is registered, it can define a run. For instance, it can
+// define the path that the participants should follow.
+
+assert OrganizerCanDefineARun {
+    all ro: RunOrganizer {
+        ro.isRegistered = True => (#ro.runOrganized >= 0 && #ro.runPath >= 0)
+    }
+}
+
+check OrganizerCanDefineARun for 5
 
 pred showWithAnonQueryAllowed{
     #User > 6
@@ -196,7 +228,7 @@ pred showWithAnonQueryNotAllowed {
         #u.acceptsDataRequestFrom > 2
     }
     some aq: AnonQuery {
-        #aq.people > 3
+        #aq.people < 3
     }
     #Company > 2
     #AnonQuery > 1
