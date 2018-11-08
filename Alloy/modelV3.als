@@ -4,6 +4,11 @@ open util/boolean
 
 sig CharSet {}
 
+sig Position {
+    _lat: one CharSet,
+    _long: one CharSet
+}
+
 sig Smartwatch {
     user: one User,
     compatible: one Bool
@@ -46,6 +51,12 @@ sig AmbulanceRequest {
 } {
     timeElapsed >= 5 => accepted = True
 }
+sig RunOrganizer extends User {
+    runPath: set Position,
+    runOrganized: lone Run
+} {
+    isRegistered = False => (#runPath = 0 && #runOrganized = 0)
+}
 
 sig Company extends Customer {
     paymentMethod: lone CharSet,
@@ -76,6 +87,11 @@ sig Notification {
     company: one Company
 }
 
+sig Run {
+    hasStarted: one Bool,
+    participants: set User,
+    organizer: one RunOrganizer
+}
 
 // Facts: Consistency
 
@@ -111,6 +127,12 @@ fact NotificationConsistency {
 
 fact AmbulanceRequestConsistency {
     all e: Elderly, a: AmbulanceRequest | a.person = e <=> a.hospital in e.acceptsDataRequestFrom
+}
+
+fact RunAndRunOrganizerConsistency {
+    all r: Run, ro: RunOrganizer {
+        r.organizer = ro <=> ro.runOrganized = r
+    }
 }
 
 // Assertions 
@@ -187,6 +209,16 @@ assert CompaniesCanMakeIndividualQueries {
 
 check CompaniesCanMakeAnonimizedQueries for 5
 
+// Goal G11: If a run organizer is registered, it can define a run. For instance, it can
+// define the path that the participants should follow.
+
+assert OrganizerCanDefineARun {
+    all ro: RunOrganizer {
+        ro.isRegistered = True => (#ro.runOrganized >= 0 && #ro.runPath >= 0)
+    }
+}
+
+check OrganizerCanDefineARun for 5
 
 // Goal G9: The system should be able to react to the lowering of the health
 // parameters below threshold in less than 5 seconds 
@@ -222,7 +254,7 @@ pred showWithAnonQueryNotAllowed {
         #u.acceptsDataRequestFrom > 2
     }
     some aq: AnonQuery {
-        #aq.people > 3
+        #aq.people < 3
     }
     #Company > 2
     #AnonQuery > 1
