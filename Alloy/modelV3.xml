@@ -1,0 +1,433 @@
+<alloy builddate="2015-02-22 18:21 EST">
+
+<instance bitwidth="4" maxseq="7" command="Run showWithAnonQueryAllowed for 10" filename="/home/francesco/Projects/FossatiMontesiSgherzi/Alloy/modelV3.als">
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="String" ID="3" parentID="2" builtin="yes">
+</sig>
+
+<sig label="this/CharSet" ID="4" parentID="2">
+   <atom label="CharSet$0"/>
+   <atom label="CharSet$1"/>
+   <atom label="CharSet$2"/>
+   <atom label="CharSet$3"/>
+   <atom label="CharSet$4"/>
+   <atom label="CharSet$5"/>
+   <atom label="CharSet$6"/>
+   <atom label="CharSet$7"/>
+   <atom label="CharSet$8"/>
+   <atom label="CharSet$9"/>
+</sig>
+
+<sig label="this/Position" ID="5" parentID="2">
+   <atom label="Position$0"/>
+   <atom label="Position$1"/>
+   <atom label="Position$2"/>
+</sig>
+
+<field label="_lat" ID="6" parentID="5">
+   <tuple> <atom label="Position$0"/> <atom label="CharSet$8"/> </tuple>
+   <tuple> <atom label="Position$1"/> <atom label="CharSet$8"/> </tuple>
+   <tuple> <atom label="Position$2"/> <atom label="CharSet$6"/> </tuple>
+   <types> <type ID="5"/> <type ID="4"/> </types>
+</field>
+
+<field label="_long" ID="7" parentID="5">
+   <tuple> <atom label="Position$0"/> <atom label="CharSet$7"/> </tuple>
+   <tuple> <atom label="Position$1"/> <atom label="CharSet$7"/> </tuple>
+   <tuple> <atom label="Position$2"/> <atom label="CharSet$6"/> </tuple>
+   <types> <type ID="5"/> <type ID="4"/> </types>
+</field>
+
+<sig label="this/Smartwatch" ID="8" parentID="2">
+   <atom label="Smartwatch$0"/>
+   <atom label="Smartwatch$1"/>
+   <atom label="Smartwatch$2"/>
+   <atom label="Smartwatch$3"/>
+   <atom label="Smartwatch$4"/>
+   <atom label="Smartwatch$5"/>
+   <atom label="Smartwatch$6"/>
+</sig>
+
+<field label="user" ID="9" parentID="8">
+   <tuple> <atom label="Smartwatch$0"/> <atom label="User$5"/> </tuple>
+   <tuple> <atom label="Smartwatch$1"/> <atom label="User$4"/> </tuple>
+   <tuple> <atom label="Smartwatch$2"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="Smartwatch$3"/> <atom label="User$3"/> </tuple>
+   <tuple> <atom label="Smartwatch$4"/> <atom label="User$2"/> </tuple>
+   <tuple> <atom label="Smartwatch$5"/> <atom label="User$1"/> </tuple>
+   <tuple> <atom label="Smartwatch$6"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="8"/> <type ID="10"/> </types>
+</field>
+
+<field label="compatible" ID="11" parentID="8">
+   <tuple> <atom label="Smartwatch$0"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="Smartwatch$1"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="Smartwatch$2"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Smartwatch$3"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Smartwatch$4"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Smartwatch$5"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Smartwatch$6"/> <atom label="boolean/True$0"/> </tuple>
+   <types> <type ID="8"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/Elderly" ID="13" parentID="10">
+   <atom label="Elderly$0"/>
+</sig>
+
+<field label="isInDanger" ID="14" parentID="13">
+   <tuple> <atom label="Elderly$0"/> <atom label="boolean/True$0"/> </tuple>
+   <types> <type ID="13"/> <type ID="12"/> </types>
+</field>
+
+<field label="inDangerFrom" ID="15" parentID="13">
+   <tuple> <atom label="Elderly$0"/> <atom label="5"/> </tuple>
+   <types> <type ID="13"/> <type ID="1"/> </types>
+</field>
+
+<sig label="this/RunOrganizer" ID="16" parentID="10">
+</sig>
+
+<field label="runPath" ID="17" parentID="16">
+   <types> <type ID="16"/> <type ID="5"/> </types>
+</field>
+
+<field label="runOrganized" ID="18" parentID="16">
+   <types> <type ID="16"/> <type ID="19"/> </types>
+</field>
+
+<sig label="this/User" ID="10" parentID="20">
+   <atom label="User$0"/>
+   <atom label="User$1"/>
+   <atom label="User$2"/>
+   <atom label="User$3"/>
+   <atom label="User$4"/>
+   <atom label="User$5"/>
+</sig>
+
+<field label="fiscalCodeOrSSN" ID="21" parentID="10">
+   <tuple> <atom label="User$0"/> <atom label="CharSet$7"/> </tuple>
+   <tuple> <atom label="User$1"/> <atom label="CharSet$8"/> </tuple>
+   <tuple> <atom label="User$2"/> <atom label="CharSet$6"/> </tuple>
+   <tuple> <atom label="User$3"/> <atom label="CharSet$5"/> </tuple>
+   <tuple> <atom label="User$4"/> <atom label="CharSet$4"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="CharSet$9"/> </tuple>
+   <types> <type ID="10"/> <type ID="4"/> </types>
+</field>
+
+<field label="smartwatch" ID="22" parentID="10">
+   <tuple> <atom label="User$0"/> <atom label="Smartwatch$6"/> </tuple>
+   <tuple> <atom label="User$1"/> <atom label="Smartwatch$5"/> </tuple>
+   <tuple> <atom label="User$2"/> <atom label="Smartwatch$4"/> </tuple>
+   <tuple> <atom label="User$3"/> <atom label="Smartwatch$3"/> </tuple>
+   <tuple> <atom label="User$4"/> <atom label="Smartwatch$1"/> </tuple>
+   <tuple> <atom label="User$5"/> <atom label="Smartwatch$0"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="Smartwatch$2"/> </tuple>
+   <types> <type ID="10"/> <type ID="8"/> </types>
+</field>
+
+<field label="notifications" ID="23" parentID="10">
+   <tuple> <atom label="User$2"/> <atom label="Notification$3"/> </tuple>
+   <tuple> <atom label="User$3"/> <atom label="Notification$2"/> </tuple>
+   <tuple> <atom label="User$4"/> <atom label="Notification$0"/> </tuple>
+   <tuple> <atom label="User$4"/> <atom label="Notification$1"/> </tuple>
+   <types> <type ID="10"/> <type ID="24"/> </types>
+</field>
+
+<field label="acceptsDataRequestFrom" ID="25" parentID="10">
+   <tuple> <atom label="Elderly$0"/> <atom label="Company$0"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="Company$1"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="Company$2"/> </tuple>
+   <types> <type ID="10"/> <type ID="26"/> </types>
+</field>
+
+<field label="hasInscriptionCode" ID="27" parentID="10">
+   <types> <type ID="10"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/Company" ID="26" parentID="20">
+   <atom label="Company$0"/>
+   <atom label="Company$1"/>
+   <atom label="Company$2"/>
+</sig>
+
+<field label="paymentMethod" ID="28" parentID="26">
+   <tuple> <atom label="Company$0"/> <atom label="CharSet$9"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="CharSet$8"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="CharSet$9"/> </tuple>
+   <types> <type ID="26"/> <type ID="4"/> </types>
+</field>
+
+<field label="queries" ID="29" parentID="26">
+   <tuple> <atom label="Company$1"/> <atom label="IndividualQuery$2"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="AnonQuery$3"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="AnonQuery$4"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="AnonQuery$5"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="IndividualQuery$0"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="IndividualQuery$1"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="AnonQuery$0"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="AnonQuery$1"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="AnonQuery$2"/> </tuple>
+   <types> <type ID="26"/> <type ID="30"/> </types>
+</field>
+
+<sig label="this/Customer" ID="20" parentID="2" abstract="yes">
+</sig>
+
+<field label="username" ID="31" parentID="20">
+   <tuple> <atom label="User$0"/> <atom label="CharSet$9"/> </tuple>
+   <tuple> <atom label="User$1"/> <atom label="CharSet$8"/> </tuple>
+   <tuple> <atom label="User$2"/> <atom label="CharSet$6"/> </tuple>
+   <tuple> <atom label="User$3"/> <atom label="CharSet$3"/> </tuple>
+   <tuple> <atom label="User$5"/> <atom label="CharSet$4"/> </tuple>
+   <tuple> <atom label="Company$0"/> <atom label="CharSet$7"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="CharSet$0"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="CharSet$2"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="CharSet$5"/> </tuple>
+   <types> <type ID="20"/> <type ID="4"/> </types>
+</field>
+
+<field label="password" ID="32" parentID="20">
+   <tuple> <atom label="User$1"/> <atom label="CharSet$8"/> </tuple>
+   <tuple> <atom label="User$2"/> <atom label="CharSet$7"/> </tuple>
+   <tuple> <atom label="User$3"/> <atom label="CharSet$9"/> </tuple>
+   <tuple> <atom label="User$4"/> <atom label="CharSet$6"/> </tuple>
+   <tuple> <atom label="User$5"/> <atom label="CharSet$5"/> </tuple>
+   <tuple> <atom label="Company$0"/> <atom label="CharSet$9"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="CharSet$4"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="CharSet$9"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="CharSet$9"/> </tuple>
+   <types> <type ID="20"/> <type ID="4"/> </types>
+</field>
+
+<field label="canRegister" ID="33" parentID="20">
+   <tuple> <atom label="User$0"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="User$1"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="User$2"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="User$3"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="User$4"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="User$5"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="Company$0"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="boolean/True$0"/> </tuple>
+   <types> <type ID="20"/> <type ID="12"/> </types>
+</field>
+
+<field label="isRegistered" ID="34" parentID="20">
+   <tuple> <atom label="User$0"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="User$1"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="User$2"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="User$3"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="User$4"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="User$5"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="Company$0"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="Company$1"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Company$2"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="Elderly$0"/> <atom label="boolean/True$0"/> </tuple>
+   <types> <type ID="20"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/AmbulanceRequest" ID="35" parentID="2">
+   <atom label="AmbulanceRequest$0"/>
+   <atom label="AmbulanceRequest$1"/>
+   <atom label="AmbulanceRequest$2"/>
+   <atom label="AmbulanceRequest$3"/>
+   <atom label="AmbulanceRequest$4"/>
+   <atom label="AmbulanceRequest$5"/>
+   <atom label="AmbulanceRequest$6"/>
+   <atom label="AmbulanceRequest$7"/>
+   <atom label="AmbulanceRequest$8"/>
+</sig>
+
+<field label="hospital" ID="36" parentID="35">
+   <tuple> <atom label="AmbulanceRequest$0"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$1"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$2"/> <atom label="Company$1"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$3"/> <atom label="Company$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$4"/> <atom label="Company$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$5"/> <atom label="Company$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$6"/> <atom label="Company$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$7"/> <atom label="Company$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$8"/> <atom label="Company$0"/> </tuple>
+   <types> <type ID="35"/> <type ID="26"/> </types>
+</field>
+
+<field label="person" ID="37" parentID="35">
+   <tuple> <atom label="AmbulanceRequest$0"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$1"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$2"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$3"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$4"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$5"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$6"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$7"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$8"/> <atom label="Elderly$0"/> </tuple>
+   <types> <type ID="35"/> <type ID="13"/> </types>
+</field>
+
+<field label="timeElapsed" ID="38" parentID="35">
+   <tuple> <atom label="AmbulanceRequest$0"/> <atom label="7"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$1"/> <atom label="2"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$2"/> <atom label="0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$3"/> <atom label="7"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$4"/> <atom label="7"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$5"/> <atom label="6"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$6"/> <atom label="7"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$7"/> <atom label="7"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$8"/> <atom label="7"/> </tuple>
+   <types> <type ID="35"/> <type ID="1"/> </types>
+</field>
+
+<field label="accepted" ID="39" parentID="35">
+   <tuple> <atom label="AmbulanceRequest$0"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$1"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$2"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$3"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$4"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$5"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$6"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$7"/> <atom label="boolean/True$0"/> </tuple>
+   <tuple> <atom label="AmbulanceRequest$8"/> <atom label="boolean/True$0"/> </tuple>
+   <types> <type ID="35"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/AnonQuery" ID="40" parentID="30">
+   <atom label="AnonQuery$0"/>
+   <atom label="AnonQuery$1"/>
+   <atom label="AnonQuery$2"/>
+   <atom label="AnonQuery$3"/>
+   <atom label="AnonQuery$4"/>
+   <atom label="AnonQuery$5"/>
+</sig>
+
+<field label="people" ID="41" parentID="40">
+   <tuple> <atom label="AnonQuery$3"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="AnonQuery$4"/> <atom label="User$2"/> </tuple>
+   <tuple> <atom label="AnonQuery$4"/> <atom label="User$3"/> </tuple>
+   <tuple> <atom label="AnonQuery$5"/> <atom label="User$1"/> </tuple>
+   <tuple> <atom label="AnonQuery$5"/> <atom label="User$2"/> </tuple>
+   <tuple> <atom label="AnonQuery$5"/> <atom label="User$3"/> </tuple>
+   <tuple> <atom label="AnonQuery$5"/> <atom label="Elderly$0"/> </tuple>
+   <types> <type ID="40"/> <type ID="10"/> </types>
+</field>
+
+<field label="isValid" ID="42" parentID="40">
+   <tuple> <atom label="AnonQuery$0"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="AnonQuery$1"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="AnonQuery$2"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="AnonQuery$3"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="AnonQuery$4"/> <atom label="boolean/False$0"/> </tuple>
+   <tuple> <atom label="AnonQuery$5"/> <atom label="boolean/True$0"/> </tuple>
+   <types> <type ID="40"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/IndividualQuery" ID="43" parentID="30">
+   <atom label="IndividualQuery$0"/>
+   <atom label="IndividualQuery$1"/>
+   <atom label="IndividualQuery$2"/>
+</sig>
+
+<field label="person" ID="44" parentID="43">
+   <tuple> <atom label="IndividualQuery$0"/> <atom label="User$5"/> </tuple>
+   <tuple> <atom label="IndividualQuery$1"/> <atom label="Elderly$0"/> </tuple>
+   <tuple> <atom label="IndividualQuery$2"/> <atom label="User$4"/> </tuple>
+   <types> <type ID="43"/> <type ID="10"/> </types>
+</field>
+
+<field label="userAccepts" ID="45" parentID="43">
+   <types> <type ID="43"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/Query" ID="30" parentID="2" abstract="yes">
+</sig>
+
+<field label="company" ID="46" parentID="30">
+   <tuple> <atom label="IndividualQuery$0"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="IndividualQuery$1"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="IndividualQuery$2"/> <atom label="Company$1"/> </tuple>
+   <tuple> <atom label="AnonQuery$0"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="AnonQuery$1"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="AnonQuery$2"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="AnonQuery$3"/> <atom label="Company$1"/> </tuple>
+   <tuple> <atom label="AnonQuery$4"/> <atom label="Company$1"/> </tuple>
+   <tuple> <atom label="AnonQuery$5"/> <atom label="Company$1"/> </tuple>
+   <types> <type ID="30"/> <type ID="26"/> </types>
+</field>
+
+<sig label="this/Notification" ID="24" parentID="2">
+   <atom label="Notification$0"/>
+   <atom label="Notification$1"/>
+   <atom label="Notification$2"/>
+   <atom label="Notification$3"/>
+</sig>
+
+<field label="user" ID="47" parentID="24">
+   <tuple> <atom label="Notification$0"/> <atom label="User$4"/> </tuple>
+   <tuple> <atom label="Notification$1"/> <atom label="User$4"/> </tuple>
+   <tuple> <atom label="Notification$2"/> <atom label="User$3"/> </tuple>
+   <tuple> <atom label="Notification$3"/> <atom label="User$2"/> </tuple>
+   <types> <type ID="24"/> <type ID="10"/> </types>
+</field>
+
+<field label="company" ID="48" parentID="24">
+   <tuple> <atom label="Notification$0"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="Notification$1"/> <atom label="Company$2"/> </tuple>
+   <tuple> <atom label="Notification$2"/> <atom label="Company$1"/> </tuple>
+   <tuple> <atom label="Notification$3"/> <atom label="Company$0"/> </tuple>
+   <types> <type ID="24"/> <type ID="26"/> </types>
+</field>
+
+<sig label="this/Run" ID="19" parentID="2">
+</sig>
+
+<field label="hasStarted" ID="49" parentID="19">
+   <types> <type ID="19"/> <type ID="12"/> </types>
+</field>
+
+<field label="participants" ID="50" parentID="19">
+   <types> <type ID="19"/> <type ID="10"/> </types>
+</field>
+
+<field label="organizer" ID="51" parentID="19">
+   <types> <type ID="19"/> <type ID="16"/> </types>
+</field>
+
+<sig label="boolean/True" ID="52" parentID="12" one="yes">
+   <atom label="boolean/True$0"/>
+</sig>
+
+<sig label="boolean/False" ID="53" parentID="12" one="yes">
+   <atom label="boolean/False$0"/>
+</sig>
+
+<sig label="boolean/Bool" ID="12" parentID="2" abstract="yes">
+</sig>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+<skolem label="$showWithAnonQueryAllowed_u" ID="54">
+   <tuple> <atom label="Elderly$0"/> </tuple>
+   <types> <type ID="10"/> </types>
+</skolem>
+
+<skolem label="$showWithAnonQueryAllowed_aq" ID="55">
+   <tuple> <atom label="AnonQuery$5"/> </tuple>
+   <types> <type ID="40"/> </types>
+</skolem>
+
+</instance>
+
+<source filename="/home/francesco/Projects/FossatiMontesiSgherzi/Alloy/modelV3.als" content="open util/boolean&#x000a;&#x000a;// Signatures&#x000a;&#x000a;sig CharSet {}&#x000a;&#x000a;sig Position {&#x000a;    _lat: one CharSet,&#x000a;    _long: one CharSet&#x000a;}&#x000a;&#x000a;sig Smartwatch {&#x000a;    user: one User,&#x000a;    compatible: one Bool&#x000a;}&#x000a;&#x000a;abstract sig Customer {&#x000a;    username: lone CharSet, &#x000a;    password: lone CharSet,&#x000a;    canRegister: one Bool,&#x000a;    isRegistered: one Bool&#x000a;} {&#x000a;    isRegistered = True =&gt; canRegister = True&#x000a;    canRegister = False =&gt; isRegistered = False&#x000a;    (#username = 0 || #password = 0) =&gt; isRegistered = False &#x000a;}&#x000a;&#x000a;sig User extends Customer {&#x000a;    fiscalCodeOrSSN: lone CharSet,&#x000a;    smartwatch: one Smartwatch,&#x000a;    notifications: set Notification, &#x000a;    acceptsDataRequestFrom: set Company,&#x000a;    hasInscriptionCode: lone Bool,&#x000a;} {&#x000a;    (#fiscalCodeOrSSN = 0 || smartwatch.compatible = False) &lt;=&gt; (canRegister = False)&#x000a;}&#x000a;&#x000a;sig Elderly extends User {&#x000a;    isInDanger: one Bool,&#x000a;    inDangerFrom: lone Int&#x000a;} {&#x000a;    inDangerFrom &gt;= 0 =&gt; isInDanger = True&#x000a;    #inDangerFrom = 0 =&gt; isInDanger = False&#x000a;}&#x000a;&#x000a;sig AmbulanceRequest {&#x000a;    hospital: one Company,&#x000a;    person: one Elderly,&#x000a;    timeElapsed: one Int,&#x000a;    accepted: one Bool&#x000a;} {&#x000a;    timeElapsed &gt;= 5 =&gt; accepted = True&#x000a;}&#x000a;sig RunOrganizer extends User {&#x000a;    runPath: set Position,&#x000a;    runOrganized: lone Run&#x000a;} {&#x000a;    isRegistered = False =&gt; (#runPath = 0 &amp;&amp; #runOrganized = 0)&#x000a;}&#x000a;&#x000a;sig Company extends Customer {&#x000a;    paymentMethod: lone CharSet,&#x000a;    queries: set Query&#x000a;} {&#x000a;    #paymentMethod = 0 &lt;=&gt; canRegister = False&#x000a;    isRegistered = False =&gt; #queries = 0&#x000a;}&#x000a;&#x000a;abstract sig Query {&#x000a;    company: one Company&#x000a;}&#x000a;&#x000a;sig AnonQuery extends Query {&#x000a;    people: set User,&#x000a;    isValid: one Bool&#x000a;} {&#x000a;    isValid = True &lt;=&gt; #people &gt;= 3&#x000a;    no p: User | p in people &amp;&amp; p.isRegistered = False&#x000a;}&#x000a;&#x000a;sig IndividualQuery extends Query {&#x000a;    person: one User,&#x000a;    userAccepts: lone Bool, // lone cause if #userAccepts = 0 it must mean that a notification had been received by the user&#x000a;} &#x000a;&#x000a;sig Notification {&#x000a;    user: one User,&#x000a;    company: one Company&#x000a;}&#x000a;&#x000a;sig Run {&#x000a;    hasStarted: one Bool,&#x000a;    participants: set User,&#x000a;    organizer: one RunOrganizer&#x000a;}&#x000a;&#x000a;// Facts: Consistency&#x000a;&#x000a;fact UsernameConsistency {&#x000a;    // There are no 2 Customer(s) with the same username&#x000a;    all disj c, c&apos;: Customer | c.username != c&apos;.username&#x000a;}&#x000a;&#x000a;fact FiscalCodeOrSSNConsistency {&#x000a;    // There are no 2 User(s) with the same fiscalCodeOrSSN&#x000a;    all disj u, u&apos;: User | u.fiscalCodeOrSSN != u&apos;.fiscalCodeOrSSN&#x000a;}&#x000a;&#x000a;fact SmartWatchConsistency {&#x000a;    // Let&apos;s suppose, wlog, that the cardinality of the relation&#x000a;    // between smartwatch and user is 1 to 1&#x000a;    all s: Smartwatch, u: User | s.user = u &lt;=&gt; u.smartwatch = s&#x000a;}&#x000a;&#x000a;fact QueryConsistency {&#x000a;    // If a query has been made by a company&#x000a;    // it must be in the set of all the queries &#x000a;    // made by the company&#x000a;    all q: Query, c: Company | q.company = c &lt;=&gt; q in c.queries&#x000a;}&#x000a;&#x000a;fact NotificationConsistency {&#x000a;    // If a notification has been sent to a user&#x000a;    // the user must have it in the set of &#x000a;    // all notifications&#x000a;    all n: Notification, u: User | n.user = u &lt;=&gt; n in u.notifications&#x000a;}&#x000a;&#x000a;fact AmbulanceRequestConsistency {&#x000a;    all e: Elderly, a: AmbulanceRequest | a.person = e &lt;=&gt; a.hospital in e.acceptsDataRequestFrom&#x000a;}&#x000a;&#x000a;fact RunAndRunOrganizerConsistency {&#x000a;    all r: Run, ro: RunOrganizer {&#x000a;        r.organizer = ro &lt;=&gt; ro.runOrganized = r&#x000a;    }&#x000a;}&#x000a;&#x000a;// Assertions &#x000a;&#x000a;// Goal G2: The system should allow users to register by providing his &#x000a;// Fiscal Code or his Social Security Number, an username and a password. &#x000a;&#x000a;assert UserCanRegister {&#x000a;    all u: User {&#x000a;        (&#x000a;            #u.username = 1 &amp;&amp; &#x000a;            #u.password = 1 &amp;&amp; &#x000a;            #u.fiscalCodeOrSSN = 1 &amp;&amp;&#x000a;            u.(smartwatch.compatible) = True&#x000a;        ) =&gt; u.canRegister = True&#x000a;    }&#x000a;}&#x000a;&#x000a;check UserCanRegister for 5&#x000a;&#x000a;// Goal G3: The system should allow companies to register&#x000a;&#x000a;assert CompaniesCanRegister {&#x000a;    all c: Company {&#x000a;        (&#x000a;            #c.username = 1 &amp;&amp; &#x000a;            #c.password = 1 &amp;&amp;  &#x000a;            #c.paymentMethod = 1 &#x000a;        ) =&gt; c.canRegister = True&#x000a;    }&#x000a;}&#x000a;check CompaniesCanRegister for 5&#x000a;&#x000a;// Goal G4: The system should allow registered companies to request data&#x000a;// from an anonymized group of individuals, only if individuals in the&#x000a;// group are more than 1000.&#x000a;&#x000a;assert CompaniesCanMakeAnonimizedQueries {&#x000a;    all c: Company, q: AnonQuery{&#x000a;        (&#x000a;            c.isRegistered = True &amp;&amp; &#x000a;            #queries &gt; 0 &amp;&amp; &#x000a;            #q.people &gt;= 5&#x000a;        ) =&gt; q.isValid = True &amp;&amp; q in c.queries&#x000a;&#x000a;    }&#x000a;}&#x000a;&#x000a;check CompaniesCanMakeAnonimizedQueries for 5&#x000a;&#x000a;// Goal G5: The system should allow registered companies to request data&#x000a;// from an individual person, only if individuals accept the request.&#x000a;&#x000a;assert CompaniesCanMakeIndividualQueries {&#x000a;    &#x000a;    // If a company requests data from a single person &#x000a;    // either&#x000a;    // the person accepts &lt;=&gt; company is in the person acceptance list&#x000a;    // or &#x000a;    // the person still hasn&apos;t accepted =&gt; there&apos;s a notification concerning the company and the user in the person notification list&#x000a;&#x000a;    all q: IndividualQuery, c: Company, n: Notification {&#x000a;        (q.company = c) &amp;&amp;&#x000a;        (&#x000a;            (q.userAccepts = True &lt;=&gt; c in q.(person.acceptsDataRequestFrom)) ||&#x000a;            (#q.userAccepts = 0 =&gt; (&#x000a;                n.user = q.person &amp;&amp; &#x000a;                n.company = c &amp;&amp; &#x000a;                n in q.(person.notifications)&#x000a;            )) &#x000a;        )&#x000a;    }&#x000a;}&#x000a;&#x000a;check CompaniesCanMakeAnonimizedQueries for 5&#x000a;&#x000a;// Goal G11: If a run organizer is registered, it can define a run. For instance, it can&#x000a;// define the path that the participants should follow.&#x000a;&#x000a;assert OrganizerCanDefineARun {&#x000a;    all ro: RunOrganizer {&#x000a;        ro.isRegistered = True =&gt; (#ro.runOrganized &gt;= 0 &amp;&amp; #ro.runPath &gt;= 0)&#x000a;    }&#x000a;}&#x000a;&#x000a;check OrganizerCanDefineARun for 5&#x000a;&#x000a;// Goal G9: The system should be able to react to the lowering of the health&#x000a;// parameters below threshold in less than 5 seconds &#x000a;// and send the position of the person to the ambulance system&#x000a;&#x000a;assert SystemProcessesRequestInLessThan5Seconds {&#x000a;    no ar: AmbulanceRequest {&#x000a;        ar.timeElapsed &gt; 5 &amp;&amp; ar.accepted = False&#x000a;    }&#x000a;}&#x000a;&#x000a;check SystemProcessesRequestInLessThan5Seconds for 5&#x000a;&#x000a;pred showWithAnonQueryAllowed{&#x000a;    #User &gt; 6&#x000a;    some u: User {&#x000a;        u.isRegistered = True&#x000a;        #u.acceptsDataRequestFrom &gt; 2&#x000a;    }&#x000a;    some aq: AnonQuery {&#x000a;        #aq.people &gt; 3&#x000a;    }&#x000a;    #Company &gt; 2&#x000a;    #AnonQuery &gt; 1&#x000a;    #IndividualQuery &gt; 1&#x000a;    #Notification &gt; 3&#x000a;}&#x000a;&#x000a;pred showWithAnonQueryNotAllowed {&#x000a;    #User &gt; 3&#x000a;    some u: User {&#x000a;        u.isRegistered = True&#x000a;        #u.acceptsDataRequestFrom &gt; 2&#x000a;    }&#x000a;    some aq: AnonQuery {&#x000a;        #aq.people &lt; 3&#x000a;    }&#x000a;    #Company &gt; 2&#x000a;    #AnonQuery &gt; 1&#x000a;    #IndividualQuery &gt; 1&#x000a;    #Notification &gt; 3&#x000a;}&#x000a;&#x000a;run showWithAnonQueryAllowed for 10&#x000a;run showWithAnonQueryNotAllowed for 10&#x000a;"/>
+
+<source filename="/$alloy4$/models/util/integer.als" content="module util/integer&#x000a;&#x000a;/*&#x000a; * A collection of utility functions for using Integers in Alloy.&#x000a; * Note that integer overflows are silently truncated to the current bitwidth&#x000a; * using the 2&apos;s complement arithmetic, unless the &quot;forbid overfows&quot; option is&#x000a; * turned on, in which case only models that don&apos;t have any overflows are &#x000a; * analyzed. &#x000a; */&#x000a;&#x000a;fun add  [n1, n2: Int] : Int { this/plus[n1, n2] }&#x000a;fun plus [n1, n2: Int] : Int { n1 fun/add n2 }&#x000a;&#x000a;fun sub   [n1, n2: Int] : Int { this/minus[n1, n2] }&#x000a;fun minus [n1, n2: Int] : Int { n1 fun/sub n2 }&#x000a;&#x000a;fun mul [n1, n2: Int] : Int { n1 fun/mul n2 }&#x000a;&#x000a;/**&#x000a; * Performs the division with &quot;round to zero&quot; semantics, except the following 3 cases&#x000a; * 1) if a is 0, then it returns 0&#x000a; * 2) else if b is 0, then it returns 1 if a is negative and -1 if a is positive&#x000a; * 3) else if a is the smallest negative integer, and b is -1, then it returns a&#x000a; */&#x000a;fun div [n1, n2: Int] : Int { n1 fun/div n2 }&#x000a;&#x000a;/** answer is defined to be the unique integer that satisfies &quot;a = ((a/b)*b) + remainder&quot; */&#x000a;fun rem [n1, n2: Int] : Int { n1 fun/rem n2 }&#x000a;&#x000a;/** negate */&#x000a;fun negate [n: Int] : Int { 0 fun/sub n }&#x000a;&#x000a;/** equal to */&#x000a;pred eq [n1, n2: Int] { int[n1] = int[n2] }&#x000a;&#x000a;/** greater than */&#x000a;pred gt [n1, n2: Int] { n1 &gt; n2 }&#x000a;&#x000a;/** less then */&#x000a;pred lt [n1, n2: Int] { n1 &lt; n2 }&#x000a;&#x000a;/** greater than or equal */&#x000a;pred gte [n1, n2: Int] { n1 &gt;= n2 }&#x000a;&#x000a;/** less than or equal */&#x000a;pred lte [n1, n2: Int] { n1 &lt;= n2 }&#x000a;&#x000a;/** integer is zero */&#x000a;pred zero [n: Int] { n = 0 }&#x000a;&#x000a;/** positive */&#x000a;pred pos  [n: Int] { n &gt; 0 }&#x000a;&#x000a;/** negative */&#x000a;pred neg  [n: Int] { n &lt; 0 }&#x000a;&#x000a;/** non-positive */&#x000a;pred nonpos [n: Int] { n &lt;= 0 }&#x000a;&#x000a;/** non-negative */&#x000a;pred nonneg [n: Int] { n &gt;= 0 }&#x000a;&#x000a;/** signum (aka sign or sgn) */&#x000a;fun signum [n: Int] : Int { n&lt;0 =&gt; (0 fun/sub 1) else (n&gt;0 =&gt; 1 else 0) }&#x000a;&#x000a;/**&#x000a; * returns the ith element (zero-based) from the set s&#x000a; * in the ordering of &apos;next&apos;, which is a linear ordering&#x000a; * relation like that provided by util/ordering&#x000a; */&#x000a;fun int2elem[i: Int, next: univ-&gt;univ, s: set univ] : lone s {&#x000a;  {e: s | #^next.e = int i }&#x000a;}&#x000a;&#x000a;/**&#x000a; * returns the index of the element (zero-based) in the&#x000a; * ordering of next, which is a linear ordering relation&#x000a; * like that provided by util/ordering&#x000a; */&#x000a;fun elem2int[e: univ, next: univ-&gt;univ] : lone Int {&#x000a;  Int[#^next.e]&#x000a;}&#x000a;&#x000a;/** returns the largest integer in the current bitwidth */&#x000a;fun max:one Int { fun/max }&#x000a;&#x000a;/** returns the smallest integer in the current bitwidth */&#x000a;fun min:one Int { fun/min }&#x000a;&#x000a;/** maps each integer (except max) to the integer after it */&#x000a;fun next:Int-&gt;Int { fun/next }&#x000a;&#x000a;/** maps each integer (except min) to the integer before it */&#x000a;fun prev:Int-&gt;Int { ~next }&#x000a;&#x000a;/** given a set of integers, return the largest element */&#x000a;fun max [es: set Int]: lone Int { es - es.^prev }&#x000a;&#x000a;/** given a set of integers, return the smallest element */&#x000a;fun min [es: set Int]: lone Int { es - es.^next }&#x000a;&#x000a;/** given an integer, return all integers prior to it */&#x000a;fun prevs [e: Int]: set Int { e.^prev }&#x000a;&#x000a;/** given an integer, return all integers following it */&#x000a;fun nexts [e: Int]: set Int { e.^next }&#x000a;&#x000a;/** returns the larger of the two integers */&#x000a;fun larger [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; b else a) }&#x000a;&#x000a;/** returns the smaller of the two integers */&#x000a;fun smaller [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; a else b) }&#x000a;"/>
+
+<source filename="/$alloy4$/models/util/boolean.als" content="module util/boolean&#x000a;&#x000a;/*&#x000a; * Creates a Bool type with two singleton subtypes: True&#x000a; * and False. Provides common boolean operations.&#x000a; *&#x000a; * author: Greg Dennis&#x000a; */&#x000a;&#x000a;abstract sig Bool {}&#x000a;one sig True, False extends Bool {}&#x000a;&#x000a;pred isTrue[b: Bool] { b in True }&#x000a;&#x000a;pred isFalse[b: Bool] { b in False }&#x000a;&#x000a;fun Not[b: Bool] : Bool {&#x000a;  Bool - b&#x000a;}&#x000a;&#x000a;fun And[b1, b2: Bool] : Bool {&#x000a;  subset_[b1 + b2, True]&#x000a;}&#x000a;&#x000a;fun Or[b1, b2: Bool] : Bool {&#x000a;  subset_[True, b1 + b2]&#x000a;}&#x000a;&#x000a;fun Xor[b1, b2: Bool] : Bool {&#x000a;  subset_[Bool, b1 + b2]&#x000a;}&#x000a;&#x000a;fun Nand[b1, b2: Bool] : Bool {&#x000a;  subset_[False, b1 + b2]&#x000a;}&#x000a;&#x000a;fun Nor[b1, b2: Bool] : Bool {&#x000a;  subset_[b1 + b2, False]&#x000a;}&#x000a;&#x000a;fun subset_[s1, s2: set Bool] : Bool {&#x000a;  (s1 in s2) =&gt; True else False&#x000a;}&#x000a;"/>
+
+</alloy>

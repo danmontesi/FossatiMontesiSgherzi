@@ -75,6 +75,7 @@ sig AnonQuery extends Query {
     isValid: one Bool
 } {
     isValid = True <=> #people >= 3
+    no p: User | p in people && p.isRegistered = False
 }
 
 sig IndividualQuery extends Query {
