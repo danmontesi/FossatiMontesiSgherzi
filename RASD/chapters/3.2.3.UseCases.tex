@@ -159,7 +159,7 @@ Mobile app, smartwatch app \\
 \centering
 \begin{tabular}{l|l}
 \textbf{Actors} &
-Company, core component
+Company, WebSite, core component
  \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  &  \begin{minipage}[t]{0.7\textwidth}
@@ -453,6 +453,43 @@ Company, core component
 \end{table}
 \end{center}
 
+\paragraph{Run organizer adds a new race}
+\begin{center}
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l}
+\textbf{Actors} & Run organizer \\
+\textbf{Start conditions} & None \\
+\textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+    \item Run organizer clicks on "Organize new run" on the Data4Help website 
+    \item The system shows a screen with empty spaces about run information
+    \item Run organizer insert the name of the run, the city where the run will take place, the date and the starting time
+    \item The system checks if date is correct
+    \item The system shows a map where user can define the path of the run
+    \item Run organizer clicks on the path he wants the run to be taken
+    \item The system calculates the km of the run
+    \item The system show a "Correctly created run" screen
+\end{itemize}
+    
+\end{minipage} \\
+\textbf{Exit condition} & The system stores the information of the run in the Data4Help database and makes it public to users \\
+\textbf{Exceptions} & \begin{minipage}[t]{0.7\textwidth}
+    \begin{itemize}
+\item Not valid date
+    \end{itemize}
+    
+\end{minipage} \\ \\
+\textbf{Goals} & G11
+\end{tabular}
+
+\end{table}
+\end{center}
+
+
+
+
+
 \paragraph{Runner subscription to a race}
 \begin{center}
 \begin{table}[H]
@@ -476,7 +513,7 @@ Company, core component
     \end{itemize}
     \end{minipage}
     \\
-\textbf{Goals} & G11
+\textbf{Goals} & G12
 \end{tabular}
 
 \end{table}
@@ -510,7 +547,7 @@ Company, core component
     \end{itemize}
     
 \end{minipage}  \\
-\textbf{Goals} & G12 
+\textbf{Goals} & G13 
 \end{tabular}
 
 \end{table}
