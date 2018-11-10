@@ -2,7 +2,7 @@
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Not registered user, Mobile app, Track4Me core App \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & 
@@ -41,14 +41,20 @@
 \end{center}
 
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/UserRegistration.pdf}
+  \caption{User registration sequence diagram}
+  \label{fig:UserRegistrationSequence}
+\end{figure}
 
 
 
+\newpage
 \paragraph{Consulting of activity history}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Registered User \\
 \textbf{Start conditions} & The user is logged in \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
@@ -77,11 +83,26 @@
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/ConsultingOfActivityHistory.pdf}
+  \caption{Consulting of activity history sequence diagram}
+  \label{fig:ConsultingOfActivityHistory}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
 \paragraph{Data Synchronization between Smartwatch and Smartphone}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & 
 Mobile app, smartwatch app \\
 \textbf{Start conditions} & Bluetooth connection enstablished between smartwatch and smartphone \\
@@ -107,17 +128,27 @@ Mobile app, smartwatch app \\
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/DataSynchronizationBetweenSmartwatchAndSmartphone.pdf}
+  \caption{Data Synchronization between Smartwatch and Smartphone sequence diagram}
+  \label{fig:DataSynchronizationBetweenSmartwatchAndSmartphone}
+\end{figure}
 
 
 
 
 
 
+
+
+
+
+\newpage
 \paragraph{Company registration}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Not registered company \\
 \textbf{Start conditions} & None \\
 
@@ -151,13 +182,28 @@ Mobile app, smartwatch app \\
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/CompanyRegistration.pdf}
+  \caption{Company registration sequence diagram}
+  \label{fig:CompanyRegistration}
+\end{figure}
 
 
+
+
+
+
+
+
+
+
+
+\newpage
 \paragraph{Company query search on multiple individuals}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} &
 Company, WebSite, core component
  \\
@@ -193,6 +239,11 @@ Company, WebSite, core component
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/CompanyQuerySearchOnMultipleIndividuals.pdf}
+  \caption{Company query search on multiple individuals sequence diagram}
+  \label{fig:CompanyQuerySearchOnMultipleIndividuals}
+\end{figure}
 
 
 
@@ -203,11 +254,18 @@ Company, WebSite, core component
 
 
 
+
+
+
+
+
+
+\newpage
 \paragraph{Company request for individual monitoring}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Company, User, Core component \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & 
@@ -253,6 +311,11 @@ Company, WebSite, core component
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/CompanyRequestForIndividualMonitoring.pdf}
+  \caption{Company request for individual monitoring sequence diagram}
+  \label{fig:CompanyRequestForIndividualMonitoring}
+\end{figure}
 
 
 
@@ -262,11 +325,19 @@ Company, WebSite, core component
 
 
 
-\paragraph{Company consulting of individual data }
+
+
+
+
+
+
+
+\newpage
+\paragraph{Company consulting of individual data}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Company, core component \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & 
@@ -300,6 +371,11 @@ Company, WebSite, core component
 
 \end{table}
 \end{center}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/CompanyConsultingOfIndividualData.pdf}
+  \caption{Company consulting of individual data sequence diagram}
+  \label{fig:CompanyConsultingOfIndividualData}
+\end{figure}
 
 
 
@@ -313,11 +389,12 @@ Company, WebSite, core component
 
 
 
+\newpage
 \paragraph{Company payment processing}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Company, Core component \\
 \textbf{Start conditions} & Company purchases a subscription plan \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
@@ -346,6 +423,11 @@ Company, WebSite, core component
 \end{center}
 
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/CompanyPaymentProcessing.pdf}
+  \caption{Company payment processing sequence diagram}
+  \label{fig:CompanyPaymentProcessing}
+\end{figure}
 
 
 
@@ -354,11 +436,15 @@ Company, WebSite, core component
 
 
 
+
+
+
+\newpage
 \paragraph{Company receives data of subscribed query}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & 
 Company, core component
  \\
@@ -368,7 +454,7 @@ Company, core component
        \item System retrieve the query information on the database
 
         \item System compute query on the database
-        \item System export a pdf of the data stored
+        \item System export a CSV of the data stored
         \item System send the document on the email of the company 
 
 
@@ -383,6 +469,11 @@ Company, core component
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/CompanyReceivesDataOfSubscribedQuery.pdf}
+  \caption{Company receives data of subscribed query sequence diagram}
+  \label{fig:CompanyReceivesDataOfSubscribedQuery}
+\end{figure}
 
 
 
@@ -393,11 +484,19 @@ Company, core component
 
 
 
+
+
+
+
+
+
+
+\newpage
 \paragraph{Emergency situation and ambulance call}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & User, core component \\
 \textbf{Start conditions} & User health parameter under the threshold value \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
@@ -418,12 +517,29 @@ Company, core component
 
 \end{table}
 \end{center}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/EmergencySituationAndAmbulanceCall.pdf}
+  \caption{Emergency situation and ambulance call sequence diagram}
+  \label{fig:EmergencySituationAndAmbulanceCall}
+\end{figure}
 
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \paragraph{Run organizer registration}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Not registered run organizer \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
@@ -452,12 +568,32 @@ Company, core component
 
 \end{table}
 \end{center}
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/RunOrganizerRegistration.pdf}
+  \caption{Run organizer registration sequence diagram}
+  \label{fig:RunOrganizerRegistration}
+\end{figure}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \paragraph{Run organizer adds a new race}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Run organizer \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
@@ -486,15 +622,26 @@ Company, core component
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/RunOrganizerAddsANewRace.pdf}
+  \caption{Run organizer adds a new race sequence diagram}
+  \label{fig:RunOrganizerAddsANewRace}
+\end{figure}
 
 
 
 
+
+
+
+
+
+\newpage
 \paragraph{Runner subscription to a race}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & Run organizer\\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
@@ -519,11 +666,24 @@ Company, core component
 \end{table}
 \end{center}
 
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/RunnerSubscriptionToARace.pdf}
+  \caption{Runner subscription to a race sequence diagram}
+  \label{fig:RunnerSubscriptionToARace}
+\end{figure}
+
+
+
+
+
+
+
+\newpage
 \paragraph{Spectator or a run requests for runner position}
 \begin{center}
 \begin{table}[H]
 \centering
-\begin{tabular}{l|l}
+\begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & User \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
@@ -541,7 +701,7 @@ Company, core component
 \textbf{Exceptions} & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
        \item Run has already finished
-\item Run hasn’t already started
+\item Run hasn't already started
 
 
     \end{itemize}
@@ -552,3 +712,10 @@ Company, core component
 
 \end{table}
 \end{center}
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/SpectatorOfARunRequestsForRunnerPosition.pdf}
+  \caption{Spectator or a run requests for runner position sequence diagram}
+  \label{fig:SpectatorOfARunRequestsForRunnerPosition}
+\end{figure}
+

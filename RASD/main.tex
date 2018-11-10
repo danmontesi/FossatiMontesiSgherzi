@@ -7,6 +7,8 @@
 \usepackage{enumitem}
 \usepackage{eurosym}
 \usepackage{float}
+\usepackage{listings}
+\usepackage{tabularx}
 
 
 \title{RASD}
@@ -56,10 +58,6 @@
     \section{Overall description}
         \subsection{Product perspective}
             \input{chapters/2.1.ProductPerspective.tex}
-          
-        
-        
-        
         \subsection{Product functions}
             \input{chapters/2.2.ProductFunctions.tex}
             \subsubsection{Functional requirements}
@@ -98,9 +96,17 @@
         \subsubsection{Requirements mapping}
             \input{chapters/3.2.2.RequirementsMapping.tex}
         
+        \newpage
         \subsubsection{Use cases}
             \input{chapters/3.2.3.UseCases.tex}
-    
+        \section{Appendix}
+            \subsection{Alloy}
+                \input{chapters/4.1.Alloy.tex}
+            \subsection{Worlds generated}
+                \subsubsection{With Anonymous queries allowed}
+                    \input{chapters/4.2.1.AnonQueryAllowed.tex}
+                \subsubsection{With Anonymous queries not allowed}
+                \input{chapters/4.2.2.AnonQueryNotAllowed.tex}
         \section{Hours tracking}
         \begin{tabular}{l*{6}{c}r}
             Date & Nicola Fossati & Daniele Montesi & Francesco Sgherzi \\
@@ -125,8 +131,12 @@
             \hline
             07/11/2018 & 10 & 2 & 9 \\
              \hline
-            08/11/2018 & 4 & X & 2 \\
+            08/11/2018 & 4 & 0 & 2 \\
             \hline
-            09/11/2018 & 3 & X & X
+            09/11/2018 & 3 & 0 & 4 \\
+            \hline
+            10/11/2018 & X & X & X \\
+
+
         \end{tabular}
 \end{document}
