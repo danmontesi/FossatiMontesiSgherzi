@@ -3,7 +3,7 @@
 \begin{table}[H]
 \centering
 \begin{tabular}{l|p{0.7\textwidth}}
-\textbf{Actors} & Not registered user, Mobile app, Track4Me core App \\
+\textbf{Actors} & Not registered user, Mobile app, Data4Help Core \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & 
 
@@ -97,14 +97,14 @@
 
 
 
-
+\newpage
 \paragraph{Data Synchronization between Smartwatch and Smartphone}
 \begin{center}
 \begin{table}[H]
 \centering
 \begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & 
-Mobile app, smartwatch app \\
+Mobile app, Smartwatch app \\
 \textbf{Start conditions} & Bluetooth connection enstablished between smartwatch and smartphone \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
@@ -160,7 +160,7 @@ Mobile app, smartwatch app \\
 \item The system checks if email is not used by any other user
 \item The system checks if Payment method is valid
 \item The system generates a confirmation mail
-\item The company confirms the registration click on “Confirm email”
+\item The company inserts the registration code and click on “Confirm email”
 \item The system shows a registration complete screen
     \end{itemize}
     
@@ -205,7 +205,7 @@ Mobile app, smartwatch app \\
 \centering
 \begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} &
-Company, WebSite, core component
+Company, Website, Data4Help Core
  \\
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  &  \begin{minipage}[t]{0.7\textwidth}
@@ -497,11 +497,12 @@ Company, core component
 \begin{table}[H]
 \centering
 \begin{tabular}{l|p{0.7\textwidth}}
-\textbf{Actors} & User, core component \\
+\textbf{Actors} & User, Mobile app, Core component \\
 \textbf{Start conditions} & User health parameter under the threshold value \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
-       \item System change the user status in “AMBULANCE NEED”
+       \item The app Smartwatch app tells the Mobile app that user parameters are below thresholds.
+       \item The Mobile app in turn connects to Data4Hep core and tells that the user parameters are below thresholds.
 \item System connects hospital API 
 \item Hospital API answer to the connection
 \item System send emergency request to the hospital API sending location of the user and the health parameters under the threshold
@@ -547,8 +548,8 @@ Company, core component
        \item not registered company run organizer clicks on “Subscribe”
 \item not registered run organizer inserts a username, an email and a password
 \item The system checks if email is not used by any other user
-\item The system generates a confirmation mail
-\item The run organizer confirms the registration click on “Confirm email”
+\item The system generates a confirmation mail with a code
+\item The run organizer confirms the registration inserting the code
 \item The system shows a registration complete screen
 
 

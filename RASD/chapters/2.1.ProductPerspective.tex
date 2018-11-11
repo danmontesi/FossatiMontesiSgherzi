@@ -12,7 +12,7 @@ The Smartwatch App should be directly connected to the Mobile App to acquire dat
 \subsubsection{State charts}
 
 \paragraph{Query request}
-The following state diagram shows the state of a Query made by a Company. As soon as the Query is made from a registered Company, it goes into Waiting for data states. Then the Query can be removed by the Company or new data can satisfy the Query. In the latter case the query goes into Check Active Subscription. If a Subscription is active, the Query goes into new data available state, otherwise it goes into Payment request. If the transaction is accepted, the new state is New data available, otherwise goes into Payment failed state, until the payment method is updated.
+The following state diagram shows the state of a Query made by a Company. As soon as the Query is made from a registered Company, it goes into the \textit{Waiting for Data} state. Then the Query can either be removed by the Company or new data can satisfy the Query. In the latter case the query goes into the \textit{Check Active Subscription} state. If a Subscription is active, the Query goes into the \textit{New Data Available} state, otherwise it goes into \textit{Payment Request}. If the transaction is accepted, the new state is \textit{New Data Available}, otherwise goes into \textit{Payment Failed State}, until the payment method is updated.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/Data_request.pdf}
@@ -24,8 +24,8 @@ The following state diagram shows the state of a Query made by a Company. As soo
 
 
 \paragraph{Individuals data query}
-When a Company creates a Query, it goes into Check Active Subscription state. If the subscription to make individual queries is active, the system asks to the user for the permission. If the permission is granted, the Query goes into Company subscribed and the company can access user's data. If either the user deny the request or remove the permission to the company after having accepted the request, the Query is deleted.
-If the subscription is not active, the new state is payment request. If the transaction is accepted then the new state is Check Active Subscription, otherwise the transaction is refused, the new state is Payment failed and the Query waits until the user update his payment method.
+When a Company creates a Query, it goes into the \textit{Check Active Subscription} state. If the subscription to make individual queries is active, the system asks to the user for the permission. If the permission is granted, the Query goes into \textit{Company Subscribed} and the company can access user's data. If either the user denies the request or remove the permission to the company after having accepted the request, the Query is deleted.
+If the subscription is not active, the new state is \textit{Payment Request}. If the transaction is accepted then the new state is \textit{Check Active Subscription}, otherwise the transaction is refused, the new state is \textit{Payment Failed} and the Query waits until the user update his payment method.
 
 \begin{figure}[H]
 	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/IndividualRequest.pdf}
