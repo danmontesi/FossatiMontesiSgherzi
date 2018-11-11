@@ -1,0 +1,7 @@
+Data4Help has 
+\begin{itemize}
+    \item two-tier client to server architecture in order to handle requests from the web services
+    \item event-based architecture based on publish-subscribe primitives in order to keep mobile app users data updated in the Data4Help database
+\end{itemize}
+The back-end part has to store all data of users, companies and run organizers (credentials, health parameters, subscriptions to a plan, query subscriptions) and let clients to retrieve easily their information.
+The system must be able to serve requests of many clients simultaneously and be scalable in order to deal with the increasing number of subscriptions. In particular, it must be able to balance the high number of update events coming from user mobile phones.
