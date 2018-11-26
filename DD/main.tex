@@ -1,0 +1,107 @@
+\documentclass[a4paper,oneside,11pt]{article}
+\usepackage{graphicx}
+\usepackage{ tipa }
+\usepackage{hyperref}
+\usepackage{titling}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{eurosym}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{tabularx}
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}
+
+
+\title{DD}
+\author{Daniele Montesi, Nicola Fossati, Francesco Sgherzi}
+\date{\today}
+\begin{document}
+    \begin{titlingpage} 
+        \begin{center}
+            \includegraphics[height=5cm]{assets/Logo_Politecnico_Milano.png}\\
+            \vspace{4cm}
+            \begin{huge} 
+                \textbf{\thetitle} \\
+            \end{huge}
+            \vspace{0.3cm}
+            \begin{Large}
+                \textit{Software Engineering 2 Project - TrackMe} \\
+            \end{Large}
+        \end{center}
+        \begin{large}
+            \vspace{4cm}
+            \textbf{Authors}
+            \begin{itemize}
+                \item Daniele Montesi - \textit{912980} 
+                \item Nicola Fossati - \textit{915244}
+                \item Francesco Sgherzi - \textit{915377}
+            \end{itemize}
+        \end{large}
+    \end{titlingpage}
+    \newpage
+    \tableofcontents
+    \newpage
+    \section{Introduction}
+    
+        \subsection{Purpose}
+            \input{chapters/1.1.Purpose.tex}
+        \subsection{Scope}
+            \input{chapters/1.2.Scope.tex}
+        \subsection{Definitions, Acronyms, Abbreviations}
+            \input{chapters/1.3.DefinitionAcronymAbbreviations.tex}
+        \subsection{Revision history}
+        \subsection{Reference documents}
+            \input{chapters/1.5.ReferenceDocuments.tex}
+        \subsection{Document structure}
+        \input{chapters/1.6.DocumentStructure.tex}
+    
+    \newpage
+    \section{Architectural Design}
+        \subsection{Overview}
+            \input{chapters/2.1.Overview.tex}
+        \subsection{Component view}
+            \input{chapters/2.2.ComponentView.tex}
+        \subsection{Deployment view}
+            \input{chapters/2.3.DeploymentView.tex}
+        \subsection{Runtime view}
+            \input{chapters/2.4.RuntimeView.tex}
+        \subsection{Component interfaces}
+            \input{chapters/2.5.ComponentInterfaces.tex}
+        \subsection{Selected architectural styles and patterns}
+            \input{chapters/2.6.ArchAndPatterns.tex}
+        \subsection{Other design decisions}
+            \input{chapters/2.7.OtherDesignDecisions.tex}
+        
+    \newpage
+    \section{User interface design}
+        \input{chapters/3.UserInterfaceDesign.tex}
+    \newpage
+    \section{Requirements traceability}
+        \input{chapters/4.RequirementsTraceability.tex}
+    \newpage
+    \section{Implementation, integration and test plan}
+        \input{chapters/5.ImplementationIntegrationTestPlan.tex}
+    \newpage
+    \subsection{Effort spent}
+        \input{chapters/6.EffortSpent.tex}
+    \newpage
+    \subsection{References}
+        \input{chapters/7.References.tex}
+        
+    \section{Hours tracking}
+        \begin{tabular}{l*{6}{c}r}
+            Date & Nicola Fossati & Daniele Montesi & Francesco Sgherzi \\
+            \hline
+            13/11/2018 & 2 & 0 & 0   \\
+            \hline
+            19/11/2018 & 2 & 5 & 3   \\
+            \hline
+            20/11/2018 & 3 & 3 & X   \\
+            \hline
+            21/11/2018 & 2 & 2 & X   \\
+            \hline
+            21/11/2018 & 3 & 3 & X   \\
+
+        \end{tabular}
+\end{document}
