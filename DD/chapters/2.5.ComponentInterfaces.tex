@@ -1,0 +1,680 @@
+\subsubsection{REST API}
+    \textbf{Authentication Manager}
+    \begin{itemize}
+        \item User Registration
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/register\_user \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Params} & mail: String \\
+            &                 password: String \\
+            &                 SSN: String \\
+            &                 name: String \\
+            &                 surname: String \\
+            &                 birthday: Date \\
+            &                 smartwatch: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_code: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InfoNotValid',
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{message} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{Unsupported smartwatch}
+                    \item \texttt{Mail already used}
+                    \item \texttt{SSN not valid}
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to register a new User \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+
+    \begin{itemize}
+        \item Company Registration
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/register\_company \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Params} & username: String \\
+            &                 password: String \\
+            &                 company\_name: String \\
+            &                 email: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth\_code: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InfoNotValid',
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{message} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{Email already in use}
+                    \item \texttt{Username already in use}
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to register a new Company \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+
+\begin{itemize}
+        \item Run Organizer Registration
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/register\_run\_organizer \textbf{TO BE DONE} \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Params} & username: String \\
+            &                 password: String \\
+            &                 SSN: String \\
+            &                 name: String \\
+            &                 surname: String \\
+            &                 birthday: Date \\
+            &                 smartwatch: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_code: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InfoNotValid',
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{message} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{Unsupported smartwatch}
+                    \item \texttt{Username already used}
+                    \item \texttt{SSN not valid}
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to register a new user \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+
+    \begin{itemize}
+        \item User Login
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/login \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Params} & username: String \\
+            &                 password: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_token: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{401 UNAUTHORIZED} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: ... ,
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{error} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{InvalidCredentials}
+                    \item \texttt{NonExistentUser}
+                \end{itemize}
+                 \texttt{message} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{Invalid credentials}
+                    \item \texttt{User does not exist}
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to login \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+    
+    \begin{itemize}
+        \item Verify mail
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/verify \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Params} & mail: String \\
+            &                 verification\_code: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: email verified
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{401 UNAUTHORIZED} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidCode',
+    message: 'Code is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows verification of the account \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+    
+    \textbf{Individuals Manager}
+    \begin{itemize}
+        \item Data store
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /indiv/data \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Params} & auth\_token: String \\
+            &                 data: Array < Array < SensorData > > \\
+            
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: 'Sync successful'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidData',
+    message: 'Data are invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+          &                         code: \texttt{400 BAD REQUEST} \\
+          &                         content: \\
+          & \begin{minipage}[t]{0.7\textwidth}
+            \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+          \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to store sensor data in the database \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+    
+    \begin{itemize}
+        \item Data retrival
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /indiv/data \\
+            \hline
+            \textbf{Method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            \hline
+            \textbf{Params} &   \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    data: SensorsData
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to retrive sensor data from the database \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+    
+   \textbf{Query Manager}
+    \begin{itemize}
+        \item Query creation
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /api/create\_query \\
+            \hline
+            \textbf{Params} & auth\_token: String \\
+            &                 mail: String \\
+            &                 query: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    data: UserData
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'QueryTooRestrictive',
+    message: 'Query on too few users'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'BadQuery',
+    message: 'Query is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                 \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{402 PAYMENT REQUIRED} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PaymentRequired',
+    message: 'Payment required'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to create a query \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth} 
+    
+    \textbf{Subscription Manager}
+    \begin{itemize}
+        \item Buy subscription plan
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /subs/plan \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Params} & auth\_token: String \\
+            &                 mail: String \\
+            &                 plan: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: {$PLAN} bought
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{1.39\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{402 PAYMENT REQUIRED} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PaymentRequired',
+    message: 'Payment required'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{404 NOT FOUND} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PlanNotFound',
+    message: 'Plan not found'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client buy a subscription to a new plan \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth} 
+    
+    \begin{itemize}
+        \item Get plan informations
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{tabular}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/plan \\
+            \hline
+            \textbf{Method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  plan: String \\
+            \hline
+            \textbf{Params} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    plan: ...planDetails
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PlanUnavailable',
+    message: 'Plan is not available'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{1.2\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              
+              &                     code: \texttt{404 NOT FOUND} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PlanNotFound',
+    message: 'Plan not found'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client retrive informations about a subscription plan \\
+            \hline
+        \end{tabular}
+    \end{adjustwidth}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    % TEMPLATEs
+%\textbf{Authentication Manager}
+%    \begin{itemize}
+%        \item AAAAAAAAAAAAAAAAAAAAAAAAA
+%    \end{itemize}
+%    \begin{adjustwidth}{1cm}{}
+%        \begin{tabular}{|c|l|}
+%            \hline
+%            \textbf{Endpoint} & /auth/login\_user \\
+%            \hline
+%            \textbf{Params} & username: String \\
+%            &                 password: String \\
+%            &                 SSN: String \\
+%            &                 name: String \\
+%            &                 surname: String \\
+%            &                 birthday: Date \\
+%            &                 smartwatch: String \\
+%            \hline
+%            \textbf{Success Response} & code: \texttt{200 OK} \\
+%            &                           content: \\
+%            & \begin{minipage}[t]{0.5\textwidth}
+%                \begin{adjustwidth}{1.5cm}{}
+%                \begin{verbatim}
+%{
+%    success: true, 
+%    auth_code: ...
+%}
+%                \end{verbatim}
+%                \end{adjustwidth}
+%              \end{minipage} \\
+%              \hline
+%            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+%%            &                         content: \\
+%            & \begin{minipage}[t]{0.7\textwidth}
+%                \begin{adjustwidth}{1.5cm}{}
+%%                \begin{verbatim}
+%{
+%    success: false, 
+%    error: 'InfoNotValid',
+%    message: ...
+%}
+%                \end{verbatim}
+%                \end{adjustwidth}
+%                \texttt{message} can be one of the following: 
+%                \begin{itemize}
+%                    \item \texttt{Unsupported smartwatch}
+%                    \item \texttt{Username already used}
+%                    \item \texttt{SSN not valid}
+%                \end{itemize}
+%              \end{minipage} \\
+%              \hline
+%            \textbf{Uses} & Allows the client to register a new user \\
+%            \hline
+%        \end{tabular}
+%    \end{adjustwidth}
