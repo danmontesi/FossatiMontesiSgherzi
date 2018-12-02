@@ -47,6 +47,58 @@
   \label{fig:UserRegistrationSequence}
 \end{figure}
 
+\newpage
+\paragraph{User Log-in}
+\begin{center}
+\begin{table}[H]
+\centering
+\begin{tabular}{l|p{0.7\textwidth}}
+\textbf{Actors} & Not logged-in user, Mobile app/Web page, Data4Help Core \\
+\textbf{Start conditions} & None \\
+\textbf{Event flow}  & 
+
+
+ \begin{minipage}[t] {0.7\textwidth} 
+ \begin{itemize}
+      \item  not logged-in user clicks on “Login”
+      \item The system shows a login form
+      \item not-logged in user fills the form inserting username and password and send it
+      \item The system checks if username and passoword match in the database
+      \item The system generates a token code and send a successful login message
+      \item The system shows a login complete screen
+  \end{itemize}
+\end{minipage}
+ \\
+\textbf{Exit condition} & User login token code saved in Data4Help core. \\
+\textbf{Exceptions} & 
+\begin{minipage}[t] {0.7\textwidth} 
+ \begin{itemize}
+ 
+ \item The username and passoword don't exist or don't match in the database
+\end{itemize}
+ \end{minipage}\\
+\textbf{Goals} & G14, G15, G16 
+\end{tabular}
+
+
+
+
+\end{table}
+\end{center}
+
+\noindent
+The following sequence is the same for every generic user (one among Individual, Company or Run organizer) wants to login, hence is not provided a single diagram for every user typology. 
+
+
+\begin{figure}[H]
+  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/UserLogin.pdf}
+  \caption{User login sequence diagram}
+  \label{fig:UserLogin}
+\end{figure}
+
+
+
+
 
 
 \newpage
@@ -98,31 +150,34 @@
 
 
 \newpage
-\paragraph{Data Synchronization between Smartwatch and Smartphone}
+\paragraph{Data Synchronization between Smartwatch, Smartphone and Data4Help core}
 \begin{center}
 \begin{table}[H]
 \centering
 \begin{tabular}{l|p{0.7\textwidth}}
 \textbf{Actors} & 
-Mobile app, Smartwatch app \\
+Mobile app, Smartwatch app, Data4Help core \\
 \textbf{Start conditions} & Bluetooth connection enstablished between smartwatch and smartphone \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
         \item User turns on Bluetooth of the smartwatch and smartphone
 
-
         \item The smartphone requests connection to smartwatch
 
         \item Smartwatch confirms connection
         \item Smartwatch send data registered in the day 
-        \item Smartphone accept data and store locally
+        \item Smartphone accept data and store and send to Data4Help core
+        \item Data4Help core store data received
+        \item Data4Help core check if the user is in part a company query
+        \item Data4Help notify company about  new data, sending a notification
+        
 
     \end{itemize}
     
 \end{minipage}\\
-\textbf{Exit condition} & Data in the user smartphone is synchronized with data of the smartwatch and stored locally \\
+\textbf{Exit condition} & Data in the user smartphone is synchronized with data of the smartwatch and stored in the Data4Help core \\
 \textbf{Exceptions} & Connection Refused \\
-\textbf{Goals} & G1
+\textbf{Goals} & G8
 \end{tabular}
 
 \end{table}
@@ -219,13 +274,13 @@ Company, Website, Data4Help Core
         \item Company specifies age of people to search, hours of the day, health parameter filters
  
         \item System validates the request
-        \item System send the required data formatted on a pdf page on the website
+        \item System send the required data formatted on a XML file available on the website
         \item Company download the data
 
     \end{itemize}
     
 \end{minipage} \\
-\textbf{Exit condition} & Query generated as pdf file and stored in the Data4Help database \\
+\textbf{Exit condition} & Query generated as XML file and stored in the Data4Help database \\
 \textbf{Exceptions} & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
         \item No query left for the company type of subscription
@@ -430,67 +485,6 @@ Company, Website, Data4Help Core
 \end{figure}
 
 
-
-
-
-
-
-
-
-
-
-\newpage
-\paragraph{Company receives data of subscribed query}
-\begin{center}
-\begin{table}[H]
-\centering
-\begin{tabular}{l|p{0.7\textwidth}}
-\textbf{Actors} & 
-Company, core component
- \\
-\textbf{Start conditions} & Is 0:01 of one month passed after the last data sent of the query \\
-\textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
-    \begin{itemize}
-       \item System retrieve the query information on the database
-
-        \item System compute query on the database
-        \item System export a CSV of the data stored
-        \item System send the document on the email of the company 
-
-
-    \end{itemize}
-    
-\end{minipage} \\
-\textbf{Exit condition} & None \\
-\textbf{Exceptions} & None \\
-\textbf{Goals} & \textbf{G7} 
-\end{tabular}
-
-\end{table}
-\end{center}
-
-\begin{figure}[H]
-  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/sequence/CompanyReceivesDataOfSubscribedQuery.pdf}
-  \caption{Company receives data of subscribed query sequence diagram}
-  \label{fig:CompanyReceivesDataOfSubscribedQuery}
-\end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \newpage
 \paragraph{Emergency situation and ambulance call}
 \begin{center}
@@ -599,7 +593,7 @@ Company, core component
 \textbf{Start conditions} & None \\
 \textbf{Event flow}  & \begin{minipage}[t]{0.7\textwidth}
     \begin{itemize}
-    \item Run organizer clicks on "Organize new run" on the Data4Help website 
+    \item Run organizer clicks on "Organize new run" on the Data4Help Mobile App 
     \item The system shows a screen with empty spaces about run information
     \item Run organizer insert the name of the run, the city where the run will take place, the date and the starting time
     \item The system checks if date is correct

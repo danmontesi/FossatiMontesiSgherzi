@@ -18,7 +18,7 @@ In the following section are explained the functional requirements of the applic
     \item  \textbf{D4}  The user keeps the SmartWatch on his/her wrist during day and night.
    \end{itemize}
    
-    \item \textbf{G2}: The system should allow users to register by providing his Fiscal Code or his Social Security Number, an username and a password.
+    \item \textbf{G2}: The system should allow users to register.
     \paragraph{Requirements}
    \begin{itemize}
     \item \textbf{[RM$_M$]}: Users can register, after providing a username, a password and a Fiscal Code/Social Security Number and have connected a compatible Smartwatch
@@ -65,6 +65,7 @@ In the following section are explained the functional requirements of the applic
    \begin{itemize}
        \item \textbf{[R2$_W$]}: Companies can log-in
        \item \textbf{[R4$_W$]}: Logged-in companies can subscribe to a payment service of Data4Help
+         \item \textbf{[R8$_C$]}: Can provide a payment method for data requested by companies.
        \item \textbf{[R15$_C$]}: Can charge companies on their payment method respecting Track4Me pricing policy
    \end{itemize}
    \paragraph{Domain assumptions}
@@ -87,7 +88,7 @@ In the following section are explained the functional requirements of the applic
         \item  D3  Data taken from the previously mentioned sensors are always trusted and consistent.
    \end{itemize}
    
-    \item \textbf{G8}: The system should be able to monitor user's health parameter.
+    \item \textbf{G8}: The system should be able to store user's health parameter.
     \paragraph{Requirements}
    \begin{itemize}
        \item \textbf{[R1$_S$]}: App can read data from sensor and store it locally.
@@ -122,6 +123,7 @@ In the following section are explained the functional requirements of the applic
     \item \textbf{[R9$_C$]}: Can communicate directly with the nearest hospital \textit{API}.
     \item \textbf{[R10$_C$]}: Can provide geographical position and critical health parameters to the emergency employee using the \textit{API}
     \item \textbf{[R11$_C$]}: Can compute for every AutomatedSOS user which are the threshold value to take care of for each health parameter
+    \item \textbf{[R16$_M$]}: Logged-in users can subscribe to AutomatedSOS
 
    \end{itemize}
    \paragraph{Domain assumptions}
@@ -145,7 +147,7 @@ In the following section are explained the functional requirements of the applic
     \item \textbf{G10} The system should allow run organizers to register.
     \paragraph{Requirements}
    \begin{itemize}
-    \item \textbf{[R10$_W$]}: Run organizers can register
+    \item \textbf{[R11$_M$]}: Run organizers can register
     \item \textbf{[R14$_C$]}: Can validates information provided by the user during registration
    \end{itemize}
     
@@ -153,14 +155,14 @@ In the following section are explained the functional requirements of the applic
     \item \textbf{G11} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow.
     \paragraph{Requirements}
    \begin{itemize}
-    \item \textbf{[R11$_W$]}: Run organizers can login
-    \item \textbf{[R12$_W$]}: Logged-in run organizers can organize a run
-    \item \textbf{[R13$_W$]}: Organizers of a run can define the path and additional information for that run
-    \item \textbf{[R14$_W$]}: Organizers of a run can start the run
+    \item \textbf{[R12$_M$]}: Run organizers can login
+    \item \textbf{[R13$_M$]}: Logged-in run organizers can organize a run
+    \item \textbf{[R14$_M$]}: Organizers of a run can define the path and additional information for that run
+    \item \textbf{[R15$_M$]}: Organizers of a run can start the run
    \end{itemize}
    
    
-    \item \textbf{G12} A user should be able to enroll to a run, if he is close to the starting point and has a valid inscription code.
+    \item \textbf{G12} A user should be able to enroll to a run
     \paragraph{Requirements}
    \begin{itemize}
     \item \textbf{[R1$_M$]}: Users can log-in
@@ -178,6 +180,40 @@ In the following section are explained the functional requirements of the applic
     \item \textbf{[R13$_C$]}: Can send the position and rank of athletes during a run to spectator's devices.
    \end{itemize}
    
+   
+       \item \textbf{G14}: Individuals should be able to log-in.
+    \paragraph{Requirements}
+   \begin{itemize}
+    \item \textbf{[R1$_M$]}: Users can log-in
+   \end{itemize}
+   
+   \paragraph{Domain assumptions}
+   \begin{itemize}
+    \item  D1  The Storage System is reliable.
+    \item  D7  The phone on which the app will be installed has an internet access.
+   \end{itemize}
+   
+   \item \textbf{G15}: Companies should be able to log-in.
+    \paragraph{Requirements}
+   \begin{itemize}
+    \item \textbf{[R2$_W$]}: Companies can log-in
+   \end{itemize}
+   
+   \paragraph{Domain assumptions}
+   \begin{itemize}
+    \item  D1  The Storage System is reliable.
+   \end{itemize}
+   
+ \item \textbf{G16}: Run organizers should be able to log-in.
+    \paragraph{Requirements}
+   \begin{itemize}
+    \item \textbf{[R12$_M$]}: Run organizers can login
+   \end{itemize}
+   
+   \paragraph{Domain assumptions}
+   \begin{itemize}
+    \item  D1  The Storage System is reliable.
+   \end{itemize}
    \end{itemize}
 
    
