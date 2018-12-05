@@ -4,13 +4,15 @@
         \item User Registration
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
             \textbf{Endpoint} & /auth/register\_user \\
             \hline
+            \textbf{URL Params} &  \\
+            \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
-            \textbf{Params} & mail: String \\
+            \textbf{Request Data} & mail: String \\
             &                 password: String \\
             &                 SSN: String \\
             &                 name: String \\
@@ -53,78 +55,25 @@
               \hline
             \textbf{Uses} & Allows the client to register a new User \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth}
 
     \begin{itemize}
         \item Company Registration
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
             \textbf{Endpoint} & /auth/register\_company \\
             \hline
+            \textbf{URL Params} &  \\
+            \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
-            \textbf{Params} & username: String \\
+            \textbf{Request Data} & username: String \\
             &                 password: String \\
             &                 company\_name: String \\
             &                 email: String \\
-            \hline
-            \textbf{Success Response} & code: \texttt{200 OK} \\
-            &                           content: \\
-            & \begin{minipage}[t]{0.5\textwidth}
-                \begin{adjustwidth}{1.5cm}{}
-                \begin{verbatim}
-{
-    success: true, 
-    auth\_code: ...
-}
-                \end{verbatim}
-                \end{adjustwidth}
-              \end{minipage} \\
-              \hline
-            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
-            &                         content: \\
-            & \begin{minipage}[t]{0.7\textwidth}
-                \begin{adjustwidth}{1.5cm}{}
-                \begin{verbatim}
-{
-    success: false, 
-    error: 'InfoNotValid',
-    message: ...
-}
-                \end{verbatim}
-                \end{adjustwidth}
-                \texttt{message} can be one of the following: 
-                \begin{itemize}
-                    \item \texttt{Email already in use}
-                    \item \texttt{Username already in use}
-                \end{itemize}
-              \end{minipage} \\
-              \hline
-            \textbf{Uses} & Allows the client to register a new Company \\
-            \hline
-        \end{tabular}
-    \end{adjustwidth}
-
-\begin{itemize}
-        \item Run Organizer Registration
-    \end{itemize}
-    \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
-            \hline
-            \textbf{Endpoint} & /auth/register\_run\_organizer \textbf{TO BE DONE} \\
-            \hline
-            \textbf{Method} & \textbf{POST} \\
-            \hline
-            \textbf{Params} & username: String \\
-            &                 password: String \\
-            &                 SSN: String \\
-            &                 name: String \\
-            &                 surname: String \\
-            &                 birthday: Date \\
-            &                 smartwatch: String \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -153,28 +102,85 @@
                 \end{adjustwidth}
                 \texttt{message} can be one of the following: 
                 \begin{itemize}
-                    \item \texttt{Unsupported smartwatch}
+                    \item \texttt{Email already in use}
+                    \item \texttt{Username already in use}
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to register a new Company \\
+            \hline
+        \end{longtable}
+    \end{adjustwidth}
+
+\begin{itemize}
+        \item Run Organizer Registration
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/register\_run\_organizer \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & username: String \\
+            &                 password: String \\
+            &                 SSN: String \\
+            &                 name: String \\
+            &                 surname: String \\
+            &                 birthday: Date \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_code: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InfoNotValid',
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{message} can be one of the following: 
+                \begin{itemize}
                     \item \texttt{Username already used}
                     \item \texttt{SSN not valid}
                 \end{itemize}
               \end{minipage} \\
               \hline
-            \textbf{Uses} & Allows the client to register a new user \\
+            \textbf{Uses} & Allows the client to register a new run organizer \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth}
 
     \begin{itemize}
         \item User Login
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
             \textbf{Endpoint} & /auth/login \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
-            \textbf{Params} & username: String \\
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & username: String \\
             &                 password: String \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
@@ -190,46 +196,53 @@
                 \end{adjustwidth}
               \end{minipage} \\
               \hline
-            \textbf{Error Response} & code: \texttt{401 UNAUTHORIZED} \\
+            \textbf{Error Response} & code: \texttt{404 NOT FOUND} \\
             &                         content: \\
             & \begin{minipage}[t]{0.7\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
     success: false, 
-    error: ... ,
-    message: ...
+    error: 'UserNotFound' ,
+    message: 'User does not exists'
 }
                 \end{verbatim}
                 \end{adjustwidth}
-                \texttt{error} can be one of the following: 
-                \begin{itemize}
-                    \item \texttt{InvalidCredentials}
-                    \item \texttt{NonExistentUser}
-                \end{itemize}
-                 \texttt{message} can be one of the following: 
-                \begin{itemize}
-                    \item \texttt{Invalid credentials}
-                    \item \texttt{User does not exist}
-                \end{itemize}
+                \par\noindent\rule{\textwidth}{1pt}
+                \vspace{4pt}
+              \end{minipage} \\
+              & code: \texttt{403 FORBIDDEN} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidCredentials' ,
+    message: 'Invalid Credentials'
+}
+                \end{verbatim}
+                \end{adjustwidth}
               \end{minipage} \\
               \hline
             \textbf{Uses} & Allows the client to login \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth}
     
     \begin{itemize}
         \item Verify mail
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
             \textbf{Endpoint} & /auth/verify \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
-            \textbf{Params} & mail: String \\
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & mail: String \\
             &                 verification\_code: String \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
@@ -261,7 +274,7 @@
               \hline
             \textbf{Uses} & Allows verification of the account \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth}
     
     \textbf{Individuals Manager}
@@ -269,13 +282,15 @@
         \item Data store
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
             \textbf{Endpoint} & /indiv/data \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
-            \textbf{Params} & auth\_token: String \\
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & auth\_token: String \\
             &                 data: Array < Array < SensorData > > \\
             
             \hline
@@ -323,22 +338,24 @@
               \hline
             \textbf{Uses} & Allows the client to store sensor data in the database \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth}
     
     \begin{itemize}
         \item Data retrival
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
             \textbf{Endpoint} & /indiv/data \\
             \hline
             \textbf{Method} & \textbf{GET} \\
             \hline
             \textbf{URL Params} &  auth\_token: String \\
+            & begin\_date: String \\
+            & end\_date: String \\
             \hline
-            \textbf{Params} &   \\
+            \textbf{Request Data} &  \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -369,7 +386,7 @@
               \hline
             \textbf{Uses} & Allows the client to retrive sensor data from the database \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth}
     
    \textbf{Query Manager}
@@ -377,11 +394,13 @@
         \item Query creation
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /api/create\_query \\
+            \textbf{Endpoint} & /queries/query \\
             \hline
-            \textbf{Params} & auth\_token: String \\
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & auth\_token: String \\
             &                 mail: String \\
             &                 query: String \\
             \hline
@@ -459,7 +478,7 @@
               \hline
             \textbf{Uses} & Allows the client to create a query \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth} 
     
     \textbf{Subscription Manager}
@@ -467,13 +486,15 @@
         \item Buy subscription plan
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
             \textbf{Endpoint} & /subs/plan \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
-            \textbf{Params} & auth\_token: String \\
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & auth\_token: String \\
             &                 mail: String \\
             &                 plan: String \\
             \hline
@@ -537,22 +558,22 @@
               \hline
             \textbf{Uses} & Allows the client buy a subscription to a new plan \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth} 
     
     \begin{itemize}
         \item Get plan informations
     \end{itemize}
     \begin{adjustwidth}{1cm}{}
-        \begin{tabular}{|c|l|}
+        \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /auth/plan \\
+            \textbf{Endpoint} & /subs/plan \\
             \hline
             \textbf{Method} & \textbf{GET} \\
             \hline
             \textbf{URL Params} &  plan: String \\
             \hline
-            \textbf{Params} & \\
+            \textbf{Request Data} & \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -600,28 +621,255 @@
               \hline
             \textbf{Uses} & Allows the client retrive informations about a subscription plan \\
             \hline
-        \end{tabular}
+        \end{longtable}
     \end{adjustwidth}
     
+    \textbf{Run Manager}
+        \begin{itemize}
+            \item Create a Run
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs/run \\
+                \hline
+                \textbf{Method} & \textbf{POST} \\
+                \hline
+                \textbf{URL Params} &  \\
+                \hline
+                \textbf{Request Data} & organizer\_username: String \\
+                &                 organizer\_password: String \\
+                &                 time\_begin: Date \\
+                &                 time\_end: Date \\
+                &                 coordinates: Array < Array < Float > > \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        run_id: $ID
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InfoNotValid',
+        message: ...
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                    \texttt{message} can be one of the following: 
+                    \begin{itemize}
+                        \item \texttt{Time not valid}
+                        \item \texttt{Coordinates not valid}
+                    \end{itemize}
+                     \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+                  \end{minipage} \\
+                & code: \texttt{403 FORBIDDEN} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InvalidCredentials',
+        message: 'Invalid Credentials'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Uses} & Allows the client to create a new run \\
+                \hline
+            \end{longtable}
+        \end{adjustwidth}
+
+    \begin{itemize}
+            \item List all available runs
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs \\
+                \hline
+                \textbf{Method} & \textbf{GET} \\
+                \hline
+                \textbf{URL Params} &  position:  String \\
+                \hline
+                \textbf{Request Data} &  \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        runs: ...runList
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} & \\
+                  \hline
+                \textbf{Uses} & Allows the client to list all runs\\ 
+                              &  satisfying the parameters above \\
+                \hline
+            \end{longtable}
+        \end{adjustwidth}
+    
+    \begin{itemize}
+            \item Join a run
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs/join \\
+                \hline
+                \textbf{URL Params} &  \\
+                \hline
+                \textbf{Method} & \textbf{POST} \\
+                \hline
+                \textbf{Request Data} & username: String \\
+                &                 auth\_token: String \\
+                &                 run\_id: String \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        message: 'Joined run $RUN_ID'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} & code: \texttt{403 FORBIDDEN} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InvalidCredentials',
+        message: 'Invalid credentials'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                     \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+                  \end{minipage} \\
+                & code: \texttt{404 NOT FOUND} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'RunNotFound',
+        message: 'Run not found'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                     \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+                  \end{minipage} \\
+                  & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'RunError',
+        message: 'Run doesn't accept 
+        participants'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Uses} & Allows the client to join a run \\
+                \hline
+            \end{longtable}
+        \end{adjustwidth}
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    \begin{itemize}
+            \item Get the position of a Runner
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs/positions \\
+                \hline
+                \textbf{Method} & \textbf{GET} \\
+                \hline
+                \textbf{URL Params} &  run\_id: String \\
+                \hline
+                \textbf{Request Data} & \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        position: position
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} & code: \texttt{404 NOT FOUND} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'RunnerNotFound',
+        message: 'Runner not found'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                     \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+                  \end{minipage} \\
+                  & code: \texttt{404 NOT FOUND} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'RunNotFound',
+        message: 'Run not found'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Uses} & Allows the client get the position of a runner in a run \\
+                \hline
+            \end{longtable}
+        \end{adjustwidth}
     
     % TEMPLATEs
 %\textbf{Authentication Manager}
@@ -629,11 +877,11 @@
 %        \item AAAAAAAAAAAAAAAAAAAAAAAAA
 %    \end{itemize}
 %    \begin{adjustwidth}{1cm}{}
-%        \begin{tabular}{|c|l|}
+%        \begin{longtable}{|c|l|}
 %            \hline
 %            \textbf{Endpoint} & /auth/login\_user \\
 %            \hline
-%            \textbf{Params} & username: String \\
+%            \textbf{Request Data} & username: String \\
 %            &                 password: String \\
 %            &                 SSN: String \\
 %            &                 name: String \\
@@ -676,5 +924,5 @@
 %              \hline
 %            \textbf{Uses} & Allows the client to register a new user \\
 %            \hline
-%        \end{tabular}
+%        \end{longtable}
 %    \end{adjustwidth}

@@ -2,136 +2,120 @@ In this paragraph is shown the mapping between every component and the requireme
 
 
 \begin{itemize}
-    \item \textbf{G1}: The system should be able to show acquired data via the Mobile App and the Website. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
+    \item \textbf{G1}: The system should be able to show acquired data via the Mobile App and the Website. \newline (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
+    \begin{itemize}
+        \item Query Manager
+        \item Individuals Manager
+    \end{itemize}
         
 
-    \item \textbf{G2}: The system should allow users to register by providing his Fiscal Code or his Social Security Number, an username and a password. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-  
-    \item \textbf{[RM$_M$]}: Users can register, after providing a username, a password and a Fiscal Code/Social Security Number and have connected a compatible Smartwatch
-    \item \textbf{[R14$_C$]}: Can validates information provided by the user during registration
+    \item \textbf{G2}: The system should allow users to register. \newline (Requirements \textbf{[RM$_M$]}, \textbf{[R14$_C$]} )
+      \begin{itemize}
+        \item Authentication Manager
+        \item Individuals Manager
+    \end{itemize}
 
-
-    \item \textbf{G3}: The system should allow companies to register. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    
-    
-   \begin{itemize}
-    \item \textbf{[R1$_W$}: Companies can register, after providing a username, a password and a payment method
-    \item \textbf{[R14$_C$]}: Can validates information provided by the user during registration
-   \end{itemize}
+    \item \textbf{G3}: The system should allow companies to register. \newline(Requirements \textbf{[]R1$_W$]]}, \textbf{[R14$_C$]} )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Email Service Interface
+    \end{itemize}
    
-   
-    \item \textbf{G4}: The system should allow registered companies to request data from an anonymized group of individuals, only if individuals in the group are more than 1000. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    \paragraph{Requirements}
-   \begin{itemize}
-    \item \textbf{[R2$_W$]}: Companies can log-in
-    \item \textbf{[R2$_S$]}: App can send data registered locally to Data4Help Mobile App
-    \item \textbf{[R5$_C$]}: Can receive and store health parameters and geographical position of registered users
-    \item \textbf{[R7$_C$]}: Can execute queries of companies checking if the searches involve more than 1000 anonimyzed users
-   \end{itemize}
+    \item \textbf{G4}: The system should allow registered companies to request data from an anonymized group of individuals, only if individuals in the group are more than 1000. \newline(Requirements \textbf{[R2$_W$]}, \textbf{[R2$_S$]}, \textbf{[R5$_C$]}, \textbf{[R7$_C$]} )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Query Manager
+        \item Subscription Manager
+    \end{itemize}    
    
   
-    \item \textbf{G5}: The system should allow registered companies to request data from an individual person, only if individuals accept the request. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-   \begin{itemize}
-        \item \textbf{[R2$_W$]}: Companies can log-in
-      \item \textbf{[R6$_C$]}: Can execute queries of companies on individuals if the user has accepted the monitoring request from the company
-      \item \textbf{[R1$_C$]}: Can send online notifications via SMS to all users 
-    \item \textbf{[R2$_C$]}: Can send online notifications via email to all users
-    \item \textbf{[R3$_C$]}: Can send online notifications via the Mobile app to its users
-   \end{itemize}
+    \item \textbf{G5}: The system should allow registered companies to request data from an individual person, only if individuals accept the request. \newline(Requirements \textbf{[R2$_W$]}, \textbf{[R6$_C$]}, \textbf{[R1$_C$]}, \textbf{[R2$_C$]}, \textbf{[R3$_C$]})
+    \begin{itemize}
+        \item Authentication Manager
+        \item Query Manager
+        \item Push Notification Interface
+        \item Subscription Manager
+    \end{itemize}  
     
     
-    \item \textbf{G6}: The company should be able to pay through the system in order to buy data queries/subscribe to plans. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    
-    \paragraph{Requirements}
-   \begin{itemize}
-       \item \textbf{[R2$_W$]}: Companies can log-in
-       \item \textbf{[R4$_W$]}: Logged-in companies can subscribe to a payment service of Data4Help
-       \item \textbf{[R15$_C$]}: Can charge companies on their payment method respecting Track4Me pricing policy
-   \end{itemize}
+    \item \textbf{G6}: The company should be able to pay through the system in order to buy data queries/subscribe to plans. \newline(Requirements \textbf{[R2$_W$]}, \textbf{[R4$_W$]},  \textbf{[R8$_C$]}, \textbf{[R15$_C$]} )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Subscription Manager
+        \item Payment Interface
+    \end{itemize}   
    
    
    
-    \item \textbf{G7}: The system should allow a company to subscribe to new data and receive them as soon as they are produced. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    
-    
-   \begin{itemize}
-       \item \textbf{[R6bis$_W$]}: Logged-in companies can subscribe to a query data
-       \item \textbf{[R2$_C$]}: Can send online notifications via email to all users
-   \end{itemize}
-   
+    \item \textbf{G7}: The system should allow a company to subscribe to new data and receive them as soon as they are produced. \newline(Requirements \textbf{[R6bis$_W$]}, \textbf{[R2$_C$]} )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Query Manager
+        \item Push Notification Interface
+    \end{itemize}   
    
    
    
    
-    \item \textbf{G8}: The system should be able to monitor user's health parameter. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    
-    
-    
-   \begin{itemize}
-       \item \textbf{[R1$_S$]}: App can read data from sensor and store it locally.
-        \item \textbf{[R2$_S$]}: App can send data registered locally to Data4Help Mobile App
-        \item \textbf{[R4$_C$]}: Can save and store permanently user data
-    \item \textbf{[R5$_C$]}: Can receive and store health parameters and geographical position of registered users
-
-   \end{itemize}
+    \item \textbf{G8}: The system should be able to monitor user's health parameter. \newline(Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]}, \textbf{[R4$_C$]}, \textbf{[R5$_S$]} )
+    \begin{itemize}
+        \item Emergency Manager
+    \end{itemize}
    
    
    
-   
-    \item \textbf{G9}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance system.  (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    \paragraph{Requirements}
-   \begin{itemize}
-    \item \textbf{[R1$_S$]}: App can read data from sensor and store it locally.
-    \item \textbf{[R2$_S$]}: App can send data registered locally to Data4Help Mobile App
-
-    \item \textbf{[R5$_C$]}: Can receive and store health parameters and geographical position of registered users
-
-    \item \textbf{[R9$_C$]}: Can communicate directly with the nearest hospital \textit{API}.
-    \item \textbf{[R10$_C$]}: Can provide geographical position and critical health parameters to the emergency employee using the \textit{API}
-    \item \textbf{[R11$_C$]}: Can compute for every AutomatedSOS user which are the threshold value to take care of for each health parameter
-
-   \end{itemize}
-   
-   
-    \item \textbf{G10} The system should allow run organizers to register. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    
-    \paragraph{Requirements}
-   \begin{itemize}
-    \item \textbf{[R10$_W$]}: Run organizers can register
-    \item \textbf{[R14$_C$]}: Can validates information provided by the user during registration
-   \end{itemize}
+    \item \textbf{G9}: The system should be able to react to the lowering of the health parameters below threshold in less than 5 seconds and send the position of the person to the ambulance system. \newline(Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]},\textbf{[R5$_C$]}, \textbf{[R9$_C$]},\textbf{[R10$_C$]}, \textbf{[R11$_C$]} \textbf{[R16$_M$]} )
+    \begin{itemize}
+        \item Emergency Manager
+        \item Emergency Interface
+    \end{itemize}    
     
     
-    \item \textbf{G11} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
+    \item \textbf{G10} The system should allow run organizers to register. \newline(Requirements \textbf{[R11$_M$]}, \textbf{[R14$_C$]} )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Email Service Interface
+    \end{itemize}
     
-    \paragraph{Requirements}
-   \begin{itemize}
-    \item \textbf{[R11$_W$]}: Run organizers can login
-    \item \textbf{[R12$_W$]}: Logged-in run organizers can organize a run
-    \item \textbf{[R13$_W$]}: Organizers of a run can define the path and additional information for that run
-    \item \textbf{[R14$_W$]}: Organizers of a run can start the run
-   \end{itemize}
-   
-   
-    \item \textbf{G12} A user should be able to enroll to a run, if he is close to the starting point and has a valid inscription code. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
     
-    \paragraph{Requirements}
-   \begin{itemize}
-    \item \textbf{[R1$_M$]}: Users can log-in
-    \item \textbf{[R8$_M$]}: Logged-in users can register to a run before the start time
-    \item \textbf{[R9$_M$]}: Logged-in users can see a run information
-   \end{itemize}
-
+    \item \textbf{G11} If a run organizer is registered, it can define a run i.e. it can define the path that the participants should follow. \newline(Requirements \textbf{[R12$_M$]}, \textbf{[R13$_M$]}, \textbf{[R14$_M$]}, \textbf{[R15$_M$]} )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Run Manager
+    \end{itemize}
    
    
-    \item \textbf{G13} Spectators of a run should be able to see each participant's position on a map. (Requirements \textbf{[R1$_S$]}, \textbf{[R2$_S$]} )
-    \paragraph{Requirements}
-   \begin{itemize}
-    \item \textbf{[R1$_M$]}: Users can log-in
-    \item \textbf{[R12$_C$]}: Can compute each athlete's rank in a run and send it to each user device.
-    \item \textbf{[R13$_C$]}: Can send the position and rank of athletes during a run to spectator's devices.
-   \end{itemize}
+    \item \textbf{G12} A user should be able to enroll to a run, if he is close to the starting point and has a valid inscription code. \newline(Requirements \textbf{[R1$_M$]}, \textbf{[R8$_M$]},  \textbf{[R9$_M$]}  )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Run Manager
+    \end{itemize}   
    
+    \item \textbf{G13} Spectators of a run should be able to see each participant's position on a map. \newline(Requirements \textbf{[R8$_M$]}, \textbf{[R12$_C$]}, \textbf{[R13$_C$]} )
+    \begin{itemize}
+        \item Authentication Manager
+        \item Run Manager
+        \item Individuals Manager
+    \end{itemize} 
+   
+    \item \textbf{G14}: Individuals should be able to log-in.
+    \newline(Requirements \textbf{[R1$_M$]})
+    \begin{itemize}
+        \item Authentication Manager
+    \end{itemize}
+    
+   \item \textbf{G15}: Companies should be able to log-in.
+    \newline(Requirements \textbf{[R2$_W$]})
+    \begin{itemize}
+        \item Authentication Manager
+    \end{itemize}
+    
+    
+ \item \textbf{G16}: Run organizers should be able to log-in.
+  \newline(Requirements \textbf{[R12$_M$]})
+     \begin{itemize}
+        \item Authentication Manager
+    \end{itemize}  
    \end{itemize}
    
 
