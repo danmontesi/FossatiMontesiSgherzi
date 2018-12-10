@@ -1,0 +1,25 @@
+{
+  "success": {
+    "code": 200,
+    "success": true,
+    "message": "Joined run $RUN_ID"
+  },
+  "run_not_found": {
+    "code": 404,
+    "success": false,
+    "error": "RunNotFound",
+    "message": "Run not found"
+  },
+  "run_error": {
+    "code": 422,
+    "success": false,
+    "error": "RunError",
+    "message": "Run doesn't accept participants"
+  },
+  "invalid_credentials": {
+    "code": 403,
+    "success": false,
+    "error": "InvalidCredentials",
+    "message": "Invalid credentials"
+  }
+}

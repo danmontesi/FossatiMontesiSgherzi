@@ -1,0 +1,19 @@
+{
+  "success": {
+    "code": 200,
+    "success": true,
+    "message": "Sync successful"
+  },
+  "invalid_data": {
+    "code": 422,
+    "success": false,
+    "error": "InvalidData",
+    "message": "Data are invalid"
+  },
+  "bad_request": {
+    "code": 400,
+    "success": false,
+    "error": "InvalidToken",
+    "message": "Token is invalid"
+  }
+}
