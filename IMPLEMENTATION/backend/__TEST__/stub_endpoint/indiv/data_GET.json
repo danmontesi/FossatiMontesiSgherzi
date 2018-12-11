@@ -1,13 +1,13 @@
 {
   "success": {
-    "code": 200,
+    "status": 200,
     "success": true,
     "data": [
 
     ]
   },
   "bad_request": {
-    "code": 400,
+    "status": 400,
     "success": false,
     "error": "InvalidToken",
     "message": "Token is invalid"

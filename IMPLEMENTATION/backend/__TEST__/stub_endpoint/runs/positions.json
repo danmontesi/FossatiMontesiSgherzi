@@ -1,6 +1,6 @@
 {
   "success": {
-    "code": 200,
+    "status": 200,
     "success": true,
     "position": [
       {
@@ -10,7 +10,7 @@
     ]
   },
   "run_not_found": {
-    "code": 404,
+    "status": 404,
     "success": false,
     "error": "RunNotFound",
     "message": "Run not found"

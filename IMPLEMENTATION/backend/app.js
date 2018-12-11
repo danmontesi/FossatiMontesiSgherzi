@@ -3,12 +3,15 @@ const bodyParser = require('body-parser')
 const logger = require("morgan")
 const session = require('express-session')
 const routes = require('./routes/router')
+const {
+  debugLog
+} = require('./utils/testUtils')
 const PORT = 12345
 
 const app = express()
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({extended: true}))
 app.use('/', routes)
 
 /**
@@ -28,6 +31,7 @@ app.use(function (err, req, res, next) {
   }))
 })
 
-app.listen( PORT, function () {
+app.listen(PORT, function () {
   console.log('Express app listening on port ' + PORT)
+  debugLog('DEBUG ACTIVE')
 })

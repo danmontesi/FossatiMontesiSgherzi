@@ -1,27 +1,28 @@
 {
   "success": {
-    "code": 200,
+    "status": 200,
     "success": true
   },
   "query_too_restricted": {
-    "code": 400,
+    "status": 400,
     "success": false,
     "error": "QueryTooRestricted",
     "message": "Query on too few users"
   },
   "bad_request_query": {
-    "code": 400,
+    "status": 400,
     "success": false,
     "error": "BadQuery",
     "message": "Query is invalid"
   },
   "bad_request_token": {
-    "code": 400,
+    "status": 400,
     "success": false,
     "error": "InvalidToken",
     "message": "Token is invalid"
   },
   "payment_required": {
+    "status": 402,
     "success": false,
     "error": "PaymentRequired",
     "message": "Payment required"

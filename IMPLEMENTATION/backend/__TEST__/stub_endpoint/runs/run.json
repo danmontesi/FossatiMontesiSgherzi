@@ -1,25 +1,25 @@
 {
   "success": {
-    "code": 200,
+    "status": 200,
     "success": true,
     "run_id": "345ACBEO"
   },
   "info_not_valid": {
     "invalid_data_time": {
-      "code": 422,
+      "status": 422,
       "success": false,
       "error": "InfoNotValid",
       "message": "Time not valid"
     },
     "invalid_data_coords": {
-      "code": 422,
+      "status": 422,
       "success": false,
       "error": "InfoNotValid",
       "message": "Coordinates not valid"
     }
   },
   "invalid_credentials": {
-    "code": 403,
+    "status": 403,
     "success": false,
     "error": "InvalidCredentials",
     "message": "Invalid credentials"

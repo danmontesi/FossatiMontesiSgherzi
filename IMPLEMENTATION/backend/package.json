@@ -14,5 +14,8 @@
     "express-session": "^1.15.6",
     "morgan": "^1.9.1",
     "pg": "^7.6.1"
+  },
+  "devDependencies": {
+    "node-fetch": "^2.3.0"
   }
 }

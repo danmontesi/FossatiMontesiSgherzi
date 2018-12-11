@@ -1,6 +1,6 @@
 {
   "success": {
-    "code": 200,
+    "status": 200,
     "success": true,
     "data": [
 
