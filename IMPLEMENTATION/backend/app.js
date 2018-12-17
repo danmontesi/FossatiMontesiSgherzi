@@ -31,7 +31,7 @@ app.use(function (err, req, res, next) {
   }))
 })
 
-app.listen(process.env.PORT | PORT, function () {
-  console.log('Express app listening on port ' + (process.env.PORT | PORT))
+app.listen(process.env.PORT || PORT, function () {
+  console.log('Express app listening on port ' + (process.env.PORT || PORT))
   debugLog('DEBUG ACTIVE')
 })
