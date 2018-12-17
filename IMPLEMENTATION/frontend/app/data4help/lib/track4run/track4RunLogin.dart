@@ -6,9 +6,7 @@ class Track4RunLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Data4Help',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+
       home: Track4RunLoginPage(title: 'Data4Help Login'),
     );
   }
