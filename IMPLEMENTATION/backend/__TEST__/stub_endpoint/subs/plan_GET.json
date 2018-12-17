@@ -1,19 +1,18 @@
 {
   "success": {
-    "code": 200,
+    "status": 200,
     "success": true,
-    "plan": {
-
+    "plans": {
     }
   },
   "plan_unavailable": {
-    "code": 400,
+    "status": 400,
     "success": false,
     "error": "PlanUnavailable",
     "message": "Plan is not available"
   },
   "plan_not_found": {
-    "code": 404,
+    "status": 404,
     "success": false,
     "error": "PlanNotFound",
     "message": "Plan not found"
