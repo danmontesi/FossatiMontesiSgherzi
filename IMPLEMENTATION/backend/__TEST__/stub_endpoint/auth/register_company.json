@@ -4,18 +4,16 @@
     "success": true,
     "auth_status": "2413FB3709B05939F04CF2E92F7D0897FC2596F9AD0B8A9EA855C7BFEBAAE892"
   },
-  "invalid_info": {
-    "mail": {
-      "status": 422,
-      "success": false,
-      "error": "InvalidInfo",
-      "message": "Mail already in use"
-    },
-    "username": {
-      "status": 422,
-      "success": false,
-      "error": "InvalidInfo",
-      "message": "Username already in use"
-    }
+  "mail": {
+    "status": 422,
+    "success": false,
+    "error": "InvalidInfo",
+    "message": "Mail already in use"
+  },
+  "username": {
+    "status": 422,
+    "success": false,
+    "error": "InvalidInfo",
+    "message": "Username already in use"
   }
 }

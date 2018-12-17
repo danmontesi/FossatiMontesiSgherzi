@@ -1,7 +1,8 @@
 const fetch = require('node-fetch')
 
-fetch('http://localhost:12345/auth/login?action=user_not_found', {
-  method: 'post'
+fetch('https://data4halp.herokuapp.com/auth/login?action=user_not_found', {
+  method: 'POST'
 })
   .then(res => res.json())
   .then(console.log)
+  .catch(console.log)
