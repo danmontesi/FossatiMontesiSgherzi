@@ -19,7 +19,7 @@ authRouter.get('/user', (req, res, next) => {
 })*/
 
 authRouter.post('/login', (req, res, next) => {
-
+  console.log('hit /login')
   const action = isTestEnabled(req)
   if (action) {
     res
