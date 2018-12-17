@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:data4help/data4help/Dashboard.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Data4HelpLogin extends StatelessWidget {
   // This widget is the root of your application.
@@ -7,9 +10,7 @@ class Data4HelpLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Data4Help',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+
       home: Data4HelpLoginPage(title: 'Data4Help Login'),
     );
   }
@@ -29,6 +30,9 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
   final TextEditingController _passwordFilter = new TextEditingController();
   String _email = "";
   String _password = "";
+
+  bool _loginDisabled=false;
+
   FormType _form = FormType
       .login; // our default setting is to login, and we should switch to creating an account when the user chooses to
 
@@ -104,7 +108,8 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
           children: <Widget>[
             new RaisedButton(
               child: new Text('Login'),
-              onPressed: _loginPressed,
+              onPressed: _loginDisabled ? null : _loginPressed,
+
             ),
             new FlatButton(
               child: new Text('Dont have an account? Tap here to register.'),
@@ -118,13 +123,41 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
 
 
   void _loginPressed() {
-    //
+    setState(() {
+      _loginDisabled = true;
+    });
+
+    fetchAuthToken().then((token) {
+      print(token);
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
+    }).catchError(() {
+      Scaffold.of(context).showSnackBar(new SnackBar(
+        content: new Text("Authentication error"),
+        ));
+    });
+
+
+
     Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()));
   }
 
   void _createAccountPressed() {
     //
 
+  }
+
+  Future<String> fetchAuthToken() async {
+    Map<String, String> body = new Map<String, String>();
+    body.putIfAbsent("username", () => _email);
+    body.putIfAbsent("password", () => _password);
+
+    final response = await http.post('https://data4halp.herokuapp.com/auth/login?action=success', body: body);
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body)['auth_token'];
+    } else {
+      throw Exception('Failed to load post');
+    }
   }
 }
 
@@ -133,3 +166,25 @@ enum FormType {
   login,
   register
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

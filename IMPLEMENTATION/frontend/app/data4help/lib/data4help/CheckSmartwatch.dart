@@ -9,9 +9,6 @@ class CheckSmartwatch extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Data4Help',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: CheckSmartwatchPage(title: 'Data4Help'),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:data4help/data4help/CheckSmartwatch.dart';
-import 'package:data4help/data4help/Data4HelpLogin.dart';
 import 'package:data4help/track4run/track4RunLogin.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Data4Help',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
+        brightness: Brightness.dark,
       ),
       home: MyHomePage(title: 'Data4Help'),
     );
