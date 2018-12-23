@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="sass.html">Services</a></li>
+
+          <!-- Modal Trigger -->
+          <button data-target="modal1" class="btn modal-trigger">Sign in</button>
+
+          <!-- Modal Trigger -->
+          <button data-target="modal2" class="btn modal-trigger">Sign up</button>
+
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">Starter Template</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get
+          Started</a>
+      </div>
+      <br><br>
+
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Speeds up development</h5>
+
+            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate
+              our custom components. Additionally, we refined animations and transitions to provide a smoother
+              experience for developers.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">User Experience Focused</h5>
+
+            <p class="light">By utilizing elements and principles of Material Design, we were able to create a
+              framework that incorporates components and animations that provide more feedback to users. Additionally,
+              a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
+            <h5 class="center">Easy to work with</h5>
+
+            <p class="light">We have provided detailed documentation as well as specific code examples to help new
+              users get started. We are also always open to feedback and can answer any questions a user may have about
+              Materialize.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Company Bio</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our
+            full time job. Any amount would help support and continue development on this project and is greatly
+            appreciated.</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+            <li><a class="white-text" href="#!">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+
+  <script>
+
+    function signInReq() {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const url = "https://data4halp.herokuapp.com/auth/login?action=success";
+      var username = $('#usernLogin').val();
+      var password = $('#passwLogin').val();
+      fetch(proxyurl + url, {
+
+        method: 'POST',
+        body: { "username": username, "password": password }
+
+      }) // https://cors-anywhere.herokuapp.com/https://example.com
+        .then(response => response.text())
+        .then(contents => { //Assign to contents the response
+          var myObj = JSON.parse(contents); //Parse the response
+          if (myObj["status"] == 200) {
+            document.getElementById("demo2").innerHTML = myObj["auth_token"];
+            setCookie(myObj["auth_token"], 7)
+            document.location.href = "dashboard.html";
+          }
+          else {
+            alert("Error Password or Username, retry.")/*displays error message*/
+          }
+        }
+        )
+        .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+    }
+
+  </script>
+
+  <script> 
+      function signUpReq() {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const url2 = "https://data4halp.herokuapp.com/auth/register_company?action=success";
+      var username = $('#usernReg').val();
+      var password = $('#passwReg').val();
+      var company_name = $('#companyNameReg').val();
+      var email = $('#emailReg').val();
+      fetch(proxyurl + url2, {
+
+        method: 'POST',
+        body: { 
+        "username": username, 
+        "password": password,
+        "company_name": String,
+        "email": String
+        }
+
+      }) // https://cors-anywhere.herokuapp.com/https://example.com
+        .then(response => response.text())
+        .then(contents => { //Assign to contents the response
+          var myObj = JSON.parse(contents); //Parse the response
+          if (myObj["status"] == 200) {
+
+            // SERVIZIO INVIO EMAIL
+
+            //Save cookie mail & authtoken (necessary for inserting the authCode)
+            setCookie_mail(email, myObj["auth_token"], 1) // 1 day only and expires, since is a verification mail
+            
+      
+            //Redirect to page where have to send the code and the email to confirm email
+            document.location.href = "verify-email.html";
+          }
+          else {
+            alert("There was found the following error:\n"+myObj["message"]+"\nRetry")/*displays error message*/
+          }
+        }
+        )
+        .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+    }
+
+  
+  </script>
+
+  <!-- Triggers for login & sign up-->
+  <script>
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+  </script>
+
+
+  <!-- Function for save login cookie authcode -->
+  <script>
+    function setCookie(auth_token, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = "auth_token=" + auth_token + "; expires=" + expires;
+    }
+  </script>
+
+<script>
+  function setCookie_mail(mail, auth_token, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = d.toUTCString();
+    document.cookie = "mail=" + mail +"; auth_token=" + auth_token + "; expires=" + expires;
+  }
+</script>
+
+  <!-- Modal Structure signIn -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+
+          <div class="col s12">
+            <p id=demo2>Please insert your username and password:</p>
+          </div>
+          <!-- Username -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="usernLogin" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="passwLogin" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <a href="#!" class="waves-effect waves-green btn-flat" onclick="signInReq()">Send</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Modal Structure signUp -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+
+          <div class="col s12">
+            <p id=demo>Please insert your data: </p>
+          </div>
+          <!-- Username -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="usernReg" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="passwReg" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+
+          <!-- Repeat Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="repPasswordReg" type="password" class="validate">
+              <label for="password">Repeat password</label>
+            </div>
+          </div>
+
+
+          <div class="row">
+              <div class="input-field col s12">
+                <input id="companyNameReg" type="text" class="validate">
+                <label for="email">Company name</label>
+              </div>
+            </div>
+
+
+          <div class="row">
+              <div class="input-field col s12">
+                <input id="emailReg" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+
+
+          <div class="modal-footer">
+            <a href="#!" class="waves-effect waves-green btn-flat" onclick="signUpReq()">Send</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+
+</body>
+
+</html>
