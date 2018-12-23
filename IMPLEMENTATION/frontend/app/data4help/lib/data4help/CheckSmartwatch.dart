@@ -7,10 +7,7 @@ class CheckSmartwatch extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Data4Help',
-      home: CheckSmartwatchPage(title: 'Data4Help'),
-    );
+    return CheckSmartwatchPage(title: 'Data4Help');
   }
 }
 
@@ -28,8 +25,8 @@ class _CheckSmartwatchPageState extends State<CheckSmartwatchPage> {
   _CheckSmartwatchPageState() {
     new Timer(const Duration(milliseconds: 5000), ()
     {
-      Navigator.pop(context);
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Data4HelpLogin()));
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Data4HelpLogin()));
+
     });
   }
 
