@@ -5,16 +5,12 @@ class Dashboard extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Data4Help',
-      home: new MyHomePage(title: 'Data4Help - Dashboard'),
-    );
+    return MyHomePage(title: 'Data4Help - Dashboard');
   }
 }
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
 
   final String title;
 
@@ -28,10 +24,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return new Scaffold(
       appBar: new AppBar(
-
         title: new Text(widget.title),
       ),
       drawer: Drawer(
@@ -70,7 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   _selectedItem = 1;
                   Navigator.pop(context);
                 });
-
               },
             ),
             ListTile(
@@ -80,7 +73,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   _selectedItem = 2;
                   Navigator.pop(context);
                 });
-
               },
             ),
             ListTile(
@@ -90,16 +82,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   _selectedItem = 3;
                   Navigator.pop(context);
                 });
-
               },
             ),
           ],
         ),
       ),
       body: new Container(
-        child: new SingleChildScrollView(
-          child: _getActualWidget(),
-        ),
+        child: _getActualWidget(),
       ),
     );
   }
@@ -107,11 +96,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _getActualWidget() {
     switch (_selectedItem) {
       case 0:
-        return _dashboardMainPage;
+        return  new SingleChildScrollView(
+          child: _dashboardMainPage,
+        );
       case 1:
         return new Text("TO BE DONE1");
       case 2:
-        return new Text("TO BE DONE2");
+        return new Center(
+          child: Text("Function not implemented yet."),
+        );
       case 3:
         return new Text("TO BE DONE3");
     }
