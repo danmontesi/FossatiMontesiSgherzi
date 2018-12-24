@@ -2,8 +2,7 @@
   "success": {
     "status": 200,
     "success": true,
-    "query": 
-    [
+    "query": [
       {
         "date": "2018-12-24T00:29:33.526Z",
         "hour_from": "9:00",
@@ -31,8 +30,8 @@
         "city": "Milan",
         "street": "Camillo Golgi"
       }
-    ],
-
+    ]
+  },
   "queries_not_found": {
     "status": 400,
     "success": false,
