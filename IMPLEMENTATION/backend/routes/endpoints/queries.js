@@ -1,7 +1,8 @@
 const express = require('express')
 const queryRouter = express.Router()
 
-const QUERIES = require('../../__TEST__/stub_endpoint/queries/query')
+const QUERY_POST = require('../../__TEST__/stub_endpoint/queries/query_POST')
+const QUERY_GET = require('../../__TEST__/stub_endpoint/queries/query_GET')
 
 const {
   isTestEnabled
@@ -11,11 +12,21 @@ queryRouter.post('/query', (req, res, next) => {
   const action = isTestEnabled(req)
   if (action) {
     res
-      .status(QUERIES[action].status)
-      .send(QUERIES[action])
+      .status(QUERY_POST[action].status)
+      .send(QUERY_POST[action])
     return
   }
   // TODO: Implement
 })
 
+queryRouter.get('/query', (req, res, next) => {
+  const action = isTestEnabled(req)
+  if (action) {
+    res
+      .status(QUERY_GET[action].status)
+      .send(QUERY_GET[action])
+    return
+  }
+  // TODO: Implement
+})
 module.exports = queryRouter

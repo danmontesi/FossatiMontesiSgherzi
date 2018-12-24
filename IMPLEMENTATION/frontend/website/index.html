@@ -154,11 +154,12 @@
       }) // https://cors-anywhere.herokuapp.com/https://example.com
         .then(response => response.text())
         .then(contents => { //Assign to contents the response
+          console.log(contents)
           var myObj = JSON.parse(contents); //Parse the response
           if (myObj["status"] == 200) {
             document.getElementById("demo2").innerHTML = myObj["auth_token"];
             setCookie(myObj["auth_token"], 7)
-            document.location.href = "dashboard.html";
+            //document.location.href = "dashboard.html";
           }
           else {
             alert("Error Password or Username, retry.")/*displays error message*/
@@ -170,8 +171,8 @@
 
   </script>
 
-  <script> 
-      function signUpReq() {
+  <script>
+    function signUpReq() {
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
       const url2 = "https://data4halp.herokuapp.com/auth/register_company?action=success";
       var username = $('#usernReg').val();
@@ -181,11 +182,11 @@
       fetch(proxyurl + url2, {
 
         method: 'POST',
-        body: { 
-        "username": username, 
-        "password": password,
-        "company_name": String,
-        "email": String
+        body: {
+          "username": username,
+          "password": password,
+          "company_name": String,
+          "email": String
         }
 
       }) // https://cors-anywhere.herokuapp.com/https://example.com
@@ -198,20 +199,20 @@
 
             //Save cookie mail & authtoken (necessary for inserting the authCode)
             setCookie_mail(email, myObj["auth_token"], 1) // 1 day only and expires, since is a verification mail
-            
-      
+
+
             //Redirect to page where have to send the code and the email to confirm email
             document.location.href = "verify-email.html";
           }
           else {
-            alert("There was found the following error:\n"+myObj["message"]+"\nRetry")/*displays error message*/
+            alert("There was found the following error:\n" + myObj["message"] + "\nRetry")/*displays error message*/
           }
         }
         )
         .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
     }
 
-  
+
   </script>
 
   <!-- Triggers for login & sign up-->
@@ -225,21 +226,23 @@
   <!-- Function for save login cookie authcode -->
   <script>
     function setCookie(auth_token, exdays) {
+      console.log('Called setCookie')
       var d = new Date();
       d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
       var expires = "expires=" + d.toUTCString();
       document.cookie = "auth_token=" + auth_token + "; expires=" + expires;
+      console.log(document.cookie)
     }
   </script>
 
-<script>
-  function setCookie_mail(mail, auth_token, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = d.toUTCString();
-    document.cookie = "mail=" + mail +"; auth_token=" + auth_token + "; expires=" + expires;
-  }
-</script>
+  <script>
+    function setCookie_mail(mail, auth_token, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = d.toUTCString();
+      document.cookie = "mail=" + mail + "; auth_token=" + auth_token + "; expires=" + expires;
+    }
+  </script>
 
   <!-- Modal Structure signIn -->
   <div id="modal1" class="modal">
@@ -310,19 +313,19 @@
 
 
           <div class="row">
-              <div class="input-field col s12">
-                <input id="companyNameReg" type="text" class="validate">
-                <label for="email">Company name</label>
-              </div>
+            <div class="input-field col s12">
+              <input id="companyNameReg" type="text" class="validate">
+              <label for="email">Company name</label>
             </div>
+          </div>
 
 
           <div class="row">
-              <div class="input-field col s12">
-                <input id="emailReg" type="email" class="validate">
-                <label for="email">Email</label>
-              </div>
+            <div class="input-field col s12">
+              <input id="emailReg" type="email" class="validate">
+              <label for="email">Email</label>
             </div>
+          </div>
 
 
           <div class="modal-footer">

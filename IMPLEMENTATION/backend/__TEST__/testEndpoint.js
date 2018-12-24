@@ -11,7 +11,7 @@ fetch(HEROKU_BASE_URL + 'auth/verify?action=invalid_code', {
   .then(console.log)
   .catch(console.log)*/
 
-fetch(HEROKU_BASE_URL + 'queries/query?action=success', {
+fetch(HEROKU_BASE_URL + 'auth/register_company?action=mail', {
   method: 'POST'
 })
   .then(res => res.json())
