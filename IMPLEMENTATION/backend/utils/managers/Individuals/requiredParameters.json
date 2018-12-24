@@ -1,0 +1,16 @@
+{
+  "individual": {
+    "login": [],
+    "registration": [
+      "mail",
+      "password",
+      "SSN",
+      "name",
+      "surname",
+      "birthday",
+      "smartwatch"
+    ]
+  },
+  "company": [],
+  "run_organizer": []
+}

@@ -11,8 +11,20 @@ fetch(HEROKU_BASE_URL + 'auth/verify?action=invalid_code', {
   .then(console.log)
   .catch(console.log)*/
 
-fetch(HEROKU_BASE_URL + 'queries/query?action=success', {
-  method: 'GET'
+fetch(LOCAL_BASE_URL + 'auth/register_user', {
+  method: 'POST',
+  headers: new fetch.Headers({
+    'Content-Type': 'application/json'
+  }),
+  body: JSON.stringify({
+    mail: 'asdf@asdf.com',
+    password: 'giannimio',
+    SSN: 'SGHRCM65P07L858H',
+    name: 'fra',
+    surname: 'Sgherzi',
+    birthday: new Date(),
+    smartwatch: 'Samsung Galaxy BHO'
+  })
 })
   .then(res => res.json())
   .then(console.log)

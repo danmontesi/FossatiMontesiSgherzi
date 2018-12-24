@@ -1,9 +1,12 @@
-const express = require("express")
+const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const logger = require("morgan")
+const logger = require('morgan')
 const session = require('express-session')
 const routes = require('./routes/router')
+const {
+  Client
+} = require('pg')
 const {
   debugLog
 } = require('./utils/testUtils')
@@ -12,8 +15,8 @@ const PORT = process.env.PORT || 12345
 
 const app = express()
 
-app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
 app.use('/', routes)
 
 /**
@@ -29,11 +32,11 @@ app.use(function (req, res, next) {
  * Allow CORS
  */
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.type('json')
-  next();
-});
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+  res.type('application/json')
+  next()
+})
 
 if (process.env.TEST_API) {
   // Show the real error message if in the test environment
