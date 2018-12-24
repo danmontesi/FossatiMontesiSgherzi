@@ -1,0 +1,42 @@
+{
+  "success": {
+    "status": 200,
+    "success": true,
+    "query": 
+    [
+      {
+        "date": "",
+        "hour_from": "9:00",
+        "hour_to": "10:00",
+        "minbpm": "100",
+        "maxbpm": "150",
+        "city": "Milan",
+        "street": "Camillo Golgi"
+      },
+      {
+        "date": "",
+        "hour_from": "9:00",
+        "hour_to": "10:00",
+        "minbpm": "100",
+        "maxbpm": "150",
+        "city": "Milan",
+        "street": "Camillo Golgi"
+      },
+      {
+        "date": "",
+        "hour_from": "10:00",
+        "hour_to": "12:00",
+        "minbpm": "100",
+        "maxbpm": "150",
+        "city": "Milan",
+        "street": "Camillo Golgi"
+      }
+    ],
+
+  "queries_not_found": {
+    "status": 400,
+    "success": false,
+    "error": "QueriesNotFound",
+    "message": "User has not a query yet"
+  }
+}
