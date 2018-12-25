@@ -11,7 +11,8 @@ fetch(HEROKU_BASE_URL + 'auth/verify?action=invalid_code', {
   .then(console.log)
   .catch(console.log)*/
 // WORKS W MAIL ALREADY IN USE
-fetch(LOCAL_BASE_URL + 'auth/register_user', {
+/*
+fetch(HEROKU_BASE_URL + 'auth/register_user', {
   method: 'POST',
   headers: new fetch.Headers({
     'Content-Type': 'application/json'
@@ -29,15 +30,16 @@ fetch(LOCAL_BASE_URL + 'auth/register_user', {
   .then(res => res.json())
   .then(console.log)
   .catch(console.log)
+*/
 
-/*
+
 fetch(LOCAL_BASE_URL + 'auth/login', {
   method: 'POST',
   headers: new fetch.Headers({
     'Content-Type': 'application/json'
   }),
   body: JSON.stringify({
-    email: 'asdf@af.com',
+    email: 'francesco.sgherzi@gmail.com',
     password: 'giannimio',
     type: 'individual'
   })
@@ -45,7 +47,7 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
   .then(res => res.json())
   .then(console.log)
   .catch(console.log)
-*/
+
 
 // WORKS W DUPLICATE PASSWORD
 /*

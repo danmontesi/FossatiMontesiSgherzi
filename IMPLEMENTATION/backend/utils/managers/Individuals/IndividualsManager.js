@@ -112,6 +112,12 @@ class IndividualsManager {
         throw err
       }
 
+      if (!rows[0].verified) {
+        let err = new Error('User not verified')
+        err.status = 401
+        throw err
+      }
+
       if (await bcrypt.compare(this.password, rows[0].password)) {
         console.log('------------------------------------ PASSWORD VERIFIED ------------------------------------')
         console.log('---------------------------------- GENERATING AUTH TOKEN ----------------------------------')
