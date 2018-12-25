@@ -4,6 +4,8 @@ This has to return a XML file whose download link is specified in xml field
 
 Data required:
  "SSN": String (put on the request)
+ "date_from": Date
+ "date_to": Date
   
 Possible problems:
 SSN doesn't exists
