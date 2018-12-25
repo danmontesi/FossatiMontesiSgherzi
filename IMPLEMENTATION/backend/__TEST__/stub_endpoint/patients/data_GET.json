@@ -1,0 +1,31 @@
+/* 
+This endpoint is used to get data from single patients.
+This has to return a XML file whose download link is specified in xml field
+
+Data required:
+ "SSN": String (put on the request)
+  
+Possible problems:
+SSN doesn't exists
+
+*/
+
+{
+  "success": {
+    "status": 200,
+    "success": true,
+    "xml": "http://data4help.example.xml"
+  },
+  "invalid_data": {
+    "status": 422,
+    "success": false,
+    "error": "InvalidData",
+    "message": "Data are invalid"
+  },
+  "bad_request": {
+    "status": 400,
+    "success": false,
+    "error": "InvalidSSN",
+    "message": "SSN doesn't exist"
+  }
+}

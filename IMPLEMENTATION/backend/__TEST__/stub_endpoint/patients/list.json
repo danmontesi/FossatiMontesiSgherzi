@@ -1,0 +1,26 @@
+{
+  "success": {
+    "status": 200,
+    "success": true,
+    "list": [
+      {
+        "username": "DanMontesi",
+        "SSN": "aScEfNj352"
+      },
+      {
+        "username": "FraSghe",
+        "SSN": "11111111"
+      },
+      {
+        "username": "FossaNico",
+        "SSN": "00000000"
+      },
+    ]
+  },
+  "patient_not_found": {
+    "status": 400,
+    "success": false,
+    "error": "PatientNotFound",
+    "message": "Company has not a patient yet"
+  }
+}
