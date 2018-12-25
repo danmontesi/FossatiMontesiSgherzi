@@ -52,12 +52,18 @@ class IndividualsManager {
   }
 
   async register() {
-    console.log(this.toJSONString())
     const client = await this.indivPool.connect()
     await client.query('BEGIN')
-    /*   const {
-         rows
-       } = await client.query('INSERT INTO') */
+    console.log('Template to insert')
+    console.log([...this.toArray(), false, false])
+    const {
+      rows
+    } = await client.query('INSERT INTO individual_account(email, password, SSN, name, surname, birth_date, smartwatch, automated_sos, verified ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [...this.toArray(), false, false])
+    // TODO: Take the id with rows[0].id and create a token for the account, insert it in the token struct and return it to the user.
+    // TODO: Add a few try catch blocks.
+    console.log('Rows')
+    console.log(rows)
+
     await client.release()
     /* console.log('Client connected')
      client.release()
@@ -65,11 +71,15 @@ class IndividualsManager {
     return 200
   }
 
-  toJSONString() {
+  toJSON() {
     let template = {}
-    requiredParams[this.actor][this.action].forEach(param => {
-      template[param] = this[param]
-    })
+    requiredParams[this.actor][this.action].forEach(param => template[param] = this[param])
+    return template
+  }
+
+  toArray() {
+    let template = []
+    requiredParams[this.actor][this.action].forEach(param => template.push(this[param]))
     return template
   }
 
