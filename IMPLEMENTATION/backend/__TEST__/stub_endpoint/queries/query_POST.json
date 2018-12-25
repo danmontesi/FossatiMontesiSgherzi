@@ -1,11 +1,8 @@
-/* ADDED new field for XML file"
-*/
-
 {
   "success": {
     "status": 200,
     "success": true,
-    "xml": "http://daata4help.prova.xml" //link to xml generated
+    "xml": "http://daata4help.prova.xml"
   },
   "query_too_restricted": {
     "status": 400,

@@ -29,82 +29,105 @@ authRouter.get('/user', (req, res, next) => {
   }));
 })*/
 
-authRouter.post('/login', (req, res, next) => {
-  const action = isTestEnabled(req)
+authRouter.post('/login', async (req, res, next) => {
+  /*const action = isTestEnabled(req)
   if (action) {
     res
       .status(loginTemplate[action].status)
       .send(loginTemplate[action])
     return
   }
-  // TODO: Implement
+  // TODO: Implement*/
+
+  try {
+    const user = new IndividualsManager(req.body, req.body.type, 'login')
+    const authToken = await user.login()
+    res.status(200).send({
+      status: 200,
+      success: true,
+      auth_token: authToken
+    })
+  } catch (err) {
+    next(err)
+  }
+
 })
 
 authRouter.post('/register_user', async (req, res, next) => {
-
-  /*const action = isTestEnabled(req)
-  if (action) {
-    res
-      .status(registerUser[action].status)
-      .send(registerUser[action])
-    return
-  }*/
-  // TODO: Implement
-  /*try {
-    const client = await authPool.connect()
-    console.log('Client connected')
-    client.release()
-  } catch (err) {
-    console.log(err)
-  }*/
   try {
     const user = new IndividualsManager(req.body)
-    if (user.checkValidRegParams()) {
-      let response = await user.register()
-      res.status(status).send({
-        ok: 'OK'
-      })
-    }
+    user.checkValidRegParams()
+    let auth_token = await user.register()
+    res.status(200).send({
+      status: 200,
+      success: true,
+      auth_token: auth_token
+    })
   } catch (err) {
     next(err)
   }
 })
 
-authRouter.post('/register_company', (req, res, next) => {
-
-  const action = isTestEnabled(req)
-  if (action) {
-    res
-      .status(registerCompany[action].status)
-      .send(registerCompany[action])
-    return
+authRouter.post('/register_company', async (req, res, next) => {
+  try {
+    const company = new IndividualsManager(req.body, req.body.type, 'registration')
+    company.checkValidRegParams()
+    let auth_token = await company.register()
+    res.status(200).send({
+      status: 200,
+      success: true,
+      auth_token: auth_token
+    })
+  } catch (err) {
+    next(err)
   }
-  // TODO: Implement
 })
 
 
-authRouter.post('/register_run_organizer', (req, res, next) => {
+authRouter.post('/register_run_organizer', async (req, res, next) => {
+  /*
+    const action = isTestEnabled(req)
+    if (action) {
+      res
+        .status(registerRunOrganizer[action].status)
+        .send(registerRunOrganizer[action])
+      return
+    }*/
 
-  const action = isTestEnabled(req)
-  if (action) {
-    res
-      .status(registerRunOrganizer[action].status)
-      .send(registerRunOrganizer[action])
-    return
+  try {
+    const runOrganizer = new IndividualsManager(req.body, req.body.type, 'registration')
+    runOrganizer.checkValidRegParams()
+    let auth_token = await runOrganizer.register()
+    res.status(200).send({
+      status: 200,
+      success: true,
+      auth_token: auth_token
+    })
+  } catch (err) {
+    next(err)
   }
-  // TODO: Implement
+
 })
 
 
-authRouter.post('/verify', (req, res, next) => {
+authRouter.get('/verify', async (req, res, next) => {
 
-  const action = isTestEnabled(req)
+  try {
+    let message = await IndividualsManager.verify(req.query.mail, req.query.code, req.query.type)
+    res
+      .status(200)
+      .send(message)
+  } catch (err) {
+    console.log(err)
+    throw err
+  }
+  /*const action = isTestEnabled(req)
   if (action) {
     res
       .status(verify[action].status)
       .send(verify[action])
     return
-  }
+  }*/
   // TODO: Implement
 })
 
