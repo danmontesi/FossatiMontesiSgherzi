@@ -1,0 +1,24 @@
+/* 
+This endpoint is used to add new patient to the patient list of a company.
+Company can do individual data requests only on those patients
+This is the send of the request made to single users to be monitored.
+
+Data required:
+ "SSN": String
+  
+Possible problems:
+SSN doesn't exists
+
+*/
+{
+  "success": {
+    "status": 200,
+    "success": true,
+  },
+  "bad_request": {
+    "status": 400,
+    "success": false,
+    "error": "InvalidSSN",
+    "message": "SSN doesn't exist"
+  }
+}
