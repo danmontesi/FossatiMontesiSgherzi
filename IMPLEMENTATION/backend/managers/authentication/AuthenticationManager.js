@@ -104,7 +104,7 @@ class AuthenticationManager {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('SELECT * FROM ' + `${this.actor}_account` + ' WHERE email = $1', [this.email])
+      } = await client.query('SELECT * FROM ' + `${this.actor}_account` + ' WHERE username = $1', [this.username])
 
       if (rows.length === 0) {
         console.log('------------------------------------ USER NOT FOUND ------------------------------------')
@@ -150,12 +150,13 @@ class AuthenticationManager {
 
 
   async _registerIndividual() {
+    console.log(this.toJSON())
     const client = await this.authPool.connect()
     try {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('INSERT INTO individual_account(email, password, SSN, name, surname, birth_date, smartwatch, automated_sos, verified ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [...this.toArray(), false, false])
+      } = await client.query('INSERT INTO individual_account(email, password, username, SSN, name, surname, birth_date, smartwatch, automated_sos, verified ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *', [...this.toArray(), false, false])
       const token = jwt.sign({
         id: rows[0].id,
         email: rows[0].email,
@@ -188,7 +189,7 @@ class AuthenticationManager {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('INSERT INTO company_account(email, password, company_name, verified) VALUES($1, $2, $3, $4) RETURNING *', [...this.toArray(), false])
+      } = await client.query('INSERT INTO company_account(email, password, username, company_name, verified) VALUES($1, $2, $3, $4, $5) RETURNING *', [...this.toArray(), false])
       const token = jwt.sign({
         id: rows[0].id,
         email: rows[0].email,
@@ -219,7 +220,7 @@ class AuthenticationManager {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('INSERT INTO run_organizer_account(email, password, name, surname, verified) VALUES($1, $2, $3, $4, $5) RETURNING *', [...this.toArray(), false])
+      } = await client.query('INSERT INTO run_organizer_account(email, password, username, name, surname, verified) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', [...this.toArray(), false])
       const token = jwt.sign({
         id: rows[0].id,
         email: rows[0].email,

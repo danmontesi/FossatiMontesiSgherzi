@@ -12,7 +12,7 @@ fetch(HEROKU_BASE_URL + 'auth/verify?action=invalid_code', {
   .catch(console.log)*/
 // WORKS W MAIL ALREADY IN USE
 /*
-fetch(HEROKU_BASE_URL + 'auth/register_user', {
+fetch(LOCAL_BASE_URL + 'auth/register_user', {
   method: 'POST',
   headers: new fetch.Headers({
     'Content-Type': 'application/json'
@@ -20,11 +20,12 @@ fetch(HEROKU_BASE_URL + 'auth/register_user', {
   body: JSON.stringify({
     email: 'francesco.sgherzi@gmail.com',
     password: 'giannimio',
+    username: 'blablabla',
     SSN: 'SGHRCM65PD7L858L',
     name: 'fras',
-    surname: 'Sgherzia',
+    surname: 'Sgherzi',
     birthday: new Date(),
-    smartwatch: 'Samsung Galaxy BHO'
+    smartwatch: 'Samsung Galaxy BHO',
   })
 })
   .then(res => res.json())
@@ -40,8 +41,8 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
     'Content-Type': 'application/json'
   }),
   body: JSON.stringify({
-    email: 'francesco.sgherzi@gmail.com',
     password: 'giannimio',
+    username: 'blablabla',
     type: 'individual'
   })
 })
@@ -66,7 +67,8 @@ fetch(LOCAL_BASE_URL + 'auth/register_company', {
 })
   .then(res => res.json())
   .then(console.log)
-  .catch(console.log)*/
+  .catch(console.log)
+*/
 
 /*
 fetch(LOCAL_BASE_URL + 'auth/login', {
@@ -173,6 +175,7 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 */
 
 
+/*
 fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMDgkMjJmY04wbFhVUzY2aWxJN3k1bDZkdUpVLlpYQk9hNGZ2MS5SaVc5czBRV2VSTUVYWDJBRW0iLCJiZWdpbl90aW1lIjoiMjAxOC0xMi0yNlQwMDoxODowNy45MTFaIiwiaWF0IjoxNTQ1NzgzNDg3LCJleHAiOjE1NDU4Njk4ODd9.kC5z1bi4sZEDBxKqyYKUc2q3v6fG2AZoJnXy8YJXKCc', {
   method: 'GET',
   headers: new fetch.Headers({
@@ -181,4 +184,4 @@ fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6I
 })
   .then(res => res.json())
   .then(data => console.log(data.data))
-  .catch(console.log)
+  .catch(console.log)*/

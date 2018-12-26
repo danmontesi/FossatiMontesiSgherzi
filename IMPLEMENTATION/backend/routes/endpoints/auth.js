@@ -54,6 +54,7 @@ authRouter.post('/login', async (req, res, next) => {
 })
 
 authRouter.post('/register_user', async (req, res, next) => {
+  console.log(req.body)
   try {
     const user = new IndividualsManager(req.body)
     user.checkValidRegParams()
