@@ -1,0 +1,34 @@
+{
+  "individual": {
+    "login": [
+      "password"
+    ],
+    "registration": [
+      "email",
+      "password",
+      "SSN",
+      "name",
+      "birthday",
+      "smartwatch"
+    ]
+  },
+  "company": {
+    "login": [
+      "password"
+    ],
+    "registration": [
+      "email",
+      "company_name"
+    ]
+  },
+  "run_organizer": {
+    "login": [
+      "password"
+    ],
+    "registration": [
+      "email",
+      "name",
+      "surname"
+    ]
+  }
+}

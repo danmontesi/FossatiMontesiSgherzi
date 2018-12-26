@@ -11,6 +11,13 @@ const {
   debugLog
 } = require('./utils/testUtils')
 
+
+if (process.env.TEST_API !== 'enabled') {
+  // If not in the test environment, disable logging altogether
+  console.log = () => {
+  }
+}
+
 const PORT = process.env.PORT || 12345
 
 const app = express()

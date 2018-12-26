@@ -1,8 +1,8 @@
 const express = require('express')
 const queryRouter = express.Router()
 
-const QUERY_POST = require('../../__TEST__/stub_endpoint/queries/query_POST')
-const QUERY_GET = require('../../__TEST__/stub_endpoint/queries/query_GET')
+const QUERY_POST = require('../../__runtime_tests__/stub_endpoint/queries/query_POST')
+const QUERY_GET = require('../../__runtime_tests__/stub_endpoint/queries/query_GET')
 
 const {
   isTestEnabled

@@ -32,6 +32,7 @@ fetch(HEROKU_BASE_URL + 'auth/register_user', {
   .catch(console.log)
 */
 
+/*
 
 fetch(LOCAL_BASE_URL + 'auth/login', {
   method: 'POST',
@@ -47,7 +48,7 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
   .then(res => res.json())
   .then(console.log)
   .catch(console.log)
-
+*/
 
 // WORKS W DUPLICATE PASSWORD
 /*
@@ -119,3 +120,65 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
   .then(res => res.json())
   .then(console.log)
   .catch(console.log)*/
+
+// DATA SAVING
+/*
+fetch(LOCAL_BASE_URL + 'indiv/data', {
+  method: 'POST',
+  headers: new fetch.Headers({
+    'Content-Type': 'application/json'
+  }),
+  body: JSON.stringify({
+    auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMDgkMjJmY04wbFhVUzY2aWxJN3k1bDZkdUpVLlpYQk9hNGZ2MS5SaVc5czBRV2VSTUVYWDJBRW0iLCJiZWdpbl90aW1lIjoiMjAxOC0xMi0yNlQwMDoxODowNy45MTFaIiwiaWF0IjoxNTQ1NzgzNDg3LCJleHAiOjE1NDU4Njk4ODd9.kC5z1bi4sZEDBxKqyYKUc2q3v6fG2AZoJnXy8YJXKCc',
+    data: {
+      gps_coordinates: [
+        {
+          lat: 42.1345,
+          long: 32.123343,
+          timestamp: new Date()
+        }, {
+          lat: 12.1345,
+          long: 39.123343,
+          timestamp: new Date()
+        }
+      ],
+      accelerometer: [
+        {
+          timestamp: new Date(),
+          acc_x: -2,
+          acc_y: 2.123,
+          acc_z: 141
+        }, {
+          timestamp: new Date(),
+          acc_x: -12,
+          acc_y: 5.123,
+          acc_z: 11
+        }
+      ],
+      heart_rate: [
+        {
+          timestamp: new Date(),
+          bpm: 80
+        }, {
+          timestamp: new Date(),
+          bpm: 84
+        }
+      ]
+    }
+  })
+})
+  .then(res => res.json())
+  .then(console.log)
+  .catch(console.log)
+*/
+
+
+fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDUsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmEkMDgkMjJmY04wbFhVUzY2aWxJN3k1bDZkdUpVLlpYQk9hNGZ2MS5SaVc5czBRV2VSTUVYWDJBRW0iLCJiZWdpbl90aW1lIjoiMjAxOC0xMi0yNlQwMDoxODowNy45MTFaIiwiaWF0IjoxNTQ1NzgzNDg3LCJleHAiOjE1NDU4Njk4ODd9.kC5z1bi4sZEDBxKqyYKUc2q3v6fG2AZoJnXy8YJXKCc', {
+  method: 'GET',
+  headers: new fetch.Headers({
+    'Content-Type': 'application/json'
+  })
+})
+  .then(res => res.json())
+  .then(data => console.log(data.data))
+  .catch(console.log)

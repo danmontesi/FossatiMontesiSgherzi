@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node app.js"
   },
   "author": "Nicola Fossati Daniele Montesi Francesco Sgherzi",
@@ -21,6 +21,7 @@
     "pg": "^7.6.1"
   },
   "devDependencies": {
+    "jest": "^23.6.0",
     "node-fetch": "^2.3.0"
   }
 }

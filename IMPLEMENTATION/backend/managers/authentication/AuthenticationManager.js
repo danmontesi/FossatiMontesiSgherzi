@@ -2,14 +2,15 @@ const requiredParams = require('./requiredParameters')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const nm = require('nodemailer')
+
 const {
   Pool
 } = require('pg')
 
-class IndividualsManager {
+class AuthenticationManager {
 
   constructor(reqBody, actor = 'individual', action = 'registration') {
-    this.indivPool = new Pool({
+    this.authPool = new Pool({
       connectionString: process.env.DATABASE_URL + '?ssl=true',
       max: 5
     })
@@ -28,8 +29,8 @@ class IndividualsManager {
     const transporter = nm.createTransport({
       service: 'gmail',
       auth: {
-        user: 'ingsw2.fms@torrescalla.it',
-        pass: 'albi1945'
+        user: process.env.MAIL_ADDR,
+        pass: process.env.MAIL_PASSWD
       }
     })
 
@@ -98,7 +99,7 @@ class IndividualsManager {
   }
 
   async login() {
-    const client = await this.indivPool.connect()
+    const client = await this.authPool.connect()
     try {
       await client.query('BEGIN')
       const {
@@ -111,7 +112,6 @@ class IndividualsManager {
         err.status = 404
         throw err
       }
-
       if (!rows[0].verified) {
         let err = new Error('User not verified')
         err.status = 401
@@ -150,7 +150,7 @@ class IndividualsManager {
 
 
   async _registerIndividual() {
-    const client = await this.indivPool.connect()
+    const client = await this.authPool.connect()
     try {
       await client.query('BEGIN')
       const {
@@ -179,14 +179,11 @@ class IndividualsManager {
       }
       throw err
     }
-    /* console.log('Client connected')
-     client.release()
-     return 200*/
   }
 
 
   async _registerCompany() {
-    const client = await this.indivPool.connect()
+    const client = await this.authPool.connect()
     try {
       await client.query('BEGIN')
       const {
@@ -217,7 +214,7 @@ class IndividualsManager {
   }
 
   async _registerRunOrganizer() {
-    const client = await this.indivPool.connect()
+    const client = await this.authPool.connect()
     try {
       await client.query('BEGIN')
       const {
@@ -291,4 +288,4 @@ class IndividualsManager {
   }
 }
 
-module.exports = IndividualsManager
+module.exports = AuthenticationManager

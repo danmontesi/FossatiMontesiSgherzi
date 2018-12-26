@@ -1,10 +1,10 @@
 const express = require('express')
 const runsRouter = express.Router()
 
-const JOIN = require('../../__TEST__/stub_endpoint/runs/join')
-const POSITIONS = require('../../__TEST__/stub_endpoint/runs/positions')
-const ROOT = require('../../__TEST__/stub_endpoint/runs/root')
-const RUN = require('../../__TEST__/stub_endpoint/runs/run')
+const JOIN = require('../../__runtime_tests__/stub_endpoint/runs/join')
+const POSITIONS = require('../../__runtime_tests__/stub_endpoint/runs/positions')
+const ROOT = require('../../__runtime_tests__/stub_endpoint/runs/root')
+const RUN = require('../../__runtime_tests__/stub_endpoint/runs/run')
 
 const {
   isTestEnabled

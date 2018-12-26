@@ -10,16 +10,16 @@ const authPool = new Pool({
   max: 5
 })
 
-const loginTemplate = require('../../__TEST__/stub_endpoint/auth/login')
-const registerCompany = require('../../__TEST__/stub_endpoint/auth/register_company')
-const registerRunOrganizer = require('../../__TEST__/stub_endpoint/auth/register_run_organizer')
-const registerUser = require('../../__TEST__/stub_endpoint/auth/register_user')
-const verify = require('../../__TEST__/stub_endpoint/auth/verify')
+const loginTemplate = require('../../__runtime_tests__/stub_endpoint/auth/login')
+const registerCompany = require('../../__runtime_tests__/stub_endpoint/auth/register_company')
+const registerRunOrganizer = require('../../__runtime_tests__/stub_endpoint/auth/register_run_organizer')
+const registerUser = require('../../__runtime_tests__/stub_endpoint/auth/register_user')
+const verify = require('../../__runtime_tests__/stub_endpoint/auth/verify')
 const {
   isTestEnabled
 } = require('../../utils/testUtils')
 
-const IndividualsManager = require('../../utils/managers/Individuals/IndividualsManager')
+const IndividualsManager = require('../../managers/authentication/AuthenticationManager')
 
 /*
 authRouter.get('/user', (req, res, next) => {
