@@ -203,13 +203,13 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
     if (result == null) return;
 
     setState(() {
-      _datetimeFilter.text = new DateFormat("d-M-y").format(result);
+      _datetimeFilter.text = new DateFormat("yyyy-MM-dd").format(result);
     });
   }
 
   DateTime convertToDate(String input) {
     try {
-      var d = new DateFormat("d-M-y").parseStrict(input);
+      var d = new DateFormat("yyyy-MM-dd").parseStrict(input);
       return d;
     } catch (e) {
       return null;
@@ -223,6 +223,8 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
 
     fetchAuthToken().then((token) {
       print(token);
+      Navigator.pop(context);
+      Navigator.pop(context);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Dashboard()));
     })
@@ -241,7 +243,8 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
 
   Future<String> fetchAuthToken() async {
     Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("mail", () => _email);
+    body.putIfAbsent("email", () => _email);
+    body.putIfAbsent("username", () => _email);
     body.putIfAbsent("password", () => _password);
     body.putIfAbsent("SSN", () => _ssn);
     body.putIfAbsent("name", () => _name);
@@ -250,7 +253,7 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
     body.putIfAbsent("smartwatch", () => "TestSmartwatch1");
 
     final response = await http.post(
-        'https://data4halp.herokuapp.com/auth/register_user?action=success',
+        'https://data4halp.herokuapp.com/auth/register_user',
         body: body);
 
     if (response.statusCode == 200) {
