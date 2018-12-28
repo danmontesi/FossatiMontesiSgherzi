@@ -11,7 +11,10 @@ Array.prototype.forEachAsync = async function (callback) {
 }
 
 class IndividualsManager {
+
   constructor(reqBody) {
+    console.log("Request Body")
+    console.log(reqBody)
     this.indivPool = new Pool({
       connectionString: process.env.DATABASE_URL + '?ssl=true',
       max: 5
@@ -21,12 +24,14 @@ class IndividualsManager {
       try {
         this.user = jwt.decode(reqBody.auth_token, process.env.JWT_SECRET)
       } catch (err) {
+        console.log("Error in decoding!")
+        console.log(err)
         err.message = 'Token is invalid'
         err.status = 400
         throw err
       }
     } else {
-      let err = new Error('Invalid Data')
+      let err = new Error('Missing Token')
       err.status = 422
       throw err
     }
@@ -46,7 +51,8 @@ class IndividualsManager {
       accelerometer,
       heart_rate
     } = this.data
-
+    console.log("Loggin Received data")
+    console.log(this.data)
     try {
       await client.query('BEGIN')
       gps_coordinates.forEachAsync(async (coordinate, i) => {
@@ -96,7 +102,10 @@ class IndividualsManager {
       rows: gpsData
     } = await client.query('SELECT * FROM gps_coordinates WHERE user_id = $1', [this.user.id])
     gpsData.forEach(el => el.user_id = undefined)
-
+    console.log("Logging data")
+    console.log(accData)
+    console.log(heartData)
+    console.log(gpsData)
     return {
       success: true,
       data: {

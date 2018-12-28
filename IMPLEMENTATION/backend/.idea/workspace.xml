@@ -4,8 +4,8 @@
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/authentication/requiredParameters.json" beforeDir="false" afterPath="$PROJECT_DIR$/managers/authentication/requiredParameters.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,10 +19,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+        <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="11">
-              <caret line="248" column="17" selection-start-line="248" selection-start-column="6" selection-end-line="248" selection-end-column="17" />
+            <state relative-caret-position="-1242">
+              <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -30,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
+            <state relative-caret-position="530">
               <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
@@ -39,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+            <state relative-caret-position="217">
+              <caret line="171" column="20" selection-start-line="171" selection-start-column="20" selection-end-line="171" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -133,11 +133,11 @@
         <option value="$PROJECT_DIR$/__tests__/managers/Individuals/templateRequests.json" />
         <option value="$PROJECT_DIR$/__tests__/managers/Individuals/IndividualsManager.jest.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/indiv.js" />
-        <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/auth.js" />
         <option value="$PROJECT_DIR$/managers/authentication/requiredParameters.json" />
-        <option value="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" />
         <option value="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" />
+        <option value="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" />
+        <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
       </list>
     </option>
   </component>
@@ -151,7 +151,7 @@
     <option name="x" value="10" />
     <option name="y" value="40" />
     <option name="width" value="1900" />
-    <option name="height" value="510" />
+    <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -161,6 +161,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -228,7 +229,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -386,7 +386,8 @@
       <workItem from="1545645918706" duration="32302000" />
       <workItem from="1545769581574" duration="14988000" />
       <workItem from="1545830811207" duration="1336000" />
-      <workItem from="1545987455058" duration="946000" />
+      <workItem from="1545987455058" duration="1626000" />
+      <workItem from="1546035488822" duration="618000" />
     </task>
     <servers />
   </component>
@@ -423,18 +424,19 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70740000" />
+    <option name="totallyTimeSpent" value="72038000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="40" width="1900" height="510" extended-state="0" />
+    <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13365282" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2715655" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27488688" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.27488688" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39932126" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -442,7 +444,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.64835167" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.26636568" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -680,17 +682,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="97" column="49" selection-start-line="97" selection-start-column="49" selection-end-line="97" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/managers/Individuals/AuthenticationManager.jest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="877">
           <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4876">
+          <caret line="248" column="17" selection-start-line="248" selection-start-column="6" selection-end-line="248" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>
@@ -701,24 +710,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="42" column="9" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+        <state relative-caret-position="217">
+          <caret line="171" column="20" selection-start-line="171" selection-start-column="20" selection-end-line="171" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+    <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11">
-          <caret line="248" column="17" selection-start-line="248" selection-start-column="6" selection-end-line="248" selection-end-column="17" />
+        <state relative-caret-position="-1242">
+          <caret line="24" column="48" lean-forward="true" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
         </state>
       </provider>
     </entry>
