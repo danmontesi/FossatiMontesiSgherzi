@@ -1,17 +1,23 @@
+import 'package:data4help/data4help/dashboard/DashboardDetailPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
+  final String authtoken;
+
+  Dashboard(this.authtoken);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(title: 'Data4Help - Dashboard');
+    return MyHomePage(authtoken, title: 'Data4Help - Dashboard');
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  final String authtoken;
+  MyHomePage(this.authtoken, {Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -110,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: _dashboardMainPage,
         );
       case 1:
-        return new Text("TO BE DONE1");
+        return new DashboardDetailsPage(widget.authtoken);
       case 2:
         return new Center(
           child: Text("Function not implemented yet."),
@@ -118,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 3:
         return new Text("TO BE DONE3");
       case 4:
-        return new DashboardTestPage();
+        return new DashboardTestPage(widget.authtoken);
     }
     return new Text("WTF");
   }

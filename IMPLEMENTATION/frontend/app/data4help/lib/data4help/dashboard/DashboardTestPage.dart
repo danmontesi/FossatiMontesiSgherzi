@@ -1,12 +1,14 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:data4help/data4help/UserData.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class DashboardTestPage extends StatefulWidget {
-  DashboardTestPage({Key key, this.title}) : super(key: key);
-  final String title;
+  DashboardTestPage(this.authtoken, {Key key, this.title}) : super(key: key);
+  final String title, authtoken;
 
   @override
   _DashboardTestPageState createState() => new _DashboardTestPageState();
@@ -19,28 +21,29 @@ class _DashboardTestPageState extends State<DashboardTestPage> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new MaterialButton(onPressed: _generateData, child: new Text("Prova a generare dati..."),)
+          new MaterialButton(onPressed: _sendDataToServer, child: new Text("Prova a generare dati..."),)
         ]);
   }
 
 
 
-  void _generateData() {
-
-    final List<GpsCoordinate> gpsCoordinates = new List();
-    final List<Accelerometer> accelerometer = new List();
-    final List<Heartrate> heartRate = new List();
 
 
-    DateTime now = new DateTime.now();
-    for(int i=0; i<6*24; i++){
-      gpsCoordinates.add(new GpsCoordinate(Random.secure().nextDouble(), Random.secure().nextDouble(), now));
-      accelerometer.add(new Accelerometer(Random.secure().nextDouble(), Random.secure().nextDouble(), Random.secure().nextDouble(), now));
-      heartRate.add(new Heartrate(Random.secure().nextInt(20)-10 + 60 , now));
-      now= now.add(new Duration(minutes: 10));
-    }
+  void _sendDataToServer() async {
+    Map<String, String> body = new Map<String, String>();
+    body.putIfAbsent("auth_token", () => widget.authtoken);
+    print(widget.authtoken);
+    String data = UserData.generateSampleData().toJson();
+    print(data);
+    body.putIfAbsent("data", () => data);
 
-    UserData userdata = new UserData(gpsCoordinates, accelerometer, heartRate);
+
+
+    final response = await http.post(
+        'https://data4halp.herokuapp.com/indiv/data',
+        body: body);
+    print(response.body);
+    print( json.decode(response.body)['message']);
   }
 }
 

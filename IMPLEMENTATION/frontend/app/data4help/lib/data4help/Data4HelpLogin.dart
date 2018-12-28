@@ -128,7 +128,7 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
     fetchAuthToken().then((token) {
       print(token);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Dashboard()));
+          context, MaterialPageRoute(builder: (context) => Dashboard(token)));
     }).catchError((e) {
       Scaffold.of(context).showSnackBar(new SnackBar(
         content: new Text("$e"),
@@ -147,7 +147,7 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
 
   Future<String> fetchAuthToken() async {
     Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("username", () => _email);
+    body.putIfAbsent("email", () => _email);
     body.putIfAbsent("password", () => _password);
 
     final response = await http.post(

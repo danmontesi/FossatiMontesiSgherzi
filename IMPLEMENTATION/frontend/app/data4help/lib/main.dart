@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       title: 'Data4Help',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
       ),
       home: MyHomePage(title: 'Data4Help'),
     );
