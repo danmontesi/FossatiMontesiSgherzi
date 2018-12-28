@@ -3,12 +3,14 @@ This endpoint is used to get data from single patients.
 This has to return a XML file whose download link is specified in xml field
 
 Data required:
- "SSN": String (put on the request)
- "date_from": Date
- "date_to": Date
+ "SSN": String
+  begin_date: String //in Data format
+  end_date: String //in Data format
   
 Possible problems:
-SSN doesn't exists
+date invalid
+
+SSn doesn't exists
 
 */
 
