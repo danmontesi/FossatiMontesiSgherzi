@@ -21,12 +21,10 @@ class CheckSmartwatchPage extends StatefulWidget {
 }
 
 class _CheckSmartwatchPageState extends State<CheckSmartwatchPage> {
-
   _CheckSmartwatchPageState() {
-    new Timer(const Duration(milliseconds: 5000), ()
-    {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Data4HelpLogin()));
-
+    new Timer(const Duration(milliseconds: 5000), () {
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => Data4HelpLogin()));
     });
   }
 
@@ -43,7 +41,9 @@ class _CheckSmartwatchPageState extends State<CheckSmartwatchPage> {
             Text(
               'Checking smartwatch connection...',
             ),
-            new CircularProgressIndicator(),
+            Container(
+                padding: new EdgeInsets.all(8.0),
+                child: new CircularProgressIndicator()),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
+import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatelessWidget {
@@ -84,6 +85,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
+            ListTile(
+              title: Text('Testing'),
+              onTap: () {
+                setState(() {
+                  _selectedItem = 4;
+                  Navigator.pop(context);
+                });
+              },
+            ),
           ],
         ),
       ),
@@ -107,6 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       case 3:
         return new Text("TO BE DONE3");
+      case 4:
+        return new DashboardTestPage();
     }
     return new Text("WTF");
   }
