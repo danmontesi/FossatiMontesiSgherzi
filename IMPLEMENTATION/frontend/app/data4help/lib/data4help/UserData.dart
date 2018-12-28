@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:intl/intl.dart';
+
 class UserData {
   final List<GpsCoordinate> gpsCoordinates;
   final List<Accelerometer> accelerometer;
@@ -54,12 +58,39 @@ class UserData {
 
 
     return "{"
-        "gps_coordinates: [$gps_json]"
-        "accelerometer: [$acc_json]"
-        "heart_rate: [$hr_json]"
+        "\"gps_coordinates\": [$gps_json],"
+        "\"accelerometer\": [$acc_json],"
+        "\"heart_rate\": [$hr_json]"
         "}";
 
   }
+
+  static UserData generateSampleData() {
+
+    final List<GpsCoordinate> gpsCoordinates = new List();
+    final List<Accelerometer> accelerometer = new List();
+    final List<Heartrate> heartRate = new List();
+
+
+    DateTime now = new DateTime.now();
+    //go to midnight
+    now=now.subtract(new Duration(hours: now.hour, minutes: now.minute, seconds: now.second, milliseconds: now.millisecond, microseconds: now.microsecond));
+
+
+    for(int i=0; i<6*24; i++){
+      gpsCoordinates.add(new GpsCoordinate(Random.secure().nextDouble(), Random.secure().nextDouble(), now));
+      accelerometer.add(new Accelerometer(Random.secure().nextDouble(), Random.secure().nextDouble(), Random.secure().nextDouble(), now));
+      heartRate.add(new Heartrate(Random.secure().nextInt(80)-40 + 60 , now));
+      now= now.add(new Duration(minutes: 10));
+    }
+
+    UserData userdata = new UserData(gpsCoordinates, accelerometer, heartRate);
+    return userdata;
+  }
+}
+
+String _formatData(DateTime inputString){
+  return new DateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'").format(inputString);
 }
 
 class GpsCoordinate{
@@ -75,7 +106,7 @@ class GpsCoordinate{
         timestamp = DateTime.parse(json['timestamp']);
 
   String toJson() =>
-      "{lat: $lat, long: $long, timestamp: ${timestamp.toIso8601String()}}";
+      "{\"lat\": ${lat.toStringAsFixed(6)}, \"long\": ${long.toStringAsFixed(6)}, \"timestamp\": \"${_formatData(timestamp)}\"}";
 }
 
 
@@ -93,7 +124,7 @@ class Accelerometer{
         timestamp = DateTime.parse(json['timestamp']);
 
   String toJson() =>
-      "{acc_x: $x, acc_y: $y, acc_z: $z,  timestamp: ${timestamp.toIso8601String()}}";
+      "{\"acc_x\": ${x.toStringAsFixed(6)}, \"acc_y\": ${y.toStringAsFixed(6)}, \"acc_z\": ${z.toStringAsFixed(6)},  \"timestamp\": \"${_formatData(timestamp)}\"}";
 }
 
 
@@ -109,7 +140,7 @@ class Heartrate{
         timestamp = DateTime.parse(json['timestamp']);
 
   String toJson() =>
-      "{bpm: $hr,   timestamp: ${timestamp.toIso8601String()}}";
+      "{\"bpm\": $hr,   \"timestamp\": \"${_formatData(timestamp)}\"}";
 }
 
 

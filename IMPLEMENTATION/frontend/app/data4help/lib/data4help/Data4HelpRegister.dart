@@ -163,7 +163,7 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
                   ),
                 ),
                 new IconButton(
-                    icon: new Icon(Icons.more_horiz),
+                    icon: new Icon(Icons.calendar_today),
                     onPressed: () =>
                         _chooseDate(context, _datetimeFilter.text)),
               ],
@@ -226,7 +226,7 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
       Navigator.pop(context);
       Navigator.pop(context);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Dashboard()));
+          context, MaterialPageRoute(builder: (context) => Dashboard(token)));
     })
         .catchError((ex) {
       Scaffold.of(context).showSnackBar(new SnackBar(

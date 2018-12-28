@@ -22,7 +22,11 @@ UserData _generateData() {
 
 
   DateTime now = new DateTime.now();
-  for(int i=0; i<6*24; i++){
+  //go to midnight
+  now=now.subtract(new Duration(hours: now.hour, minutes: now.minute, seconds: now.second, milliseconds: now.millisecond, microseconds: now.microsecond));
+
+
+  for(int i=0; i<2; i++){
     gpsCoordinates.add(new GpsCoordinate(Random.secure().nextDouble(), Random.secure().nextDouble(), now));
     accelerometer.add(new Accelerometer(Random.secure().nextDouble(), Random.secure().nextDouble(), Random.secure().nextDouble(), now));
     heartRate.add(new Heartrate(Random.secure().nextInt(20)-10 + 60 , now));
