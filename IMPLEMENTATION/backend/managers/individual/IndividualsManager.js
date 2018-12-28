@@ -46,11 +46,18 @@ class IndividualsManager {
 
   async saveData() {
     const client = await this.indivPool.connect()
+
+    if( typeof this.data == 'string'){
+      this.data = JSON.parse(this.data)
+    }
+
     const {
       gps_coordinates,
       accelerometer,
       heart_rate
     } = this.data
+
+
     console.log(typeof this.data)
     console.log("Loggin Received data")
     console.log("GPS")
