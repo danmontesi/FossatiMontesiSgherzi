@@ -52,7 +52,12 @@ class IndividualsManager {
       heart_rate
     } = this.data
     console.log("Loggin Received data")
-    console.log(this.data)
+    console.log("GPS")
+    console.log(gps_coordinates)
+    console.log("HEART RATE")
+    console.log(heart_rate)
+    console.log("ACC")
+    console.log(accelerometer)
     try {
       await client.query('BEGIN')
       gps_coordinates.forEachAsync(async (coordinate, i) => {
