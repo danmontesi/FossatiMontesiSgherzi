@@ -13,8 +13,6 @@ Array.prototype.forEachAsync = async function (callback) {
 class IndividualsManager {
 
   constructor(reqBody) {
-    console.log("Request Body")
-    console.log(reqBody)
     this.indivPool = new Pool({
       connectionString: process.env.DATABASE_URL + '?ssl=true',
       max: 5
@@ -24,8 +22,6 @@ class IndividualsManager {
       try {
         this.user = jwt.decode(reqBody.auth_token, process.env.JWT_SECRET)
       } catch (err) {
-        console.log("Error in decoding!")
-        console.log(err)
         err.message = 'Token is invalid'
         err.status = 400
         throw err
@@ -35,6 +31,7 @@ class IndividualsManager {
       err.status = 422
       throw err
     }
+
     if (reqBody.data) this.data = reqBody.data
   }
 
@@ -47,7 +44,7 @@ class IndividualsManager {
   async saveData() {
     const client = await this.indivPool.connect()
 
-    if( typeof this.data == 'string'){
+    if (typeof this.data == 'string') {
       this.data = JSON.parse(this.data)
     }
 
@@ -57,15 +54,6 @@ class IndividualsManager {
       heart_rate
     } = this.data
 
-
-    console.log(typeof this.data)
-    console.log("Loggin Received data")
-    console.log("GPS")
-    console.log(gps_coordinates)
-    console.log("HEART RATE")
-    console.log(heart_rate)
-    console.log("ACC")
-    console.log(accelerometer)
     try {
       await client.query('BEGIN')
       gps_coordinates.forEachAsync(async (coordinate, i) => {
@@ -89,8 +77,6 @@ class IndividualsManager {
       }
 
     } catch (err) {
-      console.log("Error in inserting data")
-      console.log(err)
       await client.query('ROLLBACK')
       await client.release()
       err.message = 'Invalid data'
@@ -105,7 +91,7 @@ class IndividualsManager {
 
     const {
       rows: accData
-    } = await client.query('SELECT * FROM accelerometer WHERE user_id = $1', [this.user.id])
+    } = await client.query('SELECT * FROM accelerometer WHERE user_id=$1', [this.user.id])
     accData.forEach(el => el.user_id = undefined)
 
     const {
@@ -117,10 +103,7 @@ class IndividualsManager {
       rows: gpsData
     } = await client.query('SELECT * FROM gps_coordinates WHERE user_id = $1', [this.user.id])
     gpsData.forEach(el => el.user_id = undefined)
-    console.log("Logging data")
-    console.log(accData)
-    console.log(heartData)
-    console.log(gpsData)
+
     return {
       success: true,
       data: {

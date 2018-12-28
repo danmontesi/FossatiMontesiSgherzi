@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" line="171" mnemonic="6" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="" />
+    <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -13,47 +20,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1903">
+              <caret line="248" column="26" selection-start-line="248" selection-start-column="26" selection-end-line="248" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+            <state relative-caret-position="483">
+              <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__runtime_tests__/stub_endpoint/queries/query_POST.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="30" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__runtime_tests__/stub_endpoint/queries/query_GET.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="35" selection-start-line="35" selection-end-line="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="171" column="21" selection-start-line="171" selection-start-column="21" selection-end-line="171" selection-end-column="21" />
+            <state relative-caret-position="281">
+              <caret line="125" column="38" lean-forward="true" selection-start-line="125" selection-start-column="38" selection-end-line="125" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__tests__/managers/Individuals/AuthenticationManager.jest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="385">
+              <caret line="79" selection-start-line="79" selection-end-line="79" />
             </state>
           </provider>
         </entry>
@@ -98,6 +96,7 @@
       <find>register</find>
       <find>username</find>
       <find>console.log</find>
+      <find>console.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,8 +149,8 @@
         <option value="$PROJECT_DIR$/managers/authentication/requiredParameters.json" />
         <option value="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" />
         <option value="$PROJECT_DIR$/__runtime_tests__/stub_endpoint/queries/query_POST.json" />
-        <option value="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" />
         <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
+        <option value="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" />
       </list>
     </option>
   </component>
@@ -161,7 +160,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="40" />
     <option name="width" value="1900" />
@@ -414,7 +413,7 @@
       <workItem from="1545769581574" duration="14988000" />
       <workItem from="1545830811207" duration="1336000" />
       <workItem from="1545987455058" duration="1626000" />
-      <workItem from="1546035488822" duration="1764000" />
+      <workItem from="1546035488822" duration="4103000" />
     </task>
     <servers />
   </component>
@@ -451,10 +450,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73184000" />
+    <option name="totallyTimeSpent" value="75523000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="40" width="1900" height="1030" extended-state="1" />
+    <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2715655" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -462,7 +462,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.27488688" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2545249" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39932126" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -470,7 +470,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.2658371" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2658371" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -694,31 +694,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/managers/Individuals/AuthenticationManager.jest.js">
+    <entry file="file://$PROJECT_DIR$/__runtime_tests__/stub_endpoint/queries/query_GET.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="877">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4876">
-          <caret line="248" column="17" selection-start-line="248" selection-start-column="6" selection-end-line="248" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
+        <state relative-caret-position="239">
+          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -729,24 +708,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__runtime_tests__/stub_endpoint/queries/query_GET.json">
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+        <state relative-caret-position="483">
+          <caret line="63" column="18" selection-start-line="63" selection-start-column="18" selection-end-line="63" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
+    <entry file="file://$PROJECT_DIR$/__tests__/managers/Individuals/AuthenticationManager.jest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="171" column="21" selection-start-line="171" selection-start-column="21" selection-end-line="171" selection-end-column="21" />
+        <state relative-caret-position="385">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1903">
+          <caret line="248" column="26" selection-start-line="248" selection-start-column="26" selection-end-line="248" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="53" column="32" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+        <state relative-caret-position="483">
+          <caret line="93" column="23" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="125" column="38" lean-forward="true" selection-start-line="125" selection-start-column="38" selection-end-line="125" selection-end-column="38" />
         </state>
       </provider>
     </entry>
