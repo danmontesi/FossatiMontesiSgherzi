@@ -51,6 +51,7 @@ class IndividualsManager {
       accelerometer,
       heart_rate
     } = this.data
+    console.log(typeof this.data)
     console.log("Loggin Received data")
     console.log("GPS")
     console.log(gps_coordinates)
