@@ -1,13 +1,12 @@
 {
   "individual": {
     "login": [
-      "username",
+      "email",
       "password"
     ],
     "registration": [
       "email",
       "password",
-      "username",
       "SSN",
       "name",
       "surname",
@@ -17,25 +16,23 @@
   },
   "company": {
     "login": [
-      "username",
+      "email",
       "password"
     ],
     "registration": [
       "email",
       "password",
-      "username",
       "company_name"
     ]
   },
   "run_organizer": {
     "login": [
-      "username",
+      "email",
       "password"
     ],
     "registration": [
       "email",
       "password",
-      "username",
       "name",
       "surname"
     ]

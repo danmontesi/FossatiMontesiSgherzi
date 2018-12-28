@@ -20,7 +20,6 @@ fetch(LOCAL_BASE_URL + 'auth/register_user', {
   body: JSON.stringify({
     email: 'francesco.sgherzi@gmail.com',
     password: 'giannimio',
-    username: 'blablabla',
     SSN: 'SGHRCM65PD7L858L',
     name: 'fras',
     surname: 'Sgherzi',
@@ -33,7 +32,6 @@ fetch(LOCAL_BASE_URL + 'auth/register_user', {
   .catch(console.log)
 */
 
-/*
 
 fetch(LOCAL_BASE_URL + 'auth/login', {
   method: 'POST',
@@ -42,14 +40,13 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
   }),
   body: JSON.stringify({
     password: 'giannimio',
-    username: 'blablabla',
+    email: 'francesco.sgherzi@gmail.com',
     type: 'individual'
   })
 })
   .then(res => res.json())
   .then(console.log)
   .catch(console.log)
-*/
 
 // WORKS W DUPLICATE PASSWORD
 /*

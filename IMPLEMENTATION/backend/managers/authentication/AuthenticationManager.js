@@ -24,7 +24,7 @@ class AuthenticationManager {
   }
 
   sendVerificationMail(mail, code, type) {
-    console.log('Sending mail: ' + mail)
+    console.log('Sending mail to ' + mail)
 
     const transporter = nm.createTransport({
       service: 'gmail',
@@ -35,7 +35,7 @@ class AuthenticationManager {
     })
 
     const mailOptions = {
-      from: 'ingsw2.fms@torrescalla.it',
+      from: process.env.MAIL_ADDR,
       to: mail,
       subject: 'Data4Help, account verification',
       html: `<p>Copy the following link in the browser https://data4halp.herokuapp.com/auth/verify?mail=${mail}&code=${code}&type=${type}</p>`
@@ -43,7 +43,6 @@ class AuthenticationManager {
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) throw error
-      console.log(info)
     })
   }
 
@@ -104,7 +103,7 @@ class AuthenticationManager {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('SELECT * FROM ' + `${this.actor}_account` + ' WHERE username = $1', [this.username])
+      } = await client.query('SELECT * FROM ' + `${this.actor}_account` + ' WHERE email = $1', [this.email])
 
       if (rows.length === 0) {
         console.log('------------------------------------ USER NOT FOUND ------------------------------------')
@@ -124,7 +123,6 @@ class AuthenticationManager {
         const token = jwt.sign({
           id: rows[0].id,
           email: rows[0].email,
-          password: rows[0].password,
           begin_time: new Date()
         }, process.env.JWT_SECRET, {
           expiresIn: 86400 // By default expire in 24h
@@ -150,17 +148,15 @@ class AuthenticationManager {
 
 
   async _registerIndividual() {
-    console.log(this.toJSON())
     const client = await this.authPool.connect()
     try {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('INSERT INTO individual_account(email, password, username, SSN, name, surname, birth_date, smartwatch, automated_sos, verified ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *', [...this.toArray(), false, false])
+      } = await client.query('INSERT INTO individual_account(email, password, SSN, name, surname, birth_date, smartwatch, automated_sos, verified ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [...this.toArray(), false, false])
       const token = jwt.sign({
         id: rows[0].id,
         email: rows[0].email,
-        password: rows[0].password,
         begin_time: new Date()
       }, process.env.JWT_SECRET, {
         expiresIn: 86400 // By default expire in 24h
@@ -189,11 +185,10 @@ class AuthenticationManager {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('INSERT INTO company_account(email, password, username, company_name, verified) VALUES($1, $2, $3, $4, $5) RETURNING *', [...this.toArray(), false])
+      } = await client.query('INSERT INTO company_account(email, password, company_name, verified) VALUES($1, $2, $3, $4) RETURNING *', [...this.toArray(), false])
       const token = jwt.sign({
         id: rows[0].id,
         email: rows[0].email,
-        password: rows[0].password,
         begin_time: new Date()
       }, process.env.JWT_SECRET, {
         expiresIn: 86400 // By default expire in 24h
@@ -220,11 +215,10 @@ class AuthenticationManager {
       await client.query('BEGIN')
       const {
         rows
-      } = await client.query('INSERT INTO run_organizer_account(email, password, username, name, surname, verified) VALUES($1, $2, $3, $4, $5, $6) RETURNING *', [...this.toArray(), false])
+      } = await client.query('INSERT INTO run_organizer_account(email, password, name, surname, verified) VALUES($1, $2, $3, $4, $5) RETURNING *', [...this.toArray(), false])
       const token = jwt.sign({
         id: rows[0].id,
         email: rows[0].email,
-        password: rows[0].password,
         begin_time: new Date()
       }, process.env.JWT_SECRET, {
         expiresIn: 86400 // By default expire in 24h
@@ -237,7 +231,6 @@ class AuthenticationManager {
     } catch (err) {
       client.query('ROLLBACK')
       client.release()
-      console.log(err.message)
       if (err.message.includes('duplicate')) {
         err.message = 'Mail already in use'
         err.status = 422
@@ -257,7 +250,6 @@ class AuthenticationManager {
       if (decodedPayload.email === mail) {
 
         await client.query('BEGIN')
-        //console.log(await client.query('SELECT * FROM ' + `${type}_account` + ' WHERE email = $1', [decodedPayload.email]))
         await client.query('UPDATE' + ` ${type}_account ` + ' SET verified=$1 WHERE email=$2', [true, mail])
         await client.query('COMMIT')
         await client.release()
