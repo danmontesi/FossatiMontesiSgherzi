@@ -1,3 +1,5 @@
+/* need a normal GET + authtoken in the request url*/
+
 {
   "success": {
     "status": 200,

@@ -1,3 +1,17 @@
+/* Query must have those parameters;
+  auth_token: String 
+  mail: String //mail of the user, it will be notified by email of last query performed
+  subscribed: boolean //if subscribed, the query is performed frequently and check whenever there is a new data inserted
+  city: String
+  street: String //Optional, if abxent query is performed in all the city
+  hour_from //(HH/MM)
+  hour_to: String //(HH/MM)
+  minbpm: Integer
+  maxbpm; Integer
+  
+*/
+
+
 {
   "success": {
     "status": 200,
