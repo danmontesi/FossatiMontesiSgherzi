@@ -169,7 +169,7 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 //   .catch(console.log)
 
 
-fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjEsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjI6MjE6MTQuMjgwWiIsImlhdCI6MTU0NjAzNTY3NCwiZXhwIjoxNTQ2MTIyMDc0fQ.lRcfIC-sQR0GXOTEY4cFE9ToXeHB6MCf47QONwIyi_s', {
+fetch(HEROKU_BASE_URL + 'indiv/data' + '?auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjEsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjI6MjE6MTQuMjgwWiIsImlhdCI6MTU0NjAzNTY3NCwiZXhwIjoxNTQ2MTIyMDc0fQ.lRcfIC-sQR0GXOTEY4cFE9ToXeHB6MCf47QONwIyi_s', {
   method: 'GET',
   headers: new fetch.Headers({
     'Content-Type': 'application/json'
