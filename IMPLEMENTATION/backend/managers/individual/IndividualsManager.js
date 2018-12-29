@@ -32,10 +32,14 @@ class IndividualsManager {
       throw err
     }
 
-    if ((!reqBody.begin_date || !reqBody.end_date)) {
-      let err = new Error('Missing parameters in date')
-      err.status = 400
-      throw err
+    if(!reqBody.data){
+      if ((!reqBody.begin_date || !reqBody.end_date)) {
+        let err = new Error('Missing parameters in date')
+        err.status = 400
+        throw err
+      }
+    } else {
+      this.data = reqBody.data
     }
 
     try {
@@ -47,7 +51,6 @@ class IndividualsManager {
       throw err
     }
 
-    if (reqBody.data) this.data = reqBody.data
   }
 
   async saveData() {
