@@ -120,7 +120,6 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 
 // DATA SAVING
 /*
-
 fetch(LOCAL_BASE_URL + 'indiv/data', {
   method: 'POST',
   headers: new fetch.Headers({
@@ -133,7 +132,7 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
         {
           lat: 42.1345,
           long: 32.123343,
-          timestamp: new Date()
+          timestamp: new Date(2014, 0, 1)
         }, {
           lat: 12.1345,
           long: 39.123343,
@@ -142,7 +141,7 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
       ],
       accelerometer: [
         {
-          timestamp: new Date(),
+          timestamp: new Date(2014, 0, 1),
           acc_x: -2,
           acc_y: 2.123,
           acc_z: 141
@@ -155,7 +154,7 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
       ],
       heart_rate: [
         {
-          timestamp: new Date(),
+          timestamp: new Date(2014, 0, 1),
           bpm: 80
         }, {
           timestamp: new Date(),
@@ -167,18 +166,16 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 })
   .then(res => res.json())
   .then(console.log)
-  .catch(console.log)
-*/
-
+  .catch(console.log)*/
+//
 fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=' +
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE', {
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE' +
+  '&begin_date=' + new Date(2014, 0, 0).toISOString() + '&end_date=' + new Date(2014, 0, 1).toISOString(), {
   method: 'GET',
   headers: new fetch.Headers({
     'Content-Type': 'application/json'
   })
 })
-  // .then(res => res.json())
-  // .then(data => console.log(data.data))
-  // .catch(console.log)
   .then(res => res.json())
   .then(console.log)
+  .catch(console.log)

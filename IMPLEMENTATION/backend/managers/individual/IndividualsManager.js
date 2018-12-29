@@ -32,13 +32,22 @@ class IndividualsManager {
       throw err
     }
 
-    if (reqBody.data) this.data = reqBody.data
-  }
-
-  async forEachAsync(array, callback) {
-    for (let index = 0; index < array.length; index++) {
-      await callback(array[index], index, array)
+    if ((!reqBody.begin_date || !reqBody.end_date)) {
+      let err = new Error('Missing parameters in date')
+      err.status = 400
+      throw err
     }
+
+    try {
+      this.date = {}
+      this.date.from = new Date(reqBody.begin_date)
+      this.date.to = new Date(reqBody.end_date)
+    } catch (err) {
+      err.message = 'Invalid date format, required ISO-8601'
+      throw err
+    }
+
+    if (reqBody.data) this.data = reqBody.data
   }
 
   async saveData() {
@@ -91,18 +100,29 @@ class IndividualsManager {
 
     const {
       rows: accData
-    } = await client.query('SELECT * FROM accelerometer WHERE user_id=$1', [this.user.id])
-    accData.forEach(el => el.user_id = undefined)
+    } = await client.query('SELECT * FROM accelerometer WHERE user_id = $1 AND timestamp BETWEEN $2 AND $3', [this.user.id, this.date.from, this.date.to])
+    accData.forEach(el => {
+      el.user_id = undefined
+      el.id = undefined
+    })
 
     const {
       rows: heartData
-    } = await client.query('SELECT * FROM heart_rate WHERE user_id = $1', [this.user.id])
-    heartData.forEach(el => el.user_id = undefined)
+    } = await client.query('SELECT * FROM heart_rate WHERE user_id = $1 AND timestamp BETWEEN $2 AND $3', [this.user.id, this.date.from, this.date.to])
+    heartData.forEach(el => {
+      el.user_id = undefined
+      el.id = undefined
+    })
 
     const {
       rows: gpsData
-    } = await client.query('SELECT * FROM gps_coordinates WHERE user_id = $1', [this.user.id])
-    gpsData.forEach(el => el.user_id = undefined)
+    } = await client.query('SELECT * FROM gps_coordinates WHERE user_id = $1 AND timestamp BETWEEN $2 AND $3', [this.user.id, this.date.from, this.date.to])
+    gpsData.forEach(el => {
+      el.user_id = undefined
+      el.id = undefined
+    })
+
+    console.log(accData)
 
     return {
       success: true,
