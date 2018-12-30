@@ -6,7 +6,7 @@ const {
 } = require('../../managers/token/TokenManager')
 
 const {
-	getPlans
+	getPlanByName
 } = require('../../managers/subs/SubsManager')
 
 const PLAN_GET = require('../../__runtime_tests__/stub_endpoint/subs/plan_GET')
@@ -19,7 +19,14 @@ const {
 subsRouter.use(authorizationMiddleware('company'))
 
 subsRouter.get('/plan', async (req, res, next) => {
-	const response = await getPlans()
+
+	if(!req.query.plan) {
+		let err = new Error("Bad request")
+		err.status = 400
+		next(err)
+	}
+
+	const response = await getPlanByName(req.query.plan)
 	res
 	.status(200)
 	.send(response)
