@@ -1,7 +1,7 @@
 {
   "name": "data4help",
   "version": "0.0.1",
-  "description": "",
+  "runDescription": "",
   "main": "index.js",
   "scripts": {
     "test": "jest",

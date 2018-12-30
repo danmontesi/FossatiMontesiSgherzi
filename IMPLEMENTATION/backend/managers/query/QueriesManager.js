@@ -2,6 +2,9 @@ const requiredParams = require('./requiredParameters')
 const templateQueries = require('./templateQueries')
 const jwt = require('jsonwebtoken')
 const {
+	getActor
+} = require('../token/TokenManager')
+const {
 	Pool
 } = require('pg')
 // let queryTemplate = {
@@ -30,7 +33,7 @@ class QueriesManager {
 
 		if (reqBody.auth_token) {
 			try {
-				this.company = jwt.decode(reqBody.auth_token, process.env.JWT_SECRET)
+				this.company = getActor(reqBody.auth_token)
 			} catch (err) {
 				err.message = 'Token is invalid'
 				err.status = 400
@@ -45,11 +48,8 @@ class QueriesManager {
 		if (reqBody.query && reqBody.query.type) {
 			const { query } = reqBody
 			const { type } = query
-			console.log(query)
-			console.log(type)
-			console.log(requiredParams[type])
+
 			requiredParams[type].forEach(param => {
-				console.log('examining ' + param)
 				if (!(param in query)) {
 					let err = new Error(`Missing ${ param }`)
 					err.status = 400
@@ -58,7 +58,6 @@ class QueriesManager {
 			})
 			this.query = query
 		}
-		console.log(this)
 	}
 
 	async createQuery() {
@@ -74,11 +73,12 @@ class QueriesManager {
 				id: queryId,
 				query_type: queryType
 			} = globalQuery[0]
-			// Now i need to create a query in the proper table
+			// Now I need to create a query in the proper table
 			const {
 				insert_query: insertTemplate,
 				params
 			} = templateQueries[queryType]
+			console.log(templateQueries[queryType])
 			await client.query(insertTemplate, [queryId, ...this._toQueryArray(params)])
 
 			await client.query('COMMIT')
@@ -90,7 +90,6 @@ class QueriesManager {
 			}
 
 		} catch (err) {
-			console.log(err)
 			await client.query('ROLLBACK')
 			await client.release()
 			throw err
@@ -111,16 +110,15 @@ class QueriesManager {
 			await companyQueries.forEachAsync(async (query) => {
 				const {
 					rows
-				} = await client.query(`SELECT * FROM ${query.query_type}_query WHERE id = $1`, [query.id])
+				} = await client.query(`SELECT * FROM ${ query.query_type }_query WHERE id = $1`, [query.id])
 				totalQueries[query.query_type] = rows
 			})
 
 			Object.keys(totalQueries).forEach(key => {
 				totalQueries[key].forEach(q => {
-				q.id = undefined
+					q.id = undefined
 				})
 			})
-			console.log(totalQueries)
 			return totalQueries
 
 		} catch (err) {
@@ -131,9 +129,33 @@ class QueriesManager {
 
 	_toQueryArray(params) {
 		let template = params.map(param => this.query[param])
-		console.log(template)
 		return template
 	}
+
+	static async isCompany(authToken) {
+	console.log("called isCompany")
+		const client = await new Pool({
+			connectionString: process.env.DATABASE_URL + '?ssl=true',
+			max: 5
+		}).connect()
+
+		try {
+			let company = jwt.decode(authToken, process.env.JWT_SECRET)
+			const {
+				rows
+			} = await client.query("SELECT * FROM company_account WHERE id = $1", [company.id])
+			console.log("--------------------------------")
+			console.log(rows)
+			console.log("--------------------------------")
+			return rows.length >= 1;
+		} catch (err) {
+		console.log(err)
+			err.message = 'Token is invalid'
+			err.status = 400
+			throw err
+		}
+	}
+
 }
 
 module.exports = QueriesManager

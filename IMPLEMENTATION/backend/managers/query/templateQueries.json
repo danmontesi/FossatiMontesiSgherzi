@@ -6,26 +6,26 @@
     ]
   },
   "age": {
-    "insert_string": "INSERT INTO age_query(id, min_age, max_age) VALUES($1, $2, $3) RETURNING *",
+    "insert_query": "INSERT INTO age_query(id, min_age, max_age) VALUES($1, $2, $3) RETURNING *",
     "params": [
       "min_age",
       "max_age"
     ]
   },
   "city": {
-    "insert_string": "INSERT INTO city_query(id, city) VALUES($1, $2) RETURNING *",
+    "insert_query": "INSERT INTO city_query(id, city) VALUES($1, $2) RETURNING *",
     "params": [
       "city"
     ]
   },
   "regional": {
-    "insert_string": "INSERT INTO regional_query(id, region) VALUES($1, $2) RETURNING *",
+    "insert_query": "INSERT INTO regional_query(id, region) VALUES($1, $2) RETURNING *",
     "params": [
       "region"
     ]
   },
   "radius": {
-    "insert_string": "INSERT INTO radius_query(id, center_lat, center_long, radius) VALUES($1, $2, $3, $4) RETURNING *",
+    "insert_query": "INSERT INTO radius_query(id, center_lat, center_long, radius) VALUES($1, $2, $3, $4) RETURNING *",
     "params": [
       "center_lat",
       "center_long",

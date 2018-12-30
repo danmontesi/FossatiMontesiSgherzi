@@ -3,6 +3,10 @@ const fetch = require('node-fetch')
 const LOCAL_BASE_URL = 'http://localhost:12345/'
 const HEROKU_BASE_URL = 'https://data4halp.herokuapp.com/'
 
+const companyToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjMsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemkuZGV2QGdtYWlsLmNvbSIsImJlZ2luX3RpbWUiOiIyMDE4LTEyLTMwVDE2OjIzOjIzLjMzM1oiLCJpYXQiOjE1NDYxODcwMDMsImV4cCI6MTU0NjI3MzQwM30._Kkrei7_DKT4fLt8zFyq5WZvYwu_I0ZML_d7xJHEOQU'
+const userToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE'
+const runOrganizerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAdG9ycmVzY2FsbGEuaXQiLCJiZWdpbl90aW1lIjoiMjAxOC0xMi0zMFQxODoxNjo0Ny44NTBaIiwiaWF0IjoxNTQ2MTkzODA3LCJleHAiOjE1NDYyODAyMDd9.TILAsVZAlfa2ihRlH-s0f6bstYGxPjwYQPWuiA5ifRw'
+
 // fetch(HEROKU_BASE_URL + 'auth/verify?action=invalid_code', {
 //   method: 'POST'
 // })
@@ -78,23 +82,22 @@ const HEROKU_BASE_URL = 'https://data4halp.herokuapp.com/'
 //   .catch(console.log)
 
 // WORKS
-/*
-fetch(LOCAL_BASE_URL + 'auth/register_run_organizer', {
-  method: 'POST',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  }),
-  body: JSON.stringify({
-    email: 'asdf@afro.com',
-    password: 'giannimio',
-    name: 'run',
-    surname: 'organizer',
-    type: 'run_organizer'
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)*/
+// fetch(LOCAL_BASE_URL + 'auth/register_run_organizer', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     email: 'francesco.sgherzi@torrescalla.it',
+//     password: 'giannimio',
+//     name: 'Fra',
+//     surname: 'Sghe',
+//     type: 'run_organizer'
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
 
 /*
 
@@ -200,7 +203,7 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // 		'Content-Type': 'application/json'
 // 	}),
 // 	body: JSON.stringify({
-// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjMsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemkuZGV2QGdtYWlsLmNvbSIsImJlZ2luX3RpbWUiOiIyMDE4LTEyLTMwVDE2OjIzOjIzLjMzM1oiLCJpYXQiOjE1NDYxODcwMDMsImV4cCI6MTU0NjI3MzQwM30._Kkrei7_DKT4fLt8zFyq5WZvYwu_I0ZML_d7xJHEOQU',
 // 		query: {
 // 			type: 'age',
 // 			min_age: 11,
@@ -219,7 +222,7 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // 		'Content-Type': 'application/json'
 // 	}),
 // 	body: JSON.stringify({
-// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjMsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemkuZGV2QGdtYWlsLmNvbSIsImJlZ2luX3RpbWUiOiIyMDE4LTEyLTMwVDE2OjIzOjIzLjMzM1oiLCJpYXQiOjE1NDYxODcwMDMsImV4cCI6MTU0NjI3MzQwM30._Kkrei7_DKT4fLt8zFyq5WZvYwu_I0ZML_d7xJHEOQU',
 // 		query: {
 // 			type: 'regional',
 // 			region: 'Abruzzi'
@@ -237,7 +240,7 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // 		'Content-Type': 'application/json'
 // 	}),
 // 	body: JSON.stringify({
-// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjMsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemkuZGV2QGdtYWlsLmNvbSIsImJlZ2luX3RpbWUiOiIyMDE4LTEyLTMwVDE2OjIzOjIzLjMzM1oiLCJpYXQiOjE1NDYxODcwMDMsImV4cCI6MTU0NjI3MzQwM30._Kkrei7_DKT4fLt8zFyq5WZvYwu_I0ZML_d7xJHEOQU',
 // 		query: {
 // 			type: 'radius',
 // 			center_lat: 23.14,
@@ -250,15 +253,86 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // .then(console.log)
 // .catch(console.log)
 
+//QUERY RETRIVAL - Should give unauthorized
+// fetch(LOCAL_BASE_URL + 'queries/query?' +
+// 	'auth_token=' + userToken, {
+// 	method: 'GET',
+// 	headers: new fetch.Headers({
+// 		'Content-Type': 'application/json'
+// 	})
+// })
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+
 
 // QUERY RETRIVAL
-fetch(LOCAL_BASE_URL + 'queries/query?' +
-	'auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE', {
-	method: 'GET',
-	headers: new fetch.Headers({
-		'Content-Type': 'application/json'
+// fetch(LOCAL_BASE_URL + 'queries/query?' +
+// 	'auth_token=' + companyToken, {
+// 	method: 'GET',
+// 	headers: new fetch.Headers({
+// 		'Content-Type': 'application/json'
+// 	})
+// })
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+
+// CREATE RUN
+
+// fetch(LOCAL_BASE_URL + 'runs/run?', {
+// 	method: 'POST',
+// 	headers: new fetch.Headers({
+// 		'Content-Type': 'application/json'
+// 	}),
+// 	body: JSON.stringify({
+// 		auth_token: runOrganizerToken,
+// 		time_begin: new Date(),
+// 		time_end: new Date(),
+// 		description: "Unbelievably, a run",
+// 		coordinates: [
+// 			{
+// 				lat: 22,
+// 				long: 33,
+// 				description: 'A coordinate'
+// 			},
+// 			{
+// 				lat: -22,
+// 				long: -33,
+// 				description: 'Guess What? Another coordinate'
+// 			}
+// 		]
+// 	})
+// })
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+//
+
+// Get all runs
+// fetch(LOCAL_BASE_URL + 'runs?' +
+// 	'auth_token=' + userToken,
+// 	{
+// 		method: 'GET',
+// 		headers: new fetch.Headers({
+// 			'Content-Type': 'application/json'
+// 		}),
+// 	})
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+
+fetch(LOCAL_BASE_URL + 'runs/join?',
+	{
+		method: 'POST',
+		headers: new fetch.Headers({
+			'Content-Type': 'application/json'
+		}),
+		body: JSON.stringify({
+			auth_token: userToken,
+			run_id: '12637489'
+		})
 	})
-})
 .then(res => res.json())
 .then(console.log)
 .catch(console.log)
