@@ -65,16 +65,13 @@ class UserData {
 
   }
 
-  static UserData generateSampleData() {
+  static UserData generateSampleData(DateTime now) {
 
     final List<GpsCoordinate> gpsCoordinates = new List();
     final List<Accelerometer> accelerometer = new List();
     final List<Heartrate> heartRate = new List();
 
 
-    DateTime now = new DateTime.now();
-    //go to midnight
-    now=now.subtract(new Duration(hours: now.hour, minutes: now.minute, seconds: now.second, milliseconds: now.millisecond, microseconds: now.microsecond));
 
 
     for(int i=0; i<6*24; i++){
