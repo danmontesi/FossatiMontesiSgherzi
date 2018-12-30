@@ -114,16 +114,14 @@ class RunManager {
 				err.status = 404
 				throw err
 			}
-
-			const {
-				rows: newRun
-			} = await client.query('INSERT INTO run_subscription(run_id, user_id, subscription_date) VALUES($1, $2, $3) RETURNING *', [runId, userId, new Date()])
+			await client.query('INSERT INTO run_subscription(run_id, user_id, subscription_date) VALUES($1, $2, $3) RETURNING *', [runId, userId, new Date()])
+			await client.query('COMMIT')
+			await client.release()
 			return {
 				success: true,
 				message: `Joined run ${ runId }`
 			}
-			await client.query('COMMIT')
-			await client.release()
+
 
 		} catch (err) {
 			await client.query('ROLLBACK')

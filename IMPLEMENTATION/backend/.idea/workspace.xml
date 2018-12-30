@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/managers/runs/RunManager.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/runs/requiredParameters.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/runs/runStatus.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/managers/token/TokenManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" beforeDir="false" afterPath="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/query/QueriesManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/query/QueriesManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/query/templateQueries.json" beforeDir="false" afterPath="$PROJECT_DIR$/managers/query/templateQueries.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/endpoints/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/queries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/endpoints/runs.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/runs.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,8 +18,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="41" column="3" lean-forward="true" selection-start-line="35" selection-start-column="2" selection-end-line="41" selection-end-column="3" />
+            <state relative-caret-position="285">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
             </state>
           </provider>
         </entry>
@@ -37,8 +27,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="313" column="18" lean-forward="true" selection-start-line="313" selection-start-column="18" selection-end-line="313" selection-end-column="18" />
+            <state relative-caret-position="390">
+              <caret line="332" column="23" selection-start-line="332" selection-start-column="23" selection-end-line="332" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -46,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="124" column="8" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+            <state relative-caret-position="298">
+              <caret line="121" column="22" lean-forward="true" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -156,8 +146,8 @@
         <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
         <option value="$PROJECT_DIR$/managers/token/TokenManager.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/queries.js" />
-        <option value="$PROJECT_DIR$/routes/endpoints/runs.js" />
         <option value="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" />
+        <option value="$PROJECT_DIR$/routes/endpoints/runs.js" />
         <option value="$PROJECT_DIR$/managers/runs/RunManager.js" />
       </list>
     </option>
@@ -435,7 +425,7 @@
       <workItem from="1546079299542" duration="2853000" />
       <workItem from="1546100011129" duration="108000" />
       <workItem from="1546163612713" duration="1107000" />
-      <workItem from="1546169900916" duration="17779000" />
+      <workItem from="1546169900916" duration="18618000" />
     </task>
     <servers />
   </component>
@@ -472,11 +462,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97633000" />
+    <option name="totallyTimeSpent" value="98472000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="986" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18483412" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -792,13 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/token/TokenManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="71" column="10" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -806,24 +788,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
+    <entry file="file://$PROJECT_DIR$/managers/token/TokenManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="313" column="18" lean-forward="true" selection-start-line="313" selection-start-column="18" selection-end-line="313" selection-end-column="18" />
+        <state relative-caret-position="500">
+          <caret line="71" column="10" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="41" column="3" lean-forward="true" selection-start-line="35" selection-start-column="2" selection-end-line="41" selection-end-column="3" />
+        <state relative-caret-position="285">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="332" column="23" selection-start-line="332" selection-start-column="23" selection-end-line="332" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="124" column="8" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+        <state relative-caret-position="298">
+          <caret line="121" column="22" lean-forward="true" selection-start-line="121" selection-start-column="22" selection-end-line="121" selection-end-column="22" />
         </state>
       </provider>
     </entry>
