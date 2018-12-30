@@ -175,21 +175,90 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 //   .then(res => res.json())
 //   .then(console.log)
 //   .catch(console.log)
+// INDIVIDUAL QUERY
 // fetch(LOCAL_BASE_URL + 'queries/query', {
-//   method: 'POST',
-//   headers: new fetch.Headers({
-//     'Content-Type': 'application/json'
-//   }),
-//   body: JSON.stringify({
-//     auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
-//     query: {
-//       type: 'individual',
-//       SSN: 'ASDFASDFASDFASDF'
-//     }
-//   })
+// 	method: 'POST',
+// 	headers: new fetch.Headers({
+// 		'Content-Type': 'application/json'
+// 	}),
+// 	body: JSON.stringify({
+// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+// 		query: {
+// 			type: 'individual',
+// 			SSN: 'ASDFASDFASDFASDF'
+// 		}
+// 	})
 // })
-//   .then(res => res.json())
-//   .then(console.log)
-//   .catch(console.log)
-//
-//
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+
+// AGE QUERY
+// fetch(LOCAL_BASE_URL + 'queries/query', {
+// 	method: 'POST',
+// 	headers: new fetch.Headers({
+// 		'Content-Type': 'application/json'
+// 	}),
+// 	body: JSON.stringify({
+// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+// 		query: {
+// 			type: 'age',
+// 			min_age: 11,
+// 			max_age: 22
+// 		}
+// 	})
+// })
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+
+// REGIONAL QUERY
+// fetch(LOCAL_BASE_URL + 'queries/query', {
+// 	method: 'POST',
+// 	headers: new fetch.Headers({
+// 		'Content-Type': 'application/json'
+// 	}),
+// 	body: JSON.stringify({
+// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+// 		query: {
+// 			type: 'regional',
+// 			region: 'Abruzzi'
+// 		}
+// 	})
+// })
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+
+// RADIUS QUERY
+// fetch(LOCAL_BASE_URL + 'queries/query', {
+// 	method: 'POST',
+// 	headers: new fetch.Headers({
+// 		'Content-Type': 'application/json'
+// 	}),
+// 	body: JSON.stringify({
+// 		auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+// 		query: {
+// 			type: 'radius',
+// 			center_lat: 23.14,
+// 			center_long: 151,
+// 			radius: 1
+// 		}
+// 	})
+// })
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)
+
+
+// QUERY RETRIVAL
+fetch(LOCAL_BASE_URL + 'queries/query?' +
+	'auth_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE', {
+	method: 'GET',
+	headers: new fetch.Headers({
+		'Content-Type': 'application/json'
+	})
+})
+.then(res => res.json())
+.then(console.log)
+.catch(console.log)

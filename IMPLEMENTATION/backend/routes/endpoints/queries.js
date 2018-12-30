@@ -5,33 +5,30 @@ const QUERY_POST = require('../../__runtime_tests__/stub_endpoint/queries/query_
 const QUERY_GET = require('../../__runtime_tests__/stub_endpoint/queries/query_GET')
 
 const {
-  isTestEnabled
+	isTestEnabled
 } = require('../../utils/testUtils')
 
 const QueryManager = require('../../managers/query/QueriesManager')
 
-queryRouter.post('/query',async (req, res, next) => {
+queryRouter.post('/query', async (req, res, next) => {
 
-  new QueryManager(req.body).createQuery()
+	let client = new QueryManager(req.body)
+	let response = await client.createQuery()
+	res
+	.status(200)
+	.send(response)
 
-  const action = isTestEnabled(req)
-  if (action) {
-    res
-      .status(QUERY_POST[action].status)
-      .send(QUERY_POST[action])
-    return
-  }
-  // TODO: Implement
 })
 
-queryRouter.get('/query', (req, res, next) => {
-  const action = isTestEnabled(req)
-  if (action) {
-    res
-      .status(QUERY_GET[action].status)
-      .send(QUERY_GET[action])
-    return
-  }
-  // TODO: Implement
+queryRouter.get('/query', async (req, res, next) => {
+	let client = new QueryManager(req.query)
+	let response = await client.retriveQueries()
+	res
+	.status(200)
+	.send({
+		success: true,
+		queries: response
+	})
+	// TODO: Implement
 })
 module.exports = queryRouter

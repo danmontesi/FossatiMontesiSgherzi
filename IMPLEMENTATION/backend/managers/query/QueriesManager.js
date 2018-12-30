@@ -1,7 +1,8 @@
 const requiredParams = require('./requiredParameters')
+const templateQueries = require('./templateQueries')
 const jwt = require('jsonwebtoken')
 const {
-  Pool
+	Pool
 } = require('pg')
 // let queryTemplate = {
 //   auth_token: "asdf",
@@ -12,69 +13,127 @@ const {
 //   }
 // }
 
+// Until javascript decides to implement an async version of forEach...
+Array.prototype.forEachAsync = async function(callback) {
+	for (let i = 0; i < this.length; i++) {
+		await callback(this[i], i)
+	}
+}
+
+
 class QueriesManager {
-  constructor(reqBody) {
-    this.queryPool = new Pool({
-      connectionString: process.env.DATABASE_URL + '?ssl=true',
-      max: 5
-    })
+	constructor(reqBody) {
+		this.queryPool = new Pool({
+			connectionString: process.env.DATABASE_URL + '?ssl=true',
+			max: 5
+		})
 
-    if (reqBody.auth_token) {
-      try {
-        this.company = jwt.decode(reqBody.auth_token, process.env.JWT_SECRET)
-      } catch (err) {
-        err.message = 'Token is invalid'
-        err.status = 400
-        throw err
-      }
-    } else {
-      let err = new Error('Missing Token')
-      err.status = 422
-      throw err
-    }
+		if (reqBody.auth_token) {
+			try {
+				this.company = jwt.decode(reqBody.auth_token, process.env.JWT_SECRET)
+			} catch (err) {
+				err.message = 'Token is invalid'
+				err.status = 400
+				throw err
+			}
+		} else {
+			let err = new Error('Missing Token')
+			err.status = 422
+			throw err
+		}
 
-    if (reqBody.query && reqBody.query.type) {
-      const {query} = reqBody
-      const {type} = query
-      console.log(query)
-      console.log(type)
-      console.log(requiredParams[type])
-      requiredParams[type].forEach(param => {
-        console.log('examining ' + param)
-        if (!(param in query)) {
-          let err = new Error(`Missing ${param}`)
-          err.status = 400
-          throw err
-        }
-      })
-      this.query = query
-    } else {
-      let err = new Error('Malformed query')
-      err.status = 400
-      throw err
-    }
-  }
+		if (reqBody.query && reqBody.query.type) {
+			const { query } = reqBody
+			const { type } = query
+			console.log(query)
+			console.log(type)
+			console.log(requiredParams[type])
+			requiredParams[type].forEach(param => {
+				console.log('examining ' + param)
+				if (!(param in query)) {
+					let err = new Error(`Missing ${ param }`)
+					err.status = 400
+					throw err
+				}
+			})
+			this.query = query
+		}
+		console.log(this)
+	}
 
-  async createQuery() {
-    const client = await this.queryPool.connect()
+	async createQuery() {
+		const client = await this.queryPool.connect()
 
-    try {
-      await client.query('BEGIN')
-      // Create a new query in the Global Table => query
-      const {
-        rows: globalQuery
-      } = await client.query(`INSERT INTO query(company_id, date_generation, valid) VALUES($1, $2, $3) RETURNING *`, [this.company.id, new Date(), false])
-      console.log(globalQuery)
+		try {
+			await client.query('BEGIN')
+			// Create a new query in the Global Table => query
+			const {
+				rows: globalQuery
+			} = await client.query('INSERT INTO query(company_id, date_generation, valid, query_type) VALUES($1, $2, $3, $4) RETURNING *', [this.company.id, new Date(), false, this.query.type])
+			const {
+				id: queryId,
+				query_type: queryType
+			} = globalQuery[0]
+			// Now i need to create a query in the proper table
+			const {
+				insert_query: insertTemplate,
+				params
+			} = templateQueries[queryType]
+			await client.query(insertTemplate, [queryId, ...this._toQueryArray(params)])
 
-      // Now i need to create a query in the proper table
+			await client.query('COMMIT')
+			await client.release()
 
-    } catch (err) {
-      console.log(err)
-      throw err
-    }
+			return {
+				success: true,
+				message: 'Query successfully posted'
+			}
 
-  }
+		} catch (err) {
+			console.log(err)
+			await client.query('ROLLBACK')
+			await client.release()
+			throw err
+		}
 
+	}
+
+	async retriveQueries() {
+		const client = await this.queryPool.connect()
+		try {
+			await client.query('BEGIN')
+			let totalQueries = {}
+
+			const {
+				rows: companyQueries
+			} = await client.query('SELECT * FROM query WHERE company_id = $1', [this.company.id])
+
+			await companyQueries.forEachAsync(async (query) => {
+				const {
+					rows
+				} = await client.query(`SELECT * FROM ${query.query_type}_query WHERE id = $1`, [query.id])
+				totalQueries[query.query_type] = rows
+			})
+
+			Object.keys(totalQueries).forEach(key => {
+				totalQueries[key].forEach(q => {
+				q.id = undefined
+				})
+			})
+			console.log(totalQueries)
+			return totalQueries
+
+		} catch (err) {
+			await client.query('ROLLBACK')
+			await client.release()
+		}
+	}
+
+	_toQueryArray(params) {
+		let template = params.map(param => this.query[param])
+		console.log(template)
+		return template
+	}
 }
 
 module.exports = QueriesManager
