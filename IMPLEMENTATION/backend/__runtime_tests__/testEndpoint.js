@@ -82,22 +82,21 @@ const runOrganizerToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjQsImVt
 //   .catch(console.log)
 
 // WORKS
-// fetch(LOCAL_BASE_URL + 'auth/register_run_organizer', {
-//   method: 'POST',
-//   headers: new fetch.Headers({
-//     'Content-Type': 'application/json'
-//   }),
-//   body: JSON.stringify({
-//     email: 'francesco.sgherzi@torrescalla.it',
-//     password: 'giannimio',
-//     name: 'Fra',
-//     surname: 'Sghe',
-//     type: 'run_organizer'
-//   })
-// })
-//   .then(res => res.json())
-//   .then(console.log)
-//   .catch(console.log)
+fetch(LOCAL_BASE_URL + 'auth/register_run_organizer', {
+  method: 'POST',
+  headers: new fetch.Headers({
+    'Content-Type': 'application/json'
+  }),
+  body: JSON.stringify({
+    email: '10493184@polimi.it',
+    password: 'giannimio',
+    name: 'Fra',
+    surname: 'Sghe',
+  })
+})
+  .then(res => res.json())
+  .then(console.log)
+  .catch(console.log)
 
 /*
 
@@ -322,17 +321,17 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // .then(console.log)
 // .catch(console.log)
 
-fetch(LOCAL_BASE_URL + 'runs/join?',
-	{
-		method: 'POST',
-		headers: new fetch.Headers({
-			'Content-Type': 'application/json'
-		}),
-		body: JSON.stringify({
-			auth_token: userToken,
-			run_id: '12637489'
-		})
-	})
-.then(res => res.json())
-.then(console.log)
-.catch(console.log)
+// fetch(LOCAL_BASE_URL + 'runs/join?',
+// 	{
+// 		method: 'POST',
+// 		headers: new fetch.Headers({
+// 			'Content-Type': 'application/json'
+// 		}),
+// 		body: JSON.stringify({
+// 			auth_token: userToken,
+// 			run_id: '12637489'
+// 		})
+// 	})
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)

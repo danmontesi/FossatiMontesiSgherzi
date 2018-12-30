@@ -71,7 +71,7 @@ authRouter.post('/register_user', async (req, res, next) => {
 
 authRouter.post('/register_company', async (req, res, next) => {
   try {
-    const company = new IndividualsManager(req.body, req.body.type, 'registration')
+    const company = new IndividualsManager(req.body, 'company', 'registration')
     company.checkValidRegParams()
     let auth_token = await company.register()
     res.status(200).send({
@@ -96,7 +96,7 @@ authRouter.post('/register_run_organizer', async (req, res, next) => {
     }*/
 
   try {
-    const runOrganizer = new IndividualsManager(req.body, req.body.type, 'registration')
+    const runOrganizer = new IndividualsManager(req.body, 'run_organizer', 'registration')
     runOrganizer.checkValidRegParams()
     let auth_token = await runOrganizer.register()
     res.status(200).send({
