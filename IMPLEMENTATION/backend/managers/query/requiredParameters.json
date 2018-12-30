@@ -1,0 +1,29 @@
+{
+  "general": [
+    "auth_token",
+    "query"
+  ],
+  "age": [
+    "max_age",
+    "min_age",
+    "type"
+  ],
+  "individual": [
+    "SSN",
+    "type"
+  ],
+  "city": [
+    "city",
+    "type"
+  ],
+  "region": [
+    "region",
+    "type"
+  ],
+  "radius": [
+    "center_lat",
+    "center_long",
+    "radius",
+    "type"
+  ]
+}

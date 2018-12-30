@@ -8,7 +8,12 @@ const {
   isTestEnabled
 } = require('../../utils/testUtils')
 
-queryRouter.post('/query', (req, res, next) => {
+const QueryManager = require('../../managers/query/QueriesManager')
+
+queryRouter.post('/query',async (req, res, next) => {
+
+  new QueryManager(req.body).createQuery()
+
   const action = isTestEnabled(req)
   if (action) {
     res

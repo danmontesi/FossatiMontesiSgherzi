@@ -125,8 +125,6 @@ class IndividualsManager {
       el.id = undefined
     })
 
-    console.log(accData)
-
     return {
       success: true,
       data: {

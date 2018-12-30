@@ -46,40 +46,36 @@ const HEROKU_BASE_URL = 'https://data4halp.herokuapp.com/'
 //   .catch(console.log)
 
 // WORKS W DUPLICATE PASSWORD
-/*
-fetch(LOCAL_BASE_URL + 'auth/register_company', {
-  method: 'POST',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  }),
-  body: JSON.stringify({
-    email: 'asdf@afSPA.com',
-    password: 'giannimio',
-    company_name: 'asdf',
-    type: 'company'
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)
-*/
-
-/*
-fetch(LOCAL_BASE_URL + 'auth/login', {
-  method: 'POST',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  }),
-  body: JSON.stringify({
-    email: 'asdf@afSPA.com',
-    password: 'giannimio',
-    type: 'company'
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)
-  */
+// fetch(LOCAL_BASE_URL + 'auth/register_company', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     email: 'francesco.sgherzi.dev@gmail.com',
+//     password: 'giannimio',
+//     company_name: 'asdf',
+//     type: 'company'
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+//
+// fetch(LOCAL_BASE_URL + 'auth/login', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     email: 'francesco.sgherzi.dev@gmail.com',
+//     password: 'giannimio',
+//     type: 'company'
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
 
 // WORKS
 /*
@@ -168,14 +164,32 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
   .then(console.log)
   .catch(console.log)*/
 //
-fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=' +
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE' +
-  '&begin_date=' + new Date(2014, 0, 0).toISOString() + '&end_date=' + new Date(2014, 0, 1).toISOString(), {
-  method: 'GET',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)
+// fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=' +
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE' +
+//   '&begin_date=' + new Date(2014, 0, 0).toISOString() + '&end_date=' + new Date(2014, 0, 1).toISOString(), {
+//   method: 'GET',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+// fetch(LOCAL_BASE_URL + 'queries/query', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
+//     query: {
+//       type: 'individual',
+//       SSN: 'ASDFASDFASDFASDF'
+//     }
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+//
+//
