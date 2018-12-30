@@ -15,6 +15,7 @@
 <body>
 
 
+  
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
@@ -22,10 +23,17 @@
         <ul class="right hide-on-med-and-down">
           <li><a href="services.html">Services</a></li>
 
+          <!-- Modal Trigger -->
+          <button data-target="modal1" class="btn transparent modal-trigger">Sign in</button>
+
+          <!-- Modal Trigger -->
+          <button data-target="modal2" class="btn transparent modal-trigger">Sign up</button>
+
         </ul>
       </div>
     </nav>
   </div>
+
 
   </nav>
   <div class="section no-pad-bot" id="index-banner">
@@ -37,16 +45,9 @@
       </div>
       <div class="row center">
 
-          <div class="col s12">
-              Insert email verification code:
-              <div class="input-field inline">
-                <input id="verification_code"  type="text" class="validate">
-              </div>
-            </div>
-
-            <div class="modal-footer">
-                <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendVerifCode()">Send</a>
-              </div>
+          <h5 class="center">
+              <a href="index.html"> <button class="btn red modal-trigger"> Return to homepage </button> </a>
+              </h5>
 
       </div>
       <br><br>
@@ -97,45 +98,36 @@
     </div>
     <br><br>
   </div>
-
   <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our
-            full time job. Any amount would help support and continue development on this project and is greatly
-            appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
       <div class="container">
-        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">TrackMe</h5>
+            <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to companies in order to track better their customer activities.
+              Data4Help is available for all users and it is totally free.
+            </p>
+  
+  
+          </div>
+          <div class="col l3 s12">
+           
+          </div>
+          <div class="col l3 s12">
+            <h5 class="white-text">Connect</h5>
+            <ul>
+              
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </footer>
-
+      <div class="footer-copyright">
+        <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        </div>
+      </div>
+  
+      
+    </footer>
 
 
   <script>
@@ -150,14 +142,14 @@
         body: { "mail": mail, "verification_code": verification_code }
 
     }) // https://cors-anywhere.herokuapp.com/https://example.com
-      .then(response => response.text())
-      .then(contents => { //Assign to contents the response
-        var myObj = JSON.parse(contents); //Parse the response
-        if (myObj["status"] == 200) {
+      .then(response => response.json())
+      .then(response => { //response is in json already
+  
+        if (response["status"] == 200) {
           document.location.href = "registration_success.html"; //TODO cancella cookie
         }
         else {
-          alert("Error:" + myObj["message"] + ".\nRetry!")/*displays error message*/
+          alert("Error:" + response["message"] + ".\nRetry!")/*displays error message*/
         }
       }
       )
@@ -165,6 +157,123 @@
   }
 
 </script>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+
+  <script>
+
+    function signInReq() {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const url = "https://data4halp.herokuapp.com/auth/login?action=success";
+      var username = $('#usernLogin').val();
+      var password = $('#passwLogin').val();
+      fetch(proxyurl + url, {
+
+        method: 'POST',
+        body: { "username": username, "password": password }
+
+      }) // https://cors-anywhere.herokuapp.com/https://example.com
+        .then(response => response.text())
+        .then(contents => { //Assign to contents the response
+          var myObj = JSON.parse(contents); //Parse the response
+          if (myObj["status"] == 200) {
+            document.getElementById("demo2").innerHTML = myObj["auth_token"];
+            setCookie(myObj["auth_token"], 7)
+            document.location.href = "dashboard.html";
+          }
+          else {
+            alert("Error Password or Username, retry.")/*displays error message*/
+          }
+        }
+        )
+        .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+    }
+
+    
+
+  </script>
+
+  <script> 
+      function signUpReq() {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const url2 = "https://data4halp.herokuapp.com/auth/register_company?action=success";
+      var username = $('#usernReg').val();
+      var password = $('#passwReg').val();
+      var company_name = $('#companyNameReg').val();
+      var email = $('#emailReg').val();
+      fetch(proxyurl + url2, {
+
+        method: 'POST',
+        body: { 
+        "username": username, 
+        "password": password,
+        "company_name": company_name,
+        "email": email
+        }
+
+      }) // https://cors-anywhere.herokuapp.com/https://example.com
+        .then(response => response.text())
+        .then(contents => { //Assign to contents the response
+          var myObj = JSON.parse(contents); //Parse the response
+          if (myObj["status"] == 200) {
+
+            // SERVIZIO INVIO EMAIL
+
+            //Save cookie mail & authtoken (necessary for inserting the authCode)
+            setCookie_mail(email, myObj["auth_token"], 1) // 1 day only and expires, since is a verification mail
+            
+      
+            //Redirect to page where have to send the code and the email to confirm email
+            document.location.href = "verify-email.html";
+          }
+          else {
+            alert("There was found the following error:\n"+myObj["message"]+"\nRetry!")/*displays error message*/
+          }
+        }
+        )
+        .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+    }
+
+  
+  </script>
+
+
+
+ <!-- Function for save login cookie authcode -->
+  <script>
+    function setCookie(auth_token, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      var expires = "expires=" + d.toUTCString();
+      document.cookie = "auth_token=" + auth_token + "; expires=" + expires;
+    }
+  </script>
+
+<script>
+  function setCookie_mail(mail, auth_token, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = d.toUTCString();
+    document.cookie = "mail=" + mail +"; auth_token=" + auth_token + "; expires=" + expires;
+  }
+</script>
+
+  <!-- Triggers for login & sign up-->
+<script>
+    $(document).ready(
+      function () {
+      if (getCookie("auth_token")!=""){
+        document.location.href = "dashboard.html";
+        $('.modal').modal();
+      }
+    });
+</script>
+
 
 <script>
   function getCookie(cname) {
@@ -184,4 +293,100 @@
   }</script>
 
 
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <!-- Modal Structure signIn -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+
+          <div class="col s12">
+            <p id=demo2>Please insert your username and password:</p>
+          </div>
+          <!-- Username -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="usernLogin" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="passwLogin" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <a href="#!" class="waves-effect transparent n btn-flat" onclick="signInReq()">Send</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Modal Structure signUp -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+
+          <div class="col s12">
+            <p id=demo>Please insert your data: </p>
+          </div>
+          <!-- Username -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="usernReg" type="text" class="validate">
+              <label for="username">Username</label>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="passwReg" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+
+          <!-- Repeat Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="repPasswordReg" type="password" class="validate">
+              <label for="password">Repeat password</label>
+            </div>
+          </div>
+
+
+          <div class="row">
+              <div class="input-field col s12">
+                <input id="companyNameReg" type="text" class="validate">
+                <label for="email">Company name</label>
+              </div>
+            </div>
+
+
+          <div class="row">
+              <div class="input-field col s12">
+                <input id="emailReg" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+
+
+          <div class="modal-footer">
+            <a href="#!" class="waves-effect transparent  btn-flat" onclick="signUpReq()">Send</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+</body>
+</html>
