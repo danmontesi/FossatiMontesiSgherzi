@@ -11,106 +11,82 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Logo</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
 
-      <ul id="nav-mobile" class="sidenav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
+
+    <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Logo</a>
+            <ul class="right hide-on-med-and-down">
+              <li class="active"><a href="dashboard.html">Dashboard</a></li>
+                
+              <li><a href="subscription.html">Subscription Plans</a></li>
+
+              <li><a href="query.html">Query</a></li>
+
+              <li><a href="monitoring.html">Monitoring</a></li>
+  
+              <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
+  
+    
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+
+      
+
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <br><br>
-      <h1 class="header center orange-text">Starter Template</h1>
+      <h1 class="header center light">Dashboard</h1>
       <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+        <h5 class="header col s12 light"></h5>
       </div>
       <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>
-      <br><br>
+          <h5 class="header col s12 ">Welcome to your dashboard</h5>
+            
+          <h5 class="header col s12 light">Last queries performed:</h5>
 
-    </div>
+        </div>
+
+  <ul id="start_collection" class="collection">
+     
+
+
   </div>
+</div>
 
-
-  <div class="container">
-    <div class="section">
-
-      <!--   Icon Section   -->
-      <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+    <footer class="page-footer orange">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">TrackMe</h5>
+              <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to companies in order to track better their customer activities.
+                Data4Help is available for all users and it is totally free.
+              </p>
+    
+    
+            </div>
+            <div class="col l3 s12">
+             
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Connect</h5>
+              <ul>
+                
+              </ul>
+            </div>
           </div>
         </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
+        <div class="footer-copyright">
+          <div class="container">
+          Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
           </div>
         </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <br><br>
-  </div>
-
-  <footer class="page-footer orange">
-    <div class="container">
-      <div class="row">
-        <div class="col l6 s12">
-          <h5 class="white-text">Company Bio</h5>
-          <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
-
-
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Settings</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-        <div class="col l3 s12">
-          <h5 class="white-text">Connect</h5>
-          <ul>
-            <li><a class="white-text" href="#!">Link 1</a></li>
-            <li><a class="white-text" href="#!">Link 2</a></li>
-            <li><a class="white-text" href="#!">Link 3</a></li>
-            <li><a class="white-text" href="#!">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-      </div>
-    </div>
-  </footer>
+    
+        
+      </footer>
 
 
   <!--  Scripts-->
@@ -118,5 +94,146 @@
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
+
+  <script>
+      $(document).ready(
+        function () {
+        if (getCookie("auth_token")==""){
+          alert("You are not logged in! \nSign in first.")/*displays error message*/
+          document.location.href = "index.html";
+        }
+        else{
+          getFirst5Query()
+
+          //Authenticated-> Retrieve all useful information
+          
+
+        }
+        //check the authCode != ""
+        //if null-> get error message and don't show anything
+
+        //else-> request list of queries from server and shows them in the dashboard
+
+
+      });
+
+
+    </script>
+
+
+  <script>
+  function signOut(){
+    deleteAllCookies();
+    document.location.href = "index.html";
+    alert("You have logged out.");/*displays info */
+    
+  }
+  </script>
+
+<script>
+  function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+</script>
+
+<script>
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }</script>
+
+
+<script>
+
+    function getFirst5Query() {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const url = "https://data4halp.herokuapp.com/auth/queries?action=success&auth_token="+getCookie("auth_token");
+  fetch(proxyurl + url, {
+
+    method: 'GET'
+
+  }) 
+    .then(response => response.json())
+    .then(response => { //Assign to contents the response
+      if (response["status"] == 200) {
+
+
+        //creating inner html to append to the page
+        var HtmlToAppend = ""
+        decodedResponse = response;
+
+        for (var i = 0; i < decodedResponse.length && i<5; i++) {
+          curQuery = decodedResponse[i];
+          HtmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">${curQuery["date"]}</span>
+                  <p>${curQuery["city"]}<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
+                `
+              
+        }
+        //prova
+        document.getElementById("start_collection").innerHTML = HtmlToAppend;
+            
+        
+      }
+      else {
+        //alert("Endpoint of get_query still not working, filling last query with provisory data")
+        var htmlToAppend = ""
+        htmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">You haven't a query performed yet!</span>
+                  <p>!!<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
+                `
+      
+        document.getElementById("start_collection").innerHTML += htmlToAppend
+        //alert("Error: You must login to see this page")/*displays error message*/
+        //document.href("index.html")
+      }
+    }
+    )
+    .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+}
+
+</script>
+
+<script>
+  function retrievePastQueries(authCode){
+    //...
+    return "";
+  }
+
+  </script>
   </body>
 </html>

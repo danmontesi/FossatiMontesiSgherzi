@@ -1,0 +1,419 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Starter Template - Materialize</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+
+    <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo">Data4Help Website</a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="dashboard.html">Dashboard</a></li>
+                
+              <li><a href="subscription.html">Subscription Plans</a></li>
+
+              <li class="active"><a href="query.html">Query</a></li>
+
+              <li><a href="monitoring.html">Monitoring</a></li>
+  
+              <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
+  
+    
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+
+
+      
+
+      <div class="section no-pad-bot" id="index-banner">
+          <div class="container">
+
+              <div class="container">
+                  <div class="section">
+              
+              
+                      <div class="row center">
+                          <h5 class="header col s12 ">Data4Help let companies query on their database</h5>
+                            
+                          <h5 class="header col s12 light">Add new query</h5>
+                          <a data-target="modal" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>
+              
+                        </div>
+                  
+          </div>
+        </div>
+
+
+
+      
+        <ul id="start_collection" class="collection">
+        </ul>
+
+        </div>
+
+      </div>
+      
+          <footer class="page-footer orange">
+              <div class="container">
+                <div class="row">
+                  <div class="col l6 s12">
+                    <h5 class="white-text">TrackMe</h5>
+                    <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to companies in order to track better their customer activities.
+                      Data4Help is available for all users and it is totally free.
+                    </p>
+          
+          
+                  </div>
+                  <div class="col l3 s12">
+                   
+                  </div>
+                  <div class="col l3 s12">
+                    <h5 class="white-text">Connect</h5>
+                    <ul>
+                      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-copyright">
+                <div class="container">
+                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+                </div>
+              </div>
+          
+              
+            </footer>
+
+
+          </body>
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+
+  <script>
+      $(document).ready(
+        function () {
+          $('.modal').modal({
+            dismissible: true
+          });
+
+        
+        if (getCookie("auth_token")==""){
+          alert("You are not logged in! \nSign in first.")/*displays error message*/
+          document.location.href = "index.html";
+        }
+        else{
+
+          getAllQueries()
+
+          //TODO : Authenticated-> Retrieve all useful information
+
+
+        }
+        //check the authCode != ""
+        //if null-> get error message and don't show anything
+
+        //else-> request list of queries from server and shows them in the dashboard
+
+
+      });
+
+</script>
+
+<script>
+
+  function getAllQueries() {
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const url = "https://data4halp.herokuapp.com/auth/queries/query?action=success&auth_token="+getCookie("auth_token");
+  fetch(proxyurl + url, {
+
+    method: 'GET'
+
+  }) 
+    .then(response => response.json())
+    .then(response => { //Assign to contents the response
+      if (response["status"] == 200) {
+
+
+        //creating inner html to append to the page
+        var HtmlToAppend = ""
+        decodedResponse = response;
+
+        for (var i = 0; i < decodedResponse.length; i++) {
+          curQuery = decodedResponse[i];
+          HtmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">${curQuery["date"]}</span>
+                  <p>${curQuery["city"]}<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
+                `
+              
+        }
+        //prova
+        document.getElementById("start_collection").innerHTML = HtmlToAppend;
+            
+        
+      }
+      else {
+        alert("Endpoint of get_query still not working, filling last query with provisory data")
+        var htmlToAppend = ""
+        htmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">ToBeFilled once endpoint works</span>
+                  <p>!!<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
+                `
+        htmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">!!</span>
+                  <p>!!<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
+                `
+                htmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">!!</span>
+                  <p>!!<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+                </ul>
+                `
+                htmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">!!</span>
+                  <p>!!<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
+                `
+                htmlToAppend += `
+                        <ul class="collection">
+                <li class="collection-item avatar">
+                  <img src="images/data_icon.png" alt="" class="circle">
+                  <span class="title">!!</span>
+                  <p>!!<br>
+                    Data4Help
+                  </p>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                </li>
+              </ul>
+                `
+        document.getElementById("start_collection").innerHTML += htmlToAppend
+        //alert("Error: You must login to see this page")/*displays error message*/
+        //document.href("index.html")
+      }
+    }
+    )
+    .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+}
+
+</script>
+
+
+  <script>
+  function signOut(){
+    deleteAllCookies();
+    document.location.href = "index.html";
+    alert("You have logged out.");/*displays info */
+    
+  }
+  </script>
+
+    <script>
+      function sendQuery() {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = "https://data4halp.herokuapp.com/queries/query?action=success";
+        var authtoken = getCookie("auth_token");//get authtoken
+        var date = new Date()
+        var hourFrom = $('#hourfrom').val();
+        var hourTo = $('#hourto').val();
+        var minBpm = $('#minbpm').val();
+        var maxBpm = $('#maxbpm').val();
+        var city = $('#city').val();
+        var street = $('#street').val();
+
+        var mail = "prova@me.it"
+        
+        fetch(proxyurl + url, {
+
+          method: 'POST',
+          body: { "auth_token": authtoken, "; mail": mail, "; date": date,
+          "; hour_from": hourFrom,"; hour_to": hourTo,"; minbpm": minBpm,
+          "; maxbpm": maxBpm,"; city": city, "; street": street }
+
+        })
+          .then(response => response.text())
+          .then(contents => { //Assign to contents the response
+            var myObj = JSON.parse(contents); //Parse the response
+            if (myObj["status"] == 200) {
+              $('.modal.open').modal('close')
+              $("#modal1").modal();
+              $("#modal1").modal('open');
+            }
+            else {
+              alert("Error:" + myObj["message"] + ".\nRetry!")
+            }
+
+          });
+      }
+          
+    </script>
+
+<script>
+  function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+</script>
+
+<script>
+    function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }</script>
+
+
+
+ <!-- Modal Trigger for Successful Query add-->
+ <a class="modal-trigger"href="#modal1"></a>
+
+ <!-- Modal Structure -->
+ <div id="modal1" class="modal" >
+   <div class="modal-content ">
+     <h4>Success</h4>
+     <p>Query has been created successfully. Click here to download the XML file:</p>
+
+     <!-- TODO add XML file download-->
+   </div>
+   <div class="modal-footer">
+     <a href="#!" class="modal-close waves-effect transparent btn-flat">Done</a>
+   </div>
+ </div>
+
+
+    <!-- Modal Structure QueryForm -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+          <div class="row">
+            <form class="col s12">
+    
+              <div class="col s12">
+                <p id=demo>Please insert your query filters: </p>
+              </div>
+
+
+              <!-- Data for Query -->
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="city" type="text" class="validate">
+                  <label for="city">City</label>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="street" type="text" class="validate">
+                  <label for="street">Street (Insert only the name of the street i.e. "Camillo Golgi")</label>
+                </div>
+              </div>
+              <p id=demo>Hours in which want to filter users: </p>   
+
+              <div class="row">
+                  <div class="input-field col s12">
+                    <input id="hourfrom" type="text" class="validate">
+                    <label for="hourfrom">Starting time (format: HH:MM)</label>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input id="hourto" type="text" class="validate">
+                      <label for="hourto">Ending time (format: HH:MM)</label>
+                    </div>
+                  </div>
+  
+  
+
+              <p id=demo>Health parameter filters: </p>
+
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="minbpm" type="text" class="validate">
+                  <label for="minbpm">Min heart beat (in bpm):</label>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="input-field col s12">
+                    <input id="maxbpm" type="text" class="validate">
+                    <label for="maxbpm">Min heart beat (in bpm):</label>
+                  </div>
+                </div>
+      
+    
+              <div class="modal-footer">
+                <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQuery()">Send</a>
+              </div>
+          </div>
+    
+        </div>
+      </div>
+</html>
