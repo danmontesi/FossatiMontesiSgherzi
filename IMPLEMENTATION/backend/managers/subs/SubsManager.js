@@ -3,13 +3,6 @@ const {
 	Pool
 } = require('pg')
 
-// Until javascript decides to implement an async version of forEach...
-Array.prototype.forEachAsync = async function (callback) {
-	for (let i = 0; i < this.length; i++) {
-		await callback(this[i], i)
-	}
-}
-
 async function getPlans() {
 	const client = await new Pool({
 		connectionString: process.env.DATABASE_URL + '?ssl=true',

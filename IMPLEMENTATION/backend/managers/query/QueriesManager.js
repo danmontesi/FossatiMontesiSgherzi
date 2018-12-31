@@ -1,12 +1,13 @@
 const requiredParams = require('./requiredParameters')
 const templateQueries = require('./templateQueries')
-const jwt = require('jsonwebtoken')
 const {
 	getActor
 } = require('../token/TokenManager')
 const {
 	Pool
 } = require('pg')
+
+
 // let queryTemplate = {
 //   auth_token: "asdf",
 //   query: {
@@ -16,12 +17,6 @@ const {
 //   }
 // }
 
-// Until javascript decides to implement an async version of forEach...
-Array.prototype.forEachAsync = async function(callback) {
-	for (let i = 0; i < this.length; i++) {
-		await callback(this[i], i)
-	}
-}
 
 
 class QueriesManager {
@@ -119,7 +114,10 @@ class QueriesManager {
 					q.id = undefined
 				})
 			})
-			return totalQueries
+			return {
+				success: true,
+				queries: totalQueries
+			}
 
 		} catch (err) {
 			await client.query('ROLLBACK')
@@ -131,31 +129,6 @@ class QueriesManager {
 		let template = params.map(param => this.query[param])
 		return template
 	}
-
-	static async isCompany(authToken) {
-	console.log("called isCompany")
-		const client = await new Pool({
-			connectionString: process.env.DATABASE_URL + '?ssl=true',
-			max: 5
-		}).connect()
-
-		try {
-			let company = jwt.decode(authToken, process.env.JWT_SECRET)
-			const {
-				rows
-			} = await client.query("SELECT * FROM company_account WHERE id = $1", [company.id])
-			console.log("--------------------------------")
-			console.log(rows)
-			console.log("--------------------------------")
-			return rows.length >= 1;
-		} catch (err) {
-		console.log(err)
-			err.message = 'Token is invalid'
-			err.status = 400
-			throw err
-		}
-	}
-
 }
 
 module.exports = QueriesManager

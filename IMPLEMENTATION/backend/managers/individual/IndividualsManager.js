@@ -3,12 +3,6 @@ const {
   Pool
 } = require('pg')
 
-// Until javascript decides to implement an async version of forEach...
-Array.prototype.forEachAsync = async function (callback) {
-  for (let i = 0; i < this.length; i++) {
-    await callback(this[i], i)
-  }
-}
 
 class IndividualsManager {
 
