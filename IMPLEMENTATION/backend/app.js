@@ -1,8 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const logger = require('morgan')
-const session = require('express-session')
 const routes = require('./routes/router')
 const {
   Client
@@ -11,6 +9,12 @@ const {
   debugLog
 } = require('./utils/testUtils')
 
+// Until Javascript figures out an easier way to work with async iterators
+Array.prototype.forEachAsync = async function(callback) {
+  for (let i = 0; i < this.length; i++) {
+    await callback(this[i], i)
+  }
+}
 
 if (process.env.TEST_API !== 'enabled') {
   // If not in the test environment, disable logging altogether

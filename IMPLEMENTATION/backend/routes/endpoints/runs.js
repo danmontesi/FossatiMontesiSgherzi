@@ -1,6 +1,15 @@
 const express = require('express')
 const runsRouter = express.Router()
-const RunManager = require('../../managers/runs/RunManager')
+const {
+	createRun,
+	joinRun,
+	getAllRuns,
+	getRunParamsFromRequest,
+	runPresenceMiddleware,
+	getRunnersPosition,
+	getPositionParametersFromRequest,
+	setRunnerPositions
+} = require('../../managers/runs/RunManager')
 const {
 	authorizationMiddleware,
 	getActor
@@ -16,27 +25,52 @@ const {
 } = require('../../utils/testUtils')
 
 runsRouter.get('/', authorizationMiddleware('individual'), async (req, res, next) => {
-	const response = await RunManager.getAllRuns()
+	const response = await getAllRuns()
 	res
 	.status(200)
 	.send(response)
 })
 
-runsRouter.post('/positions', authorizationMiddleware('individual'), (req, res, next) => {
-	const action = isTestEnabled(req)
-	if (action) {
+runsRouter.get('/positions', authorizationMiddleware('individual'), runPresenceMiddleware(), async (req, res, next) => {
+
+	try {
+		const response = await getRunnersPosition(req.query.run_id)
 		res
-		.status(POSITIONS[action].status)
-		.send(POSITIONS[action])
-		return
+		.status(200)
+		.send(response)
+	} catch(err){
+		console.log("[ERROR /positions GET]")
+		console.log(err)
+		next(err)
 	}
-	// TODO: Implement
+})
+
+runsRouter.post('/positions', authorizationMiddleware('run_organizer'), runPresenceMiddleware(), async (req, res, next) => {
+
+	try {
+		const {
+			runId,
+			positions
+		} = getPositionParametersFromRequest(req.body)
+
+		const response = await setRunnerPositions(runId, positions)
+
+		res
+		.status(200)
+		.send(response)
+
+	} catch (err) {
+		next(err)
+	}
+
 })
 
 runsRouter.post('/join', authorizationMiddleware('individual'), async (req, res, next) => {
 	try {
-		const user = getActor(req.body.auth_token)
-		const response = await RunManager.joinRun(req.body.run_id, user.id)
+		const {
+			id
+		} = getActor(req.body.auth_token)
+		const response = await joinRun(req.body.run_id, id)
 		res.status(200).send(response)
 	} catch (err) {
 		next(err)
@@ -45,8 +79,17 @@ runsRouter.post('/join', authorizationMiddleware('individual'), async (req, res,
 
 runsRouter.post('/run', authorizationMiddleware('run_organizer'), async (req, res, next) => {
 	try {
-		const run = new RunManager(req.body)
-		const response = await run.createRun()
+		const {
+			authToken,
+			startTime,
+			endTime,
+			description,
+			path
+		} = getRunParamsFromRequest(req.body)
+
+		const runOrganizer = getActor(authToken)
+		const response = await createRun(runOrganizer, startTime, endTime, description, path)
+
 		res
 		.status(200)
 		.send(response)

@@ -1,6 +1,6 @@
 {
   "name": "data4help",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "runDescription": "",
   "main": "index.js",
   "scripts": {
