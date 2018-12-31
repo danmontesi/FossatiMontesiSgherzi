@@ -1,5 +1,6 @@
 import 'package:data4help/data4help/dashboard/DashboardDetailPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
+import 'package:data4help/data4help/dashboard/DashboardRunRegistrationPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
 import 'package:flutter/material.dart';
 
@@ -122,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Text("Function not implemented yet."),
         );
       case 3:
-        return new Text("TO BE DONE3");
+        return new DashboardRunRegistrationPage(widget.authtoken);
       case 4:
         return new DashboardTestPage(widget.authtoken);
     }
