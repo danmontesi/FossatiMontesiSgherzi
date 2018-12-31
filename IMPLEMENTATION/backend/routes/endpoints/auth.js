@@ -50,14 +50,6 @@ authRouter.post('/register_company', async (req, res, next) => {
 
 
 authRouter.post('/register_run_organizer', async (req, res, next) => {
-  /*
-    const action = isTestEnabled(req)
-    if (action) {
-      res
-        .status(registerRunOrganizer[action].status)
-        .send(registerRunOrganizer[action])
-      return
-    }*/
 
   try {
     const runOrganizer = new AuthenticationManager(req.body, 'run_organizer', 'registration')
