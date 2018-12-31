@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:data4help/data4help/UserData.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class DashboardDetailsPage extends StatefulWidget {
   final String authtoken;
@@ -37,8 +37,15 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       new Text(_datetimeToLoad),
-                      new IconButton(icon: new Icon(Icons.calendar_today), onPressed: () {_chooseDate(context, _datetimeToLoad);}),
-                      new MaterialButton(onPressed: _loadDataOfDatetime, child: new Text("LOAD"),)
+                      new IconButton(
+                          icon: new Icon(Icons.calendar_today),
+                          onPressed: () {
+                            _chooseDate(context, _datetimeToLoad);
+                          }),
+                      new MaterialButton(
+                        onPressed: _loadDataOfDatetime,
+                        child: new Text("LOAD"),
+                      )
                     ],
                   )
                 ],
@@ -114,7 +121,8 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
   }
 
   List<charts.Series<Accelerometer, DateTime>> _loadAccelerometerData() {
-    final List<Accelerometer> data = _userData == null ? [] : _userData.accelerometer;
+    final List<Accelerometer> data =
+        _userData == null ? [] : _userData.accelerometer;
 
     return [
       new charts.Series<Accelerometer, DateTime>(
@@ -131,7 +139,6 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
         measureFn: (Accelerometer hr, _) => hr.y,
         data: data,
       ),
-
       new charts.Series<Accelerometer, DateTime>(
         id: 'Z',
         colorFn: (_, __) => charts.MaterialPalette.green.shadeDefault,
@@ -143,7 +150,8 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
   }
 
   List<charts.Series<GpsCoordinate, DateTime>> _loadGPSData() {
-    final List<GpsCoordinate> data = _userData == null ? [] : _userData.gpsCoordinates;
+    final List<GpsCoordinate> data =
+        _userData == null ? [] : _userData.gpsCoordinates;
 
     return [
       new charts.Series<GpsCoordinate, DateTime>(
@@ -160,11 +168,8 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
         measureFn: (GpsCoordinate hr, _) => hr.long,
         data: data,
       ),
-
     ];
   }
-
-
 
   Future _chooseDate(BuildContext context, String initialDateString) async {
     var now = new DateTime.now();
@@ -196,17 +201,11 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
   }
 
   void _loadDataOfDatetime() async {
-    Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("auth_token", () => widget.authtoken);
-    body.putIfAbsent("begin_date", () => _datetimeToLoad);
-    body.putIfAbsent("end_date", () => _datetimeToLoad);
-
     final response = await http.get(
-        'https://data4halp.herokuapp.com/indiv/data?auth_token=${widget.authtoken}&begin_date=$_datetimeToLoad&end_date=$_datetimeToLoad');
+        'https://data4halp.herokuapp.com/indiv/data?auth_token=${widget.authtoken}&begin_date=$_datetimeToLoad&end_date=${_datetimeToLoad + "T23:59:59Z"}');
     print(response.body);
     setState(() {
       _userData = UserData.fromJson(json.decode(response.body)["data"]);
     });
-
   }
 }
