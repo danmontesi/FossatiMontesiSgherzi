@@ -368,3 +368,29 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // .then(res => res.json())
 // .then(console.log)
 // .catch(console.log)
+
+// Fetching user
+// fetch(LOCAL_BASE_URL + 'indiv/user?'
+//   + 'auth_token=' + userToken,
+//   {
+//     method: 'GET',
+//     headers: new fetch.Headers({
+//       'Content-Type': 'application/json'
+//     })
+//   })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+
+// Fetching non existing user
+fetch(LOCAL_BASE_URL + 'indiv/user?'
+  + 'auth_token=' + 'userToken',
+  {
+    method: 'GET',
+    headers: new fetch.Headers({
+      'Content-Type': 'application/json'
+    })
+  })
+  .then(res => res.json())
+  .then(console.log)
+  .catch(console.log)
