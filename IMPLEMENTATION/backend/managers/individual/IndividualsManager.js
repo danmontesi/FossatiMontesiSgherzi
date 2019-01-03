@@ -3,6 +3,9 @@ const {
   Pool
 } = require('pg')
 
+const {
+  getActor
+} = require('../../managers/token/TokenManager')
 
 class IndividualsManager {
 
@@ -26,7 +29,7 @@ class IndividualsManager {
       throw err
     }
 
-    if(!reqBody.data){
+    if (!reqBody.data) {
       if ((!reqBody.begin_date || !reqBody.end_date)) {
         let err = new Error('Missing parameters in date')
         err.status = 400
@@ -128,6 +131,75 @@ class IndividualsManager {
       }
     }
   }
+
+  static async getLastPosition(token) {
+    const {
+      id
+    } = getActor(token)
+    const client = await new Pool({
+      connectionString: process.env.DATABASE_URL + '?ssl=true',
+      max: 5
+    }).connect()
+
+    try {
+
+      const {
+        rows
+      } = await client.query('SELECT * FROM gps_coordinates WHERE user_id = $1 ORDER BY timestamp DESC', [id])
+
+      if (rows.length === 0) {
+        let err = new Error(`User hasn't send any position`)
+        err.status = 404
+        throw err
+      }
+
+      return {
+        lat: rows[0].lat,
+        long: rows[0].long
+      }
+
+    } catch (err) {
+      await client.release()
+      throw err
+    }
+
+  }
+
+  static async getUserData(token) {
+    const {
+      id
+    } = getActor(token)
+    const client = await new Pool({
+      connectionString: process.env.DATABASE_URL + '?ssl=true',
+      max: 5
+    }).connect()
+    try {
+      const {
+        rows
+      } = await client.query('SELECT * FROM individual_account WHERE id = $1', [id])
+
+      if (rows.length === 0) {
+        let err = new Error('User not found')
+        err.status = 404
+        throw err
+      }
+
+      rows[0].id = undefined
+      rows[0].password = undefined
+
+      return {
+        success: true,
+        user: rows[0]
+      }
+
+    } catch (err) {
+      console.log(err)
+      await client.release()
+      throw err
+    }
+
+  }
+
 }
 
 module.exports = IndividualsManager

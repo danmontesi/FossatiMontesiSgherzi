@@ -117,54 +117,49 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 
 
 // DATA SAVING
-/*
-fetch(LOCAL_BASE_URL + 'indiv/data', {
-  method: 'POST',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  }),
-  body: JSON.stringify({
-    auth_token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE',
-    data: {
-      gps_coordinates: [
-        {
-          lat: 42.1345,
-          long: 32.123343,
-          timestamp: new Date(2014, 0, 1)
-        }, {
-          lat: 12.1345,
-          long: 39.123343,
-          timestamp: new Date()
-        }
-      ],
-      accelerometer: [
-        {
-          timestamp: new Date(2014, 0, 1),
-          acc_x: -2,
-          acc_y: 2.123,
-          acc_z: 141
-        }, {
-          timestamp: new Date(),
-          acc_x: -12,
-          acc_y: 5.123,
-          acc_z: 11
-        }
-      ],
-      heart_rate: [
-        {
-          timestamp: new Date(2014, 0, 1),
-          bpm: 80
-        }, {
-          timestamp: new Date(),
-          bpm: 84
-        }
-      ]
-    }
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)*/
+// fetch(LOCAL_BASE_URL + 'indiv/data', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     auth_token: userToken,
+//     data: {
+//       gps_coordinates: [
+//         {
+//           lat: 45.4772669,
+//           long: 9.2343508,
+//           timestamp: new Date()
+//         }
+//       ],
+//       accelerometer: [
+//         {
+//           timestamp: new Date(2014, 0, 1),
+//           acc_x: -2,
+//           acc_y: 2.123,
+//           acc_z: 141
+//         }, {
+//           timestamp: new Date(),
+//           acc_x: -12,
+//           acc_y: 5.123,
+//           acc_z: 11
+//         }
+//       ],
+//       heart_rate: [
+//         {
+//           timestamp: new Date(2014, 0, 1),
+//           bpm: 80
+//         }, {
+//           timestamp: new Date(),
+//           bpm: 84
+//         }
+//       ]
+//     }
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
 //
 // fetch(LOCAL_BASE_URL + 'indiv/data' + '?auth_token=' +
 //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjIsImVtYWlsIjoiZnJhbmNlc2NvLnNnaGVyemlAZ21haWwuY29tIiwiYmVnaW5fdGltZSI6IjIwMTgtMTItMjhUMjM6MTE6NDIuMTk2WiIsImlhdCI6MTU0NjAzODcwMiwiZXhwIjoxNTQ2MTI1MTAyfQ.1EUgQimBcVagi7LlnDRMFTU4jOvAfiXEDE3x5MGpJxE' +
@@ -278,34 +273,34 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // .catch(console.log)
 
 // CREATE RUN
-
+//
 // fetch(LOCAL_BASE_URL + 'runs/run?', {
-// 	method: 'POST',
-// 	headers: new fetch.Headers({
-// 		'Content-Type': 'application/json'
-// 	}),
-// 	body: JSON.stringify({
-// 		auth_token: runOrganizerToken,
-// 		time_begin: new Date(),
-// 		time_end: new Date(),
-// 		description: "Unbelievably, a run",
-// 		coordinates: [
-// 			{
-// 				lat: 22,
-// 				long: 33,
-// 				description: 'A coordinate'
-// 			},
-// 			{
-// 				lat: -22,
-// 				long: -33,
-// 				description: 'Guess What? Another coordinate'
-// 			}
-// 		]
-// 	})
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     auth_token: runOrganizerToken,
+//     time_begin: new Date(),
+//     time_end: new Date(),
+//     description: 'Unbelievably, a run',
+//     coordinates: [
+//       {
+//         lat: 45.4773403,
+//         long: 9.2335757,
+//         description: 'Torrescalla\'s position'
+//       },
+//       {
+//         lat: 45.477022,
+//         long: 9.2338068,
+//         description: 'Torrescalla\'s position, but, unbelivably, 10mt ahead'
+//       }
+//     ]
+//   })
 // })
-// .then(res => res.json())
-// .then(console.log)
-// .catch(console.log)
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
 
 
 //Get all runs
@@ -368,3 +363,42 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
 // .then(res => res.json())
 // .then(console.log)
 // .catch(console.log)
+
+// Fetching user
+// fetch(LOCAL_BASE_URL + 'indiv/user?'
+//   + 'auth_token=' + userToken,
+//   {
+//     method: 'GET',
+//     headers: new fetch.Headers({
+//       'Content-Type': 'application/json'
+//     })
+//   })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+
+// Fetching non existing user
+// fetch(LOCAL_BASE_URL + 'indiv/user?'
+//   + 'auth_token=' + 'userToken',
+//   {
+//     method: 'GET',
+//     headers: new fetch.Headers({
+//       'Content-Type': 'application/json'
+//     })
+//   })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+
+// fetch(LOCAL_BASE_URL + 'runs?'
+//   + 'auth_token=' + userToken + '&'
+//   + 'organizer_id=64',
+//   {
+//     method: 'GET',
+//     headers: new fetch.Headers({
+//       'Content-Type': 'application/json'
+//     })
+//   })
+//   .then(res => res.json())
+//   .then(res => console.log(res.runs[0].path))
+//   .catch(console.log)
