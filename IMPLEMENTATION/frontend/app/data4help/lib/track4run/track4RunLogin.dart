@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:data4help/data4help/Dashboard.dart';
 import 'package:data4help/data4help/Data4HelpRegister.dart';
+import 'package:data4help/track4run/DashboardRunOrganizer.dart';
 import 'package:data4help/track4run/Track4RunRegister.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -129,7 +130,7 @@ class _Track4RunLoginPageState extends State<Track4RunLoginPage> {
     fetchAuthToken().then((token) {
       print(token);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Dashboard(token)));
+          context, MaterialPageRoute(builder: (context) => DashboardRunOrganizer(token)));
     }).catchError((e) {
       Scaffold.of(context).showSnackBar(new SnackBar(
         content: new Text("$e"),

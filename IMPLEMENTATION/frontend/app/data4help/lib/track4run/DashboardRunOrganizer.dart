@@ -1,6 +1,7 @@
 import 'package:data4help/data4help/dashboard/DashboardDetailPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
+import 'package:data4help/track4run/CreateNewRun.dart';
 import 'package:flutter/material.dart';
 
 class DashboardRunOrganizer extends StatelessWidget {
@@ -26,10 +27,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  DashboardMainPage _dashboardMainPage = new DashboardMainPage();
-  int _selectedItem = 0;
-
-  @override
+    @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
@@ -42,7 +40,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _getActualWidget() {
+    return Column(children: <Widget>[
+      MaterialButton(onPressed: _newRun, child: Text("NEW RUN"),),
 
-    return new Text("WTF");
+    ],);
+  }
+
+  void _newRun() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CreateNewRun(widget.authtoken)));
   }
 }
