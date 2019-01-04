@@ -51,13 +51,45 @@ async function isActor(authToken, actor) {
 
 }
 
-function authorizationMiddleware(actor) {
+// function authorizationMiddleware(actor) {
+//   return async (req, res, next) => {
+//     const token = req.body.auth_token || req.query.auth_token
+//     try {
+//       if (!(token && await isActor(token, actor))) {
+//         let err = new Error('Unauthorized')
+//         err.status = 401
+//         next(err)
+//       } else {
+//         next()
+//       }
+//     } catch (err) {
+//       next(err)
+//     }
+//   }
+// }
+
+function authorizationMiddleware() {
   return async (req, res, next) => {
     const token = req.body.auth_token || req.query.auth_token
     try {
-      if (token && await isActor(token, actor)) {
-        next()
-      } else {
+      // Object.keys(arguments).forEachAsync(async (key) => {
+      //   if (!(token && await isActor(token, arguments[key]))) {
+      //     let err = new Error('Unauthorized')
+      //     err.status = 401
+      //     next(err)
+      //   } else {
+      //     next()
+      //   }
+      // })
+
+      let isEntity = (await Promise.all(
+        Object.keys(arguments)
+          .map(async (key) => await isActor(token, arguments[key]))
+      ))
+        .filter(el => el === true)
+        .length >= 1
+      if (isEntity) next()
+      else {
         let err = new Error('Unauthorized')
         err.status = 401
         next(err)
@@ -68,8 +100,10 @@ function authorizationMiddleware(actor) {
   }
 }
 
+
 module.exports = {
   generateToken,
+  isActor,
   getActor,
   authorizationMiddleware
 }

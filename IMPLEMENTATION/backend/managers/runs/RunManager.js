@@ -3,6 +3,10 @@ const {
 } = require('pg')
 
 const {
+  getLastPosition
+} = require('../individual/IndividualsManager')
+
+const {
   ACCEPTING_SUBSCRIPTION,
   RUN_STARTED,
   RUN_ENDED
@@ -21,7 +25,7 @@ async function createRun(runOrganizer, startTime, endTime, runDescription, path)
   try {
     const {
       rows
-    } = await client.query('INSERT INTO run(organizer_id, start_time, end_time, status, description) VALUES($1, $2, $3, $4, $5) RETURNING *', [runOrganizer.id, startTime, endTime, ACCEPTING_SUBSCRIPTION, runDescription])
+    } = await client.query('INSERT INTO run(organizer_id, start_time, end_time, description) VALUES($1, $2, $3, $4) RETURNING *', [runOrganizer.id, startTime, endTime, runDescription])
     path.forEachAsync(async (coord) => {
       await client.query('INSERT INTO run_check_point(run_id, lat, long, description) VALUES($1, $2, $3, $4) RETURNING *', [rows[0].id, coord.lat, coord.long, coord.description ? coord.description : ''])
     })
@@ -36,7 +40,6 @@ async function createRun(runOrganizer, startTime, endTime, runDescription, path)
   } catch (err) {
     await client.query('ROLLBACK')
     await client.release()
-    console.log(err)
     throw err
   }
 
@@ -46,13 +49,13 @@ async function getAllRuns(position, organizerId = undefined) {
   const client = await connect()
 
   let queryTemplate = ''
-  let queryParams = [ACCEPTING_SUBSCRIPTION]
+  let queryParams = [new Date()]
 
   if (organizerId) {
-    queryTemplate = 'SELECT * FROM run WHERE status = $1 AND organizer_id = $2'
+    queryTemplate = 'SELECT * FROM run WHERE end_time > $1 AND organizer_id = $2'
     queryParams.push(organizerId)
   } else {
-    queryTemplate = 'SELECT * FROM run WHERE status = $1'
+    queryTemplate = 'SELECT * FROM run WHERE end_time > $1'
   }
 
   try {
@@ -60,6 +63,12 @@ async function getAllRuns(position, organizerId = undefined) {
     const {
       rows: runs
     } = await client.query(queryTemplate, queryParams)
+
+    runs.forEach(run => {
+      if (new Date(run.begin_time) > new Date()) run.status = ACCEPTING_SUBSCRIPTION
+      else if (new Date(run.begin_time) < new Date() && new Date(run.end_time) > new Date()) run.status = RUN_STARTED
+      else run.status = RUN_ENDED
+    })
 
     await runs.forEachAsync(async (run) => {
       const {
@@ -91,9 +100,9 @@ async function joinRun(runId, userId) {
   try {
     const {
       rows: runs
-    } = await client.query('SELECT * FROM run WHERE id = $1', [runId])
+    } = await client.query('SELECT * FROM run WHERE id = $1 AND end_time > $2', [runId, new Date()])
     if (runs.length !== 1) {
-      let err = new Error('Non existing run')
+      let err = new Error('There isn\'t any run available with that id atm, I\'m a teapot')
       err.status = 404
       throw err
     }
@@ -104,9 +113,8 @@ async function joinRun(runId, userId) {
       success: true,
       message: `Joined run ${runId}`
     }
-
-
   } catch (err) {
+    if (err.message.includes('duplicate key value violates')) err.message = 'Tryna join a run ya already joined, madaffada?'
     await client.query('ROLLBACK')
     await client.release()
     throw err
@@ -137,16 +145,18 @@ async function getRunnersPosition(run_id) {
 
   try {
     const {
-      rows: runners
-    } = await client.query('SELECT * FROM runner_position WHERE run_id = $1', [run_id])
+      rows: runSubs
+    } = await client.query('SELECT * FROM run_subscription WHERE run_id = $1', [run_id])
 
-    runners.forEach(r => r.run_id = undefined)
-
+    await runSubs.forEachAsync(async (runSub) => {
+      runSub.lastPosition = await getLastPosition(runSub.user_id)
+      runSub.subscription_date = undefined
+      runSub.run_id = undefined
+    })
     await client.release()
-
     return {
       success: true,
-      positions: runners
+      positions: runSubs
     }
 
   } catch (err) {
@@ -202,38 +212,27 @@ async function runnerIsInRun(clientConnection, runId, runnerId) {
   return rows.length >= 1
 }
 
-async function setRunnerPositions(runId, positions) {
+async function getRunsByRunOrganizer(organizerId) {
   const client = await connect()
 
   try {
-    await client.query('BEGIN')
+    const {
+      rows
+    } = await client.query('SELECT * FROM run WHERE organizer_id = $1 AND end_time > $2', [organizerId, new Date()])
 
-    await positions.forEachAsync(async (p, i) => {
-
-      if (!(await runnerIsInRun(client, runId, p.runner))) {
-        let err = new Error(`Runner with id: ${p.runner} is not in run: ${runId}`)
-        err.status = 404
-        throw err
-      }
-
-      const {
-        rows
-      } = await client.query('INSERT INTO runner_position(run_id, runner_id, position) VALUES($1, $2, $3) RETURNING *', [runId, p.runner, p.position])
-
+    rows.forEach(run => {
+      if (new Date(run.start_time) < new Date() && new Date(run.end_time) > new Date()) run.status = RUN_STARTED
+      else run.status = ACCEPTING_SUBSCRIPTION
     })
-
-    await client.query('COMMIT')
-    await client.release()
 
     return {
       success: true,
-      message: 'Runners position updated successfully'
+      runs: rows
     }
 
-  } catch (err) {
-    await client.query('ROLLBACK')
+  } catch (e) {
     await client.release()
-    throw err
+    throw e
   }
 
 }
@@ -279,5 +278,5 @@ module.exports = {
   getRunParamsFromRequest,
   runPresenceMiddleware,
   getRunnersPosition,
-  setRunnerPositions
+  getRunsByRunOrganizer
 }

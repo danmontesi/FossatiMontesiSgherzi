@@ -132,10 +132,8 @@ class IndividualsManager {
     }
   }
 
-  static async getLastPosition(token) {
-    const {
-      id
-    } = getActor(token)
+  static async getLastPosition(id) {
+
     const client = await new Pool({
       connectionString: process.env.DATABASE_URL + '?ssl=true',
       max: 5

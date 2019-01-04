@@ -1,5 +1,5 @@
 const fetch = require('node-fetch')
-
+const jwt = require('jsonwebtoken')
 const LOCAL_BASE_URL = 'http://localhost:12345/'
 const HEROKU_BASE_URL = 'https://data4halp.herokuapp.com/'
 
@@ -274,7 +274,7 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 
 // CREATE RUN
 //
-// fetch(LOCAL_BASE_URL + 'runs/run?', {
+// fetch(LOCAL_BASE_URL + 'runs/run', {
 //   method: 'POST',
 //   headers: new fetch.Headers({
 //     'Content-Type': 'application/json'
@@ -332,18 +332,18 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 // .catch(console.log)
 
 
-// fetch(LOCAL_BASE_URL + 'runs/positions?' +
-// 	'auth_token=' + userToken + '&' +
-// 	'run_id=' + 22,
-// 	{
-// 		method: 'GET',
-// 		headers: new fetch.Headers({
-// 			'Content-Type': 'application/json'
-// 		}),
-// 	})
-// .then(res => res.json())
-// .then(console.log)
-// .catch(console.log)
+fetch(LOCAL_BASE_URL + 'runs/positions?' +
+	'auth_token=' + userToken + '&' +
+	'run_id=' + 60,
+	{
+		method: 'GET',
+		headers: new fetch.Headers({
+			'Content-Type': 'application/json'
+		}),
+	})
+.then(res => res.json())
+.then(res => console.log(res.positions))
+.catch(console.log)
 
 // fetch(LOCAL_BASE_URL + 'runs/positions?' +
 // 	'auth_token=' + runOrganizerToken,
@@ -389,10 +389,9 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 //   .then(res => res.json())
 //   .then(console.log)
 //   .catch(console.log)
-
+//
 // fetch(LOCAL_BASE_URL + 'runs?'
-//   + 'auth_token=' + userToken + '&'
-//   + 'organizer_id=64',
+//   + 'auth_token=' + userToken,
 //   {
 //     method: 'GET',
 //     headers: new fetch.Headers({
@@ -400,5 +399,49 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 //     })
 //   })
 //   .then(res => res.json())
-//   .then(res => console.log(res.runs[0].path))
+//   .then(console.log)
 //   .catch(console.log)
+
+// fetch(LOCAL_BASE_URL + 'runs/run', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     auth_token: runOrganizerToken,
+//     time_begin: new Date(new Date().getTime() + 60 * 60 * 24 * 1000),
+//     time_end: new Date(new Date().getTime() + 2 * (60 * 60 * 24 * 1000)),
+//     description: 'Unbelievably, a run that lasts for 1 FULL DAY',
+//     coordinates: [
+//       {
+//         lat: 45.4773403,
+//         long: 9.2335757,
+//         description: 'Torrescalla\'s position'
+//       },
+//       {
+//         lat: 45.477022,
+//         long: 9.2338068,
+//         description: 'Torrescalla\'s position, but, unbelivably, 10mt ahead'
+//       }
+//     ]
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+
+//
+// fetch(LOCAL_BASE_URL + 'runs/join',
+// 	{
+// 		method: 'POST',
+// 		headers: new fetch.Headers({
+// 			'Content-Type': 'application/json'
+// 		}),
+// 		body: JSON.stringify({
+// 			auth_token: userToken,
+// 			run_id: 60
+// 		})
+// 	})
+// .then(res => res.json())
+// .then(console.log)
+// .catch(console.log)

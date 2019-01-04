@@ -8,7 +8,8 @@ const {
   runPresenceMiddleware,
   getRunnersPosition,
   getPositionParametersFromRequest,
-  setRunnerPositions
+  setRunnerPositions,
+  getRunsByRunOrganizer
 } = require('../../managers/runs/RunManager')
 
 const {
@@ -17,21 +18,36 @@ const {
 
 const {
   authorizationMiddleware,
-  getActor
+  getActor,
+  isActor
 } = require('../../managers/token/TokenManager')
 
-runsRouter.get('/', authorizationMiddleware('individual'), async (req, res, next) => {
+runsRouter.get('/', authorizationMiddleware('individual', 'run_organizer'), async (req, res, next) => {
   let response
-  const lastUserPosition = await getLastPosition(req.query.auth_token)
-
-  if (req.query.organizer_id) {
-    response = await getAllRuns(lastUserPosition, req.query.organizer_id)
-  } else {
-    response = await getAllRuns(lastUserPosition)
+  const {
+    id
+  } = getActor(req.query.auth_token)
+  try {
+    if (await isActor(req.query.auth_token, 'run_organizer')) {
+      const runs = await getRunsByRunOrganizer(id)
+      res
+        .status(200)
+        .send(runs)
+    } else {
+      const lastUserPosition = await getLastPosition(id)
+      if (req.query.organizer_id) {
+        response = await getAllRuns(lastUserPosition, req.query.organizer_id)
+      } else {
+        response = await getAllRuns(lastUserPosition)
+      }
+      res
+        .status(200)
+        .send(response)
+    }
+  } catch (e) {
+    next(e)
   }
-  res
-    .status(200)
-    .send(response)
+
 })
 
 runsRouter.get('/positions', authorizationMiddleware('individual'), runPresenceMiddleware(), async (req, res, next) => {
@@ -42,30 +58,9 @@ runsRouter.get('/positions', authorizationMiddleware('individual'), runPresenceM
       .status(200)
       .send(response)
   } catch (err) {
-    console.log('[ERROR /positions GET]')
     console.log(err)
     next(err)
   }
-})
-
-runsRouter.post('/positions', authorizationMiddleware('run_organizer'), runPresenceMiddleware(), async (req, res, next) => {
-
-  try {
-    const {
-      runId,
-      positions
-    } = getPositionParametersFromRequest(req.body)
-
-    const response = await setRunnerPositions(runId, positions)
-
-    res
-      .status(200)
-      .send(response)
-
-  } catch (err) {
-    next(err)
-  }
-
 })
 
 runsRouter.post('/join', authorizationMiddleware('individual'), async (req, res, next) => {
