@@ -42,8 +42,10 @@ async function isActor(authToken, actor) {
     const {
       rows
     } = await client.query(`SELECT * FROM ${actor}_account WHERE id = $1`, [decodedActor.id])
+    await client.release()
     return rows.length >= 1
   } catch (err) {
+    await client.release()
     err.message = 'Token is invalid'
     err.status = 400
     throw err

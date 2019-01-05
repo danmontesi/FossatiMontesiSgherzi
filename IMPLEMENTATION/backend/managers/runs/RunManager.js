@@ -12,11 +12,13 @@ const {
   RUN_ENDED
 } = require('./runStatus')
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL + '?ssl=true',
+  max: 5
+})
+
 async function connect() {
-  return await new Pool({
-    connectionString: process.env.DATABASE_URL + '?ssl=true',
-    max: 5
-  }).connect()
+  return await pool.connect()
 }
 
 async function createRun(runOrganizer, startTime, endTime, runDescription, path) {
@@ -79,7 +81,7 @@ async function getAllRuns(position, organizerId = undefined) {
     })
 
     let runsInRange = runs.filter(run => isRunInRange(run.path, position))
-
+    await client.release()
     return {
       success: true,
       runs: runsInRange
@@ -224,7 +226,7 @@ async function getRunsByRunOrganizer(organizerId) {
       if (new Date(run.start_time) < new Date() && new Date(run.end_time) > new Date()) run.status = RUN_STARTED
       else run.status = ACCEPTING_SUBSCRIPTION
     })
-
+    await client.release()
     return {
       success: true,
       runs: rows
@@ -256,9 +258,9 @@ function runPresenceMiddleware() {
       if (rows.length === 0) {
         let err = new Error('No run with this run_id: ' + runId)
         err.status = 404
-        next(err)
+        throw err
       }
-
+      await client.release()
       next()
 
     } catch (err) {
