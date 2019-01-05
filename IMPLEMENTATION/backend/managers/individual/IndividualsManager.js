@@ -7,6 +7,11 @@ const {
   getActor
 } = require('../../managers/token/TokenManager')
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL + '?ssl=true',
+  max: 5
+})
+
 class IndividualsManager {
 
   constructor(reqBody) {
@@ -130,6 +135,45 @@ class IndividualsManager {
         gps_coordinates: gpsData
       }
     }
+  }
+
+  static async connect() {
+    return await pool.connect()
+  }
+
+  static async FPgetData(userId, fromDate = undefined, toDate = undefined) {
+
+    const client = await IndividualsManager.connect()
+
+    let templateEnd = ''
+    let paramsEnd = []
+    let data = {}
+
+    if (fromDate && toDate) {
+      templateEnd = ' AND timestamp BETWEEN $2 AND $3'
+      paramsEnd.push(fromDate, toDate)
+    }
+    try {
+
+      await ['accelerometer', 'heart_rate', 'gps_coordinates'].forEachAsync(async (table) => {
+        const {
+          rows
+        } = await client.query(`SELECT * FROM ${table} WHERE user_id = $1${templateEnd}`, [userId, ...paramsEnd])
+        rows.forEach(r => {
+          r.user_id = undefined
+          r.id = undefined
+        })
+        data[table] = rows
+      })
+      await client.release()
+      return {
+        data
+      }
+    } catch (err) {
+      await client.release()
+      throw err
+    }
+
   }
 
   static async getLastPosition(id) {

@@ -331,19 +331,18 @@ fetch(LOCAL_BASE_URL + 'auth/login', {
 // .then(console.log)
 // .catch(console.log)
 
-
-fetch(LOCAL_BASE_URL + 'runs/positions?' +
-	'auth_token=' + userToken + '&' +
-	'run_id=' + 60,
-	{
-		method: 'GET',
-		headers: new fetch.Headers({
-			'Content-Type': 'application/json'
-		}),
-	})
-.then(res => res.json())
-.then(res => console.log(res.positions))
-.catch(console.log)
+// fetch(LOCAL_BASE_URL + 'runs/positions?' +
+// 	'auth_token=' + userToken + '&' +
+// 	'run_id=' + 60,
+// 	{
+// 		method: 'GET',
+// 		headers: new fetch.Headers({
+// 			'Content-Type': 'application/json'
+// 		}),
+// 	})
+// .then(res => res.json())
+// .then(res => console.log(res.positions))
+// .catch(console.log)
 
 // fetch(LOCAL_BASE_URL + 'runs/positions?' +
 // 	'auth_token=' + runOrganizerToken,

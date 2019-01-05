@@ -69,7 +69,9 @@ runsRouter.post('/join', authorizationMiddleware('individual'), async (req, res,
       id
     } = getActor(req.body.auth_token)
     const response = await joinRun(req.body.run_id, id)
-    res.status(200).send(response)
+    res
+      .status(200)
+      .send(response)
   } catch (err) {
     next(err)
   }

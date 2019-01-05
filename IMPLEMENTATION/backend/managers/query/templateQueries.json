@@ -1,35 +1,25 @@
 {
   "individual": {
-    "insert_query": "INSERT INTO individual_query(id, SSN) VALUES($1, $2) RETURNING *",
+    "insert_query": "INSERT INTO individual_query(id, SSN, additional_params) VALUES($1, $2, $3) RETURNING *",
     "params": [
-      "SSN"
-    ]
-  },
-  "age": {
-    "insert_query": "INSERT INTO age_query(id, min_age, max_age) VALUES($1, $2, $3) RETURNING *",
-    "params": [
-      "min_age",
-      "max_age"
-    ]
-  },
-  "city": {
-    "insert_query": "INSERT INTO city_query(id, city) VALUES($1, $2) RETURNING *",
-    "params": [
-      "city"
+      "SSN",
+      "additional_params"
     ]
   },
   "regional": {
-    "insert_query": "INSERT INTO regional_query(id, region) VALUES($1, $2) RETURNING *",
+    "insert_query": "INSERT INTO regional_query(id, region, additional_params) VALUES($1, $2, $3) RETURNING *",
     "params": [
-      "region"
+      "region",
+      "additional_params"
     ]
   },
   "radius": {
-    "insert_query": "INSERT INTO radius_query(id, center_lat, center_long, radius) VALUES($1, $2, $3, $4) RETURNING *",
+    "insert_query": "INSERT INTO radius_query(id, center_lat, center_long, radius, additional_params) VALUES($1, $2, $3, $4, $5) RETURNING *",
     "params": [
       "center_lat",
       "center_long",
-      "radius"
+      "radius",
+      "additional_params"
     ]
   }
 }

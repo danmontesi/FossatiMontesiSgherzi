@@ -9,11 +9,19 @@ const {
   debugLog
 } = require('./utils/testUtils')
 
-// Until Javascript figures out an easier way to work with async iterators
-Array.prototype.forEachAsync = async function(callback) {
+// Until JavaScript figures out an easier way to work with async iterators
+Array.prototype.forEachAsync = async function (callback) {
   for (let i = 0; i < this.length; i++) {
     await callback(this[i], i)
   }
+}
+
+// Until JavaScript figures out an easier way to check if an object is empty
+Object.prototype.isEmpty = function () {
+  for (let key in this) {
+    if (this.hasOwnProperty(key)) return false
+  }
+  return true
 }
 
 if (process.env.TEST_API !== 'enabled') {
