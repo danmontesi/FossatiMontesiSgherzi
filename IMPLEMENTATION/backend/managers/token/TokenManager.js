@@ -74,15 +74,6 @@ function authorizationMiddleware() {
   return async (req, res, next) => {
     const token = req.body.auth_token || req.query.auth_token
     try {
-      // Object.keys(arguments).forEachAsync(async (key) => {
-      //   if (!(token && await isActor(token, arguments[key]))) {
-      //     let err = new Error('Unauthorized')
-      //     err.status = 401
-      //     next(err)
-      //   } else {
-      //     next()
-      //   }
-      // })
 
       let isEntity = (await Promise.all(
         Object.keys(arguments)

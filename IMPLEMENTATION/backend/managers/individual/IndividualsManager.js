@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 const {
   Pool
 } = require('pg')
-
+const nm = require('nodemailer')
 const {
   getActor
 } = require('../../managers/token/TokenManager')
@@ -70,20 +70,21 @@ class IndividualsManager {
 
     try {
       await client.query('BEGIN')
-      gps_coordinates.forEachAsync(async (coordinate, i) => {
+      gps_coordinates.forEachAsync(async (coordinate) => {
         client.query('INSERT INTO gps_coordinates(user_id, timestamp, lat, long) VALUES($1, $2, $3, $4) RETURNING *', [this.user.id, coordinate.timestamp, coordinate.lat, coordinate.long])
       })
 
-      accelerometer.forEachAsync(async (accData, i) => {
+      accelerometer.forEachAsync(async (accData) => {
         client.query('INSERT INTO accelerometer(user_id, timestamp, acc_x, acc_y, acc_z) VALUES($1, $2, $3, $4, $5) RETURNING *', [this.user.id, accData.timestamp, accData.acc_x, accData.acc_y, accData.acc_z])
       })
 
-      heart_rate.forEachAsync(async (heartData, i) => {
+      heart_rate.forEachAsync(async (heartData) => {
         client.query('INSERT INTO heart_rate(user_id, timestamp, bpm) VALUES($1, $2, $3) RETURNING *', [this.user.id, heartData.timestamp, heartData.bpm])
       })
 
       await client.query('COMMIT')
       await client.release()
+      await IndividualsManager.notifyCompanies(this.user.id)
 
       return {
         success: true,
@@ -95,6 +96,47 @@ class IndividualsManager {
       await client.release()
       err.message = 'Invalid data'
       err.status = 422
+      throw err
+    }
+
+  }
+
+  static sendNotificationEmail(mail) {
+    console.log('Sending mail to ' + mail)
+
+    const transporter = nm.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.MAIL_ADDR,
+        pass: process.env.MAIL_PASSWD
+      }
+    })
+
+    const mailOptions = {
+      from: process.env.MAIL_ADDR,
+      to: mail,
+      subject: 'Data4Help, new data available',
+      html: `<p>New data available for your query, download them on the website</p>`
+    }
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) throw error
+    })
+  }
+
+  static async notifyCompanies(userId) {
+    const client = await IndividualsManager.connect()
+    try {
+      const {
+        rows: companies
+      } = await client.query('SELECT ca.email ' +
+        'FROM query_user as qu, query as q, company_account as ca ' +
+        'WHERE qu.user_id = $1 AND qu.query_id = q.id AND q.company_id = ca.id', [userId])
+      companies.forEach(company => IndividualsManager.sendNotificationEmail(company.email))
+      await client.release()
+    } catch (err) {
+      await client.release()
+      console.log(err)
       throw err
     }
 
