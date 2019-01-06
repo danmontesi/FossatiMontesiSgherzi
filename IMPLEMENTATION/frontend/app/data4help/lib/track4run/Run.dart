@@ -1,7 +1,7 @@
 class Run{
   final String description;
   final DateTime startTime, endTime;
-  final int status;
+  final String status;
   final int id, organizerId;
 
   Run(this.id, this.organizerId, this.description, this.startTime, this.endTime, this.status
