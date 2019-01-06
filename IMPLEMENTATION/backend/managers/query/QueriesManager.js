@@ -29,7 +29,6 @@ async function createQuery(company, query) {
   try {
     await client.query('BEGIN')
 
-
     // I have to perform the query at least once to fill the user_query table
     const {
       userList
