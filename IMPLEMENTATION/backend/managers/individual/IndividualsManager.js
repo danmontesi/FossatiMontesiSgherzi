@@ -183,7 +183,7 @@ class IndividualsManager {
     return await pool.connect()
   }
 
-  static async FPgetData(userId, fromDate = undefined, toDate = undefined) {
+  static async FPgetData(userId, fromDate = undefined, toDate = undefined, isIndividualQuery = false) {
 
     const client = await IndividualsManager.connect()
 

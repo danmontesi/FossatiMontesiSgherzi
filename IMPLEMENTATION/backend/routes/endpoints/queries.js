@@ -42,8 +42,17 @@ queryRouter.get('/query', authorizationMiddleware('company'), async (req, res, n
 
 queryRouter.get('/query/data', authorizationMiddleware('company'), async (req, res, next) => {
   try {
-    const response = await performQueryById(req.query.query_id)
-    res.status(200).send(response.allData)
+    let response = {}
+    const {
+      userList,
+      allData
+    } = await performQueryById(req.query.query_id)
+    response.data = allData[0].data
+    console.log('_________________________________________________________________')
+    console.log(userList.length)
+    console.log('_________________________________________________________________')
+    if (userList.length === 1) response.user = userList[0]
+    res.status(200).send(response)
   } catch (err) {
     next(err)
   }

@@ -111,7 +111,6 @@ function checkQueryParams(query) {
 async function performQuery(query) {
 
   const userList = await checkQuery(query)
-  console.log(userList)
   let allData = await Promise.all(userList.map(async (userId) => await IndividualManager.FPgetData(userId)))
   if (query && !query.additional_params.isEmpty()) {
     Object.keys(query.additional_params)
@@ -287,13 +286,13 @@ async function fetchPendingIndividualRequests(userId) {
   try {
     const {
       rows
-    } = await client.query('SELECT iq.id FROM individual_query AS iq, individual_account as ia WHERE ia.id = $1 AND ia.SSN = iq.ssn AND iq.auth IS NULL', [userId])
+    } = await client.query('SELECT iq.id, ca.company_name FROM individual_query AS iq, individual_account as ia, query as q, company_account as ca WHERE ia.id = $1 AND ia.SSN = iq.ssn AND iq.auth IS NULL AND q.id = iq.id AND q.company_id = ca.id', [userId])
     console.log(rows)
     await client.release()
 
     return {
       success: true,
-      queries: rows.filter(row => row.auth == null)
+      queries: rows
     }
 
   } catch (err) {
