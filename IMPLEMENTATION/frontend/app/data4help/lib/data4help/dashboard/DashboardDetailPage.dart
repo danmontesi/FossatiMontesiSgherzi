@@ -204,8 +204,10 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
     final response = await http.get(
         'https://data4halp.herokuapp.com/indiv/data?auth_token=${widget.authtoken}&begin_date=$_datetimeToLoad&end_date=${_datetimeToLoad + "T23:59:59Z"}');
     print(response.body);
-    setState(() {
-      _userData = UserData.fromJson(json.decode(response.body)["data"]);
-    });
+    if(response.statusCode==200) {
+      setState(() {
+        _userData = UserData.fromJson(json.decode(response.body)["data"]);
+      });
+    }
   }
 }

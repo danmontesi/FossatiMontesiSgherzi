@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:data4help/data4help/dashboard/DashboardDetailPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
+import 'package:data4help/data4help/dashboard/DashboardPendingQueriesRequests.dart';
 import 'package:data4help/data4help/dashboard/DashboardRunRegistrationPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class Dashboard extends StatelessWidget {
   final String authtoken;
@@ -18,6 +22,7 @@ class Dashboard extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String authtoken;
+
   MyHomePage(this.authtoken, {Key key, this.title}) : super(key: key);
 
   final String title;
@@ -29,6 +34,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   DashboardMainPage _dashboardMainPage = new DashboardMainPage();
   int _selectedItem = 0;
+  String _username = "";
+
+  @override
+  void initState() {
+    _retriveUserPersonalData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text('Welcom back, TestUser!'),
+                    Text('Welcome back, $_username!'),
                     IconButton(
                       icon: Icon(Icons.account_circle),
                       color: Colors.green.shade900,
@@ -93,6 +105,15 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
+              title: Text('Pending queries'),
+              onTap: () {
+                setState(() {
+                  _selectedItem = 5;
+                  Navigator.pop(context);
+                });
+              },
+            ),
+            ListTile(
               title: Text('Testing'),
               onTap: () {
                 setState(() {
@@ -113,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _getActualWidget() {
     switch (_selectedItem) {
       case 0:
-        return  new SingleChildScrollView(
+        return new SingleChildScrollView(
           child: _dashboardMainPage,
         );
       case 1:
@@ -126,7 +147,22 @@ class _MyHomePageState extends State<MyHomePage> {
         return new DashboardRunRegistrationPage(widget.authtoken);
       case 4:
         return new DashboardTestPage(widget.authtoken);
+      case 5:
+        return new DashboardPendingQueriesRequestsPage(widget.authtoken);
     }
     return new Text("WTF");
+  }
+
+  void _retriveUserPersonalData() async {
+    final response = await http.get(
+        'https://data4halp.herokuapp.com/indiv/user?auth_token=${widget.authtoken}');
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      final userData = json.decode(response.body)["user"];
+      setState(() {
+        _username = "${userData["name"]} ${userData["surname"]}";
+      });
+    }
   }
 }

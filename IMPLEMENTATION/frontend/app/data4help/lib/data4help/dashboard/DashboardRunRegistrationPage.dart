@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:data4help/data4help/UserData.dart';
+import 'package:data4help/data4help/WatchRun.dart';
 import 'package:data4help/track4run/Run.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -18,7 +19,6 @@ class DashboardRunRegistrationPage extends StatefulWidget {
 
 class _DashboardRunRegistrationPageState
     extends State<DashboardRunRegistrationPage> {
-  String _datetimeToLoad = new DateFormat("yyyy-MM-dd").format(DateTime.now());
 
   List<Run> runList = [];
 
@@ -36,9 +36,16 @@ class _DashboardRunRegistrationPageState
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text('${runList[index].id} - ${runList[index].description}'),
-                trailing: new MaterialButton(
-                  onPressed: () => _subscribeUser(index),
-                  child: new Text("SUBSCRIBE"),
+                trailing: (runList[index].status=="ACCEPTING_SUBSCRIPTION"?
+                    new MaterialButton(
+                      onPressed: () => _subscribeUser(index),
+                      child: new Text("SUBSCRIBE"),
+                    )
+                        :
+                    new MaterialButton(
+                      onPressed: () => _watchRun(runList[index].id),
+                      child: new Text("WATCH"),
+                    )
                 ),
               );
             },
@@ -70,12 +77,13 @@ class _DashboardRunRegistrationPageState
     runList.clear();
 
     if(response.statusCode == 200){
+      print(response.body);
       try {
         json.decode(response.body)["runs"].forEach((elem) {
           runList.add(Run.fromJson(elem));
         });
         setState(() {
-          runList.removeWhere((run) => run.status!=0);
+          runList.removeWhere((run) => run.status!="RUN_ENDED");
         });
       }catch(error){
         print(error);
@@ -86,6 +94,11 @@ class _DashboardRunRegistrationPageState
       Scaffold.of(context).showSnackBar(new SnackBar(
           content: new Text(json.decode(response.body)['message'])));
     }
+  }
+
+  _watchRun(int index) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => WatchRun(widget.authtoken, index)));
   }
 }
 
