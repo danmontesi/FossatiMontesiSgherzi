@@ -65,6 +65,42 @@ async function saveData(auth_token, bodyData) {
 
 }
 
+async function getData(userId, fromDate = undefined, toDate = undefined, isIndividualQuery = false) {
+
+  const client = await IndividualsManager.connect()
+
+  let templateEnd = ''
+  let paramsEnd = []
+  let data = {}
+
+  if (fromDate && toDate) {
+    templateEnd = ' AND timestamp BETWEEN $2 AND $3'
+    paramsEnd.push(fromDate, toDate)
+  }
+  try {
+
+    await ['accelerometer', 'heart_rate', 'gps_coordinates'].forEachAsync(async (table) => {
+      const {
+        rows
+      } = await client.query(`SELECT * FROM ${table} WHERE user_id = $1${templateEnd}`, [userId, ...paramsEnd])
+      rows.forEach(r => {
+        r.user_id = undefined
+        r.id = undefined
+      })
+      data[table] = rows
+    })
+    await client.release()
+    return {
+      data
+    }
+  } catch (err) {
+    await client.release()
+    throw err
+  }
+
+}
+
 module.exports = {
-  saveData
+  saveData,
+  getData
 }

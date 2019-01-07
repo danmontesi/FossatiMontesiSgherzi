@@ -2,7 +2,8 @@ const express = require('express')
 const indivRouter = express.Router()
 
 const {
-  saveData
+  saveData,
+  getData
 } = require('../../managers/individual/FunctionalIndividualsManager')
 
 const IndividualsManager = require('../../managers/individual/IndividualsManager')

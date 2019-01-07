@@ -73,7 +73,7 @@ function toQueryArray(query, params) {
 
 function checkQueryParams(query) {
   if (query && query.type) {
-    const {type} = query
+    const { type } = query
     requiredParams[type].forEach(param => {
       if (!(param in query)) {
         let err = new Error(`Missing ${param}`)
@@ -271,6 +271,9 @@ async function retriveQueries(company) {
         q.id = undefined
       })
     })
+
+    await client.release()
+
     return {
       success: true,
       queries: totalQueries
@@ -289,6 +292,7 @@ async function fetchPendingIndividualRequests(userId) {
       rows
     } = await client.query('SELECT iq.id, ca.company_name FROM individual_query AS iq, individual_account as ia, query as q, company_account as ca WHERE ia.id = $1 AND ia.SSN = iq.ssn AND iq.auth IS NULL AND q.id = iq.id AND q.company_id = ca.id', [userId])
     console.log(rows)
+
     await client.release()
 
     return {
@@ -314,7 +318,9 @@ async function confirmRequest(queryId, response) {
     const {
       rows
     } = await client.query('UPDATE individual_query SET auth = $1 WHERE id = $2 RETURNING *', [response, queryId])
+
     console.log(rows)
+
     await client.query('COMMIT')
     await client.release()
 
