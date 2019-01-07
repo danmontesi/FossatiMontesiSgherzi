@@ -75,7 +75,7 @@ class UserData {
     final List<Heartrate> heartRate = new List();
 
     for(int i=0; i<6*24; i++){
-      gpsCoordinates.add(new GpsCoordinate(45.476987, 9.230192999999844, now));
+      gpsCoordinates.add(new GpsCoordinate(45.476987 + (Random().nextDouble()-0.5)/100.0, 9.230192999999844+(Random().nextDouble()-0.5)/100.0, now));
       accelerometer.add(new Accelerometer(Random.secure().nextDouble(), Random.secure().nextDouble(), Random.secure().nextDouble(), now));
       heartRate.add(new Heartrate(Random.secure().nextInt(80)-40 + 60 , now));
       now= now.add(new Duration(minutes: 10));

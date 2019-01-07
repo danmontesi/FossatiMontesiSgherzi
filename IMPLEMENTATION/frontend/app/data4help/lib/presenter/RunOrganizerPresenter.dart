@@ -1,3 +1,4 @@
+import 'package:data4help/model/Run.dart';
 import 'package:data4help/model/RunOrganizerModel.dart';
 import 'package:data4help/model/RunPoint.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,11 @@ class RunOrganizerPresenter{
       TimeOfDay startTime, DateTime endDate, TimeOfDay endTime,
       String description) async {
     return await _runModel.createNewRun(runPoints, startDate, startTime, endDate, endTime, description);
+  }
+
+  /// Retrive the list of the runs organized by the current logged in run organizer
+  Future<List<Run>> retriveRunOrganizersRun() async {
+    return await _runModel.retriveRunOrganizersRun();
   }
 
 

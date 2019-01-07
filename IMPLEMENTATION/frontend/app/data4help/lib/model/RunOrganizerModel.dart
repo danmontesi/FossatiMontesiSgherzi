@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:data4help/Config.dart';
+import 'package:data4help/model/Run.dart';
 import 'package:data4help/model/RunPoint.dart';
 import 'package:flutter/material.dart';
 
@@ -110,5 +111,25 @@ class RunOrganizerModel {
     }
 
     throw new Exception("Connection error!");
+  }
+
+  /// Retrive the list of the runs organized by the current logged in run organizer
+  Future<List<Run>> retriveRunOrganizersRun() async {
+    final response =
+    await http.get(Config.BASE_URL + '/runs?auth_token=$_authToken');
+    List<Run> runList = new List<Run>();
+
+    if (response.statusCode == 200) {
+      print(response.body);
+      json.decode(response.body)["runs"].forEach((elem) {
+        runList.add(Run.fromJson(elem));
+      });
+
+      //runList.removeWhere((run) => run.status != "RUN_ENDED");
+      return runList;
+    } else {
+      throw new Exception(
+          json.decode(response.body)['message'] ?? "Connection error!");
+    }
   }
 }

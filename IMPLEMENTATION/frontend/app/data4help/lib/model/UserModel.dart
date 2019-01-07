@@ -96,7 +96,16 @@ class UserModel {
     print(response.body);
 
     if (response.statusCode == 200) {
-      return _decodePos(response.body);
+      final list = List<RunPoint>();
+      var jsonp = json.decode(response.body);
+
+      jsonp["positions"].forEach((el) {
+        if (el["lastPosition"]["lat"] != -9999.0) {
+          list.add(new RunPoint(el["lastPosition"]["lat"],
+              el["lastPosition"]["long"], 0, el["id"].toString()));
+        }
+      });
+      return list;
     } else {
       throw Exception("Connection error!");
     }
@@ -183,12 +192,6 @@ class UserModel {
     print(response.body);
     print(json.decode(response.body)['message']);
     return json.decode(response.body)['message'] ?? "Connection error!";
-  }
-
-  List<RunPoint> _decodePos(String body) {
-    final list = List<RunPoint>();
-    throw Exception("TODO!!!");
-    return list;
   }
 
   /// Send the user data of the loged in user to the server. [data] must not be null.

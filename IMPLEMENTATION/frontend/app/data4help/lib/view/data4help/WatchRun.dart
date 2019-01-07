@@ -103,6 +103,7 @@ class _WatchRunPageState extends State<WatchRunPage> {
   void refreshData() {
     UserPresenter.getActivePresenter().getRunPositions(widget.runId).then((data){
       _addAllRunners(data);
+      if (data.length > 0) _controller.animateCamera(CameraUpdate.newLatLngZoom(new LatLng(data.last.lat, data.last.long), 13));
     }).catchError((error) {
       Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
     });
