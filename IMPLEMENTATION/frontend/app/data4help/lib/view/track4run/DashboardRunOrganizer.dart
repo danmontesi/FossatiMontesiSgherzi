@@ -1,24 +1,20 @@
-import 'package:data4help/data4help/dashboard/DashboardDetailPage.dart';
-import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
-import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
-import 'package:data4help/track4run/CreateNewRun.dart';
+import 'package:data4help/view/track4run/CreateNewRun.dart';
 import 'package:flutter/material.dart';
 
 class DashboardRunOrganizer extends StatelessWidget {
-  final String authtoken;
 
-  DashboardRunOrganizer(this.authtoken);
+  DashboardRunOrganizer();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(authtoken, title: 'Data4Help - Dashboard');
+    return MyHomePage(title: 'Data4Help - Dashboard');
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final String authtoken;
-  MyHomePage(this.authtoken, {Key key, this.title}) : super(key: key);
+
+  MyHomePage( {Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -48,6 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _newRun() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => CreateNewRun(widget.authtoken)));
+        context, MaterialPageRoute(builder: (context) => CreateNewRun()));
   }
 }

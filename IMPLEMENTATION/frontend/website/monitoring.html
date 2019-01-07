@@ -47,8 +47,11 @@
               
                       <div class="row center">
                           <h5 class="header col s12 ">Data4Help let companies monitor single individuals, previus his approval.</h5>
+                          <h5 class="center">
+                            <button data-target="modal-patient" class="btn red modal-trigger">Add new patient</button>
+                            </h5>
                             
-                          <h5 class="header col s12 light">Here is the list of your monitored individuals. Click on their icon to search their data.</h5>
+                          <h5 class="header col s12 light">Here is the list of your monitored individuals. Click on the '+' button to start an individual query.</h5>
                           <a data-target="modal" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>
               
                         </div>
@@ -141,9 +144,14 @@
   const url = "https://data4halp.herokuapp.com/auth/patient/list?action=success&auth_token="+getCookie("auth_token");
   fetch(proxyurl + url, {
 
-    method: 'GET'
+    method: 'GET',
+    headers: {
+ 		'Content-Type': 'application/json'
+    }
+
 
   }) 
+  
     .then(response => response.json())
     .then(response => { //Assign to contents the response
       if (response["status"] == 200) {
@@ -296,6 +304,40 @@
           
     </script>
 
+
+<script>
+  function addPatient() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/patient/TODO"; //TODO
+    var authtoken = getCookie("auth_token");//get authtoken
+    var SSN = $('#SSN').val();
+
+    
+    fetch(proxyurl + url, {
+
+      method: 'POST',
+      body: { 
+        //TODO
+      }
+
+    })
+      .then(response => response.text())
+      .then(contents => { //Assign to contents the response
+        var myObj = JSON.parse(contents); //Parse the response
+        if (myObj["status"] == 200) {
+          $('.modal.open').modal('close')
+          $("#modal-success").modal();
+          $("#modal1").modal('open');
+        }
+        else {
+          alert("Error:" + myObj["message"] + ".\nRetry!")
+        }
+
+      });
+  }
+      
+</script>
+
 <script>
   function deleteAllCookies() {
     var cookies = document.cookie.split(";");
@@ -404,4 +446,35 @@
     
         </div>
       </div>
+
+
+
+          <!-- Modal Structure QueryForm -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12">
+  
+            <div class="col s12">
+              <p id=demo>Please insert SSN of the patient to add: </p>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                  <input id="ssn" type="text" class="validate">
+                  <label for="ssn">SSN of monitored patient</label>
+                </div>
+              </div>
+    
+  
+            <div class="modal-footer">
+              <a href="#!" class="waves-effect waves-green btn-flat" onclick="addPatient()">Send request</a>
+            </div>
+        </div>
+  
+      </div>
+    </div>
+
+
+
 </html>

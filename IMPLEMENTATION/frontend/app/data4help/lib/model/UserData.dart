@@ -31,36 +31,36 @@ class UserData {
 
 
   String toJson() {
-    String gps_json="";
-    String acc_json="";
-    String hr_json="";
+    String gpsJson="";
+    String accJson="";
+    String hrJson="";
 
     gpsCoordinates.forEach((c) {
-      gps_json += c.toJson();
+      gpsJson += c.toJson();
       if (c != gpsCoordinates.last){
-        gps_json += ", ";
+        gpsJson += ", ";
       }
     });
 
     accelerometer.forEach((c) {
-      acc_json += c.toJson();
+      accJson += c.toJson();
       if (c != accelerometer.last){
-        acc_json += ", ";
+        accJson += ", ";
       }
     });
 
     heartRate.forEach((c) {
-      hr_json += c.toJson();
+      hrJson += c.toJson();
       if (c != heartRate.last){
-        hr_json += ", ";
+        hrJson += ", ";
       }
     });
 
 
     return "{"
-        "\"gps_coordinates\": [$gps_json],"
-        "\"accelerometer\": [$acc_json],"
-        "\"heart_rate\": [$hr_json]"
+        "\"gps_coordinates\": [$gpsJson],"
+        "\"accelerometer\": [$accJson],"
+        "\"heart_rate\": [$hrJson]"
         "}";
 
   }

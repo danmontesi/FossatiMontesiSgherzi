@@ -1,10 +1,10 @@
-import 'package:data4help/track4run/RunPoint.dart';
+import 'package:data4help/model/RunPoint.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CreateNewPoint extends StatelessWidget {
   final List<RunPoint> runPointList;
-  GlobalKey<_CreateNewPointPageState> _createNewPointPageStateKey =
+  final GlobalKey<_CreateNewPointPageState> _createNewPointPageStateKey =
       new GlobalKey<_CreateNewPointPageState>();
 
   CreateNewPoint(

@@ -1,16 +1,14 @@
-import 'package:data4help/track4run/RunPoint.dart';
+import 'package:data4help/presenter/UserPresenter.dart';
+import 'package:data4help/model/RunPoint.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart' as http;
 
 class WatchRun extends StatelessWidget {
-  final String authToken;
   final int runId;
-  GlobalKey<_WatchRunPageState> _WatchRunPageStateKey =
+  final GlobalKey<_WatchRunPageState> _watchRunPageStateKey =
       new GlobalKey<_WatchRunPageState>();
 
   WatchRun(
-    this.authToken,
     this.runId, {
     Key key,
   }) : super(key: key);
@@ -21,10 +19,9 @@ class WatchRun extends StatelessWidget {
     return new Scaffold(
         appBar: _buildBar(context),
         body: WatchRunPage(
-          authToken,
           runId,
           title: 'Track4Run',
-          key: _WatchRunPageStateKey,
+          key: _watchRunPageStateKey,
         ));
   }
 
@@ -35,7 +32,7 @@ class WatchRun extends StatelessWidget {
         new IconButton(
             icon: new Icon(Icons.refresh),
             onPressed: () {
-              _WatchRunPageStateKey.currentState.refreshData();
+              _watchRunPageStateKey.currentState.refreshData();
             })
       ],
     );
@@ -44,12 +41,10 @@ class WatchRun extends StatelessWidget {
 
 class WatchRunPage extends StatefulWidget {
   WatchRunPage(
-    this.authToken,
     this.runId, {
     Key key,
     this.title,
   }) : super(key: key);
-  final String authToken;
   final int runId;
 
   final String title;
@@ -60,8 +55,6 @@ class WatchRunPage extends StatefulWidget {
 
 class _WatchRunPageState extends State<WatchRunPage> {
   GoogleMapController _controller;
-
-  Marker _marker;
 
   @override
   Widget build(BuildContext context) {
@@ -89,25 +82,9 @@ class _WatchRunPageState extends State<WatchRunPage> {
     );
   }
 
-  refreshData() async {
-    final response = await http.get(
-        'https://data4halp.herokuapp.com/runs/positions?auth_token=${widget.authToken}&run_id=${widget.runId}');
-    print(response.body);
 
-    if (response.statusCode == 200) {
-      final runnerPos = _decodePos(response.body);
-      _addAllRunners(runnerPos);
-    } else {
-      Scaffold.of(context)
-          .showSnackBar(new SnackBar(content: new Text("Conection error.")));
-    }
-  }
 
-  List<RunPoint> _decodePos(String body) {
-    final list = List<RunPoint>();
 
-    return list;
-  }
 
   void _addAllRunners(List<RunPoint> runnerPos) async {
     await _controller.clearMarkers();
@@ -122,4 +99,13 @@ class _WatchRunPageState extends State<WatchRunPage> {
       );
     });
   }
+
+  void refreshData() {
+    UserPresenter.getActivePresenter().getRunPositions(widget.runId).then((data){
+      _addAllRunners(data);
+    }).catchError((error) {
+      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
+    });
+  }
 }
+

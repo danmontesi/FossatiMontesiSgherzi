@@ -1,15 +1,12 @@
-import 'dart:convert';
 
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:data4help/data4help/UserData.dart';
+import 'package:data4help/model/UserData.dart';
+import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class DashboardDetailsPage extends StatefulWidget {
-  final String authtoken;
-
-  DashboardDetailsPage(this.authtoken, {Key key, this.title}) : super(key: key);
+  DashboardDetailsPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
@@ -200,14 +197,15 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
     }
   }
 
-  void _loadDataOfDatetime() async {
-    final response = await http.get(
-        'https://data4halp.herokuapp.com/indiv/data?auth_token=${widget.authtoken}&begin_date=$_datetimeToLoad&end_date=${_datetimeToLoad + "T23:59:59Z"}');
-    print(response.body);
-    if(response.statusCode==200) {
+
+
+  void _loadDataOfDatetime() {
+    UserPresenter.getActivePresenter().loadDataOfDatetime(_datetimeToLoad).then((data){
       setState(() {
-        _userData = UserData.fromJson(json.decode(response.body)["data"]);
+        _userData=data;
       });
-    }
+    }).catchError((error) {
+      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
+    });
   }
 }
