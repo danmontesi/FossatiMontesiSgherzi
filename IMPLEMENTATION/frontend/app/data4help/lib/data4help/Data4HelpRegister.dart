@@ -1,8 +1,5 @@
-import 'dart:convert';
-
-import 'package:data4help/data4help/Dashboard.dart';
+import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class Data4HelpRegister extends StatelessWidget {
@@ -10,8 +7,7 @@ class Data4HelpRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: _buildBar(context),
-        body: Data4HelpRegisterPage());
+        appBar: _buildBar(context), body: Data4HelpRegisterPage());
   }
 
   Widget _buildBar(BuildContext context) {
@@ -45,7 +41,6 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
   String _surname = "";
 
   bool _registerDisabled = false;
-
 
   _Data4HelpRegisterPageState() {
     _emailFilter.addListener(_emailListen);
@@ -98,17 +93,16 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-        child: new Column(
-          children: <Widget>[
-            _buildTextFields(),
-            _buildButtons(),
-          ],
-        ),
-      ));
+        padding: EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: new Column(
+            children: <Widget>[
+              _buildTextFields(),
+              _buildButtons(),
+            ],
+          ),
+        ));
   }
-
 
   Widget _buildTextFields() {
     return new Container(
@@ -221,52 +215,20 @@ class _Data4HelpRegisterPageState extends State<Data4HelpRegisterPage> {
       _registerDisabled = true;
     });
 
-    fetchAuthToken().then((token) {
+    UserPresenter(_email, _password)
+        .registerUser(
+            _ssn, _name, _surname, _datetimeFilter.text, "DummySmartwatch1")
+        .then((token) {
       print(token);
       Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Dashboard(token)));
-    })
-        .catchError((ex) {
+    }).catchError((ex) {
       Scaffold.of(context).showSnackBar(new SnackBar(
-
         content: new Text("$ex"),
       ));
-
     }).whenComplete(() {
       setState(() {
         _registerDisabled = false;
       });
     });
   }
-
-  Future<String> fetchAuthToken() async {
-    Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("email", () => _email);
-    body.putIfAbsent("username", () => _email);
-    body.putIfAbsent("password", () => _password);
-    body.putIfAbsent("SSN", () => _ssn);
-    body.putIfAbsent("name", () => _name);
-    body.putIfAbsent("surname", () => _surname);
-    body.putIfAbsent("birthday", () => _datetimeFilter.text);
-    body.putIfAbsent("smartwatch", () => "TestSmartwatch1");
-
-    final response = await http.post(
-        'https://data4halp.herokuapp.com/auth/register_user',
-        body: body);
-
-    if (response.statusCode == 200) {
-      if (json.decode(response.body)['success'] == true) {
-        return json.decode(response.body)['auth_token'];
-      }
-      print(response.body);
-      var error = json.decode(response.body)['message'];
-      throw Exception('Server says: $error');
-    } else {
-      throw Exception('Failed to contact server.');
-    }
-  }
 }
-
-enum FormType { login, register }

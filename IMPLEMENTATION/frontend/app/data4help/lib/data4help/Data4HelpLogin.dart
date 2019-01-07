@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:data4help/data4help/Dashboard.dart';
 import 'package:data4help/data4help/Data4HelpRegister.dart';
+import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -125,10 +126,10 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
       _loginDisabled = true;
     });
 
-    fetchAuthToken().then((token) {
+    new UserPresenter(_email, _password).login().then((token) {
       print(token);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => Dashboard(token)));
+          context, MaterialPageRoute(builder: (context) => Dashboard()));
     }).catchError((e) {
       Scaffold.of(context).showSnackBar(new SnackBar(
         content: new Text("$e"),
@@ -145,27 +146,7 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
         context, MaterialPageRoute(builder: (context) => Data4HelpRegister()));
   }
 
-  Future<String> fetchAuthToken() async {
-    Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("email", () => _email);
-    body.putIfAbsent("password", () => _password);
-    body.putIfAbsent("type", () => "individual");
 
-    final response = await http.post(
-        'https://data4halp.herokuapp.com/auth/login',
-        body: body);
-
-    if (response.statusCode == 200) {
-      if (json.decode(response.body)['success'] == true) {
-        return json.decode(response.body)['auth_token'];
-      }
-      print(response.body);
-      var error = json.decode(response.body)['message'];
-      throw Exception('Server says: $error');
-    } else {
-      throw Exception('Failed to contact server.');
-    }
-  }
 }
 
 enum FormType { login, register }

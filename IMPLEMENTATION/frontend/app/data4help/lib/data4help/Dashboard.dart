@@ -5,25 +5,23 @@ import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardPendingQueriesRequests.dart';
 import 'package:data4help/data4help/dashboard/DashboardRunRegistrationPage.dart';
 import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
+import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Dashboard extends StatelessWidget {
-  final String authtoken;
 
-  Dashboard(this.authtoken);
+  Dashboard();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(authtoken, title: 'Data4Help - Dashboard');
+    return MyHomePage(title: 'Data4Help - Dashboard');
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final String authtoken;
-
-  MyHomePage(this.authtoken, {Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -38,7 +36,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    _retriveUserPersonalData();
+    UserPresenter.getActivePresenter().retriveUserPersonalData().then((data){
+      setState(() {
+        _username = "${data.name} ${data.surname}";
+      });
+
+    }).catchError((er) {
+      setState(() {
+        _username = "user";
+      });
+
+    });
     super.initState();
   }
 
@@ -138,31 +146,20 @@ class _MyHomePageState extends State<MyHomePage> {
           child: _dashboardMainPage,
         );
       case 1:
-        return new DashboardDetailsPage(widget.authtoken);
+        return new DashboardDetailsPage();
       case 2:
         return new Center(
           child: Text("Function not implemented yet."),
         );
       case 3:
-        return new DashboardRunRegistrationPage(widget.authtoken);
+        return new DashboardRunRegistrationPage();
       case 4:
-        return new DashboardTestPage(widget.authtoken);
+        return new DashboardTestPage();
       case 5:
-        return new DashboardPendingQueriesRequestsPage(widget.authtoken);
+        return new DashboardPendingQueriesRequestsPage();
     }
     return new Text("WTF");
   }
 
-  void _retriveUserPersonalData() async {
-    final response = await http.get(
-        'https://data4halp.herokuapp.com/indiv/user?auth_token=${widget.authtoken}');
 
-    if (response.statusCode == 200) {
-      print(response.body);
-      final userData = json.decode(response.body)["user"];
-      setState(() {
-        _username = "${userData["name"]} ${userData["surname"]}";
-      });
-    }
-  }
 }

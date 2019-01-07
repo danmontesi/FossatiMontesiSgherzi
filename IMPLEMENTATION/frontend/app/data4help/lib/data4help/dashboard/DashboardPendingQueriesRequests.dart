@@ -1,12 +1,14 @@
 import 'dart:convert';
 
+import 'package:data4help/model/PendingQueryRequest.dart';
+import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class DashboardPendingQueriesRequestsPage extends StatefulWidget {
-  DashboardPendingQueriesRequestsPage(this.authtoken, {Key key, this.title})
+  DashboardPendingQueriesRequestsPage({Key key, this.title})
       : super(key: key);
-  final String title, authtoken;
+  final String title;
 
   @override
   _DashboardPendingQueriesRequestsPageState createState() =>
@@ -17,6 +19,12 @@ class _DashboardPendingQueriesRequestsPageState
     extends State<DashboardPendingQueriesRequestsPage> {
   List<PendingQueryRequest> queryList = [];
 
+
+  @override
+  void initState() {
+    _retriveQueries();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return new Column(
@@ -39,11 +47,11 @@ class _DashboardPendingQueriesRequestsPageState
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     new MaterialButton(
-                      onPressed: () => _respondToQuery(index, true),
+                      onPressed: () => _respondToQuery(queryList[index].queryId, true),
                       child: new Text("ACCEPT"),
                     ),
                     new MaterialButton(
-                      onPressed: () => _respondToQuery(index, false),
+                      onPressed: () => _respondToQuery(queryList[index].queryId, false),
                       child: new Text("DENY"),
                     ),
                   ],
@@ -56,54 +64,30 @@ class _DashboardPendingQueriesRequestsPageState
     );
   }
 
-  _respondToQuery(int index, bool accept) async {
-    Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("auth_token", () => widget.authtoken);
-    body.putIfAbsent("query_id", () => queryList[index].queryId.toString());
-    body.putIfAbsent("decision", () => accept.toString());
 
-    final response = await http.post(
-        'https://data4halp.herokuapp.com/queries/query/individual/pending',
-        body: body);
-    print(response.body);
 
-    setState(() {
-      Scaffold.of(context).showSnackBar(new SnackBar(
-          content: new Text(
-              json.decode(response.body)['message'] ?? "Connection error!")));
+
+
+  void _retriveQueries() {
+    UserPresenter.getActivePresenter().retrivePendingQueries().then((data){
+      setState(() {
+        queryList=data;
+      });
+
+    }).catchError((error) {
+      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
     });
-    _retriveQueries();
   }
 
-  _retriveQueries() async {
-    final response = await http.get(
-        'https://data4halp.herokuapp.com/queries/query/individual/pending?auth_token=${widget.authtoken}');
-    queryList.clear();
-
-    if (response.statusCode == 200) {
-      print(response.body);
-      try {
-        json.decode(response.body)["queries"].forEach((elem) {
-          queryList.add(PendingQueryRequest.fromJson(elem));
-        });
-        setState(() {});
-      } catch (error) {
-        print(error);
-        Scaffold.of(context)
-            .showSnackBar(new SnackBar(content: new Text("Connection error!")));
-      }
-    } else {
-      Scaffold.of(context).showSnackBar(new SnackBar(
-          content: new Text(json.decode(response.body)['message'])));
-    }
+  _respondToQuery(int queryId, bool accept) {
+    UserPresenter.getActivePresenter().respondToPendingQuery(queryId, accept).then((data){
+      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$data")));
+    }).catchError((error) {
+      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
+    }).whenComplete((){
+      _retriveQueries();
+    });
   }
 }
 
-class PendingQueryRequest {
-  final int queryId;
 
-  PendingQueryRequest(this.queryId);
-
-  PendingQueryRequest.fromJson(Map<String, dynamic> json)
-      : queryId = json["id"];
-}

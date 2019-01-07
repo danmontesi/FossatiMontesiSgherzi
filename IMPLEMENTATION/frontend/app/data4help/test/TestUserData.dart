@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:data4help/data4help/UserData.dart';
+import 'package:data4help/model/UserData.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
