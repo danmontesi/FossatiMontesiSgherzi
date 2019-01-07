@@ -121,7 +121,7 @@ async function getData(userId, fromDate = undefined, toDate = undefined, isIndiv
  * @param token: String
  * @returns {Promise<{success: boolean, user: *}>}
  */
-  async function getUserInfo(token) {
+async function getUserInfo(token) {
 
   // Get the user_id
   const {
@@ -146,6 +146,8 @@ async function getData(userId, fromDate = undefined, toDate = undefined, isIndiv
     // Don't send internal id and password
     rows[0].id = undefined
     rows[0].password = undefined
+
+    await client.release()
 
     return {
       success: true,
