@@ -4,9 +4,6 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const nm = require('nodemailer')
-const {
-  Pool
-} = require('pg')
 
 /**
  * Enums definition
@@ -28,21 +25,12 @@ const ACTION = {
 const requiredParams = require('./requiredParameters')
 
 /**
- * Create a connection pool for the database
- * @type {PG.Pool}
+ * Import function that allows to connect to the pool
+ * @returns Promise<Pg.Client>
  */
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL + '?ssl=true',
-  max: 5
-})
-
-/**
- * Connects to the database
- * @returns {Promise<Client>}
- */
-async function connect() {
-  return await pool.connect()
-}
+const {
+  connect
+} = require('../config')
 
 /**
  * Sends a verification email with a link, by clicking which the client is automatically verified
@@ -99,7 +87,7 @@ function checkRequiredParams(entity, actor, action) {
  * @param smartwatch: String
  * @returns {Promise<String>}
  */
-async function registerUser({email, password, SSN, name, surname, birthday, smartwatch}) {
+async function registerUser({ email, password, SSN, name, surname, birthday, smartwatch }) {
 
   // Check if the required parameters are in the request
   checkRequiredParams(arguments['0'], ACTOR.INDIVIDUAL, ACTION.REGISTRATION)
@@ -158,7 +146,7 @@ async function registerUser({email, password, SSN, name, surname, birthday, smar
  * @param surname: String
  * @returns {Promise<String>}
  */
-async function registerRunOrganizer({email, password, name, surname}) {
+async function registerRunOrganizer({ email, password, name, surname }) {
 
   // Check if the required parameters are in the request
   checkRequiredParams(arguments['0'], ACTOR.RUN_ORGANIZER, ACTION.REGISTRATION)
@@ -206,7 +194,7 @@ async function registerRunOrganizer({email, password, name, surname}) {
 
 }
 
-async function registerCompany({email, password, company_name}) {
+async function registerCompany({ email, password, company_name }) {
 
   // Check if the required parameters are in the request
   checkRequiredParams(arguments['0'], ACTOR.COMPANY, ACTION.REGISTRATION)
@@ -303,7 +291,7 @@ async function verify(mail, code, type) {
  * @param type: ACTOR.INDIVIDUAL | ACTOR.RUN_ORGANIZER | ACTOR.COMPANY
  * @returns {Promise<void>}
  */
-async function login({email, password, type}) {
+async function login({ email, password, type }) {
 
   // Check if the required parameters are in the request
   checkRequiredParams(arguments['0'], type, ACTION.LOGIN)

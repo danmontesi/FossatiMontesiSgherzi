@@ -1,5 +1,10 @@
 const express = require('express')
 const indivRouter = express.Router()
+
+const {
+  saveData
+} = require('../../managers/individual/FunctionalIndividualsManager')
+
 const IndividualsManager = require('../../managers/individual/IndividualsManager')
 const {
   authorizationMiddleware
@@ -9,8 +14,8 @@ indivRouter.use(authorizationMiddleware('individual'))
 
 indivRouter.post('/data', async (req, res, next) => {
   try {
-    const user = new IndividualsManager(req.body)
-    let message = await user.saveData()
+    console.log('here')
+    let message = await saveData(req.body.auth_token, req.body.data)
     res.status(200).send(message)
   } catch (err) {
     next(err)

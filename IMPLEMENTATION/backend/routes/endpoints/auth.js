@@ -1,16 +1,36 @@
 const express = require('express')
 const authRouter = express.Router()
 
-const AuthenticationManager = require('../../managers/authentication/AuthenticationManager')
 const {
   registerUser,
   registerCompany,
   registerRunOrganizer,
   verify,
   login
-} = require('../../managers/authentication/FunctionalAuthenticationManager')
+} = require('../../managers/authentication/AuthenticationManager')
 
 
+/**
+ * METHOD: POST
+ * ENDPOINT: /auth/login
+ * Tries to log in the actor if he posts the required parameters
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    auth_token: ...authToken
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: ...status code
+ *    message: message
+ *  }
+ * RESPONSE STATUS:
+ *  200: User login successful
+ *  403: Wrong username or password
+ *  500: An error occurred
+ */
 authRouter.post('/login', async (req, res, next) => {
   try {
     // const user = new AuthenticationManager(req.body, req.body.type, 'login')
@@ -25,6 +45,28 @@ authRouter.post('/login', async (req, res, next) => {
   }
 })
 
+/**
+ * METHOD: POST
+ * ENDPOINT: /auth/register_user
+ * Tries to registers an individual user if if the request's body has the required parameters
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    auth_token: ...authToken
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: ...status code
+ *    message: message
+ *  }
+ *
+ * RESPONSE STATUS:
+ *  200: Actor login successful
+ *  403: Wrong username or password
+ *  500: An error occurred
+ */
 authRouter.post('/register_user', async (req, res, next) => {
   try {
     // const user = new AuthenticationManager(req.body)
@@ -40,6 +82,28 @@ authRouter.post('/register_user', async (req, res, next) => {
   }
 })
 
+/**
+ * METHOD: POST
+ * ENDPOINT: /auth/register_company
+ * Tries to registers a company if if the request's body has the required parameters
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    auth_token: ...authToken
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: ...status code
+ *    message: message
+ *  }
+ *
+ * RESPONSE STATUS:
+ *  200: Actor login successful
+ *  403: Wrong username or password
+ *  500: An error occurred
+ */
 authRouter.post('/register_company', async (req, res, next) => {
   try {
     // const company = new AuthenticationManager(req.body, 'company', 'registration')
@@ -55,7 +119,28 @@ authRouter.post('/register_company', async (req, res, next) => {
   }
 })
 
-
+/**
+ * METHOD: POST
+ * ENDPOINT: /auth/register_user
+ * Tries to registers a run organizer if if the request's body has the required parameters
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    auth_token: ...authToken
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: ...status code
+ *    message: message
+ *  }
+ *
+ * RESPONSE STATUS:
+ *  200: Actor login successful
+ *  403: Wrong username or password
+ *  500: An error occurred
+ */
 authRouter.post('/register_run_organizer', async (req, res, next) => {
 
   try {
@@ -73,6 +158,29 @@ authRouter.post('/register_run_organizer', async (req, res, next) => {
 
 })
 
+
+
+/**
+ * METHOD: GET
+ * ENDPOINT: /auth/verify
+ * Verifies the actor account
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    message: 'Account verified'
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: ...status code
+ *    message: message
+ *  }
+ * RESPONSE STATUS:
+ *  200: Verification successful
+ *  401: Code is invalid
+ *  500: An error occurred
+ */
 authRouter.get('/verify', async (req, res, next) => {
 
   try {
