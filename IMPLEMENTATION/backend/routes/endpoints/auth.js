@@ -4,6 +4,8 @@ const authRouter = express.Router()
 const AuthenticationManager = require('../../managers/authentication/AuthenticationManager')
 const {
   registerUser,
+  registerCompany,
+  registerRunOrganizer,
   verify,
   login
 } = require('../../managers/authentication/FunctionalAuthenticationManager')
@@ -40,9 +42,9 @@ authRouter.post('/register_user', async (req, res, next) => {
 
 authRouter.post('/register_company', async (req, res, next) => {
   try {
-    const company = new AuthenticationManager(req.body, 'company', 'registration')
-    company.checkValidRegParams()
-    let auth_token = await company.register()
+    // const company = new AuthenticationManager(req.body, 'company', 'registration')
+    // company.checkValidRegParams()
+    let auth_token = await registerCompany(req.body)
     res.status(200).send({
       status: 200,
       success: true,
@@ -57,20 +59,19 @@ authRouter.post('/register_company', async (req, res, next) => {
 authRouter.post('/register_run_organizer', async (req, res, next) => {
 
   try {
-    const runOrganizer = new AuthenticationManager(req.body, 'run_organizer', 'registration')
-    runOrganizer.checkValidRegParams()
-    let auth_token = await runOrganizer.register()
+    // const runOrganizer = new AuthenticationManager(req.body, 'run_organizer', 'registration')
+    // runOrganizer.checkValidRegParams()
+    // let auth_token = await runOrganizer.register()
+    const token = await registerRunOrganizer(req.body)
     res.status(200).send({
-      status: 200,
       success: true,
-      auth_token: auth_token
+      auth_token: token
     })
   } catch (err) {
     next(err)
   }
 
 })
-
 
 authRouter.get('/verify', async (req, res, next) => {
 

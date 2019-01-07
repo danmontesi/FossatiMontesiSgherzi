@@ -6,23 +6,23 @@ const {
   LOCAL_BASE_URL
 } = require('../config')
 
-// fetch(LOCAL_BASE_URL + 'queries/query', {
-//   method: 'POST',
-//   headers: new fetch.Headers({
-//     'Content-Type': 'application/json'
-//   }),
-//   body: JSON.stringify({
-//     auth_token: companyToken,
-//     query: {
-//       type: 'individual',
-//       SSN: 'SGHRCM65PD7L858L',
-//       additional_params: {}
-//     }
-//   })
-// })
-//   .then(res => res.json())
-//   .then(console.log)
-//   .catch(console.log)
+fetch(LOCAL_BASE_URL + 'queries/query', {
+  method: 'POST',
+  headers: new fetch.Headers({
+    'Content-Type': 'application/json'
+  }),
+  body: JSON.stringify({
+    auth_token: companyToken,
+    query: {
+      type: 'individual',
+      SSN: '1234567890123456',
+      additional_params: {}
+    }
+  })
+})
+  .then(res => res.json())
+  .then(console.log)
+  .catch(console.log)
 // //
 // // fetch(LOCAL_BASE_URL + 'queries/query', {
 // //   method: 'POST',
@@ -79,17 +79,17 @@ const {
 //   .then(r => console.log(r.queries.individual))
 //   .catch(console.log)
 
-fetch(LOCAL_BASE_URL + 'queries/query/data?' +
-  'auth_token=' + companyToken + '&' +
-  'query_id=93', {
-  method: 'GET',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  })
-})
-  .then(res => res.json())
-  .then(res => console.log(res.data))
-  .catch(console.log)
+// fetch(LOCAL_BASE_URL + 'queries/query/data?' +
+//   'auth_token=' + companyToken + '&' +
+//   'query_id=93', {
+//   method: 'GET',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   })
+// })
+//   .then(res => res.json())
+//   .then(res => console.log(res.data))
+//   .catch(console.log)
 
 // fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?' +
 //   'auth_token=' + userToken, {

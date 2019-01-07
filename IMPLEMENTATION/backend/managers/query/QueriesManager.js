@@ -201,11 +201,12 @@ async function checkQuery(query) {
 }
 
 async function checkIndividualQuery(query) {
+  console.log(query)
   const client = await connect()
   try {
     const {
       rows: user
-    } = await client.query('SELECT id FROM individual_account WHERE SSN = $1 LIMIT 1', [query.ssn])
+    } = await client.query('SELECT id FROM individual_account WHERE SSN = $1 LIMIT 1', [query.SSN])
     if (user.length === 0) {
       let err = new Error('User not found')
       err.status = 404
