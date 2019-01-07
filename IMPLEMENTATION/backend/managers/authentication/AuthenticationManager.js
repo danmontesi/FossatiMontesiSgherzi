@@ -1,284 +1,377 @@
-const requiredParams = require('./requiredParameters')
+/**
+ * Dependency Import
+ */
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const nm = require('nodemailer')
-
 const {
   Pool
 } = require('pg')
 
-class AuthenticationManager {
+/**
+ * Enums definition
+ */
+const ACTOR = {
+  INDIVIDUAL: 'individual',
+  RUN_ORGANIZER: 'run_organizer',
+  COMPANY: 'company'
+}
 
-  constructor(reqBody, actor = 'individual', action = 'registration') {
-    this.authPool = new Pool({
-      connectionString: process.env.DATABASE_URL + '?ssl=true',
-      max: 5
-    })
-    this.actor = actor
-    this.action = action
-    requiredParams[actor][action].forEach(param => {
-      if (!(param in reqBody) || reqBody[param] === '') throw new Error(`Missing ${param}`)
-      this[param] = (param === 'password' && action === 'registration') ? bcrypt.hashSync(reqBody[param], 8) : reqBody[param]
-    })
+const ACTION = {
+  LOGIN: 'login',
+  REGISTRATION: 'registration'
+}
 
-  }
+/**
+ * Import required params for login and registration of actors
+ */
+const requiredParams = require('./requiredParameters')
 
-  sendVerificationMail(mail, code, type) {
-    console.log('Sending mail to ' + mail)
+/**
+ * Create a connection pool for the database
+ * @type {PG.Pool}
+ */
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL + '?ssl=true',
+  max: 5
+})
 
-    const transporter = nm.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.MAIL_ADDR,
-        pass: process.env.MAIL_PASSWD
-      }
-    })
+/**
+ * Connects to the database
+ * @returns {Promise<Client>}
+ */
+async function connect() {
+  return await pool.connect()
+}
 
-    const mailOptions = {
-      from: process.env.MAIL_ADDR,
-      to: mail,
-      subject: 'Data4Help, account verification',
-      html: `<p>Copy the following link in the browser https://data4halp.herokuapp.com/auth/verify?mail=${mail}&code=${code}&type=${type}</p>`
+/**
+ * Sends a verification email with a link, by clicking which the client is automatically verified
+ * @param mail String: The email to which send the verification code
+ * @param code String: The verification code
+ * @param type String: The type of actor
+ */
+function sendVerificationMail(mail, code, type) {
+  console.log('Sending mail to ' + mail)
+
+  const transporter = nm.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.MAIL_ADDR,
+      pass: process.env.MAIL_PASSWD
     }
+  })
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) throw error
+  const mailOptions = {
+    from: process.env.MAIL_ADDR,
+    to: mail,
+    subject: 'Data4Help, account verification',
+    html: `<p>Copy the following link in the browser https://data4halp.herokuapp.com/auth/verify?mail=${mail}&code=${code}&type=${type}</p>`
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) throw error
+    console.log(info)
+  })
+}
+
+/**
+ * Checks if the body of the request has the proper parameters, otherwise throws an error
+ * @param entity: JSON The body of the registration request
+ * @param actor: ACTOR.INDIVIDUAL | ACTOR.RUN_ORGANIZER | ACTOR.COMPANY
+ * @param action: ACTION.LOGIN | ACTION.REGISTER
+ */
+function checkRequiredParams(entity, actor, action) {
+  requiredParams[actor][action].forEach(param => {
+    if (!(param in entity) || entity[param] === '') throw new Error(`Missing ${param}`)
+  })
+}
+
+
+/**
+ * Registers the given user
+ * The body of the request must have the following param
+ * @param email: String
+ * @param password: String
+ * @param SSN: String
+ * @param name: String
+ * @param surname: String
+ * @param birthday: Date
+ * @param smartwatch: String
+ * @returns {Promise<String>}
+ */
+async function registerUser({email, password, SSN, name, surname, birthday, smartwatch}) {
+
+  // Check if the required parameters are in the request
+  checkRequiredParams(arguments['0'], ACTOR.INDIVIDUAL, ACTION.REGISTRATION)
+
+  // Hash the password
+  const pwd = bcrypt.hashSync(password, 8)
+  const client = await connect()
+
+  try {
+
+    await client.query('BEGIN')
+
+    // Insert the user into the database
+    const {
+      rows: user
+    } = await client.query(
+      'INSERT INTO ' +
+      'individual_account(email, password, SSN, name, surname, birth_date, smartwatch, automated_sos, verified ) ' +
+      'VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [email, pwd, SSN, name, surname, birthday, smartwatch, false, false])
+
+    // Create a token
+    const token = jwt.sign({
+      id: user[0].id,
+      email: user[0].email,
+      begin_time: new Date()
+    }, process.env.JWT_SECRET, {
+      expiresIn: 86400 // Expire in 24h
     })
-  }
 
-  checkValidRegParams() {
-    switch (this.actor) {
-      case 'individual':
-        return this._checkValidIndividualRegParams()
-      case 'company':
-        return this._checkValidCompanyRegParams()
-      case 'run_organizer':
-        return this._checkValidRunOrganizerRegParams()
-      default:
-        throw new Error('Unrecognized individual')
-    }
-  }
+    // Insert the token into the database and commit the transaction
+    await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [user[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+    await client.query('COMMIT')
 
-  async register() {
-    switch (this.actor) {
-      case 'individual':
-        return await this._registerIndividual()
-      case 'company':
-        return await this._registerCompany()
-      case 'run_organizer':
-        return await this._registerRunOrganizer()
-      default:
-        throw new Error('Unrecognized individual')
-    }
-  }
+    sendVerificationMail(user[0].email, token, ACTOR.INDIVIDUAL)
 
-  _checkValidIndividualRegParams() {
+    await client.release()
+    return token
 
-    if (this.SSN.length !== 16) {
-      let err = new Error('SSN Not valid')
+  } catch (err) {
+    await client.query('ROLLBACK')
+    await client.release()
+    if (err.message.includes('duplicate')) {
+      err.message = 'Mail already in use'
       err.status = 422
-      throw  err
     }
+    throw err
+  }
 
-    if (false) {
-      // CHECK IF THE SMARTWATCH IS IN THE SUPPORTED SMARTWATCH LIST
-      let err = new Error('Unsupported Smartwatch')
+}
+
+/**
+ * Registers the given run organizer
+ * @param email: String
+ * @param password: String
+ * @param name: String
+ * @param surname: String
+ * @returns {Promise<String>}
+ */
+async function registerRunOrganizer({email, password, name, surname}) {
+
+  // Check if the required parameters are in the request
+  checkRequiredParams(arguments['0'], ACTOR.RUN_ORGANIZER, ACTION.REGISTRATION)
+
+  // Hash the password
+  const pwd = bcrypt.hashSync(password, 8)
+  const client = await connect()
+
+  try {
+
+    await client.query('BEGIN')
+
+    // Insert the run organizer into the database
+    const {
+      rows: runOrganizer
+    } = await client.query('INSERT INTO run_organizer_account(email, password, name, surname, verified) VALUES($1, $2, $3, $4, $5) RETURNING *', [email, pwd, name, surname, false])
+
+    // Create a token
+    const token = jwt.sign({
+      id: runOrganizer[0].id,
+      email: runOrganizer[0].email,
+      begin_time: new Date()
+    }, process.env.JWT_SECRET, {
+      expiresIn: 86400 // Expire in 24h
+    })
+
+    // Insert the token into the database and commit the transaction
+    await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [runOrganizer[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+    await client.query('COMMIT')
+
+    sendVerificationMail(runOrganizer[0].email, token, ACTOR.RUN_ORGANIZER)
+
+    await client.release()
+    return token
+
+  } catch (err) {
+    await client.query('ROLLBACK')
+    await client.release()
+    if (err.message.includes('duplicate')) {
+      err.message = 'Mail already in use'
       err.status = 422
-      throw  err
     }
-
+    throw err
   }
 
-  _checkValidCompanyRegParams() {
-    // already satisfied
-  }
+}
 
-  _checkValidRunOrganizerRegParams() {
-    // already satisfied
-  }
+async function registerCompany({email, password, company_name}) {
 
-  async login() {
-    const client = await this.authPool.connect()
-    try {
-      await client.query('BEGIN')
-      const {
-        rows
-      } = await client.query('SELECT * FROM ' + `${this.actor}_account` + ' WHERE email = $1', [this.email])
+  // Check if the required parameters are in the request
+  checkRequiredParams(arguments['0'], ACTOR.COMPANY, ACTION.REGISTRATION)
 
-      if (rows.length === 0) {
-        console.log('------------------------------------ USER NOT FOUND ------------------------------------')
-        let err = new Error('User Not Found')
-        err.status = 404
-        throw err
-      }
-      if (!rows[0].verified) {
-        let err = new Error('User not verified')
-        err.status = 401
-        throw err
-      }
+  // Hash the password
+  const pwd = bcrypt.hashSync(password, 8)
+  const client = await connect()
 
-      if (await bcrypt.compare(this.password, rows[0].password)) {
-        console.log('------------------------------------ PASSWORD VERIFIED ------------------------------------')
-        console.log('---------------------------------- GENERATING AUTH TOKEN ----------------------------------')
-        const token = jwt.sign({
-          id: rows[0].id,
-          email: rows[0].email,
-          begin_time: new Date()
-        }, process.env.JWT_SECRET, {
-          expiresIn: 86400 // By default expire in 24h
-        })
+  try {
 
-        await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [rows[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+    await client.query('BEGIN')
 
-        await client.query('COMMIT')
-        await client.release()
-        return token
-      }
+    // Insert the run organizer into the database
+    const {
+      rows: company
+    } = await client.query('INSERT INTO company_account(email, password, company_name, verified) VALUES($1, $2, $3, $4) RETURNING *', [email, pwd, company_name, false])
 
-      let wrongPasswd = new Error('Invalid Credentials')
-      wrongPasswd.status = 403
-      throw wrongPasswd
+    // Create a token
+    const token = jwt.sign({
+      id: company[0].id,
+      email: company[0].email,
+      begin_time: new Date()
+    }, process.env.JWT_SECRET, {
+      expiresIn: 86400 // Expire in 24h
+    })
 
-    } catch (err) {
-      await client.query('ROLLBACK')
-      await client.release()
-      throw err
+    // Insert the token into the database and commit the transaction
+    await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [company[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+    await client.query('COMMIT')
+
+    sendVerificationMail(company[0].email, token, ACTOR.COMPANY)
+    await client.release()
+
+    return token
+
+  } catch (err) {
+    await client.query('ROLLBACK')
+    await client.release()
+    if (err.message.includes('duplicate')) {
+      err.message = 'Mail already in use'
+      err.status = 422
     }
+    throw err
   }
 
+}
 
-  async _registerIndividual() {
-    const client = await this.authPool.connect()
-    try {
+/**
+ * Verify the account via the verification code.
+ * @param mail: String
+ * @param code: String The verification code sent to the user
+ * @param type: ACTOR.INDIVIDUAL | ACTOR.RUN_ORGANIZER | ACTOR.COMPANY
+ * @returns {Promise<{success: boolean, message: string}>}
+ */
+async function verify(mail, code, type) {
+
+  const client = await connect()
+
+  try {
+
+    // Decode and verify the token
+    const decodedPayload = jwt.verify(code, process.env.JWT_SECRET)
+
+    console.log(decodedPayload)
+
+    if (decodedPayload.email === mail) {
+
+      // Update and set the verified flag on the database
       await client.query('BEGIN')
-      const {
-        rows
-      } = await client.query('INSERT INTO individual_account(email, password, SSN, name, surname, birth_date, smartwatch, automated_sos, verified ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *', [...this.toArray(), false, false])
-      const token = jwt.sign({
-        id: rows[0].id,
-        email: rows[0].email,
-        begin_time: new Date()
-      }, process.env.JWT_SECRET, {
-        expiresIn: 86400 // By default expire in 24h
-      })
-
-      await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [rows[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+      await client.query(`UPDATE ${type}_account SET verified=$1 WHERE email=$2`, [true, mail])
       await client.query('COMMIT')
-      this.sendVerificationMail(rows[0].email, token, 'individual')
       await client.release()
-      return token
-    } catch (err) {
-      await client.query('ROLLBACK')
-      await client.release()
-      if (err.message.includes('email')) {
-        err.message = 'Mail already in use'
-        err.status = 422
+
+      return {
+        success: true,
+        message: 'Email verified'
       }
-      throw err
-    }
-  }
+    } else throw new Error()
 
-
-  async _registerCompany() {
-    const client = await this.authPool.connect()
-    try {
-      await client.query('BEGIN')
-      const {
-        rows
-      } = await client.query('INSERT INTO company_account(email, password, company_name, verified) VALUES($1, $2, $3, $4) RETURNING *', [...this.toArray(), false])
-      const token = jwt.sign({
-        id: rows[0].id,
-        email: rows[0].email,
-        begin_time: new Date()
-      }, process.env.JWT_SECRET, {
-        expiresIn: 86400 // By default expire in 24h
-      })
-      await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [rows[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
-      await client.query('COMMIT')
-      this.sendVerificationMail(rows[0].email, token, 'company')
-      await client.release()
-      return token
-    } catch (err) {
-      client.query('ROLLBACK')
-      client.release()
-      if (err.message.includes('duplicate')) {
-        err.message = 'Mail already in use'
-        err.status = 422
-      }
-      throw err
-    }
-  }
-
-  async _registerRunOrganizer() {
-    const client = await this.authPool.connect()
-    try {
-      await client.query('BEGIN')
-      const {
-        rows
-      } = await client.query('INSERT INTO run_organizer_account(email, password, name, surname, verified) VALUES($1, $2, $3, $4, $5) RETURNING *', [...this.toArray(), false])
-      const token = jwt.sign({
-        id: rows[0].id,
-        email: rows[0].email,
-        begin_time: new Date()
-      }, process.env.JWT_SECRET, {
-        expiresIn: 86400 // By default expire in 24h
-      })
-      await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [rows[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
-      await client.query('COMMIT')
-      this.sendVerificationMail(rows[0].email, token, 'run_organizer')
-      await client.release()
-      return token
-    } catch (err) {
-      client.query('ROLLBACK')
-      client.release()
-      if (err.message.includes('duplicate')) {
-        err.message = 'Mail already in use'
-        err.status = 422
-      }
-      throw err
-    }
-  }
-
-  static async verify(mail, code, type) {
-    const client = await new Pool({
-      connectionString: process.env.DATABASE_URL + '?ssl=true',
-      max: 5
-    }).connect()
-    try {
-      const decodedPayload = jwt.verify(code, process.env.JWT_SECRET)
-      console.log(decodedPayload)
-      if (decodedPayload.email === mail) {
-
-        await client.query('BEGIN')
-        await client.query('UPDATE' + ` ${type}_account ` + ' SET verified=$1 WHERE email=$2', [true, mail])
-        await client.query('COMMIT')
-        await client.release()
-        return {
-          success: true,
-          message: 'Email verified'
-        }
-      }
-
-    } catch (err) {
-      err.status = 401
-      err.message = 'Code is invalid'
-      client.query('ROLLBACK')
-      client.release()
-      throw err
-    }
-  }
-
-  toJSON() {
-    let template = {}
-    requiredParams[this.actor][this.action].forEach(param => template[param] = this[param])
-    return template
-  }
-
-  toArray() {
-    let template = []
-    requiredParams[this.actor][this.action].forEach(param => template.push(this[param]))
-    return template
+  } catch (err) {
+    err.status = 401
+    err.message = 'Code is invalid'
+    client.query('ROLLBACK')
+    client.release()
+    throw err
   }
 }
 
-module.exports = AuthenticationManager
+/**
+ * Logs an actor in and gives him back a token
+ * The body of the request must have the following params
+ * @param email: String
+ * @param password: String
+ * @param type: ACTOR.INDIVIDUAL | ACTOR.RUN_ORGANIZER | ACTOR.COMPANY
+ * @returns {Promise<void>}
+ */
+async function login({email, password, type}) {
+
+  // Check if the required parameters are in the request
+  checkRequiredParams(arguments['0'], type, ACTION.LOGIN)
+
+  // Connects to the database pool
+  const client = await connect()
+
+  try {
+
+    // Begins the transaction
+    await client.query('BEGIN')
+
+    const {
+      rows: actor
+    } = await client.query(`SELECT * FROM ${type}_account WHERE email = $1`, [email])
+
+    // If the user wasn't found on the db, throw an error
+    if (actor.length === 0) {
+      let err = new Error('User not found')
+      err.status = 404
+      throw err
+    }
+
+    // If the user hasb't verified his account, throw an error
+    if (!actor[0].verified) {
+      let err = new Error('User not verified')
+      err.status = 401
+      throw err
+    }
+
+    // Compare the password and its hashed version
+    if (await bcrypt.compare(password, actor[0].password)) {
+
+      const token = jwt.sign({
+        id: actor[0].id,
+        email: actor[0].email,
+        begin_time: new Date()
+      }, process.env.JWT_SECRET, {
+        expiresIn: 86400 // By default expire in 24h
+      })
+
+      // Push the new token in the database
+      await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [actor[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+
+      // Commit the transaction
+      await client.query('COMMIT')
+      await client.release()
+
+      return token
+
+    } else {
+      let wrongPasswd = new Error('Invalid Credentials')
+      wrongPasswd.status = 403
+      throw wrongPasswd
+    }
+
+  } catch (err) {
+    await client.query('ROLLBACK')
+    await client.release()
+    throw err
+  }
+
+}
+
+module.exports = {
+  registerUser,
+  registerCompany,
+  registerRunOrganizer,
+  verify,
+  login
+}

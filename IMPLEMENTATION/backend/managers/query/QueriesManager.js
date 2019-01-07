@@ -4,7 +4,7 @@ const format = require('pg-format')
 
 const {
   MIN_USER_NUMBER
-} = require('./config')
+} = require('../config')
 
 const IndividualManager = require('../individual/IndividualsManager')
 
@@ -25,6 +25,7 @@ async function connect() {
 }
 
 async function createQuery(company, query) {
+  console.log(query)
   const client = await connect()
   try {
     await client.query('BEGIN')
