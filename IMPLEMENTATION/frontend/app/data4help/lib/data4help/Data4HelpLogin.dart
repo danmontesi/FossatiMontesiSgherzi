@@ -149,6 +149,7 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
     Map<String, String> body = new Map<String, String>();
     body.putIfAbsent("email", () => _email);
     body.putIfAbsent("password", () => _password);
+    body.putIfAbsent("type", () => "individual");
 
     final response = await http.post(
         'https://data4halp.herokuapp.com/auth/login',
