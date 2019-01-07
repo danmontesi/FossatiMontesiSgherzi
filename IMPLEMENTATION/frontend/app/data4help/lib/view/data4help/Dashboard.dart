@@ -1,13 +1,11 @@
-import 'dart:convert';
 
-import 'package:data4help/data4help/dashboard/DashboardDetailPage.dart';
-import 'package:data4help/data4help/dashboard/DashboardMainPage.dart';
-import 'package:data4help/data4help/dashboard/DashboardPendingQueriesRequests.dart';
-import 'package:data4help/data4help/dashboard/DashboardRunRegistrationPage.dart';
-import 'package:data4help/data4help/dashboard/DashboardTestPage.dart';
+import 'package:data4help/view/data4help/dashboard/DashboardDetailPage.dart';
+import 'package:data4help/view/data4help/dashboard/DashboardMainPage.dart';
+import 'package:data4help/view/data4help/dashboard/DashboardPendingQueriesRequests.dart';
+import 'package:data4help/view/data4help/dashboard/DashboardRunRegistrationPage.dart';
+import 'package:data4help/view/data4help/dashboard/DashboardTestPage.dart';
 import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Dashboard extends StatelessWidget {
 

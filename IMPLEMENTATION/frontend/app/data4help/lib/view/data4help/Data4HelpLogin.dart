@@ -1,10 +1,8 @@
-import 'dart:convert';
 
-import 'package:data4help/data4help/Dashboard.dart';
-import 'package:data4help/data4help/Data4HelpRegister.dart';
+import 'package:data4help/view/data4help/Dashboard.dart';
+import 'package:data4help/view/data4help/Data4HelpRegister.dart';
 import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Data4HelpLogin extends StatelessWidget {
   // This widget is the root of your application.
@@ -39,8 +37,6 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
 
   bool _loginDisabled = false;
 
-  FormType _form = FormType
-      .login; // our default setting is to login, and we should switch to creating an account when the user chooses to
 
   _Data4HelpLoginPageState() {
     _emailFilter.addListener(_emailListen);
@@ -103,7 +99,6 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
   }
 
   Widget _buildButtons() {
-    if (_form == FormType.login) {
       return new Container(
         child: new Column(
           children: <Widget>[
@@ -118,7 +113,7 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
           ],
         ),
       );
-    }
+
   }
 
   void _loginPressed() {
@@ -149,4 +144,3 @@ class _Data4HelpLoginPageState extends State<Data4HelpLoginPage> {
 
 }
 
-enum FormType { login, register }

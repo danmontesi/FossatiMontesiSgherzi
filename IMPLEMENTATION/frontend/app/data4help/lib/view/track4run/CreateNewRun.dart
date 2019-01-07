@@ -1,28 +1,22 @@
-import 'dart:convert';
-
-import 'package:data4help/track4run/CreateNewRunPoint.dart';
-import 'package:data4help/track4run/RunPoint.dart';
+import 'package:data4help/model/RunPoint.dart';
+import 'package:data4help/presenter/RunOrganizerPresenter.dart';
+import 'package:data4help/view/track4run/CreateNewRunPoint.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class CreateNewRun extends StatelessWidget {
-  final String authtoken;
-
-  CreateNewRun(this.authtoken);
+  CreateNewRun();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MyHomePage(authtoken, title: 'Data4Help - Dashboard');
+    return MyHomePage(title: 'Data4Help - Dashboard');
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final String authtoken;
-
-  MyHomePage(this.authtoken, {Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -31,8 +25,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  GlobalKey<ScaffoldState> _scaffoldState =
-  new GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> _scaffoldState = new GlobalKey<ScaffoldState>();
   final TextEditingController _startDateFilter = new TextEditingController();
   final TextEditingController _endDateFilter = new TextEditingController();
   final TextEditingController _startTimeFilter = new TextEditingController();
@@ -226,50 +219,6 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _sendRunToServer() async {
-    Map<String, String> head = new Map<String, String>();
-    head.putIfAbsent("Content-Type", () => "application/json");
-    DateTime begin, end;
-    begin=convertToDate(_startDateFilter.text).add(new Duration(hours: convertToTime(_startTimeFilter.text).hour, minutes: convertToTime(_startTimeFilter.text).minute));
-    end=convertToDate(_endDateFilter.text).add(new Duration(hours: convertToTime(_endTimeFilter.text).hour, minutes: convertToTime(_endTimeFilter.text).minute));
-
-
-    String coordinatesList="";
-    runPoints.forEach((p) {
-      coordinatesList+=p.toJson();
-      if(p!=runPoints.last){
-        coordinatesList+=",";
-      }
-    });
-
-
-
-    String jsonp = "{"
-        "\"auth_token\": \"${widget.authtoken}\","
-        "\"time_begin\": \"${begin.toIso8601String()}\","
-        "\"time_end\": \"${end.toIso8601String()}\","
-        "\"description\": \"${_descriptionFilter.text}\","
-        "\"coordinates\":[$coordinatesList]"
-        "}";
-
-    print(jsonp);
-
-    final response =
-        await http.post('https://data4halp.herokuapp.com/runs/run', body: jsonp, headers: head);
-
-
-    print(response.body);
-    print(json.decode(response.body)['message']);
-    if (response.statusCode != 200) {
-      setState(() {
-        Scaffold.of(_scaffoldState.currentContext).showSnackBar(new SnackBar(
-            content: new Text(json.decode(response.body)['message'])));
-      });
-    }else{
-      Navigator.pop(context);
-    }
-  }
-
   void _addPointOnMap() {
     Navigator.push(
         context,
@@ -298,6 +247,23 @@ class _MyHomePageState extends State<MyHomePage> {
         _controller.animateCamera(
             CameraUpdate.newLatLngZoom(new LatLng(point.lat, point.long), 14));
       }
+    });
+  }
+
+  void _sendRunToServer() {
+    RunOrganizerPresenter.getActivePresenter()
+        .createNewRun(
+            runPoints,
+            convertToDate(_startDateFilter.text),
+            convertToTime(_startTimeFilter.text),
+            convertToDate(_endDateFilter.text),
+            convertToTime(_endTimeFilter.text),
+            _descriptionFilter.text)
+        .then((data) {
+      Navigator.pop(context);
+    }).catchError((error) {
+      Scaffold.of(context)
+          .showSnackBar(new SnackBar(content: new Text("$error")));
     });
   }
 }

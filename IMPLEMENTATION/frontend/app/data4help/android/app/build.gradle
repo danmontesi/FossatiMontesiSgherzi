@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "it.polimi.fossatimontesisgherzi.data4help"
+        applicationId "it.polimi.fossatimontesisgherzi.view.data4help"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode flutterVersionCode.toInteger()

@@ -1,9 +1,6 @@
-import 'dart:convert';
 
-import 'package:data4help/data4help/Dashboard.dart';
-import 'package:data4help/track4run/DashboardRunOrganizer.dart';
+import 'package:data4help/presenter/RunOrganizerPresenter.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class Track4RunRegister extends StatelessWidget {
@@ -11,8 +8,7 @@ class Track4RunRegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: _buildBar(context),
-        body: Track4RunRegisterPage());
+        appBar: _buildBar(context), body: Track4RunRegisterPage());
   }
 
   Widget _buildBar(BuildContext context) {
@@ -46,7 +42,6 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
   String _surname = "";
 
   bool _registerDisabled = false;
-
 
   _Track4RunRegisterPageState() {
     _emailFilter.addListener(_emailListen);
@@ -99,17 +94,16 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return new Container(
-      padding: EdgeInsets.all(16.0),
-      child: SingleChildScrollView(
-        child: new Column(
-          children: <Widget>[
-            _buildTextFields(),
-            _buildButtons(),
-          ],
-        ),
-      ));
+        padding: EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: new Column(
+            children: <Widget>[
+              _buildTextFields(),
+              _buildButtons(),
+            ],
+          ),
+        ));
   }
-
 
   Widget _buildTextFields() {
     return new Container(
@@ -222,19 +216,13 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
       _registerDisabled = true;
     });
 
-    fetchAuthToken().then((token) {
+    new RunOrganizerPresenter(_email, _password).registerRunOrganizer(_ssn, _name, _surname, _datetimeFilter.text).then((token) {
       print(token);
       Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DashboardRunOrganizer(token)));
-    })
-        .catchError((ex) {
+    }).catchError((ex) {
       Scaffold.of(context).showSnackBar(new SnackBar(
-
         content: new Text("$ex"),
       ));
-
     }).whenComplete(() {
       setState(() {
         _registerDisabled = false;
@@ -242,32 +230,7 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
     });
   }
 
-  Future<String> fetchAuthToken() async {
-    Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("email", () => _email);
-    body.putIfAbsent("username", () => _email);
-    body.putIfAbsent("password", () => _password);
-    body.putIfAbsent("SSN", () => _ssn);
-    body.putIfAbsent("name", () => _name);
-    body.putIfAbsent("surname", () => _surname);
-    body.putIfAbsent("birthday", () => _datetimeFilter.text);
-    //body.putIfAbsent("smartwatch", () => "TestSmartwatch1");
 
-    final response = await http.post(
-        'https://data4halp.herokuapp.com/auth/register_run_organizer',
-        body: body);
-
-    if (response.statusCode == 200) {
-      if (json.decode(response.body)['success'] == true) {
-        return json.decode(response.body)['auth_token'];
-      }
-      print(response.body);
-      var error = json.decode(response.body)['message'];
-      throw Exception('Server says: $error');
-    } else {
-      throw Exception('Failed to contact server.');
-    }
-  }
 }
 
 enum FormType { login, register }

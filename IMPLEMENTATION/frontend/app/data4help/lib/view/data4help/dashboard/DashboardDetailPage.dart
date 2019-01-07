@@ -1,10 +1,8 @@
-import 'dart:convert';
 
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:data4help/model/UserData.dart';
 import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class DashboardDetailsPage extends StatefulWidget {

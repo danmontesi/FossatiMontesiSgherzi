@@ -1,12 +1,11 @@
 import 'package:data4help/presenter/UserPresenter.dart';
-import 'package:data4help/track4run/RunPoint.dart';
+import 'package:data4help/model/RunPoint.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:http/http.dart' as http;
 
 class WatchRun extends StatelessWidget {
   final int runId;
-  GlobalKey<_WatchRunPageState> _WatchRunPageStateKey =
+  final GlobalKey<_WatchRunPageState> _watchRunPageStateKey =
       new GlobalKey<_WatchRunPageState>();
 
   WatchRun(
@@ -22,7 +21,7 @@ class WatchRun extends StatelessWidget {
         body: WatchRunPage(
           runId,
           title: 'Track4Run',
-          key: _WatchRunPageStateKey,
+          key: _watchRunPageStateKey,
         ));
   }
 
@@ -33,7 +32,7 @@ class WatchRun extends StatelessWidget {
         new IconButton(
             icon: new Icon(Icons.refresh),
             onPressed: () {
-              _WatchRunPageStateKey.currentState.refreshData();
+              _watchRunPageStateKey.currentState.refreshData();
             })
       ],
     );
@@ -56,8 +55,6 @@ class WatchRunPage extends StatefulWidget {
 
 class _WatchRunPageState extends State<WatchRunPage> {
   GoogleMapController _controller;
-
-  Marker _marker;
 
   @override
   Widget build(BuildContext context) {

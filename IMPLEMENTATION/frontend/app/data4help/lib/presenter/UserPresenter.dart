@@ -1,9 +1,9 @@
-import 'package:data4help/data4help/dashboard/DashboardPendingQueriesRequests.dart';
+import 'package:data4help/model/UserPersonalData.dart';
 import 'package:data4help/model/PendingQueryRequest.dart';
 import 'package:data4help/model/UserData.dart';
 import 'package:data4help/model/UserModel.dart';
-import 'package:data4help/track4run/Run.dart';
-import 'package:data4help/track4run/RunPoint.dart';
+import 'package:data4help/model/Run.dart';
+import 'package:data4help/model/RunPoint.dart';
 
 class UserPresenter {
   final UserModel _userModel;
@@ -29,7 +29,7 @@ class UserPresenter {
 
   Future<bool> registerUser(String ssn, String name, String surname,
       String birthDay, String smartwatchModel) async {
-    return await _userModel.fetchAuthToken(
+    return await _userModel.registerUser(
         ssn, name, surname, birthDay, smartwatchModel);
   }
 

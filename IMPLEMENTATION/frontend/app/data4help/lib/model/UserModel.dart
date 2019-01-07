@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:data4help/Config.dart';
-import 'package:data4help/data4help/dashboard/DashboardPendingQueriesRequests.dart';
 import 'package:data4help/model/PendingQueryRequest.dart';
 import 'package:data4help/model/UserData.dart';
-import 'package:data4help/track4run/Run.dart';
-import 'package:data4help/track4run/RunPoint.dart';
+import 'package:data4help/model/Run.dart';
+import 'package:data4help/model/RunPoint.dart';
+import 'package:data4help/model/UserPersonalData.dart';
 import 'package:http/http.dart' as http;
 
 class UserModel {
@@ -52,7 +52,7 @@ class UserModel {
     }
   }
 
-  Future<bool> fetchAuthToken(String ssn, String name, String surname, String birthDay,
+  Future<bool> registerUser(String ssn, String name, String surname, String birthDay,
       String smartwatchModel) async {
     Map<String, String> body = new Map<String, String>();
     body.putIfAbsent("email", () => _email);
@@ -191,9 +191,5 @@ class LoginException implements Exception {
   }
 }
 
-class UserPersonalData {
-  final String name, surname;
 
-  UserPersonalData(this.name, this.surname);
-}
 

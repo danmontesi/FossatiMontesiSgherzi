@@ -1,9 +1,7 @@
-import 'dart:convert';
 
 import 'package:data4help/model/PendingQueryRequest.dart';
 import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class DashboardPendingQueriesRequestsPage extends StatefulWidget {
   DashboardPendingQueriesRequestsPage({Key key, this.title})

@@ -1,11 +1,8 @@
-import 'dart:convert';
 
-import 'package:data4help/data4help/Dashboard.dart';
-import 'package:data4help/data4help/Data4HelpRegister.dart';
-import 'package:data4help/track4run/DashboardRunOrganizer.dart';
-import 'package:data4help/track4run/Track4RunRegister.dart';
+import 'package:data4help/presenter/RunOrganizerPresenter.dart';
+import 'package:data4help/view/track4run/DashboardRunOrganizer.dart';
+import 'package:data4help/view/track4run/Track4RunRegister.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class Track4RunLogin extends StatelessWidget {
   // This widget is the root of your application.
@@ -40,8 +37,6 @@ class _Track4RunLoginPageState extends State<Track4RunLoginPage> {
 
   bool _loginDisabled = false;
 
-  FormType _form = FormType
-      .login; // our default setting is to login, and we should switch to creating an account when the user chooses to
 
   _Track4RunLoginPageState() {
     _emailFilter.addListener(_emailListen);
@@ -104,7 +99,6 @@ class _Track4RunLoginPageState extends State<Track4RunLoginPage> {
   }
 
   Widget _buildButtons() {
-    if (_form == FormType.login) {
       return new Container(
         child: new Column(
           children: <Widget>[
@@ -119,7 +113,6 @@ class _Track4RunLoginPageState extends State<Track4RunLoginPage> {
           ],
         ),
       );
-    }
   }
 
   void _loginPressed() {
@@ -127,10 +120,10 @@ class _Track4RunLoginPageState extends State<Track4RunLoginPage> {
       _loginDisabled = true;
     });
 
-    fetchAuthToken().then((token) {
+    new RunOrganizerPresenter(_email, _password).login().then((token) {
       print(token);
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DashboardRunOrganizer(token)));
+          context, MaterialPageRoute(builder: (context) => DashboardRunOrganizer()));
     }).catchError((e) {
       Scaffold.of(context).showSnackBar(new SnackBar(
         content: new Text("$e"),
@@ -147,27 +140,6 @@ class _Track4RunLoginPageState extends State<Track4RunLoginPage> {
         context, MaterialPageRoute(builder: (context) => Track4RunRegister()));
   }
 
-  Future<String> fetchAuthToken() async {
-    Map<String, String> body = new Map<String, String>();
-    body.putIfAbsent("email", () => _email);
-    body.putIfAbsent("password", () => _password);
-    body.putIfAbsent("type", () => "run_organizer");
 
-    final response = await http.post(
-        'https://data4halp.herokuapp.com/auth/login',
-        body: body);
-
-    if (response.statusCode == 200) {
-      if (json.decode(response.body)['success'] == true) {
-        return json.decode(response.body)['auth_token'];
-      }
-      print(response.body);
-      var error = json.decode(response.body)['message'];
-      throw Exception('Server says: $error');
-    } else {
-      throw Exception('Failed to contact server.');
-    }
-  }
 }
 
-enum FormType { login, register }
