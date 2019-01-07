@@ -1,8 +1,8 @@
-
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:data4help/model/UserData.dart';
 import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 class DashboardDetailsPage extends StatefulWidget {
@@ -16,6 +16,8 @@ class DashboardDetailsPage extends StatefulWidget {
 class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
   String _datetimeToLoad = new DateFormat("yyyy-MM-dd").format(DateTime.now());
   UserData _userData;
+
+  GoogleMapController _controller;
 
   @override
   Widget build(BuildContext context) {
@@ -69,16 +71,18 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const ListTile(
-                    leading: Icon(Icons.border_color),
-                    title: Text('GPS coordinates'),
+                  Container(
+                    height: 250.0,
+                    child: GoogleMap(
+                      options: GoogleMapOptions(
+                        myLocationEnabled: true,
+                      ),
+                      onMapCreated: (GoogleMapController controller) {
+                        _controller = controller;
+                        _loadDataOfDatetime();
+                      },
+                    ),
                   ),
-                  new LimitedBox(
-                      maxWidth: 250.0,
-                      maxHeight: 250.0,
-                      child: new charts.TimeSeriesChart(
-                        _loadGPSData(),
-                      )),
                 ],
               ),
             ),
@@ -197,15 +201,33 @@ class _DashboardDetailsPageState extends State<DashboardDetailsPage> {
     }
   }
 
-
-
   void _loadDataOfDatetime() {
-    UserPresenter.getActivePresenter().loadDataOfDatetime(_datetimeToLoad).then((data){
+    UserPresenter.getActivePresenter()
+        .loadDataOfDatetime(_datetimeToLoad)
+        .then((data) {
       setState(() {
-        _userData=data;
+        _userData = data;
       });
+      if (_controller != null) {
+        _controller.clearMarkers();
+
+        _userData.gpsCoordinates.forEach((point) {
+          _controller.addMarker(
+            new MarkerOptions(
+              position: new LatLng(point.lat, point.long),
+              infoWindowText:
+                  new InfoWindowText("Point", "Time: ${point.timestamp}"),
+            ),
+          );
+          if (point == _userData.gpsCoordinates.last) {
+            _controller.animateCamera(CameraUpdate.newLatLngZoom(
+                new LatLng(point.lat, point.long), 14));
+          }
+        });
+      }
     }).catchError((error) {
-      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
+      Scaffold.of(context)
+          .showSnackBar(new SnackBar(content: new Text("$error")));
     });
   }
 }

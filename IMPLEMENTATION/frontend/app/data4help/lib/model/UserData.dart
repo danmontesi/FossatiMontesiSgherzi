@@ -14,7 +14,6 @@ class UserData {
   /// Creates the object starting from the Json representation
   factory UserData.fromJson(Map<String, dynamic> json){
     UserData data = new UserData(new List<GpsCoordinate>(), new List<Accelerometer>(),new List<Heartrate>());
-
     json["gps_coordinates"].forEach((e) {
       data.gpsCoordinates.add(GpsCoordinate.fromJson(e));
     });
@@ -103,8 +102,8 @@ class GpsCoordinate{
 
   /// Creates the object starting from the Json representation
   GpsCoordinate.fromJson(Map<String, dynamic> json)
-      : lat = json['lat'],
-        long = json['long'],
+      : lat = json['lat'].toDouble(),
+        long = json['long'].toDouble(),
         timestamp = DateTime.parse(json['timestamp']);
 
   /// Returns a [String] containing the json representation of the actual data.
@@ -124,9 +123,9 @@ class Accelerometer{
 
   /// Creates the object starting from the Json representation
   Accelerometer.fromJson(Map<String, dynamic> json)
-      : x = json['acc_x'],
-        y = json['acc_y'],
-        z = json['acc_z'],
+      : x = json['acc_x'].toDouble(),
+        y = json['acc_y'].toDouble(),
+        z = json['acc_z'].toDouble(),
         timestamp = DateTime.parse(json['timestamp']);
 
   /// Returns a [String] containing the json representation of the actual data.
