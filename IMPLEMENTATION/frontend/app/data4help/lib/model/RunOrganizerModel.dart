@@ -5,12 +5,16 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
+/// This is the model for the Run Organizer. It allows to get data from the backend and handles communication issues.
+/// Initialize the class using a user + password and then call [login] if you want to login with those credentials or [registerUser] to register a user with those credentials.
 class RunOrganizerModel {
   final String _email, _password;
   String _authToken;
 
   RunOrganizerModel(this._email, this._password);
 
+  ///Logs the user in using the credential specified during the instantiation of the model.
+  ///If the user is invalid throws an Exception
   Future<bool> login() async {
     Map<String, String> body = new Map<String, String>();
     body.putIfAbsent("email", () => _email);
@@ -34,6 +38,8 @@ class RunOrganizerModel {
     }
   }
 
+  /// Registers a new run organizer on the server, using the given details.
+  /// [ssn] is the ssn of the user (16 characters), [name] the name of the user, [surname] the surname of the user, [birthDay] the birthday of the user formatted as yyyy-MM-dd
   Future<bool> registerRunOrganizer(String ssn, String name, String surname,
       String birthday) async {
     Map<String, String> body = new Map<String, String>();
@@ -61,6 +67,7 @@ class RunOrganizerModel {
     }
   }
 
+  /// Creates a new run based on the given [runPoints], starting at [startDate] [startTime], ending at [endTime] [endDate], with the given [description].
   Future<String> createNewRun(List<RunPoint> runPoints, DateTime startDate,
       TimeOfDay startTime, DateTime endDate, TimeOfDay endTime,
       String description) async {

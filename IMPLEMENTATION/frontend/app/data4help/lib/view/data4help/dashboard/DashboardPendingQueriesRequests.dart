@@ -40,7 +40,7 @@ class _DashboardPendingQueriesRequestsPageState
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(
-                    '${queryList[index].queryId} - ${queryList[index].queryId}'),
+                    '${queryList[index].companyName} - ${queryList[index].queryId}'),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
