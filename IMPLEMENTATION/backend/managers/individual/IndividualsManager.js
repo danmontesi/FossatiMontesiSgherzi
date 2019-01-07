@@ -231,16 +231,17 @@ class IndividualsManager {
         rows
       } = await client.query('SELECT * FROM gps_coordinates WHERE user_id = $1 ORDER BY timestamp DESC', [id])
 
-      if (rows.length === 0) {
-        let err = new Error(`User hasn't send any position`)
-        err.status = 404
-        throw err
+      let resp = {
+        lat: '',
+        long: ''
       }
 
-      return {
-        lat: rows[0].lat,
-        long: rows[0].long
+      if (rows.length !== 0) {
+        resp.lat = rows[0].lat
+        resp.long = rows[0].long
       }
+
+      return resp
 
     } catch (err) {
       await client.release()
