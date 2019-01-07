@@ -97,7 +97,7 @@ function checkRequiredParams(entity, actor, action) {
  * @param surname: String
  * @param birthday: Date
  * @param smartwatch: String
- * @returns {Promise<void>}
+ * @returns {Promise<String>}
  */
 async function registerUser({email, password, SSN, name, surname, birthday, smartwatch}) {
 
@@ -139,7 +139,116 @@ async function registerUser({email, password, SSN, name, surname, birthday, smar
     return token
 
   } catch (err) {
+    await client.query('ROLLBACK')
     await client.release()
+    if (err.message.includes('duplicate')) {
+      err.message = 'Mail already in use'
+      err.status = 422
+    }
+    throw err
+  }
+
+}
+
+/**
+ * Registers the given run organizer
+ * @param email: String
+ * @param password: String
+ * @param name: String
+ * @param surname: String
+ * @returns {Promise<String>}
+ */
+async function registerRunOrganizer({email, password, name, surname}) {
+
+  // Check if the required parameters are in the request
+  checkRequiredParams(arguments['0'], ACTOR.RUN_ORGANIZER, ACTION.REGISTRATION)
+
+  // Hash the password
+  const pwd = bcrypt.hashSync(password, 8)
+  const client = await connect()
+
+  try {
+
+    await client.query('BEGIN')
+
+    // Insert the run organizer into the database
+    const {
+      rows: runOrganizer
+    } = await client.query('INSERT INTO run_organizer_account(email, password, name, surname, verified) VALUES($1, $2, $3, $4, $5) RETURNING *', [email, pwd, name, surname, false])
+
+    // Create a token
+    const token = jwt.sign({
+      id: runOrganizer[0].id,
+      email: runOrganizer[0].email,
+      begin_time: new Date()
+    }, process.env.JWT_SECRET, {
+      expiresIn: 86400 // Expire in 24h
+    })
+
+    // Insert the token into the database and commit the transaction
+    await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [runOrganizer[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+    await client.query('COMMIT')
+
+    sendVerificationMail(runOrganizer[0].email, token, ACTOR.RUN_ORGANIZER)
+
+    await client.release()
+    return token
+
+  } catch (err) {
+    await client.query('ROLLBACK')
+    await client.release()
+    if (err.message.includes('duplicate')) {
+      err.message = 'Mail already in use'
+      err.status = 422
+    }
+    throw err
+  }
+
+}
+
+async function registerCompany({email, password, company_name}) {
+
+  // Check if the required parameters are in the request
+  checkRequiredParams(arguments['0'], ACTOR.COMPANY, ACTION.REGISTRATION)
+
+  // Hash the password
+  const pwd = bcrypt.hashSync(password, 8)
+  const client = await connect()
+
+  try {
+
+    await client.query('BEGIN')
+
+    // Insert the run organizer into the database
+    const {
+      rows: company
+    } = await client.query('INSERT INTO company_account(email, password, company_name, verified) VALUES($1, $2, $3, $4) RETURNING *', [email, pwd, company_name, false])
+
+    // Create a token
+    const token = jwt.sign({
+      id: company[0].id,
+      email: company[0].email,
+      begin_time: new Date()
+    }, process.env.JWT_SECRET, {
+      expiresIn: 86400 // Expire in 24h
+    })
+
+    // Insert the token into the database and commit the transaction
+    await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [company[0].id, token, new Date(new Date().getTime() + 60 * 60 * 24 * 1000)])
+    await client.query('COMMIT')
+
+    sendVerificationMail(company[0].email, token, ACTOR.COMPANY)
+    await client.release()
+
+    return token
+
+  } catch (err) {
+    await client.query('ROLLBACK')
+    await client.release()
+    if (err.message.includes('duplicate')) {
+      err.message = 'Mail already in use'
+      err.status = 422
+    }
     throw err
   }
 
@@ -261,6 +370,8 @@ async function login({email, password, type}) {
 
 module.exports = {
   registerUser,
+  registerCompany,
+  registerRunOrganizer,
   verify,
   login
 }

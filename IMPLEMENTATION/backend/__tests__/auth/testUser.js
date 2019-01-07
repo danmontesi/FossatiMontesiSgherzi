@@ -32,18 +32,34 @@ const TEMPLATE_VERIFICATION_STRING = 'mail=georgemesaclooney@gmail.com&code=eyJh
 //   .catch(console.log)
 
 // Login
-fetch(HEROKU_BASE_URL + 'auth/login', {
-  method: 'POST',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  }),
-  body: JSON.stringify({
-    email: 'francesco.sgherzi@gmail.com',
-    password: 'giannimio',
-    type: 'individual'
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)
+// fetch(HEROKU_BASE_URL + 'auth/login', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     email: 'francesco.sgherzi@gmail.com',
+//     password: 'giannimio',
+//     type: 'individual'
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
+
+// Login with wrong password
+// fetch(HEROKU_BASE_URL + 'auth/login', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     email: 'francesco.sgherzi@gmail.com',
+//     password: 'AAAAAAA',
+//     type: 'individual'
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
 

@@ -9,8 +9,8 @@ const {
 	getPlanByName
 } = require('../../managers/subs/SubsManager')
 
-const PLAN_GET = require('../../__runtime_tests__/stub_endpoint/subs/plan_GET')
-const PLAN_POST = require('../../__runtime_tests__/stub_endpoint/subs/plan_POST')
+const PLAN_GET = require('../../__tests__/stub_endpoint/subs/plan_GET')
+const PLAN_POST = require('../../__tests__/stub_endpoint/subs/plan_POST')
 
 const {
 	isTestEnabled
