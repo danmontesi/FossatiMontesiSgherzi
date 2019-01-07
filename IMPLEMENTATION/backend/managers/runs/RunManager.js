@@ -148,10 +148,13 @@ async function getRunnersPosition(run_id) {
   try {
     const {
       rows: runSubs
-    } = await client.query('SELECT * FROM run_subscription WHERE run_id = $1', [run_id])
+    } = await client.query('SELECT rs.run_id, rs.user_id, rs.subscription_date, ia.name, ia.surname FROM run_subscription as rs, individual_account as ia WHERE rs.run_id = $1 AND rs.run_id = ia.id', [run_id])
 
     await runSubs.forEachAsync(async (runSub) => {
       runSub.lastPosition = await getLastPosition(runSub.user_id)
+      runSub.id = runSub.name + ' ' + runSub.surname
+      runSub.name = undefined
+      runSub.surname = undefined
       runSub.subscription_date = undefined
       runSub.run_id = undefined
     })
