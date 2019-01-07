@@ -23,24 +23,24 @@ fetch(LOCAL_BASE_URL + 'queries/query', {
   .then(res => res.json())
   .then(console.log)
   .catch(console.log)
-// //
-// // fetch(LOCAL_BASE_URL + 'queries/query', {
-// //   method: 'POST',
-// //   headers: new fetch.Headers({
-// //     'Content-Type': 'application/json'
-// //   }),
-// //   body: JSON.stringify({
-// //     auth_token: companyToken,
-// //     query: {
-// //       type: 'regional',
-// //       region: 'Abruzzi',
-// //       additional_params: {}
-// //     }
-// //   })
-// // })
-// //   .then(res => res.json())
-// //   .then(console.log)
-// //   .catch(console.log)
+//
+// fetch(LOCAL_BASE_URL + 'queries/query', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     auth_token: companyToken,
+//     query: {
+//       type: 'regional',
+//       region: 'Abruzzi',
+//       additional_params: {}
+//     }
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
 
 //
 // fetch(LOCAL_BASE_URL + 'queries/query', {

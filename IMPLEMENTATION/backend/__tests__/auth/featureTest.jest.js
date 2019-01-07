@@ -84,7 +84,6 @@ describe('Should login the actor', () => {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res.auth_token)
         expect(res.success).toBe(true)
         expect(res.auth_token).not.toBe(null)
       })
