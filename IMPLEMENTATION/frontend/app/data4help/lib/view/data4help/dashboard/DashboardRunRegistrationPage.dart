@@ -34,7 +34,10 @@ class _DashboardRunRegistrationPageState
         new Text("Nearby runs:"),
         new MaterialButton(onPressed: _retriveRuns, child: new Icon(Icons.refresh),),
         Expanded(
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) {
+              return Divider();
+            },
             itemCount: _runList.length,
             itemBuilder: (context, index) {
               return ListTile(

@@ -4,7 +4,7 @@ import 'package:data4help/view/track4run/CreateNewRun.dart';
 import 'package:flutter/material.dart';
 
 class DashboardRunOrganizer extends StatelessWidget {
-  final GlobalKey<_MyHomePageState> _MyHomePageStateKey =
+  final GlobalKey<_MyHomePageState> _myHomePageStateKey =
       new GlobalKey<_MyHomePageState>();
 
   DashboardRunOrganizer();
@@ -18,14 +18,14 @@ class DashboardRunOrganizer extends StatelessWidget {
         actions: <Widget>[
           new IconButton(
               icon: new Icon(Icons.refresh),
-              onPressed: () => _MyHomePageStateKey.currentState.refresh())
+              onPressed: () => _myHomePageStateKey.currentState.refresh())
         ],
       ),
       body: new Container(
-        child: MyHomePage(title: 'Data4Help - Dashboard', key: _MyHomePageStateKey,),
+        child: MyHomePage(title: 'Data4Help - Dashboard', key: _myHomePageStateKey,),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: () =>_MyHomePageStateKey.currentState.addNewRun(),
+        onPressed: () =>_myHomePageStateKey.currentState.addNewRun(),
         child: new Icon(Icons.add),
       ),
     );
@@ -56,7 +56,10 @@ class _MyHomePageState extends State<MyHomePage> {
       children: <Widget>[
         new Text("Your runs:"),
         Expanded(
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) {
+              return Divider();
+            },
             itemCount: _runList.length,
             itemBuilder: (context, index) {
               return ListTile(
