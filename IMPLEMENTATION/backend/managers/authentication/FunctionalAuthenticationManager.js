@@ -245,6 +245,10 @@ async function login({email, password, type}) {
 
       return token
 
+    } else {
+      let wrongPasswd = new Error('Invalid Credentials')
+      wrongPasswd.status = 403
+      throw wrongPasswd
     }
 
   } catch (err) {

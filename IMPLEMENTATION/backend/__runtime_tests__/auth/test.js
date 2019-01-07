@@ -32,14 +32,14 @@ const TEMPLATE_VERIFICATION_STRING = 'mail=georgemesaclooney@gmail.com&code=eyJh
 //   .catch(console.log)
 
 // Login
-fetch(LOCAL_BASE_URL + 'auth/login', {
+fetch(HEROKU_BASE_URL + 'auth/login', {
   method: 'POST',
   headers: new fetch.Headers({
     'Content-Type': 'application/json'
   }),
   body: JSON.stringify({
-    password: 'giannimio',
     email: 'francesco.sgherzi@gmail.com',
+    password: 'giannimio',
     type: 'individual'
   })
 })
