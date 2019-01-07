@@ -266,12 +266,6 @@ async function retriveQueries(company) {
       totalQueries[query.query_type] = rows
     })
 
-    Object.keys(totalQueries).forEach(key => {
-      totalQueries[key].forEach(q => {
-        q.id = undefined
-      })
-    })
-
     await client.release()
 
     return {

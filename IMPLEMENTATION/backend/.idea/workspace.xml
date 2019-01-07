@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/endpoints/indiv.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/indiv.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,17 +21,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+            <state relative-caret-position="23">
+              <caret line="25" selection-start-line="25" selection-end-line="26" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-592">
-              <caret line="123" column="28" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="28" />
+            <state relative-caret-position="149">
+              <caret line="149" column="26" selection-end-line="168" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -42,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="133" column="8" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="8" />
+            <state relative-caret-position="264">
+              <caret line="144" column="34" selection-start-line="144" selection-start-column="34" selection-end-line="144" selection-end-column="34" />
               <folding>
                 <element signature="e#135#2452#0" />
                 <element signature="e#394#1162#0" />
@@ -53,7 +50,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__tests__/testEndpoint.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="398">
@@ -73,7 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>queries/query</find>
       <find>connect</find>
       <find>notifyCompanies</find>
       <find>mail</find>
@@ -103,6 +99,7 @@
       <find>isIndividualQuery</find>
       <find>saveData</find>
       <find>indiv/data</find>
+      <find>indiv/user</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -159,9 +156,9 @@
         <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
         <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
         <option value="$PROJECT_DIR$/__tests__/testEndpoint.js" />
+        <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/indiv.js" />
         <option value="$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js" />
-        <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
       </list>
     </option>
   </component>
@@ -171,7 +168,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="10" />
     <option name="y" value="40" />
     <option name="width" value="1900" />
@@ -418,7 +415,7 @@
       <workItem from="1546809869070" duration="5923000" />
       <workItem from="1546848952762" duration="1151000" />
       <workItem from="1546850971619" duration="11000" />
-      <workItem from="1546868720166" duration="18048000" />
+      <workItem from="1546868720166" duration="18387000" />
     </task>
     <servers />
   </component>
@@ -455,7 +452,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182267000" />
+    <option name="totallyTimeSpent" value="182606000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -467,9 +464,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="40" width="1900" height="1030" extended-state="1" />
-    <editor active="true" />
+    <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22204472" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32735425" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.3295964" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39798206" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.29074445" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4248879" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+    <layout-to-restore>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22204472" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
@@ -485,26 +501,6 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.09977578" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.22204472" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32735425" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.3295964" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39798206" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.29074445" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.34080717" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -830,24 +826,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
+    <entry file="file://$PROJECT_DIR$/__tests__/testEndpoint.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-592">
-          <caret line="123" column="28" selection-start-line="123" selection-start-column="17" selection-end-line="123" selection-end-column="28" />
+        <state relative-caret-position="398">
+          <caret line="376" column="24" lean-forward="true" selection-start-line="366" selection-end-line="376" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="133" column="8" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="8" />
+        <state relative-caret-position="264">
+          <caret line="144" column="34" selection-start-line="144" selection-start-column="34" selection-end-line="144" selection-end-column="34" />
           <folding>
             <element signature="e#135#2452#0" />
             <element signature="e#394#1162#0" />
@@ -856,10 +845,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/testEndpoint.js">
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="376" column="24" lean-forward="true" selection-start-line="366" selection-end-line="376" selection-end-column="24" />
+        <state relative-caret-position="23">
+          <caret line="25" selection-start-line="25" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="149" column="26" selection-end-line="168" selection-end-column="1" />
         </state>
       </provider>
     </entry>
