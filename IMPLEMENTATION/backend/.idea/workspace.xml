@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/managers/query/QueriesManager.js" line="29" mnemonic="1" />
-    <bookmark url="file://$PROJECT_DIR$/managers/query/QueriesManager.js" line="111" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/managers/query/QueriesManager.js" line="110" mnemonic="3" />
+    <bookmark url="file://$PROJECT_DIR$/managers/authentication/FunctionalAuthenticationManager.js" line="205" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/francesco.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/francesco.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__runtime_tests__/query/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/__runtime_tests__/query/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/query/QueriesManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/query/QueriesManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/token/TokenManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/token/TokenManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/endpoints/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/queries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/endpoints/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/auth.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,46 +22,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
+        <entry file="file://$PROJECT_DIR$/routes/endpoints/auth.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
+            <state relative-caret-position="264">
+              <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
+        <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="289" column="138" selection-start-line="289" selection-start-column="138" selection-end-line="289" selection-end-column="138" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__runtime_tests__/query/test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
+            <state relative-caret-position="173">
+              <caret line="119" column="6" lean-forward="true" selection-start-line="119" selection-start-column="6" selection-end-line="135" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/package.json">
+        <entry file="file://$PROJECT_DIR$/managers/authentication/FunctionalAuthenticationManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+            <state relative-caret-position="-12">
+              <caret line="228" column="44" selection-start-line="228" selection-start-column="44" selection-end-line="228" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__runtime_tests__/auth/test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="49" column="24" lean-forward="true" selection-start-line="36" selection-end-line="49" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -83,10 +86,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>join</find>
-      <find>runs/position</find>
-      <find>getRunner</find>
-      <find>runner_position</find>
       <find>positions</find>
       <find>retrieval_query</find>
       <find>query</find>
@@ -94,7 +93,6 @@
       <find>radius</find>
       <find>fp</find>
       <find>new Pool</find>
-      <find>rows</find>
       <find>45</find>
       <find>LAT_DEGREE</find>
       <find>indiv/data</find>
@@ -113,6 +111,11 @@
       <find>userList</find>
       <find>perform</find>
       <find>client.release()</find>
+      <find>register</find>
+      <find>reqbo</find>
+      <find>verify</find>
+      <find>login</find>
+      <find>rows</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -121,8 +124,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/routes/queries.js" />
-        <option value="$PROJECT_DIR$/__TEST__/stub_endpoint/runs/root.json" />
         <option value="$PROJECT_DIR$/__TEST__/stub_endpoint/runs/run.json" />
         <option value="$PROJECT_DIR$/routes/runs.js" />
         <option value="$PROJECT_DIR$/routes/router.js" />
@@ -149,7 +150,6 @@
         <option value="$PROJECT_DIR$/utils/parseToken.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/subs.js" />
         <option value="$PROJECT_DIR$/managers/subs/SubsManager.js" />
-        <option value="$PROJECT_DIR$/routes/endpoints/auth.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/indiv.js" />
         <option value="$PROJECT_DIR$/node_modules/jsonwebtoken/decode.js" />
         <option value="$PROJECT_DIR$/managers/runs/runStatus.js" />
@@ -165,13 +165,16 @@
         <option value="$PROJECT_DIR$/managers/query/FunctionalQueriesManager.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/managers/query/config.js" />
-        <option value="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" />
-        <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
         <option value="$PROJECT_DIR$/managers/token/TokenManager.js" />
-        <option value="$PROJECT_DIR$/routes/endpoints/queries.js" />
-        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
-        <option value="$PROJECT_DIR$/__runtime_tests__/query/test.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
+        <option value="$PROJECT_DIR$/routes/endpoints/queries.js" />
+        <option value="$PROJECT_DIR$/__runtime_tests__/query/test.js" />
+        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
+        <option value="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" />
+        <option value="$PROJECT_DIR$/routes/endpoints/auth.js" />
+        <option value="$PROJECT_DIR$/__runtime_tests__/auth/test.js" />
+        <option value="$PROJECT_DIR$/managers/authentication/FunctionalAuthenticationManager.js" />
       </list>
     </option>
   </component>
@@ -181,11 +184,11 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="40" />
     <option name="width" value="1900" />
-    <option name="height" value="510" />
+    <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -207,6 +210,12 @@
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="__runtime_tests__" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="__runtime_tests__" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
@@ -291,7 +300,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.test.js">
+  <component name="RunManager" selected="Node.js.test.js (2)">
     <configuration name="Properly removing unwanted parameters from request object" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -302,20 +311,6 @@
       <test-file value="$PROJECT_DIR$/__tests__/managers/Individuals/IndividualsManager.jest.js" />
       <test-names>
         <test-name value="Properly removing unwanted parameters from request object" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Throwing exceptions when constructed with missing parameters.Empty object - Registration &amp; Login" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/managers/Individuals/IndividualsManager.jest.js" />
-      <test-names>
-        <test-name value="Throwing exceptions when constructed with missing parameters" />
-        <test-name value="Empty object - Registration &amp; Login" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -352,25 +347,28 @@
     <configuration name="test.js (1)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/__runtime_tests__/indiv/test.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
+    <configuration name="test.js (2)" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/__runtime_tests__/auth/test.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="test.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/__runtime_tests__/query/test.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Jest.Properly removing unwanted parameters from request object" />
-      <item itemvalue="Jest.Throwing exceptions when constructed with missing parameters.Empty object - Registration &amp; Login" />
       <item itemvalue="Jest.Throwing exceptions when constructed with missing parameters.Some missing parameters - Login &amp; Rogistration" />
       <item itemvalue="Node.js.app.js" />
       <item itemvalue="Node.js.testEndpoint.js" />
       <item itemvalue="Node.js.test.js" />
       <item itemvalue="Node.js.test.js (1)" />
+      <item itemvalue="Node.js.test.js (2)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.test.js" />
+        <item itemvalue="Node.js.test.js (2)" />
         <item itemvalue="Node.js.test.js (1)" />
+        <item itemvalue="Node.js.test.js" />
         <item itemvalue="Jest.Throwing exceptions when constructed with missing parameters.Some missing parameters - Login &amp; Rogistration" />
         <item itemvalue="Jest.Properly removing unwanted parameters from request object" />
-        <item itemvalue="Jest.Throwing exceptions when constructed with missing parameters.Empty object - Registration &amp; Login" />
       </list>
     </recent_temporary>
   </component>
@@ -408,7 +406,9 @@
       <workItem from="1546366511818" duration="6876000" />
       <workItem from="1546607694020" duration="9220000" />
       <workItem from="1546678366551" duration="15282000" />
-      <workItem from="1546708089334" duration="11393000" />
+      <workItem from="1546708089334" duration="12588000" />
+      <workItem from="1546804484280" duration="1405000" />
+      <workItem from="1546809869070" duration="5169000" />
     </task>
     <servers />
   </component>
@@ -445,7 +445,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="154534000" />
+    <option name="totallyTimeSpent" value="162303000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -457,16 +457,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="30" width="1920" height="1050" extended-state="6" />
-    <editor active="true" />
+    <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23393045" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23642172" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32785088" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.23684211" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997367" visible="true" weight="0.23654708" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39802632" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -474,44 +473,16 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.25877193" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.19506727" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2518637" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="npm" order="2" side_tool="true" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32915717" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.3721973" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39932126" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.29074445" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.48318386" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/__runtime_tests__/stub_endpoint/indiv/data_GET.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/.editorconfig" />
     <entry file="file://$PROJECT_DIR$/__runtime_tests__/stub_endpoint/auth/verify.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -602,13 +573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/managers/Individuals/AuthenticationManager.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="79" selection-start-line="79" selection-end-line="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__runtime_tests__/stub_endpoint/runs/root.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -672,20 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="805">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/auth.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managers/subs/SubsManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="597">
@@ -743,13 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="258" column="21" lean-forward="true" selection-start-line="258" selection-start-column="21" selection-end-line="258" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managers/runs/runStatus.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -771,20 +714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="36" column="25" lean-forward="true" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="212" column="6" selection-start-line="212" selection-start-column="6" selection-end-line="212" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__runtime_tests__/indiv/test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -799,41 +728,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="54" column="50" lean-forward="true" selection-start-line="54" selection-start-column="50" selection-end-line="54" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="289" column="138" selection-start-line="289" selection-start-column="138" selection-end-line="289" selection-end-column="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__runtime_tests__/query/test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="103" lean-forward="true" selection-start-line="103" selection-end-line="103" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="28" column="2" lean-forward="true" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1219">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4830">
+          <caret line="210" column="14" lean-forward="true" selection-start-line="210" selection-start-column="14" selection-end-line="210" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__runtime_tests__/query/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1468">
+          <caret line="82" column="38" selection-start-line="82" selection-start-column="38" selection-end-line="82" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="521">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/managers/Individuals/AuthenticationManager.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__runtime_tests__/testEndpoint.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="49" column="24" lean-forward="true" selection-start-line="36" selection-end-line="49" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="119" column="6" lean-forward="true" selection-start-line="119" selection-start-column="6" selection-end-line="135" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/auth.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="15" column="43" lean-forward="true" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__runtime_tests__/auth/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="33" column="8" lean-forward="true" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/authentication/FunctionalAuthenticationManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12">
+          <caret line="228" column="44" selection-start-line="228" selection-start-column="44" selection-end-line="228" selection-end-column="44" />
         </state>
       </provider>
     </entry>

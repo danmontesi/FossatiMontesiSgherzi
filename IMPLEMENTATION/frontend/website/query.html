@@ -143,7 +143,10 @@
   const url = "https://data4halp.herokuapp.com/auth/queries/query?action=success&auth_token="+getCookie("auth_token");
   fetch(proxyurl + url, {
 
-    method: 'GET'
+    method: 'GET',
+    headers: {
+ 		'Content-Type': 'application/json'
+    }
 
   }) 
     .then(response => response.json())

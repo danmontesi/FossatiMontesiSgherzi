@@ -173,11 +173,17 @@
       var username = $('#usernLogin').val();
       var password = $('#passwLogin').val();
       fetch(proxyurl + url, {
-
         method: 'POST',
-        body: { "username": username, "password": password }
-
-      }) // https://cors-anywhere.herokuapp.com/https://example.com
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: username,
+          password: password,
+          company_name: 'asdf',
+          type: 'company'
+        })
+      })
         .then(response => response.text())
         .then(contents => { //Assign to contents the response
           var myObj = JSON.parse(contents); //Parse the response
@@ -194,12 +200,12 @@
         .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
     }
 
-    
+
 
   </script>
 
-  <script> 
-      function signUpReq() {
+  <script>
+    function signUpReq() {
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
       const url2 = "https://data4halp.herokuapp.com/auth/register_company?action=success";
       var username = $('#usernReg').val();
@@ -207,16 +213,17 @@
       var company_name = $('#companyNameReg').val();
       var email = $('#emailReg').val();
       fetch(proxyurl + url2, {
-
         method: 'POST',
-        body: { 
-        "username": username, 
-        "password": password,
-        "company_name": company_name,
-        "email": email
-        }
-
-      }) // https://cors-anywhere.herokuapp.com/https://example.com
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          company_name: company_name,
+          type: 'company'
+        })
+      })
         .then(response => response.text())
         .then(contents => { //Assign to contents the response
           var myObj = JSON.parse(contents); //Parse the response
@@ -226,22 +233,28 @@
 
             //Save cookie mail & authtoken (necessary for inserting the authCode)
             setCookie_mail(email, myObj["auth_token"], 1) // 1 day only and expires, since is a verification mail
-            
-      
+
+
             //Redirect to page where have to send the code and the email to confirm email
             document.location.href = "verify-email.html";
           }
           else {
-            alert("There was found the following error:\n"+myObj["message"]+"\nRetry!")/*displays error message*/
+            alert("There was found the following error:\n" + myObj["message"] + "\nRetry!")/*displays error message*/
           }
         }
         )
         .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
     }
 
-  
+
   </script>
 
+  <!-- Triggers for login & sign up-->
+  <script>
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+  </script>
 
 
  <!-- Function for save login cookie authcode -->
@@ -269,7 +282,6 @@
       function () {
       if (getCookie("auth_token")!=""){
         document.location.href = "dashboard.html";
-        $('.modal').modal();
       }
     });
 </script>

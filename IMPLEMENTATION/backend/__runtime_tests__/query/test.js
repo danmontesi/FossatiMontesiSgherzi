@@ -79,9 +79,20 @@ const {
 //   .then(r => console.log(r.queries.individual))
 //   .catch(console.log)
 
-// fetch(LOCAL_BASE_URL + 'queries/query/data?' +
-//   'auth_token=' + companyToken + '&' +
-//   'query_id=93', {
+fetch(LOCAL_BASE_URL + 'queries/query/data?' +
+  'auth_token=' + companyToken + '&' +
+  'query_id=93', {
+  method: 'GET',
+  headers: new fetch.Headers({
+    'Content-Type': 'application/json'
+  })
+})
+  .then(res => res.json())
+  .then(res => console.log(res.data))
+  .catch(console.log)
+
+// fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?' +
+//   'auth_token=' + userToken, {
 //   method: 'GET',
 //   headers: new fetch.Headers({
 //     'Content-Type': 'application/json'
@@ -90,17 +101,6 @@ const {
 //   .then(res => res.json())
 //   .then(console.log)
 //   .catch(console.log)
-
-fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?' +
-  'auth_token=' + userToken, {
-  method: 'GET',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)
 
 // fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?' +
 //   'auth_token=' + userToken, {
