@@ -232,8 +232,8 @@ class IndividualsManager {
       } = await client.query('SELECT * FROM gps_coordinates WHERE user_id = $1 ORDER BY timestamp DESC', [id])
 
       let resp = {
-        lat: '',
-        long: ''
+        lat: -9999,
+        long: -9999
       }
 
       if (rows.length !== 0) {
