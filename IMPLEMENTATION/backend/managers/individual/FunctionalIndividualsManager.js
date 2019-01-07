@@ -27,6 +27,8 @@ async function saveData(auth_token, bodyData) {
     heart_rate
   } = bodyData
 
+  const user = getActor(auth_token)
+
   // Connect to the pool
   const client = await connect()
 
@@ -34,15 +36,15 @@ async function saveData(auth_token, bodyData) {
     await client.query('BEGIN')
 
     gps_coordinates.forEachAsync(async (coordinate) => {
-      client.query('INSERT INTO gps_coordinates(user_id, timestamp, lat, long) VALUES($1, $2, $3, $4) RETURNING *', [this.user.id, coordinate.timestamp, coordinate.lat, coordinate.long])
+      client.query('INSERT INTO gps_coordinates(user_id, timestamp, lat, long) VALUES($1, $2, $3, $4) RETURNING *', [user.id, coordinate.timestamp, coordinate.lat, coordinate.long])
     })
 
     accelerometer.forEachAsync(async (accData) => {
-      client.query('INSERT INTO accelerometer(user_id, timestamp, acc_x, acc_y, acc_z) VALUES($1, $2, $3, $4, $5) RETURNING *', [this.user.id, accData.timestamp, accData.acc_x, accData.acc_y, accData.acc_z])
+      client.query('INSERT INTO accelerometer(user_id, timestamp, acc_x, acc_y, acc_z) VALUES($1, $2, $3, $4, $5) RETURNING *', [user.id, accData.timestamp, accData.acc_x, accData.acc_y, accData.acc_z])
     })
 
     heart_rate.forEachAsync(async (heartData) => {
-      client.query('INSERT INTO heart_rate(user_id, timestamp, bpm) VALUES($1, $2, $3) RETURNING *', [this.user.id, heartData.timestamp, heartData.bpm])
+      client.query('INSERT INTO heart_rate(user_id, timestamp, bpm) VALUES($1, $2, $3) RETURNING *', [user.id, heartData.timestamp, heartData.bpm])
     })
 
     await client.query('COMMIT')
