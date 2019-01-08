@@ -27,8 +27,7 @@
               <li class="active"><a href="monitoring.html">Monitoring</a></li>
   
               <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
-  
-    
+              
             </ul>
           </div>
         </nav>
@@ -46,14 +45,16 @@
               
               
                       <div class="row center">
-                          <h5 class="header col s12 ">Data4Help let companies monitor single individuals, previus his approval.</h5>
+                          <h5 class="header col s12 ">Data4Help let companies monitor single individuals, previus their approval.</h5>
                           <h5 class="center">
                             <button data-target="modal" class="btn red modal-trigger">Add new individual query</button>
                             </h5>
                             
-                          <h5 class="header col s12 light">Here is the list of your performed queries.  
-                              To see data of the queries, click on the picture of the icons:
+                          <h7 class="header col s12">Here is the list of your performed individual query.  
+                              To see data, click on the id button:
                           </h5>
+
+                          <h6 id="loading_panel" class="header col s12 light"></h5>
                           
                         </div>
                   
@@ -142,11 +143,16 @@
 <script>
 
   function getPatientList() {
+
+  
+  document.getElementById("loading_panel").innerHTML = `
+                        
+                        <span class="title">Loading queries ...</span>
+                         
+                       `;
+                             
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
   const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
-
-  const TEMP_URL = 'http://192.168.164.4:12345'
-  const TEMP_PATH = '/queries/query?auth_token=' + getCookie("auth_token")
 
   fetch(proxyurl + url, {
 
@@ -163,6 +169,7 @@
     console.log("here in response ")
 
     console.log(response)
+    document.getElementById("loading_panel").innerHTML = ``;
       if (response["success"] === true) {
 
         console.log(response)
@@ -172,16 +179,16 @@
         if (decodedResponse){       
 
         for (var i = 0; i < decodedResponse.length; i++) {
-          curQuery = decodedResponse[i];
+          curQuery = decodedResponse[i]; //TODO SOTTO: create query click
           HtmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
-                  <img query_id = ${curQuery["id"]} src="images/data_icon.png"  alt="" class="circle"  >
+                  <img query_id = ${curQuery["id"]} src="images/data_icon.png" alt="" class="circle"  >
                   <span class="title">Patient SSN</span>
                   <p>${curQuery["ssn"]}<br>
-                    Data4Help
+                    <button href="#!" onclick=createXml(${curQuery["id"]}) class="btn red">Download query</button>
                   </p>
-                  <a href="onclick=${createXml(curQuery["id"])}" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>
               </ul>
                 `
@@ -293,7 +300,7 @@
      auth_token: auth_token,
      query: {
        type: 'individual',
-       SSN: SSN,
+       ssn: SSN,
        additional_params: {
       
     }
@@ -386,11 +393,12 @@
 <!-- Function get Xml from  server endpoint-->
 <script>
     function createXml(query_id) {
+
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
       const url = "https://data4halp.herokuapp.com/queries/query/data";
       var authtoken = getCookie("auth_token");//get authtoken
-      var query_id = getCookie("performed_query_id");
-      fetch(proxyurl + url + "auth_token=" + authtoken + "query_id" + query_id, {
+      var query_id = query_id;
+      fetch(proxyurl + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
 
         method: 'GET',
         headers: {
@@ -403,12 +411,10 @@
           var myObj = JSON.parse(contents); //Parse the response
           if (myObj["success"] == true) {
             //Show the json file
-
-            var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(contents.data));
-            var dlAnchorElem = document.getElementById("query_id_"+query_id); //get id from the block with specified id
-            dlAnchorElem.setAttribute("href", dataStr);
-            dlAnchorElem.setAttribute("download", + ".json");
-
+  //window.webkitRequestFileSystem(window.TEMPORARY, 1024*1024, SaveDatFileBro);
+console.log("contents:"+myObj.data);
+var xml = json2xml(contents);
+            download_file(query_id + ".txt", xml, "text/plain")
 
           }
           else {
@@ -419,6 +425,67 @@
     }
   </script>
 
+<script>
+function json2xml(json) {
+    var a = JSON.parse(json)
+    var c = document.createElement("root");
+    var t = function (v) {
+        return {}.toString.call(v).split(' ')[1].slice(0, -1).toLowerCase();
+    };
+    var f = function (f, c, a, s) {
+        c.setAttribute("type", t(a));
+        if (t(a) != "array" && t(a) != "object") {
+            if (t(a) != "null") {
+                c.appendChild(document.createTextNode(a));
+            }
+        } else {
+            for (var k in a) {
+                var v = a[k];
+                if (k == "__type" && t(a) == "object") {
+                    c.setAttribute("__type", v);
+                } else {
+                    if (t(v) == "object") {
+                        var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+                        f(f, ch, v);
+                    } else if (t(v) == "array") {
+                        var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+                        f(f, ch, v, true);
+                    } else {
+                        var va = document.createElementNS(null, s ? "item" : k);
+                        if (t(v) != "null") {
+                            va.appendChild(document.createTextNode(v));
+                        }
+                        var ch = c.appendChild(va);
+                        ch.setAttribute("type", t(v));
+                    }
+                }
+            }
+        }
+    };
+    f(f, c, a, t(a) == "array");
+    return c.outerHTML;
+}
+</script>
+<script>
+    function download_file(name, contents, mime_type) {
+        mime_type = mime_type || "text/plain";
+
+        var blob = new Blob([contents], {type: mime_type});
+
+        var dlink = document.createElement('a');
+        dlink.download = name;
+        dlink.href = window.URL.createObjectURL(blob);
+        dlink.onclick = function(e) {
+            // revokeObjectURL needs a delay to work properly
+            var that = this;
+            setTimeout(function() {
+                window.URL.revokeObjectURL(that.href);
+            }, 1500);
+        };
+
+        dlink.click();
+        dlink.remove();
+    }</script>
  <!-- Modal Trigger for Successful Query add-->
  <a class="modal-trigger"href="#modal1"></a>
 
