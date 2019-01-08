@@ -34,7 +34,7 @@ const PORT = process.env.PORT || 12345
 
 const app = express()
 
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use('/', routes)
 

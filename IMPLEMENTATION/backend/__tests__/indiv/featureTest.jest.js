@@ -83,7 +83,6 @@ describe('User sends data', () => {
           ],
           heart_rate: [
             {
-              timestamp: new Date(2014, 0, 1),
               bpm: 80
             }, {
               timestamp: new Date(),
@@ -94,9 +93,8 @@ describe('User sends data', () => {
       })
     })
     res = await res.json()
-    console.log(res)
-    expect(res.success).toBe(true)
-    expect(res.message).toBe('Sync successful')
+    expect(res.status).toBe(422)
+    expect(res.message).toBe('Invalid data')
   })
 })
 
@@ -111,7 +109,6 @@ describe('User wants to retrive his data', () => {
       })
     })
     res = await res.json()
-    console.log(res)
     expect(res.success).toBe(true)
     expect(res.data).not.toBe(null)
   })

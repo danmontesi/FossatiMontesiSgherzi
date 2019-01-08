@@ -21,10 +21,8 @@ indivRouter.post('/data', async (req, res, next) => {
     let message = await saveData(req.body.auth_token, req.body.data)
     res.status(200).send(message)
   } catch (err) {
-    console.log(err)
     next(err)
   }
-
 })
 
 indivRouter.get('/data', async (req, res, next) => {

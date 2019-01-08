@@ -1,7 +1,7 @@
 /**
  * Dependency Import
  */
-const jwt = require('jsonwebtoken')
+const format = require('pg-format')
 const nm = require('nodemailer')
 const { getActor } = require('../../managers/token/TokenManager')
 
@@ -40,23 +40,21 @@ async function saveData(auth_token, bodyData) {
   try {
     await client.query('BEGIN')
 
+    // Transform bodyData to an array
+    const gpsArray = toQueryArray(user.id, gps_coordinates)
+    const accArray = toQueryArray(user.id, accelerometer)
+    const heartArray = toQueryArray(user.id, heart_rate)
+
     // Inserts into the tables every data received
-    gps_coordinates.forEachAsync(async (coordinate) => {
-      await client.query('INSERT INTO gps_coordinates(user_id, timestamp, lat, long) VALUES($1, $2, $3, $4) RETURNING *', [user.id, coordinate.timestamp, coordinate.lat, coordinate.long])
-    })
-
-    accelerometer.forEachAsync(async (accData) => {
-      await client.query('INSERT INTO accelerometer(user_id, timestamp, acc_x, acc_y, acc_z) VALUES($1, $2, $3, $4, $5) RETURNING *', [user.id, accData.timestamp, accData.acc_x, accData.acc_y, accData.acc_z])
-    })
-
-    heart_rate.forEachAsync(async (heartData) => {
-      await client.query('INSERT INTO heart_rate(user_id, timestamp, bpm) VALUES($1, $2, $3) RETURNING *', [user.id, heartData.timestamp, heartData.bpm])
-    })
+    await client.query(format('INSERT INTO gps_coordinates(user_id, lat, long, timestamp) VALUES %L RETURNING *', gpsArray))
+    await client.query(format('INSERT INTO accelerometer(user_id, timestamp, acc_x, acc_y, acc_z) VALUES %L RETURNING *', accArray))
+    await client.query(format('INSERT INTO heart_rate(user_id, timestamp, bpm) VALUES %L RETURNING *', heartArray))
 
     await client.query('COMMIT')
     await client.release()
 
     // TODO: NOTIFY COMPANIES
+    await notifyCompanies(user.id)
 
     return {
       success: true,
@@ -70,6 +68,64 @@ async function saveData(auth_token, bodyData) {
     err.status = 422
     throw err
   }
+
+}
+
+/**
+ * Notifies companies that updated data are available
+ * @param userId
+ * @returns {Promise<void>}
+ */
+async function notifyCompanies(userId) {
+
+  // Connect to the database
+  const client = await connect()
+
+  try {
+
+    // Look for all companies having a query on that individual
+    const {
+      rows: companies
+    } = await client.query('SELECT ca.email ' +
+      'FROM query_user as qu, query as q, company_account as ca ' +
+      'WHERE qu.user_id = $1 AND qu.query_id = q.id AND q.company_id = ca.id', [userId])
+    console.log(companies)
+    // Send an email to all of them
+    companies.forEach(company => sendNotificationEmail(company.email))
+
+    await client.release()
+
+  } catch (err) {
+    console.log(err)
+    await client.release()
+    throw err
+  }
+
+}
+
+
+function sendNotificationEmail(email) {
+
+  console.log('Sending mail to ' + email)
+
+  const transporter = nm.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.MAIL_ADDR,
+      pass: process.env.MAIL_PASSWD
+    }
+  })
+
+  const mailOptions = {
+    from: process.env.MAIL_ADDR,
+    to: email,
+    subject: 'Data4Help, new data available',
+    html: `<p>New data available for your query, download them on the website</p>`
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) throw error
+  })
 
 }
 
@@ -117,7 +173,7 @@ async function getData(userId, fromDate = undefined, toDate = undefined, isIndiv
 }
 
 /**
- * Allows to retrive user info
+ * Allows to retrieve user info
  * @param token: String
  * @returns {Promise<{success: boolean, user: *}>}
  */
@@ -159,6 +215,20 @@ async function getUserInfo(token) {
     await client.release()
     throw err
   }
+
+}
+
+function toQueryArray(userId, el) {
+  let template = []
+
+  el.forEach(e => {
+    let elTemplate = [userId]
+    Object.keys(e)
+      .forEach(key => elTemplate.push(e[key]))
+    template.push(elTemplate)
+  })
+
+  return template
 
 }
 

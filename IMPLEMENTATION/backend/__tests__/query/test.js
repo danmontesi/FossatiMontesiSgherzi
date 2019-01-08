@@ -6,23 +6,23 @@ const {
   LOCAL_BASE_URL
 } = require('../config')
 
-fetch(LOCAL_BASE_URL + 'queries/query', {
-  method: 'POST',
-  headers: new fetch.Headers({
-    'Content-Type': 'application/json'
-  }),
-  body: JSON.stringify({
-    auth_token: companyToken,
-    query: {
-      type: 'individual',
-      SSN: '1234567890123456',
-      additional_params: {}
-    }
-  })
-})
-  .then(res => res.json())
-  .then(console.log)
-  .catch(console.log)
+// fetch(LOCAL_BASE_URL + 'queries/query', {
+//   method: 'POST',
+//   headers: new fetch.Headers({
+//     'Content-Type': 'application/json'
+//   }),
+//   body: JSON.stringify({
+//     auth_token: companyToken,
+//     query: {
+//       type: 'individual',
+//       SSN: 'SGHRCM65PD7L858L',
+//       additional_params: {}
+//     }
+//   })
+// })
+//   .then(res => res.json())
+//   .then(console.log)
+//   .catch(console.log)
 //
 // fetch(LOCAL_BASE_URL + 'queries/query', {
 //   method: 'POST',
@@ -109,7 +109,7 @@ fetch(LOCAL_BASE_URL + 'queries/query', {
 //     'Content-Type': 'application/json'
 //   }),
 //   body: JSON.stringify({
-//     query_id: 93,
+//     query_id: 114,
 //     decision: true
 //   })
 // })

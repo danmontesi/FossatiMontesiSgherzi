@@ -31,6 +31,7 @@ queryRouter.post('/query', authorizationMiddleware('company'), async (req, res, 
 
 queryRouter.get('/query', authorizationMiddleware('company'), async (req, res, next) => {
   try {
+    console.log(req.body)
     const response = await retriveQueries(getActor(req.query.auth_token))
     res
       .status(200)
@@ -48,9 +49,6 @@ queryRouter.get('/query/data', authorizationMiddleware('company'), async (req, r
       allData
     } = await performQueryById(req.query.query_id)
     response.data = allData[0].data
-    console.log('_________________________________________________________________')
-    console.log(userList.length)
-    console.log('_________________________________________________________________')
     if (userList.length === 1) response.user = userList[0]
     res.status(200).send(response)
   } catch (err) {

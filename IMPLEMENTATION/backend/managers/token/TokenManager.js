@@ -73,6 +73,7 @@ async function isActor(authToken, actor) {
 function authorizationMiddleware() {
   return async (req, res, next) => {
     const token = req.body.auth_token || req.query.auth_token
+    console.log(getActor(token))
     try {
 
       let isEntity = (await Promise.all(

@@ -171,7 +171,7 @@ async function performQueryById(queryId) {
 }
 
 async function updateUserList(userIds, queryId) {
-
+  console.log('Updating user List')
   const client = await connect()
 
   try {
@@ -182,6 +182,7 @@ async function updateUserList(userIds, queryId) {
       rows
     } = await client.query(format('INSERT INTO query_user(user_id, query_id) VALUES %L RETURNING *', userIds.map(uid => [uid, queryId])))
     console.log(rows)
+    await client.query('COMMIT')
     await client.release()
   } catch (err) {
     await client.query('ROLLBACK')
