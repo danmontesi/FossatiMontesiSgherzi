@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="198" column="3" selection-start-line="198" selection-start-column="3" selection-end-line="198" selection-end-column="3" />
+            <state relative-caret-position="345">
+              <caret line="430" column="19" lean-forward="true" selection-start-line="430" selection-start-column="19" selection-end-line="430" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -167,7 +167,7 @@
     <option name="x" value="10" />
     <option name="y" value="40" />
     <option name="width" value="1900" />
-    <option name="height" value="510" />
+    <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -401,7 +401,7 @@
       <workItem from="1546850971619" duration="11000" />
       <workItem from="1546868720166" duration="22352000" />
       <workItem from="1546933429727" duration="8829000" />
-      <workItem from="1546971651083" duration="11226000" />
+      <workItem from="1546971651083" duration="11825000" />
     </task>
     <servers />
   </component>
@@ -438,7 +438,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="206626000" />
+    <option name="totallyTimeSpent" value="207225000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -450,8 +450,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="40" width="1900" height="510" extended-state="0" />
-    <editor active="true" />
+    <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.22204472" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -467,7 +466,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.84408605" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.35201794" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -818,8 +817,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="198" column="3" selection-start-line="198" selection-start-column="3" selection-end-line="198" selection-end-column="3" />
+        <state relative-caret-position="345">
+          <caret line="430" column="19" lean-forward="true" selection-start-line="430" selection-start-column="19" selection-end-line="430" selection-end-column="19" />
         </state>
       </provider>
     </entry>
