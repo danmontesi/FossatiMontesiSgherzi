@@ -9,13 +9,33 @@ const {
   getUserInfo
 } = require('../../managers/individual/FunctionalIndividualsManager')
 
-const IndividualsManager = require('../../managers/individual/IndividualsManager')
 const {
   authorizationMiddleware
 } = require('../../managers/token/TokenManager')
 
 indivRouter.use(authorizationMiddleware('individual'))
 
+/**
+ * METHOD: POST
+ * ENDPOINT: /indiv/data
+ * Tries to save user data in the database
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    message: 'Sync successful'
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: ...status code
+ *    message: message
+ *  }
+ * RESPONSE STATUS:
+ *  200: Post successful
+ *  422: Invalid data
+ *  500: An generic error occurred
+ */
 indivRouter.post('/data', async (req, res, next) => {
   try {
     let message = await saveData(req.body.auth_token, req.body.data)
@@ -25,6 +45,26 @@ indivRouter.post('/data', async (req, res, next) => {
   }
 })
 
+/**
+ * METHOD: GET
+ * ENDPOINT: /indiv/data
+ * Tries to retrive user data from the database
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    data: ...data
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: status_code
+ *    message: message
+ *  }
+ * RESPONSE STATUS:
+ *  200: Get successful
+ *  500: An generic error occurred
+ */
 indivRouter.get('/data', async (req, res, next) => {
   try {
 
@@ -46,6 +86,27 @@ indivRouter.get('/data', async (req, res, next) => {
   }
 })
 
+/**
+ * METHOD: GET
+ * ENDPOINT: /indiv/user
+ * Tries to save user info from the database
+ *
+ * SUCCESS RESPONSE BODY:
+ *  {
+ *    success: true,
+ *    user: ...user
+ *  }
+ *
+ *  FAILURE RESPONSE BODY:
+ *  {
+ *    status: status_code
+ *    message: message
+ *  }
+ * RESPONSE STATUS:
+ *  200: Get successful
+ *  404: User not found
+ *  500: An generic error occurred
+ */
 indivRouter.get('/user', async (req, res, next) => {
   try {
     const user = await getUserInfo(req.query.auth_token)

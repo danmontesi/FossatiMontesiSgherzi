@@ -3,29 +3,16 @@ const templateQueries = require('./templateQueries')
 const format = require('pg-format')
 
 const {
-  MIN_USER_NUMBER
+  MIN_USER_NUMBER,
+  connect
 } = require('../config')
 
-const IndividualManager = require('../individual/IndividualsManager')
-
 const {
-  getActor
-} = require('../token/TokenManager')
-const {
-  Pool
-} = require('pg')
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL + '?ssl=true',
-  max: 100
-})
-
-async function connect() {
-  return await pool.connect()
-}
+  getData
+} = require('../individual/FunctionalIndividualsManager')
 
 async function createQuery(company, query) {
-  console.log(query)
+
   const client = await connect()
   try {
     await client.query('BEGIN')
@@ -110,8 +97,10 @@ function checkQueryParams(query) {
 
 async function performQuery(query) {
 
+  // SELECT * FROM query_user as qu, individual_account as ia, gps_coordinates as gc, heart_rate as hr, accelerometer as aWHERE ia.id = qu.user_id AND qu.query_id = $1 AND qu.user_id = gc.user_id AND qu.user_id = a.user_id AND qu.user_id = hr.user_id
+
   const userList = await checkQuery(query)
-  let allData = await Promise.all(userList.map(async (userId) => await IndividualManager.FPgetData(userId)))
+  let allData = await Promise.all(userList.map(async (userId) => await getData(userId)))
   if (query && !query.additional_params.isEmpty()) {
     Object.keys(query.additional_params)
       .forEach(param => {
@@ -130,15 +119,18 @@ async function performQuery(query) {
     err.status = 422
     throw err
   }
-  console.log(allData)
+
   return {
     userList,
     allData
   }
+
 }
 
 async function performQueryById(queryId) {
+
   console.log('Called with queryid ' + queryId)
+
   const client = await connect()
 
   try {
@@ -150,27 +142,35 @@ async function performQueryById(queryId) {
       'FROM query WHERE id = $1', [queryId]
     )
 
+    if (rows.length === 0) {
+      let err = new Error('Query not found')
+      err.status = 404
+      throw err
+    }
+
     // rows[0].query_type
     const {
       rows: fullQuery
     } = await client.query(`SELECT * FROM ${rows[0].query_type}_query WHERE id = $1`, [queryId])
-    console.log(fullQuery)
-
-    await client.release()
 
     let query = fullQuery[0]
     query.type = rows[0].query_type
 
+    await client.release()
+
     return await performQuery(query)
 
   } catch (err) {
-    console.log(err)
     await client.release()
     throw err
   }
 }
 
 async function updateUserList(userIds, queryId) {
+
+  // if the query is individual I put the user in the query_user database only if he approves
+  if (userIds.length === 1) return
+
   console.log('Updating user List')
   const client = await connect()
 
@@ -203,20 +203,26 @@ async function checkQuery(query) {
 }
 
 async function checkIndividualQuery(query) {
-  console.log(query)
+
   const client = await connect()
+  console.log(query.ssn)
   try {
     const {
       rows: user
-    } = await client.query('SELECT id FROM individual_account WHERE SSN = $1 LIMIT 1', [query.SSN])
+    } = await client.query('SELECT id FROM individual_account WHERE SSN = $1 LIMIT 1', [query.ssn])
+
     if (user.length === 0) {
       let err = new Error('User not found')
       err.status = 404
       throw err
     }
+
     await client.release()
+
     return [user[0].id]
+
   } catch (err) {
+    console.log(err.stack)
     await client.release()
     throw err
   }
@@ -302,7 +308,7 @@ async function fetchPendingIndividualRequests(userId) {
 
 }
 
-async function confirmRequest(queryId, response) {
+async function confirmRequest(userId, queryId, response) {
 
   const client = await connect()
 
@@ -312,9 +318,18 @@ async function confirmRequest(queryId, response) {
 
     const {
       rows
-    } = await client.query('UPDATE individual_query SET auth = $1 WHERE id = $2 RETURNING *', [response, queryId])
-
+    } = await client.query(
+      'SELECT * ' +
+      'FROM individual_account as ia, individual_query as iq ' +
+      'WHERE ia.id = $1 AND iq.id = $2 AND ia.ssn = iq.ssn', [userId, queryId]
+    )
     console.log(rows)
+
+    await client.query('UPDATE individual_query SET auth = $1 WHERE id = $2 RETURNING *', [response, queryId])
+
+    if (response) {
+      await client.query('INSERT INTO query_user(query_id, user_id) VALUES($1, $2) RETURNING *', [queryId, userId])
+    }
 
     await client.query('COMMIT')
     await client.release()
@@ -325,7 +340,10 @@ async function confirmRequest(queryId, response) {
     }
 
   } catch (err) {
+    console.log(err)
     await client.release()
+    err.message = 'Query not found'
+    err.status = 404
     throw err
   }
 

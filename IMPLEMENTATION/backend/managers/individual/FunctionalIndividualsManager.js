@@ -124,7 +124,7 @@ function sendNotificationEmail(email) {
   }
 
   transporter.sendMail(mailOptions, (error, info) => {
-    if (error) throw error
+    if (error) console.log('There was an error sending the email')
   })
 
 }

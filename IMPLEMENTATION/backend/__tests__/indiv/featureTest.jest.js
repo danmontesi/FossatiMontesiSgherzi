@@ -138,6 +138,7 @@ describe('User wants to retrive it\'s information',  () => {
         })
       })
     res = await res.json()
+
     expect(res.success).toBe(true)
     expect(res.user).not.toBe(null)
   })

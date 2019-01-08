@@ -7,6 +7,10 @@ const {
   getActor
 } = require('../../managers/token/TokenManager')
 
+const {
+  connect
+} = require('../config')
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL + '?ssl=true',
   max: 5
@@ -125,7 +129,7 @@ class IndividualsManager {
   }
 
   static async notifyCompanies(userId) {
-    const client = await IndividualsManager.connect()
+    const client = await connect()
     try {
       const {
         rows: companies

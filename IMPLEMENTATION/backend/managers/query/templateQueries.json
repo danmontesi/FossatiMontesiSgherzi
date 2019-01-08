@@ -2,7 +2,7 @@
   "individual": {
     "insert_query": "INSERT INTO individual_query(id, SSN, additional_params) VALUES($1, $2, $3) RETURNING *",
     "params": [
-      "SSN",
+      "ssn",
       "additional_params"
     ]
   },

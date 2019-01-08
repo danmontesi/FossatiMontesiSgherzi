@@ -3,8 +3,11 @@
  */
 const { Pool } = require('pg')
 
-
-const MIN_USER_NUMBER = 0
+/**
+ * Minimum number of user required to allow the query
+ * @type {number}
+ */
+const MIN_USER_NUMBER = 1
 
 /**
  * Create a connection pool for the database
@@ -12,7 +15,7 @@ const MIN_USER_NUMBER = 0
  */
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL + '?ssl=true',
-  max: 10
+  max: 5 // PLEASE KEEP THIS NUMBER UNDER 10, THIS IS A LIMITATION OF POSTGRES FREE TIER ON HEROKU
 })
 
 /**
