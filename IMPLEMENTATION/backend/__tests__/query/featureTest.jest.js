@@ -213,7 +213,6 @@ describe('Pending individual queries', () => {
       })
     })
     res = await res.json()
-    console.log(res)
     expect(res.success).toBe(true)
     expect(res.queries).not.toBe(undefined)
   })

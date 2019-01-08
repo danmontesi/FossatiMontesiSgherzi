@@ -1,5 +1,7 @@
-const requiredParams = require('./requiredParameters')
-const templateQueries = require('./templateQueries')
+/**
+ * Import to format of the queries
+ * to allow multiple insertions
+ */
 const format = require('pg-format')
 
 const {
@@ -7,14 +9,30 @@ const {
   connect
 } = require('../config')
 
+/**
+ * Required parameters for the queries
+ */
+const requiredParams = require('./requiredParameters')
+/**
+ * Template insertion queries
+ */
+const templateQueries = require('./templateQueries')
+
 const {
   getData
 } = require('../individual/FunctionalIndividualsManager')
 
+/**
+ * Creates a query for the given company
+ * @param company: JSON The company issuing the query
+ * @param query: JSON: The query to perform
+ * @returns {Promise<{query_id: *, success: boolean, message: string}>}
+ */
 async function createQuery(company, query) {
 
   const client = await connect()
   try {
+
     await client.query('BEGIN')
 
     // I have to perform the query at least once to fill the user_query table
@@ -22,6 +40,7 @@ async function createQuery(company, query) {
       userList
     } = await performQuery(query)
 
+    // Insert the query into the general `query` database
     const {
       rows: globalQuery
     } = await client.query('INSERT INTO query(company_id, date_generation, valid, query_type) VALUES($1, $2, $3, $4) RETURNING *', [company.id, new Date(), true, query.type])
@@ -31,10 +50,11 @@ async function createQuery(company, query) {
       params
     } = templateQueries[query.type]
 
-    const {
-      rows: newQuery
-    } = await client.query(insertQuery, [globalQuery[0].id, ...toQueryArray(query, params)])
 
+    // Insert the query into the specific `query` database
+    await client.query(insertQuery, [globalQuery[0].id, ...toQueryArray(query, params)])
+
+    // update user list in query_user
     await updateUserList(userList, globalQuery[0].id)
 
     await client.query('COMMIT')
@@ -54,10 +74,21 @@ async function createQuery(company, query) {
 
 }
 
+/**
+ * Formats the query to an array
+ * @param query
+ * @param params
+ * @returns {Array[]}
+ */
 function toQueryArray(query, params) {
   return params.map(param => query[param])
 }
 
+/**
+ * Check the existance of every needed parameter
+ * in the selected query
+ * @param query: JSON
+ */
 function checkQueryParams(query) {
   if (query && query.type) {
     const { type } = query
@@ -75,32 +106,22 @@ function checkQueryParams(query) {
   }
 }
 
-// {
-//   query: {
-//     additional_params:{
-//       accelerometer: {
-//         acc_x: []
-//       }
-//     ,
-//       gps_coordinates: {
-//         lat: []
-//       }
-//     ,
-//       heart_rate: {
-//         bpm: []
-//       }
-//     }
-//   }
-//
-// }
-
-
+/**
+ * Performs the given query
+ * @param query: JSON
+ * @returns {Promise<{allData: JSON[], userList: Int32Array}>}
+ */
 async function performQuery(query) {
 
-  // SELECT * FROM query_user as qu, individual_account as ia, gps_coordinates as gc, heart_rate as hr, accelerometer as aWHERE ia.id = qu.user_id AND qu.query_id = $1 AND qu.user_id = gc.user_id AND qu.user_id = a.user_id AND qu.user_id = hr.user_id
+  // SELECT * FROM query_user as qu, individual_account as ia, gps_coordinates as gc, heart_rate as hr, accelerometer as a WHERE ia.id = qu.user_id AND qu.query_id = $1 AND qu.user_id = gc.user_id AND qu.user_id = a.user_id AND qu.user_id = hr.user_id
 
+  // Checks the query to see if the user number is still higher than MIN_USER_NUMBER
   const userList = await checkQuery(query)
+
+  // Takes all user data
   let allData = await Promise.all(userList.map(async (userId) => await getData(userId)))
+
+  // Applies query filters to the query
   if (query && !query.additional_params.isEmpty()) {
     Object.keys(query.additional_params)
       .forEach(param => {
@@ -114,6 +135,7 @@ async function performQuery(query) {
       })
   }
 
+  // Additional feasibility check, after the application of the filters
   if (query.type !== 'individual' && allData.length <= MIN_USER_NUMBER) {
     let err = new Error('Query too restrictive')
     err.status = 422
@@ -127,6 +149,11 @@ async function performQuery(query) {
 
 }
 
+/**
+ * Retrives the query and then performs it
+ * @param queryId: Number
+ * @returns {Promise<{allData: JSON[], userList: Int32Array}>}
+ */
 async function performQueryById(queryId) {
 
   console.log('Called with queryid ' + queryId)
@@ -135,6 +162,7 @@ async function performQueryById(queryId) {
 
   try {
 
+    // Retreive the query
     const {
       rows
     } = await client.query(
@@ -148,7 +176,7 @@ async function performQueryById(queryId) {
       throw err
     }
 
-    // rows[0].query_type
+    // Retreive the full query from the database
     const {
       rows: fullQuery
     } = await client.query(`SELECT * FROM ${rows[0].query_type}_query WHERE id = $1`, [queryId])
@@ -158,6 +186,7 @@ async function performQueryById(queryId) {
 
     await client.release()
 
+    // Performs the query
     return await performQuery(query)
 
   } catch (err) {
@@ -166,6 +195,12 @@ async function performQueryById(queryId) {
   }
 }
 
+/**
+ * Updates the list of users in the given query
+ * @param userIds: Number List of user
+ * @param queryId: Number
+ * @returns {Promise<void>}
+ */
 async function updateUserList(userIds, queryId) {
 
   // if the query is individual I put the user in the query_user database only if he approves
@@ -177,36 +212,49 @@ async function updateUserList(userIds, queryId) {
   try {
     await client.query('BEGIN')
 
+    // Deletes and replaces the user list for the given query
     await client.query('DELETE FROM query_user WHERE query_id = $1', [queryId])
     const {
       rows
     } = await client.query(format('INSERT INTO query_user(user_id, query_id) VALUES %L RETURNING *', userIds.map(uid => [uid, queryId])))
-    console.log(rows)
+
     await client.query('COMMIT')
     await client.release()
+
   } catch (err) {
+
     await client.query('ROLLBACK')
     await client.release()
+
   }
 
 }
 
+/**
+ * Check feasibility of the given query
+ * @param query
+ * @returns {Promise<[]>}
+ */
 async function checkQuery(query) {
   switch (query.type) {
     case 'individual':
       return await checkIndividualQuery(query)
-    case 'regional':
-      return await checkRegionalQuery(query)
     case 'radius':
       return await checkRadiusQuery(query)
   }
 }
 
+/**
+ * Check feasibility of the given individual query
+ * @param query
+ * @returns {Promise<[]>}
+ */
 async function checkIndividualQuery(query) {
 
   const client = await connect()
-  console.log(query.ssn)
   try {
+
+    // Look for the presence of the user, given the SSN
     const {
       rows: user
     } = await client.query('SELECT id FROM individual_account WHERE SSN = $1 LIMIT 1', [query.ssn])
@@ -218,20 +266,20 @@ async function checkIndividualQuery(query) {
     }
 
     await client.release()
-
     return [user[0].id]
 
   } catch (err) {
-    console.log(err.stack)
     await client.release()
     throw err
   }
 
 }
 
-async function checkRegionalQuery(query) {
-}
-
+/**
+ * Check feasibility of the given radius query
+ * @param query
+ * @returns {Promise<[]>}
+ */
 async function checkRadiusQuery(query) {
   const LAT_DEGREE = 110.57 // km
   const LONG_DEGREE = 111.32 // km
@@ -239,16 +287,21 @@ async function checkRadiusQuery(query) {
   const client = await connect()
 
   try {
+
+    // Check if there are a sufficent number of users
     const {
       rows: userList
     } = await client.query('SELECT user_id FROM gps_coordinates WHERE lat BETWEEN $1 AND $2 AND long BETWEEN $3 AND $4', [query.center_lat, query.center_lat + query.radius / LAT_DEGREE, query.center_long, query.center_long + query.radius / LONG_DEGREE])
+
     if (userList.length < MIN_USER_NUMBER) {
       let err = new Error('Query too restrictive')
       err.status = 422
       throw err
     }
+
     await client.release()
     return userList.map(u => u.user_id)
+
   } catch (err) {
     await client.release()
     throw err
@@ -256,16 +309,23 @@ async function checkRadiusQuery(query) {
 
 }
 
+/**
+ * Allows a company to retrieve the id of its past queries
+ * @param company: JSON
+ * @returns {Promise<{success: boolean, queries}>}
+ */
 async function retriveQueries(company) {
   const client = await connect()
   try {
     await client.query('BEGIN')
     let totalQueries = {}
 
+    // Select query from the general database
     const {
       rows: companyQueries
     } = await client.query('SELECT * FROM query WHERE company_id = $1', [company.id])
 
+    // Select queries based on type
     await companyQueries.forEachAsync(async (query) => {
       const {
         rows
@@ -286,13 +346,19 @@ async function retriveQueries(company) {
   }
 }
 
+/**
+ * Allows the client to see all the individual monitoring requests on the given user
+ * @param userId: Number
+ * @returns {Promise<{success: boolean, queries}>}
+ */
 async function fetchPendingIndividualRequests(userId) {
   const client = await connect()
   try {
+
+    // Select the pending requests
     const {
       rows
     } = await client.query('SELECT iq.id, ca.company_name FROM individual_query AS iq, individual_account as ia, query as q, company_account as ca WHERE ia.id = $1 AND ia.SSN = iq.ssn AND iq.auth IS NULL AND q.id = iq.id AND q.company_id = ca.id', [userId])
-    console.log(rows)
 
     await client.release()
 
@@ -308,6 +374,14 @@ async function fetchPendingIndividualRequests(userId) {
 
 }
 
+/**
+ * Allows the client to confirm a request for the given user
+ * and the given query
+ * @param userId: Number
+ * @param queryId: Number
+ * @param response
+ * @returns {Promise<{success: boolean, message: string}>}
+ */
 async function confirmRequest(userId, queryId, response) {
 
   const client = await connect()
@@ -316,14 +390,15 @@ async function confirmRequest(userId, queryId, response) {
 
     await client.query('BEGIN')
 
-    const {
-      rows
-    } = await client.query(
-      'SELECT * ' +
-      'FROM individual_account as ia, individual_query as iq ' +
-      'WHERE ia.id = $1 AND iq.id = $2 AND ia.ssn = iq.ssn', [userId, queryId]
-    )
-    console.log(rows)
+    // const {
+    //   rows
+    // } = await client.query(
+    //   'SELECT * ' +
+    //   'FROM individual_account as ia, individual_query as iq ' +
+    //   'WHERE ia.id = $1 AND iq.id = $2 AND ia.ssn = iq.ssn', [userId, queryId]
+    // )
+    // console.log(rows)
+
 
     await client.query('UPDATE individual_query SET auth = $1 WHERE id = $2 RETURNING *', [response, queryId])
 
