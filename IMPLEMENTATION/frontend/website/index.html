@@ -101,7 +101,7 @@
 
     function signInReq() {
       const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      const url = "https://data4halp.herokuapp.com/auth/login?action=success";
+      const url = "https://data4halp.herokuapp.com/auth/login";
       var username = $('#usernLogin').val();
       var password = $('#passwLogin').val();
       fetch(proxyurl + url, {
@@ -112,14 +112,13 @@
         body: JSON.stringify({
           email: username,
           password: password,
-          company_name: 'asdf',
           type: 'company'
         })
       })
         .then(response => response.text())
         .then(contents => { //Assign to contents the response
           var myObj = JSON.parse(contents); //Parse the response
-          if (myObj["status"] == 200) {
+          if (myObj["success"] === true) {
             document.getElementById("demo2").innerHTML = myObj["auth_token"];
             setCookie(myObj["auth_token"], 7)
             document.location.href = "dashboard.html";

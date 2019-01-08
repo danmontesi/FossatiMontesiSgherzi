@@ -48,12 +48,13 @@
                       <div class="row center">
                           <h5 class="header col s12 ">Data4Help let companies monitor single individuals, previus his approval.</h5>
                           <h5 class="center">
-                            <button data-target="modal-patient" class="btn red modal-trigger">Add new patient</button>
+                            <button data-target="modal" class="btn red modal-trigger">Add new individual query</button>
                             </h5>
                             
-                          <h5 class="header col s12 light">Here is the list of your monitored individuals. Click on the '+' button to start an individual query.</h5>
-                          <a data-target="modal" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>
-              
+                          <h5 class="header col s12 light">Here is the list of your performed queries.  
+                              To see data of the queries, click on the picture of the icons:
+                          </h5>
+                          
                         </div>
                   
           </div>
@@ -111,7 +112,7 @@
   <script>
       $(document).ready(
         function () {
-          $('.modal').modal({
+         $('.modal').modal({
             dismissible: true
           });
 
@@ -121,6 +122,7 @@
           document.location.href = "index.html";
         }
         else{
+          console.log("calling get patient list ")
           getPatientList()
 
           //TODO : Authenticated-> Retrieve all useful information
@@ -141,7 +143,11 @@
 
   function getPatientList() {
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = "https://data4halp.herokuapp.com/auth/patient/list?action=success&auth_token="+getCookie("auth_token");
+  const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
+
+  const TEMP_URL = 'http://192.168.164.4:12345'
+  const TEMP_PATH = '/queries/query?auth_token=' + getCookie("auth_token")
+
   fetch(proxyurl + url, {
 
     method: 'GET',
@@ -154,30 +160,33 @@
   
     .then(response => response.json())
     .then(response => { //Assign to contents the response
-      if (response["status"] == 200) {
+    console.log("here in response ")
 
+    console.log(response)
+      if (response["success"] === true) {
 
+        console.log(response)
         //creating inner html to append to the page
         var HtmlToAppend = ""
-        decodedResponse = response;
+        decodedResponse = response.queries.individual;
+        if (decodedResponse){       
 
         for (var i = 0; i < decodedResponse.length; i++) {
           curQuery = decodedResponse[i];
           HtmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src="images/data_icon.png" alt="" class="circle">
-                  <span class="title">${curQuery["username"]}</span>
-                  <p>${curQuery["SSN"]}<br>
+                  <img query_id = ${curQuery["id"]} src="images/data_icon.png"  alt="" class="circle"  >
+                  <span class="title">Patient SSN</span>
+                  <p>${curQuery["ssn"]}<br>
                     Data4Help
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="onclick=${createXml(curQuery["id"])}" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>
               </ul>
                 `
               
         }
-        //prova
         document.getElementById("start_collection").innerHTML = HtmlToAppend;
             
         
@@ -249,6 +258,7 @@
         //alert("Error: You must login to see this page")/*displays error message*/
         //document.href("index.html")
       }
+      }
     }
     )
     .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
@@ -269,28 +279,32 @@
     <script>
       function sendQuery() {
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = "https://data4halp.herokuapp.com/patient/data?action=success";
-        var authtoken = getCookie("auth_token");//get authtoken
-        var SSN = $('#SSN').val();
-        var hourFrom = $('#hourfrom').val();
-        var hourTo = $('#hourto').val();
-        var minBpm = $('#minbpm').val();
-        var maxBpm = $('#maxbpm').val();
-  
-        
+        const url = "https://data4halp.herokuapp.com/queries/query";
+      var auth_token = getCookie("auth_token");//get authtoken
+        var SSN = $('#ssn').val();
+   
         fetch(proxyurl + url, {
 
           method: 'POST',
-          body: { "auth_token": authtoken, "; SSN": SSN,"; hour_from": hourFrom,
-          "; hour_to": hourTo,"; minbpm": minBpm,
-          "; maxbpm": maxBpm
-          }
-
-        })
+          headers: new Headers({
+     'Content-Type': 'application/json'
+   }),
+   body: JSON.stringify({
+     auth_token: auth_token,
+     query: {
+       type: 'individual',
+       SSN: SSN,
+       additional_params: {
+      
+    }
+  }
+   }
+        )
+      })
           .then(response => response.text())
           .then(contents => { //Assign to contents the response
             var myObj = JSON.parse(contents); //Parse the response
-            if (myObj["status"] == 200) {
+            if (myObj["success"] == true) {
               $('.modal.open').modal('close')
               $("#modal1").modal();
               $("#modal1").modal('open');
@@ -369,6 +383,41 @@
     }</script>
 
 
+<!-- Function get Xml from  server endpoint-->
+<script>
+    function createXml(query_id) {
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const url = "https://data4halp.herokuapp.com/queries/query/data";
+      var authtoken = getCookie("auth_token");//get authtoken
+      var query_id = getCookie("performed_query_id");
+      fetch(proxyurl + url + "auth_token=" + authtoken + "query_id" + query_id, {
+
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+
+      })
+        .then(response => response.text())
+        .then(contents => { //Assign to contents the response
+          var myObj = JSON.parse(contents); //Parse the response
+          if (myObj["success"] == true) {
+            //Show the json file
+
+            var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(contents.data));
+            var dlAnchorElem = document.getElementById("query_id_"+query_id); //get id from the block with specified id
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", + ".json");
+
+
+          }
+          else {
+            alert("Error:" + myObj["message"] + ".\nRetry!")
+          }
+
+        });
+    }
+  </script>
 
  <!-- Modal Trigger for Successful Query add-->
  <a class="modal-trigger"href="#modal1"></a>
@@ -377,9 +426,8 @@
  <div id="modal1" class="modal" >
    <div class="modal-content ">
      <h4>Success</h4>
-     <p>Query has been created successfully. Click here to download the XML file:</p>
+     <p>Request has been sent. The query will be available in this page once the individual accepts to be monitored.</p>
 
-     <!-- TODO add XML file download-->
    </div>
    <div class="modal-footer">
      <a href="#!" class="modal-close waves-effect transparent btn-flat">Done</a>
@@ -394,7 +442,7 @@
             <form class="col s12">
     
               <div class="col s12">
-                <p id=demo>Please insert your query filters: </p>
+                <p id=demo>Please insert SSN of the patient you want to monitor: </p>
               </div>
 
               <div class="row">
@@ -404,41 +452,6 @@
                   </div>
                 </div>
 
-              <p id=demo>Hours in which want to filter users: </p>   
-
-              <div class="row">
-                  <div class="input-field col s12">
-                    <input id="hourfrom" type="text" class="validate">
-                    <label for="hourfrom">Starting time (format: HH:MM)</label>
-                  </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                      <input id="hourto" type="text" class="validate">
-                      <label for="hourto">Ending time (format: HH:MM)</label>
-                    </div>
-                  </div>
-  
-  
-
-              <p id=demo>Health parameter filters: </p>
-
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="minbpm" type="text" class="validate">
-                  <label for="minbpm">Min heart beat (in bpm):</label>
-                </div>
-              </div>
-
-              <div class="row">
-                  <div class="input-field col s12">
-                    <input id="maxbpm" type="text" class="validate">
-                    <label for="maxbpm">Min heart beat (in bpm):</label>
-                  </div>
-                </div>
-      
-    
               <div class="modal-footer">
                 <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQuery()">Send</a>
               </div>
@@ -448,32 +461,6 @@
       </div>
 
 
-
-          <!-- Modal Structure QueryForm -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <div class="row">
-          <form class="col s12">
-  
-            <div class="col s12">
-              <p id=demo>Please insert SSN of the patient to add: </p>
-            </div>
-
-            <div class="row">
-                <div class="input-field col s12">
-                  <input id="ssn" type="text" class="validate">
-                  <label for="ssn">SSN of monitored patient</label>
-                </div>
-              </div>
-    
-  
-            <div class="modal-footer">
-              <a href="#!" class="waves-effect waves-green btn-flat" onclick="addPatient()">Send request</a>
-            </div>
-        </div>
-  
-      </div>
-    </div>
 
 
 

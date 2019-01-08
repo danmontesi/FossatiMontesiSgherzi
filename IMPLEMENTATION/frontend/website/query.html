@@ -1,188 +1,217 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Starter Template - Materialize</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body>
 
 
-    <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Data4Help Website</a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="dashboard.html">Dashboard</a></li>
-                
-              <li><a href="subscription.html">Subscription Plans</a></li>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Data4Help Website</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="dashboard.html">Dashboard</a></li>
 
-              <li class="active"><a href="query.html">Query</a></li>
+          <li><a href="subscription.html">Subscription Plans</a></li>
 
-              <li><a href="monitoring.html">Monitoring</a></li>
-  
-              <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
-  
-    
-            </ul>
-          </div>
-        </nav>
-      </div>
+          <li class="active"><a href="query.html">Query</a></li>
+
+          <li><a href="monitoring.html">Monitoring</a></li>
+
+          <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
 
 
-
-      
-
-      <div class="section no-pad-bot" id="index-banner">
-          <div class="container">
-
-              <div class="container">
-                  <div class="section">
-              
-              
-                      <div class="row center">
-                          <h5 class="header col s12 ">Data4Help let companies query on their database</h5>
-                            
-                          <h5 class="header col s12 light">Add new query</h5>
-                          <a data-target="modal" class="btn-floating btn-large waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>
-              
-                        </div>
-                  
-          </div>
-        </div>
-
-
-
-      
-        <ul id="start_collection" class="collection">
         </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+
+      <div class="container">
+        <div class="section">
+
+
+          <div class="row center">
+            <h5 class="header col s12 ">Data4Help let companies query on their database</h5>
+
+            <h5 class="header col s12 light">Add new query choosing from query types:</h5>
+            <h5 class="center">
+              <button data-target="modal-regional" class="btn green modal-trigger">Regional</button>
+              <button data-target="modal-radius" class="btn red modal-trigger">Radius </button>
+            </h5>
+          </div>
 
         </div>
-
       </div>
-      
-          <footer class="page-footer orange">
-              <div class="container">
-                <div class="row">
-                  <div class="col l6 s12">
-                    <h5 class="white-text">TrackMe</h5>
-                    <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to companies in order to track better their customer activities.
-                      Data4Help is available for all users and it is totally free.
-                    </p>
-          
-          
-                  </div>
-                  <div class="col l3 s12">
-                   
-                  </div>
-                  <div class="col l3 s12">
-                    <h5 class="white-text">Connect</h5>
-                    <ul>
-                      
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="footer-copyright">
-                <div class="container">
-                Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-                </div>
-              </div>
-          
-              
-            </footer>
 
 
-          </body>
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
 
 
-  <script>
-      $(document).ready(
-        function () {
-          $('.modal').modal({
-            dismissible: true
-          });
+      <ul id="start_collection" class="collection">
+      </ul>
 
-        
-        if (getCookie("auth_token")==""){
-          alert("You are not logged in! \nSign in first.")/*displays error message*/
-          document.location.href = "index.html";
-        }
-        else{
+    </div>
 
-          getAllQueries()
+  </div>
 
-          //TODO : Authenticated-> Retrieve all useful information
-
-
-        }
-        //check the authCode != ""
-        //if null-> get error message and don't show anything
-
-        //else-> request list of queries from server and shows them in the dashboard
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">TrackMe</h5>
+          <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to
+            companies in order to track better their customer activities.
+            Data4Help is available for all users and it is totally free.
+          </p>
 
 
+        </div>
+        <div class="col l3 s12">
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+
+
+  </footer>
+
+
+</body>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+
+
+<script>
+  $(document).ready(
+    function () {
+      $('.modal').modal({
+        dismissible: true
       });
+
+
+      if (getCookie("auth_token") == "") {
+        alert("You are not logged in! \nSign in first.")/*displays error message*/
+        document.location.href = "index.html";
+      }
+      else {
+
+        getAllQueries()
+
+        //TODO : Authenticated-> Retrieve all useful information
+
+
+      }
+      //check the authCode != ""
+      //if null-> get error message and don't show anything
+
+      //else-> request list of queries from server and shows them in the dashboard
+
+
+    });
 
 </script>
 
 <script>
 
   function getAllQueries() {
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = "https://data4halp.herokuapp.com/auth/queries/query?action=success&auth_token="+getCookie("auth_token");
-  fetch(proxyurl + url, {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
+    fetch(proxyurl + url, {
 
-    method: 'GET',
-    headers: {
- 		'Content-Type': 'application/json'
-    }
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
 
-  }) 
-    .then(response => response.json())
-    .then(response => { //Assign to contents the response
-      if (response["status"] == 200) {
+    })
+      .then(response => response.json())
+      .then(response => { //Assign to contents the response
+        if (response["success"] === true) {
+          console.log(response);
 
-
-        //creating inner html to append to the page
-        var HtmlToAppend = ""
-        decodedResponse = response;
-
-        for (var i = 0; i < decodedResponse.length; i++) {
-          curQuery = decodedResponse[i];
-          HtmlToAppend += `
+          //creating inner html to append to the page
+          var HtmlToAppend = ""
+          decodedResponse = response.queries.radius;
+          console.log("ok");
+          for (var i = 0; i < decodedResponse.length; i++) {
+            console.log("okkk");
+            curQuery = decodedResponse[i];
+            console.log("okkk!!!!");
+            HtmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
-                  <span class="title">${curQuery["date"]}</span>
-                  <p>${curQuery["city"]}<br>
-                    Data4Help
+                  <span class="title">Radius query id: ${curQuery.id}</span>
+                  <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
+                    ${"bpm min: " + curQuery.additional_params.heart_rate.bpm[0] + ", bpm max: " + curQuery.additional_params.heart_rate.bpm[1]}
                   </p>
                   <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                 </li>
               </ul>
-                `
-              
+                `;
+
+
+          }
+          console.log("TOPPP!!!!");
+          decodedResponse = response.regional;
+          if (decodedResponse){
+          for (var i = 0; i < decodedResponse.length; i++) {
+            console.log("TOPPP!!!!");
+            curQuery = decodedResponse[i];
+            HtmlToAppend += `
+              <ul class="collection">
+      <li class="collection-item avatar">
+        <img src="images/data_icon.png" alt="" class="circle">
+        <span class="title">Regional query id: ${i}</span>
+        <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
+          ${"bpm min: " + curQuery.additional_params.bpm[0] + ", bpm max: " + curQuery.additional_params.bpm[1]}
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    </ul>
+      `
+
+          }
+          }
+          //prova
+          document.getElementById("start_collection").innerHTML = HtmlToAppend;
+
+
         }
-        //prova
-        document.getElementById("start_collection").innerHTML = HtmlToAppend;
-            
-        
-      }
-      else {
-        alert("Endpoint of get_query still not working, filling last query with provisory data")
-        var htmlToAppend = ""
-        htmlToAppend += `
+        else {
+          alert("Endpoint of get_query still not working, filling last query with provisory data")
+          var htmlToAppend = ""
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -194,7 +223,7 @@
                 </li>
               </ul>
                 `
-        htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -206,7 +235,7 @@
                 </li>
               </ul>
                 `
-                htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -218,7 +247,7 @@
                 </li>
                 </ul>
                 `
-                htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -230,7 +259,7 @@
                 </li>
               </ul>
                 `
-                htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -242,181 +271,373 @@
                 </li>
               </ul>
                 `
-        document.getElementById("start_collection").innerHTML += htmlToAppend
-        //alert("Error: You must login to see this page")/*displays error message*/
-        //document.href("index.html")
+          document.getElementById("start_collection").innerHTML += htmlToAppend
+          //alert("Error: You must login to see this page")/*displays error message*/
+          //document.href("index.html")
+        }
       }
-    }
-    )
-    .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-}
+      )
+      .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+  }
 
 </script>
 
 
-  <script>
-  function signOut(){
+<script>
+  function signOut() {
     deleteAllCookies();
     document.location.href = "index.html";
     alert("You have logged out.");/*displays info */
-    
+
   }
-  </script>
+</script>
 
-    <script>
-      function sendQuery() {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = "https://data4halp.herokuapp.com/queries/query?action=success";
-        var authtoken = getCookie("auth_token");//get authtoken
-        var date = new Date()
-        var hourFrom = $('#hourfrom').val();
-        var hourTo = $('#hourto').val();
-        var minBpm = $('#minbpm').val();
-        var maxBpm = $('#maxbpm').val();
-        var city = $('#city').val();
-        var street = $('#street').val();
 
-        var mail = "prova@me.it"
-        
-        fetch(proxyurl + url, {
+<script>
+  function sendQueryRadius() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/query";
+    var authtoken = getCookie("auth_token");//get authtoken
+    var center_lat = parseFloat($('#center_lat').val());
+    var center_long = parseFloat($('#center_long').val());
+    var acc_min = parseInt($('#min_accR').val());
+    var acc_max = parseInt($('#max_accR').val());
+    var bpm_min = parseInt($('#min_bpmR').val());
+    var bpm_max = parseInt($('#max_bpmR').val());
+    var radius = parseInt($('#radius').val());
+    console.log(center_lat, center_long, radius)
+    fetch(proxyurl + url, {
 
-          method: 'POST',
-          body: { "auth_token": authtoken, "; mail": mail, "; date": date,
-          "; hour_from": hourFrom,"; hour_to": hourTo,"; minbpm": minBpm,
-          "; maxbpm": maxBpm,"; city": city, "; street": street }
-
-        })
-          .then(response => response.text())
-          .then(contents => { //Assign to contents the response
-            var myObj = JSON.parse(contents); //Parse the response
-            if (myObj["status"] == 200) {
-              $('.modal.open').modal('close')
-              $("#modal1").modal();
-              $("#modal1").modal('open');
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        auth_token: authtoken,
+        query: {
+          type: 'radius',
+          center_lat: center_lat,
+          center_long: center_long,
+          radius: radius,
+          additional_params: {
+            accelerometer: {
+              acc_x: [acc_min, acc_max]
+            },
+            gps_coordinates: {
+              lat: []
+            },
+            heart_rate: {
+              bpm: [bpm_min, bpm_max]
             }
-            else {
-              alert("Error:" + myObj["message"] + ".\nRetry!")
-            }
-
-          });
+          }
+        }
       }
-          
-    </script>
+      )
+    })
+      .then(response => response.text())
+      .then(contents => { //Assign to contents the response
+        var myObj = JSON.parse(contents); //Parse the response
+        if (myObj["success"] === true) {
+          setCookieQueryId(contents["query_id"], 1)
+          $('.modal.open').modal('close')
+          $("#modal1").modal();
+          $("#modal1").modal('open');
+        }
+        else {
+          alert("Error:" + myObj["message"] + ".\nRetry!")
+        }
+
+      });
+  }
+
+</script>
+
+
+<script>
+  function sendQueryRegional() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/query";
+    var authtoken = getCookie("auth_token");//get authtoken
+
+    var region = $('#region').val();
+    var acc_min = $('#min_accR').val();
+    var acc_min = $('#max_accR').val();
+    var bpm_min = $('#min_bpmR').val();
+    var bpm_max = $('#max_bpmR').val();
+
+    fetch(proxyurl + url, {
+
+      method: 'POST',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        auth_token: authtoken,
+        query: {
+          type: 'regional', //TODO metti form giusto ew questo parametro
+          region: region,
+          additional_params: {
+            accelerometer: {
+              acc_x: [acc_min, acc_max]
+            },
+            gps_coordinates: {
+              lat: []
+            },
+            heart_rate: {
+              bpm: [bpm_min, bpm_max]
+            }
+          }
+        }
+      }
+      )
+    })
+      .then(response => response.text())
+      .then(contents => { //Assign to contents the response
+        var myObj = JSON.parse(contents); //Parse the response
+        if (myObj["success"] === true) {
+          $('.modal.open').modal('close')
+          $("#modal1").modal();
+          $("#modal1").modal('open');
+        }
+        else {
+          alert("Error:" + myObj["message"] + ".\nRetry!")
+        }
+
+      });
+  }
+
+</script>
+
 
 <script>
   function deleteAllCookies() {
     var cookies = document.cookie.split(";");
 
     for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
-}
+  }
 </script>
 
 <script>
-    function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
       }
-      return "";
-    }</script>
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }</script>
+
+<!-- Function for save login cookie authcode -->
+<script>
+  function setCookieQueryId(performed_query_id, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = "performed_query_id=" + performed_query_id + "; expires=" + expires;
+  }
+</script>
+
+<!-- Modal Trigger for Successful Query add-->
+<a class="modal-trigger" href="#modal1"></a>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content " id="modal_success">
+    <h4>Success</h4>
+    <p>Query has been created successfully. Click here to show the XML data file:</p>
+    <h5 class="header col s12 ">
+      <button class="btn red modal-trigger" onclick="createXml()">Show XML </button>
+    </h5>
 
 
 
- <!-- Modal Trigger for Successful Query add-->
- <a class="modal-trigger"href="#modal1"></a>
-
- <!-- Modal Structure -->
- <div id="modal1" class="modal" >
-   <div class="modal-content ">
-     <h4>Success</h4>
-     <p>Query has been created successfully. Click here to download the XML file:</p>
-
-     <!-- TODO add XML file download-->
-   </div>
-   <div class="modal-footer">
-     <a href="#!" class="modal-close waves-effect transparent btn-flat">Done</a>
-   </div>
- </div>
+    <!-- TODO add XML file download-->
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect transparent btn-flat">Done</a>
+  </div>
+</div>
 
 
-    <!-- Modal Structure QueryForm -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-          <div class="row">
-            <form class="col s12">
-    
-              <div class="col s12">
-                <p id=demo>Please insert your query filters: </p>
-              </div>
+<!-- Modal Structure QueryForm Regional -->
+<div id="modal-regional" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <form class="col s12">
 
-
-              <!-- Data for Query -->
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="city" type="text" class="validate">
-                  <label for="city">City</label>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="street" type="text" class="validate">
-                  <label for="street">Street (Insert only the name of the street i.e. "Camillo Golgi")</label>
-                </div>
-              </div>
-              <p id=demo>Hours in which want to filter users: </p>   
-
-              <div class="row">
-                  <div class="input-field col s12">
-                    <input id="hourfrom" type="text" class="validate">
-                    <label for="hourfrom">Starting time (format: HH:MM)</label>
-                  </div>
-                </div>
-
-                <div class="row">
-                    <div class="input-field col s12">
-                      <input id="hourto" type="text" class="validate">
-                      <label for="hourto">Ending time (format: HH:MM)</label>
-                    </div>
-                  </div>
-  
-  
-
-              <p id=demo>Health parameter filters: </p>
-
-              <div class="row">
-                <div class="input-field col s12">
-                  <input id="minbpm" type="text" class="validate">
-                  <label for="minbpm">Min heart beat (in bpm):</label>
-                </div>
-              </div>
-
-              <div class="row">
-                  <div class="input-field col s12">
-                    <input id="maxbpm" type="text" class="validate">
-                    <label for="maxbpm">Min heart beat (in bpm):</label>
-                  </div>
-                </div>
-      
-    
-              <div class="modal-footer">
-                <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQuery()">Send</a>
-              </div>
-          </div>
-    
+        <div class="col s12">
+          <p id=demo>Please insert your query filters: </p>
         </div>
-      </div>
+
+
+        <!-- Data for Query -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="region" type="text" class="validate">
+            <label for="region">Region</label>
+          </div>
+        </div>
+
+        <!-- Function get Xml from  server endpoint-->
+        <script>
+          function createXml() {
+            const proxyurl = "https://cors-anywhere.herokuapp.com/";
+            const url = "https://data4halp.herokuapp.com/queries/query/data";
+            var authtoken = getCookie("auth_token");//get authtoken
+            var query_id = getCookie("performed_query_id");
+            fetch(proxyurl + url + "auth_token=" + authtoken + "query_id" + query_id, {
+
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+
+            })
+              .then(response => response.text())
+              .then(contents => { //Assign to contents the response
+                var myObj = JSON.parse(contents); //Parse the response
+                if (myObj["success"] == true) {
+                  //Show the json file
+                  document.getElementById("modal_success").innerHTML = contents["data"];
+                }
+                else {
+                  alert("Error:" + myObj["message"] + ".\nRetry!")
+                }
+
+              });
+          }
+        </script>
+
+
+        <p id=demo>Additional parameter filters: </p>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="min_bpmR" type="text" class="validate">
+            <label for="min_bpmR">Min heart beat (in bpm):</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="max_bpmR" type="text" class="validate">
+            <label for="max_bpmR">Max heart beat (in bpm):</label>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="min_accR" type="text" class="validate">
+            <label for="min_accR">Min accemerometer value (float number i.e. 1.21):</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="max_accR" type="text" class="validate">
+            <label for="max_axxcR">Max accelerometer value (float number i.e. 12.33):</label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQueryRegional()">Send</a>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal Structure QueryForm Radius -->
+<div id="modal-radius" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <form class="col s12">
+
+        <div class="col s12">
+          <p id=demo>Please insert your query filters: </p>
+        </div>
+
+
+        <!-- Data for Query -->
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="center_lat" type="text" class="validate">
+            <label for="center_lat">Center latitude value (float number i.e. 2.4373403)</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="center_long" type="text" class="validate">
+            <label for="center_long">Center longitude value (float number i.e. 34.4773403)</label>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="radius" type="text" class="validate">
+            <label for="radius">Radius of the query</label>
+          </div>
+        </div>
+
+
+
+
+        <p id=demo>Additional parameter filters: </p>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="min_bpmRad" type="text" class="validate">
+            <label for="min_bpmRad">Min heart beat (in bpm):</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="max_bpmRad" type="text" class="validate">
+            <label for="max_bpmRad">Max heart beat (in bpm):</label>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="min_accRad" type="text" class="validate">
+            <label for="min_accRad">Min accemerometer value (float number i.e. 1.21):</label>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="max_accRad" type="text" class="validate">
+            <label for="max_axxcRad">Max accelerometer value (float number i.e. 12.33):</label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQueryRadius()">Send</a>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+
 </html>
