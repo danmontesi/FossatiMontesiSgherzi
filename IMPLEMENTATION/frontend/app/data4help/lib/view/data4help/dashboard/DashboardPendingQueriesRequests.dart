@@ -1,11 +1,9 @@
-
 import 'package:data4help/model/PendingQueryRequest.dart';
 import 'package:data4help/presenter/UserPresenter.dart';
 import 'package:flutter/material.dart';
 
 class DashboardPendingQueriesRequestsPage extends StatefulWidget {
-  DashboardPendingQueriesRequestsPage({Key key, this.title})
-      : super(key: key);
+  DashboardPendingQueriesRequestsPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
@@ -17,12 +15,12 @@ class _DashboardPendingQueriesRequestsPageState
     extends State<DashboardPendingQueriesRequestsPage> {
   List<PendingQueryRequest> queryList = [];
 
-
   @override
   void initState() {
     _retriveQueries();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return new Column(
@@ -35,7 +33,10 @@ class _DashboardPendingQueriesRequestsPageState
           child: new Icon(Icons.refresh),
         ),
         Expanded(
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) {
+              return Divider();
+            },
             itemCount: queryList.length,
             itemBuilder: (context, index) {
               return ListTile(
@@ -45,11 +46,13 @@ class _DashboardPendingQueriesRequestsPageState
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     new MaterialButton(
-                      onPressed: () => _respondToQuery(queryList[index].queryId, true),
+                      onPressed: () =>
+                          _respondToQuery(queryList[index].queryId, true),
                       child: new Text("ACCEPT"),
                     ),
                     new MaterialButton(
-                      onPressed: () => _respondToQuery(queryList[index].queryId, false),
+                      onPressed: () =>
+                          _respondToQuery(queryList[index].queryId, false),
                       child: new Text("DENY"),
                     ),
                   ],
@@ -62,30 +65,28 @@ class _DashboardPendingQueriesRequestsPageState
     );
   }
 
-
-
-
-
   void _retriveQueries() {
-    UserPresenter.getActivePresenter().retrivePendingQueries().then((data){
+    UserPresenter.getActivePresenter().retrivePendingQueries().then((data) {
       setState(() {
-        queryList=data;
+        queryList = data;
       });
-
     }).catchError((error) {
-      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
+      Scaffold.of(context)
+          .showSnackBar(new SnackBar(content: new Text("$error")));
     });
   }
 
   _respondToQuery(int queryId, bool accept) {
-    UserPresenter.getActivePresenter().respondToPendingQuery(queryId, accept).then((data){
-      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$data")));
+    UserPresenter.getActivePresenter()
+        .respondToPendingQuery(queryId, accept)
+        .then((data) {
+      Scaffold.of(context)
+          .showSnackBar(new SnackBar(content: new Text("$data")));
     }).catchError((error) {
-      Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
-    }).whenComplete((){
+      Scaffold.of(context)
+          .showSnackBar(new SnackBar(content: new Text("$error")));
+    }).whenComplete(() {
       _retriveQueries();
     });
   }
 }
-
-
