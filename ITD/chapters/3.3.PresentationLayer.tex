@@ -1,0 +1,44 @@
+\subsubsection{Website}
+
+\subsubsection{Mobile App}
+\textbf{iOS / Android}
+For the presentation layer, for what concerning the individual management and the run organizer part, we decided to build a native mobile app for the two main operating systems on the market, iOS and Android, using Flutter.
+In this way we can cover about the 100\% of the market. [https://www.statista.com/statistics/266136/global-market-share-held-by-smartphone-operating-systems/]
+Advantages of using Flutter are:
+\begin{itemize}
+    \item ability to share the same codebase between Android and iOS;
+    \item ability to perform a fast development;
+    \item the output is an app with native performance both on Android and iOS.
+\end{itemize}
+
+On the other hand, the Flutter project exited recently from the beta stage, and is in active development, but it's enough stable to be used in a production environment.
+
+\textbf{Dart} Application built on Flutter needs to be written in Dart, which is a programming language designed by Google to let developers create high-quality, mission-critical apps for iOS, Android, and the web. It is an Object oriented programming language, which ereditates a lot from others programming language like Java, C\# and C++ in order to be very easy to learn.
+It also support many new programming style, like the reactive programming, and support is strongly typed.
+
+It compiles directly to native code (in case of Flutter) so that applications can run natively on devices, allowing a better management of resources and optimization of the subproducts of the compilation.
+There are also a ton of different libraries that allow interoperability between Dart application and pre-existent software.
+
+It is also free and open source.
+
+\textbf{External libraries} The following external libraries have been used in order to add some functionality to the app. All the libraries are open source and publicly available from the Dart repository.
+\begin{itemize}
+    \item \textbf{google\_maps\_flutter}: allows to show a Google Map component in the app, which offers also the ability to place markers on it;
+    \item \textbf{charts\_flutter}: allow to show chart of any type while being consistent with Material Design.
+\end{itemize}
+
+
+\textbf{External libraries} The following internal libraries have been used:
+\begin{itemize}
+    \item \textbf{http}: to make http/https queries to the backend,
+    \item \textbf{material\_flutter}: offers the user interfaces main blocks, the widgets, in Material Design. It also manages all the life cycle of the app and the navigation in it.
+\end{itemize}
+
+\textbf{The MVP pattern} The Flutter application follows the MVP pattern that does not only define the actors of the app but also describe the way of how they communicate together. It consists of three components:
+\begin{itemize}
+    \item \textbf{Model}: it contains the logic that retrives the data that needs to be show to the user. It basically makes requests to the backend and decode the responses.
+    \item \textbf{View}: it mains purpose is to show the data of the model to the user, formatted in an elegant way. It receives the user input and passes it to the Presenter.
+    \item \textbf{Presenter}: it contains the business logic and manages the communications between the Model and the View, while keeping them completely separated.
+\end{itemize}
+
+Note that this is a \textit{thin client}, i.e. all the validation of the data inserted by the user is done mainly on the server. On the client side is done only the needed preprocessing for interoperability. 

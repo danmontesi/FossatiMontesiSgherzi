@@ -46,7 +46,9 @@
       <div class="row center">
           <h5 class="header col s12 ">Welcome to your dashboard</h5>
             
-          <h5 class="header col s12 light">Last queries performed:</h5>
+          <h5 class="header col s12 light">Last 5 queries performed:</h5>
+
+          <h6 id="loading_panel" class="header col s12 light"></h5>
 
         </div>
 
@@ -164,8 +166,15 @@
 <script>
 
     function getFirst5Query() {
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = "https://data4halp.herokuapp.com/auth/queries?action=success&auth_token="+getCookie("auth_token");
+
+    document.getElementById("loading_panel").innerHTML = `
+                        
+     <span class="title">Loading queries ...</span>
+      
+    `;
+          
+  const proxyurl = "https://cors-anywhere.herokuapp.com/";
+  const url = "https://data4halp.herokuapp.com/queries/query?auth_token="+getCookie("auth_token");
   fetch(proxyurl + url, {
 
     method: 'GET',
@@ -175,34 +184,62 @@
 
   }) 
     .then(response => response.json())
-    .then(response => { //Assign to contents the response
-      if (response["status"] == 200) {
-
+    .then(response => { //Assign to contents the respon se
+      document.getElementById("loading_panel").innerHTML = ``;
+      if (response["success"] == true) {
 
         //creating inner html to append to the page
         var HtmlToAppend = ""
-        decodedResponse = response;
 
-        for (var i = 0; i < decodedResponse.length && i<5; i++) {
+        //Clearing the temporal load text
+        $(".loading_panel").first().innerHTML = "You clicked me!";
+        $("loading_panel").get(0).innerHTML = "You clicked me!";
+
+        decodedResponse = response.queries.radius;
+
+        for (var i = 0; i < i < decodedResponse.length && i < 5; i++) {
+
           curQuery = decodedResponse[i];
+
           HtmlToAppend += `
-                        <ul class="collection">
-                <li class="collection-item avatar">
-                  <img src="images/data_icon.png" alt="" class="circle">
-                  <span class="title">${curQuery["date"]}</span>
-                  <p>${curQuery["city"]}<br>
-                    Data4Help
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-              </ul>
-                `
-              
+              <ul class="collection">
+      <li class="collection-item avatar">
+        <img src="images/data_icon.png" alt="" class="circle">
+        <span class="title">Radius query id: ${curQuery.id}</span>
+        <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
+          ${"bpm min: " + curQuery.additional_params.heart_rate.bpm[0] + ", bpm max: " + curQuery.additional_params.heart_rate.bpm[1]}
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      </li>
+    </ul>
+      `;
+
+
+        }
+
+        decodedResponse = response.regional;
+        if (decodedResponse) {
+          for (var i = 0; i < decodedResponse.length; i++) {
+
+            curQuery = decodedResponse[i];
+            HtmlToAppend += `
+    <ul class="collection">
+<li class="collection-item avatar">
+<img src="images/data_icon.png" alt="" class="circle">
+<span class="title">Regional query id: ${curQuery.id}</span>
+<p>${"Center latitude: " + curQuery.region}<br>
+${"bpm min: " + curQuery.additional_params.bpm[0] + ", bpm max: " + curQuery.additional_params.bpm[1]}
+</p>
+<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+</li>
+</ul>
+`
+
+          }
         }
         //prova
         document.getElementById("start_collection").innerHTML = HtmlToAppend;
-            
-        
+
       }
       else {
         //alert("Endpoint of get_query still not working, filling last query with provisory data")
@@ -220,9 +257,7 @@
               </ul>
                 `
       
-        document.getElementById("start_collection").innerHTML += htmlToAppend
-        //alert("Error: You must login to see this page")/*displays error message*/
-        //document.href("index.html")
+        document.getElementById("start_collection").innerHTML = htmlToAppend
       }
     }
     )
@@ -231,12 +266,5 @@
 
 </script>
 
-<script>
-  function retrievePastQueries(authCode){
-    //...
-    return "";
-  }
-
-  </script>
   </body>
 </html>
