@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/__tests__/indiv/test.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/indiv/test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/query/QueriesManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/query/QueriesManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/endpoints/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/queries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../query_user" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,47 +20,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/endpoints/subs.js">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
-              <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+            <state relative-caret-position="166">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
+        <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__tests__/indiv/test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="28" column="19" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/managers/individual/requiredParams.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+            <state relative-caret-position="281">
+              <caret line="340" column="28" selection-start-line="340" selection-start-column="28" selection-end-line="340" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -64,17 +41,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/managers/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+            <state relative-caret-position="206">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="458">
+              <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+              <folding>
+                <element signature="e#216#1898#0" />
+                <element signature="e#1940#4504#0" />
+                <element signature="e#4541#5518#0" />
+                <element signature="e#5566#7107#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
+        <entry file="file://$PROJECT_DIR$/__tests__/query/test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="214" column="26" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="26" />
+            <state relative-caret-position="266">
+              <caret line="70" selection-start-line="70" selection-start-column="3" selection-end-line="79" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -90,12 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>User Not Found</find>
-      <find>console.log(re</find>
-      <find>isIndividualQuery</find>
-      <find>saveData</find>
-      <find>indiv/data</find>
-      <find>indiv/user</find>
       <find>query</find>
       <find>Noti</find>
       <find>sendnot</find>
@@ -120,6 +106,12 @@
       <find>console.lo</find>
       <find>accelerometer</find>
       <find>toQ</find>
+      <find />
+      <find>userList</find>
+      <find>queries/query</find>
+      <find>retrieve</find>
+      <find>ret</find>
+      <find>query too</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -170,15 +162,15 @@
         <option value="$PROJECT_DIR$/managers/query/templateQueries.json" />
         <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
         <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
-        <option value="$PROJECT_DIR$/__tests__/query/test.js" />
-        <option value="$PROJECT_DIR$/routes/endpoints/queries.js" />
-        <option value="$PROJECT_DIR$/managers/config.js" />
-        <option value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
-        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/subs.js" />
         <option value="$PROJECT_DIR$/managers/individual/requiredParams.json" />
         <option value="$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js" />
         <option value="$PROJECT_DIR$/__tests__/indiv/test.js" />
+        <option value="$PROJECT_DIR$/managers/config.js" />
+        <option value="$PROJECT_DIR$/__tests__/query/test.js" />
+        <option value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
+        <option value="$PROJECT_DIR$/routes/endpoints/queries.js" />
+        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
       </list>
     </option>
   </component>
@@ -255,6 +247,17 @@
               <item name="managers" type="462c0819:PsiDirectoryNode" />
               <item name="token" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="endpoints" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -293,7 +296,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.test.js (1)">
+  <component name="RunManager" selected="Node.js.app.js">
     <configuration name="User sends data" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -421,7 +424,7 @@
       <workItem from="1546850971619" duration="11000" />
       <workItem from="1546868720166" duration="22352000" />
       <workItem from="1546933429727" duration="8829000" />
-      <workItem from="1546971651083" duration="13642000" />
+      <workItem from="1546971651083" duration="16547000" />
     </task>
     <servers />
   </component>
@@ -458,7 +461,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="209042000" />
+    <option name="totallyTimeSpent" value="211947000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -471,15 +474,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22204472" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.22204472" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32735425" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997367" visible="true" weight="0.2881166" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.2881166" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39798206" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -487,7 +489,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.35201794" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.33632287" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -499,7 +501,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32735425" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997367" visible="true" weight="0.4529148" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.2881166" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39798206" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -507,7 +509,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.4248879" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.33632287" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -641,16 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jest.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="136" column="45" selection-start-line="136" selection-start-column="45" selection-end-line="136" selection-end-column="45" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/auth/testUser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -773,45 +765,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/query/test.js">
+    <entry file="file://$PROJECT_DIR$/managers/individual/requiredParams.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="104" selection-start-line="104" selection-start-column="3" selection-end-line="117" selection-end-column="24" />
+        <state relative-caret-position="276">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/subs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="214" column="26" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state relative-caret-position="237">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="-405">
           <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/individual/requiredParams.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        <state relative-caret-position="-46">
+          <caret line="82" column="15" selection-start-line="82" selection-start-column="15" selection-end-line="82" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -822,24 +800,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
+    <entry file="file://$PROJECT_DIR$/jest.config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1743">
-          <caret line="430" column="19" lean-forward="true" selection-start-line="430" selection-start-column="19" selection-end-line="430" selection-end-column="19" />
+        <state relative-caret-position="195">
+          <caret line="156" column="64" selection-start-line="156" selection-start-column="64" selection-end-line="156" selection-end-column="64" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/query/test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="70" selection-start-line="70" selection-start-column="3" selection-end-line="79" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="116" column="23" lean-forward="true" selection-start-line="116" selection-start-column="23" selection-end-line="116" selection-end-column="23" />
+        <state relative-caret-position="166">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/subs.js">
+    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        <state relative-caret-position="281">
+          <caret line="340" column="28" selection-start-line="340" selection-start-column="28" selection-end-line="340" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="458">
+          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
+          <folding>
+            <element signature="e#216#1898#0" />
+            <element signature="e#1940#4504#0" />
+            <element signature="e#4541#5518#0" />
+            <element signature="e#5566#7107#0" />
+          </folding>
         </state>
       </provider>
     </entry>

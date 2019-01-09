@@ -7,7 +7,7 @@ const { Pool } = require('pg')
  * Minimum number of user required to allow the query
  * @type {number}
  */
-const MIN_USER_NUMBER = 1
+const MIN_USER_NUMBER = 2
 
 /**
  * Create a connection pool for the database

@@ -10,6 +10,26 @@ const {
   companyToken
 } = require('../config')
 
+describe('Retrive company queries', () => {
+
+  beforeEach(() => jest.setTimeout(50000))
+
+  test('Retrieve company queries', async () => {
+    let res = await fetch(LOCAL_BASE_URL + 'queries/query?' +
+      'auth_token=' + companyToken, {
+      method: 'GET',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    res = await res.json()
+    expect(res.success).toBe(true)
+    expect(res.queries).not.toBe(undefined)
+    expect(res.queries.individual).not.toBe(undefined)
+    expect(res.queries.radius).not.toBe(undefined)
+  })
+})
+
 describe('Post an individual query', () => {
   test('Post an individual query - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query', {
@@ -74,6 +94,9 @@ describe('Post an individual query', () => {
 })
 
 describe('Post an radius query', () => {
+
+  beforeEach(() => jest.setTimeout(50000))
+
   test('Post an radius query - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query', {
       method: 'POST',
@@ -86,7 +109,7 @@ describe('Post an radius query', () => {
           type: 'radius',
           center_lat: 45.4773403,
           center_long: 9.2335757,
-          radius: 10,
+          radius: 100,
           additional_params: {
             heart_rate: {
               bpm: [81, 86]
@@ -96,6 +119,7 @@ describe('Post an radius query', () => {
       })
     })
     res = await res.json()
+    console.log(res)
     expect(res.success).toBe(true)
     expect(res.message).toBe('Query successfully posted')
     expect(res.query_id).not.toBe(undefined)
@@ -213,6 +237,7 @@ describe('Pending individual queries', () => {
       })
     })
     res = await res.json()
+    console.log(res)
     expect(res.success).toBe(true)
     expect(res.queries).not.toBe(undefined)
   })
@@ -223,7 +248,7 @@ describe('Pending individual queries', () => {
   //       'Content-Type': 'application/json'
   //     }),
   //     body: JSON.stringify({
-  //       query_id: 162,
+  //       query_id: 201,
   //       auth_token: userToken,
   //       decision: true
   //     })

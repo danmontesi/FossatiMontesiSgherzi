@@ -39,7 +39,8 @@ async function createQuery(company, query) {
     const {
       userList
     } = await performQuery(query)
-
+    console.log('User List')
+    console.log(userList)
     // Insert the query into the general `query` database
     const {
       rows: globalQuery
@@ -136,7 +137,7 @@ async function performQuery(query) {
   }
 
   // Additional feasibility check, after the application of the filters
-  if (query.type !== 'individual' && allData.length <= MIN_USER_NUMBER) {
+  if (query.type !== 'individual' && allData.length < MIN_USER_NUMBER) {
     let err = new Error('Query too restrictive')
     err.status = 422
     throw err
@@ -222,7 +223,7 @@ async function updateUserList(userIds, queryId) {
     await client.release()
 
   } catch (err) {
-
+    console.log(err)
     await client.query('ROLLBACK')
     await client.release()
 
@@ -291,7 +292,10 @@ async function checkRadiusQuery(query) {
     // Check if there are a sufficent number of users
     const {
       rows: userList
-    } = await client.query('SELECT user_id FROM gps_coordinates WHERE lat BETWEEN $1 AND $2 AND long BETWEEN $3 AND $4', [query.center_lat, query.center_lat + query.radius / LAT_DEGREE, query.center_long, query.center_long + query.radius / LONG_DEGREE])
+    } = await client.query('SELECT DISTINCT user_id FROM gps_coordinates WHERE lat BETWEEN $1 AND $2 AND long BETWEEN $3 AND $4', [query.center_lat, query.center_lat + query.radius / LAT_DEGREE, query.center_long, query.center_long + query.radius / LONG_DEGREE])
+
+
+    console.log(userList.length)
 
     if (userList.length < MIN_USER_NUMBER) {
       let err = new Error('Query too restrictive')
@@ -324,23 +328,31 @@ async function retriveQueries(company) {
     const {
       rows: companyQueries
     } = await client.query('SELECT * FROM query WHERE company_id = $1', [company.id])
-
+    console.log('COMPANY QUERIES')
+    console.log(companyQueries)
     // Select queries based on type
     await companyQueries.forEachAsync(async (query) => {
       const {
         rows
-      } = await client.query(`SELECT * FROM ${query.query_type}_query WHERE id = $1`, [query.id])
-      totalQueries[query.query_type] = rows
+      } = await client.query(`SELECT * FROM ${query.query_type}_query WHERE id = $1 LIMIT 1`, [query.id])
+      console.log('PRINTING ROWS[0]')
+      console.log(rows[0])
+      if (rows[0]) {
+        if (!totalQueries[query.query_type]) totalQueries[query.query_type] = []
+        totalQueries[query.query_type].push(rows[0])
+      }
     })
 
     await client.release()
-
+    console.log('TOTAL QUERIES')
+    console.log(totalQueries)
     return {
       success: true,
       queries: totalQueries
     }
 
   } catch (err) {
+    console.log(err)
     await client.query('ROLLBACK')
     await client.release()
   }
