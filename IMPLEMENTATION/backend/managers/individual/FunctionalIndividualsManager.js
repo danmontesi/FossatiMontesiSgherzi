@@ -62,6 +62,8 @@ async function saveData(auth_token, bodyData) {
     }
 
   } catch (err) {
+    console.log('ERROR IN POST DATA')
+    console.log(err)
     await client.query('ROLLBACK')
     await client.release()
     err.message = 'Invalid data'
