@@ -20,7 +20,7 @@ const templateQueries = require('./templateQueries')
 
 const {
   getData
-} = require('../individual/FunctionalIndividualsManager')
+} = require('../individual/IndividualsManager')
 
 /**
  * Creates a query for the given company
@@ -29,8 +29,6 @@ const {
  * @returns {Promise<{query_id: *, success: boolean, message: string}>}
  */
 async function createQuery(company, query) {
-  console.log('creating query')
-  console.log(query.additional_params)
   const client = await connect()
   try {
 
@@ -198,11 +196,15 @@ async function performQueryById(queryId) {
     let query = fullQuery[0]
     query.type = rows[0].query_type
 
-    await client.release()
-
-    // Performs the query
-    return await performQuery(query)
-
+    if (query.type === 'individual' && !query.auth) {
+      let err = new Error('User hasn\'t allowed this query!')
+      err.status = 403
+      throw err
+    } else {
+      await client.release()
+      // Performs the query
+      return await performQuery(query)
+    }
   } catch (err) {
     await client.release()
     throw err

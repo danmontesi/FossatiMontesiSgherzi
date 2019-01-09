@@ -13,8 +13,9 @@ const MIN_USER_NUMBER = 2
  * Create a connection pool for the database
  * @type {PG.Pool}
  */
+// process.env.DATABASE_URL + '?ssl=true'
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL + '?ssl=true',
+  connectionString: process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL,
   max: 4 // PLEASE KEEP THIS NUMBER UNDER 10, THIS IS A LIMITATION OF POSTGRES FREE TIER ON HEROKU
 })
 

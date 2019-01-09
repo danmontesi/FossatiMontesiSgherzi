@@ -39,7 +39,7 @@ describe('Post an individual query', () => {
         auth_token: companyToken,
         query: {
           type: 'individual',
-          ssn: 'SGHRCM65PD7L858L',
+          ssn: 'AAAABBBBCCCCDDDD',
           additional_params: {}
         }
       })
@@ -226,7 +226,9 @@ describe('Perform a query', () => {
   test('Perform an individual query - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
       'auth_token=' + companyToken + '&' +
-      'query_id=169', {
+      'query_id=216', {    // const client = await connect()
+      // await client.query('DELETE FROM user_data WHERE user_id = 111')
+      // await client.release()
       method: 'GET',
       headers: new fetch.Headers({
         'Content-Type': 'application/json'
@@ -236,6 +238,22 @@ describe('Perform a query', () => {
     expect(res.success).toBe(true)
     expect(res.data).not.toBe(undefined)
     expect(res.user).not.toBe(undefined)
+  })
+
+  test('Perform an individual query - unauthorized', async () => {
+    let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
+      'auth_token=' + companyToken + '&' +
+      'query_id=218', {    // const client = await connect()
+      // await client.query('DELETE FROM user_data WHERE user_id = 111')
+      // await client.release()
+      method: 'GET',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    res = await res.json()
+    expect(res.status).toBe(403)
+    expect(res.message).toMatch(/User hasn\'t allowed this query!/)
   })
 
   test('Perform a query - radius', async () => {

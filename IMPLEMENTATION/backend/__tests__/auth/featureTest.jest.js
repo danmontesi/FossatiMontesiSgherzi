@@ -1,8 +1,49 @@
 const fetch = require('node-fetch')
+const jwt = require('jsonwebtoken')
 
 const {
-  LOCAL_BASE_URL
+  LOCAL_BASE_URL,
+  runOrganizerMail,
+  companyMail,
+  userMail,
+  password
 } = require('../config')
+
+const {
+  connect
+} = require('../../managers/config')
+
+describe('Registration', () => {
+
+  afterEach(async () => {
+    const client = await connect()
+    await client.query('DELETE FROM individual_account WHERE ssn=\'TESTTESTTESTTEST\'')
+    await client.release()
+  })
+
+  test('User tries to register', async () => {
+    // registration
+    let reg = await fetch(LOCAL_BASE_URL + 'auth/register_user', {
+      method: 'POST',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        email: 'georgemesaclooney@gmail.com',
+        password: 'asdfasdf',
+        SSN: 'TESTTESTTESTTEST',
+        name: 'George',
+        surname: 'Clooney',
+        birthday: new Date(),
+        smartwatch: 'TEST Smartwatch'
+      })
+    })
+    reg = await reg.json()
+    expect(reg.success).toBe(true)
+    expect(reg.auth_token).not.toBe(undefined)
+
+  })
+})
 
 describe('Should prevent login with an error if the password is wrong', () => {
 
@@ -13,8 +54,8 @@ describe('Should prevent login with an error if the password is wrong', () => {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({
-        email: 'francesco.sgherzi.dev@gmail.com',
-        password: 'AAAAA',
+        email: companyMail,
+        password: password + 'A',
         type: 'company'
       })
     })
@@ -33,8 +74,8 @@ describe('Should prevent login with an error if the password is wrong', () => {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({
-        email: '10493184@polimi.it',
-        password: 'BBBBBBBBB',
+        email: runOrganizerMail,
+        password: password + 'A',
         type: 'run_organizer'
       })
     })
@@ -53,8 +94,8 @@ describe('Should prevent login with an error if the password is wrong', () => {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({
-        email: 'francesco.sgherzi@gmail.com',
-        password: 'AAAA',
+        email: userMail,
+        password: password + 'A',
         type: 'individual'
       })
     })
@@ -77,8 +118,8 @@ describe('Should login the actor', () => {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({
-        email: 'francesco.sgherzi.dev@gmail.com',
-        password: 'giannimio',
+        email: companyMail,
+        password: password,
         type: 'company'
       })
     })
@@ -97,8 +138,8 @@ describe('Should login the actor', () => {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({
-        email: '10493184@polimi.it',
-        password: 'giannimio',
+        email: runOrganizerMail,
+        password: password,
         type: 'run_organizer'
       })
     })
@@ -117,8 +158,8 @@ describe('Should login the actor', () => {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({
-        email: 'francesco.sgherzi@gmail.com',
-        password: 'giannimio',
+        email: userMail,
+        password: password,
         type: 'individual'
       })
     })

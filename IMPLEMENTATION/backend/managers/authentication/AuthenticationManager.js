@@ -53,7 +53,7 @@ function sendVerificationMail(mail, code, type) {
     from: process.env.MAIL_ADDR,
     to: mail,
     subject: 'Data4Help, account verification',
-    html: `<p>Copy the following link in the browser https://data4halp.herokuapp.com/auth/verify?mail=${mail}&code=${code}&type=${type}</p>`
+    html: `<p>Copy the following link in the browser ${process.env.HOST}/auth/verify?mail=${mail}&code=${code}&type=${type}</p>`
   }
 
   transporter.sendMail(mailOptions, (error, info) => {

@@ -1,8 +1,4 @@
 const {
-  Pool
-} = require('pg')
-
-const {
   getLastPosition
 } = require('../individual/IndividualsManager')
 
@@ -12,14 +8,9 @@ const {
   RUN_ENDED
 } = require('./runStatus')
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL + '?ssl=true',
-  max: 5
-})
-
-async function connect() {
-  return await pool.connect()
-}
+const {
+  connect
+} = require('../config')
 
 async function createRun(runOrganizer, startTime, endTime, runDescription, path) {
   const client = await connect()
@@ -103,6 +94,7 @@ async function joinRun(runId, userId) {
     const {
       rows: runs
     } = await client.query('SELECT * FROM run WHERE id = $1 AND end_time > $2', [runId, new Date()])
+    console.log(runs)
     if (runs.length !== 1) {
       let err = new Error('There isn\'t any run available with that id atm, I\'m a teapot')
       err.status = 404
@@ -116,7 +108,7 @@ async function joinRun(runId, userId) {
       message: `Joined run ${runId}`
     }
   } catch (err) {
-    if (err.message.includes('duplicate key value violates')) err.message = 'Tryna join a run ya already joined, madaffada?'
+    if (err.message.includes('duplicate key value violates')) err.message = 'You cannot join a run you\'ve already joined'
     await client.query('ROLLBACK')
     await client.release()
     throw err

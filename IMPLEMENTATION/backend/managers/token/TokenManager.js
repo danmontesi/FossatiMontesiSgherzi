@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken')
 const {
-  Pool
-} = require('pg')
-
+  connect
+} = require('../config')
 
 function getActor(authToken) {
   try {
@@ -20,10 +19,7 @@ function getActor(authToken) {
 
 async function generateToken(id, email, begin_time) {
 
-  const client = await new Pool({
-    connectionString: process.env.DATABASE_URL + '?ssl=true',
-    max: 5
-  }).connect()
+  const client = await connect()
   const token = jwt.sign({
     id, email, begin_time
   }, process.env.JWT_SECRET, {
@@ -33,10 +29,7 @@ async function generateToken(id, email, begin_time) {
 }
 
 async function isActor(authToken, actor) {
-  const client = await new Pool({
-    connectionString: process.env.DATABASE_URL + '?ssl=true',
-    max: 5
-  }).connect()
+  const client = await connect()
   try {
     let decodedActor = jwt.decode(authToken, process.env.JWT_SECRET)
     const {
@@ -52,23 +45,6 @@ async function isActor(authToken, actor) {
   }
 
 }
-
-// function authorizationMiddleware(actor) {
-//   return async (req, res, next) => {
-//     const token = req.body.auth_token || req.query.auth_token
-//     try {
-//       if (!(token && await isActor(token, actor))) {
-//         let err = new Error('Unauthorized')
-//         err.status = 401
-//         next(err)
-//       } else {
-//         next()
-//       }
-//     } catch (err) {
-//       next(err)
-//     }
-//   }
-// }
 
 function authorizationMiddleware() {
   return async (req, res, next) => {

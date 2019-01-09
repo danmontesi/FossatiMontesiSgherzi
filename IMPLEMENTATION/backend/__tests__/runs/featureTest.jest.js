@@ -6,6 +6,10 @@ const {
   userToken
 } = require('../config')
 
+const {
+  connect
+} = require('../../managers/config')
+
 describe('List of runs', () => {
   beforeEach(() => jest.setTimeout(50000))
   test('run organizer lists its runs', async () => {
@@ -45,7 +49,7 @@ describe('Runs position', () => {
   test('runs position - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'runs/positions?' +
       'auth_token=' + userToken + '&' +
-      'run_id=' + 60,
+      'run_id=' + 73,
       {
         method: 'GET',
         headers: new fetch.Headers({
@@ -85,12 +89,36 @@ describe('Join', () => {
         }),
         body: JSON.stringify({
           auth_token: userToken,
-          run_id: 63
+          run_id: 75
         })
       })
     res = await res.json()
+    console.log(res)
     expect(res.success).toBe(true)
     expect(res.message).toMatch(/Joined run /)
+
+    let runNumber = res.message.split(' ')[2]
+
+    const client = await connect()
+    await client.query('DELETE FROM run_subscription WHERE run_id = $1', [runNumber])
+
+  })
+
+  test('Join a run - already joined', async () => {
+    let alreadyJoined = await fetch(LOCAL_BASE_URL + 'runs/join',
+      {
+        method: 'POST',
+        headers: new fetch.Headers({
+          'Content-Type': 'application/json'
+        }),
+        body: JSON.stringify({
+          auth_token: userToken,
+          run_id: 73
+        })
+      })
+    alreadyJoined = await alreadyJoined.json()
+    expect(alreadyJoined.status).toBe(500)
+    expect(alreadyJoined.message).toMatch(/You cannot join a run you've already joined/)
   })
 
   test('Join a run - Non existant run', async () => {
@@ -122,7 +150,7 @@ describe('Create a run', () => {
       body: JSON.stringify({
         auth_token: runOrganizerToken,
         time_begin: new Date(),
-        time_end: new Date(),
+        time_end: '2020-01-01',
         description: 'Unbelievably, a run',
         coordinates: [
           {
@@ -139,8 +167,13 @@ describe('Create a run', () => {
       })
     })
     res = await res.json()
+    console.log(res)
     expect(res.success).toBe(true)
     expect(res.run_id).not.toBe(undefined)
+
+    const client = await connect()
+    await client.query('DELETE FROM run WHERE id = $1', [res.run_id])
+    await client.release()
 
   })
 
