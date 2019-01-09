@@ -15,17 +15,18 @@ fetch(LOCAL_BASE_URL + 'indiv/data', {
     data: {
       gps_coordinates: [
         {
-          lat: 45.4972669,
           long: 9.263508,
+
+          lat: 45.4972669,
           timestamp: new Date()
         }
       ],
       accelerometer: [
         {
-          timestamp: new Date(2014, 0, 1),
-          acc_x: -2,
           acc_y: 2.123,
-          acc_z: 141
+          timestamp: new Date(2014, 0, 1),
+          acc_z: 141,
+          acc_x: -2
         }, {
           timestamp: new Date(),
           acc_x: -12,

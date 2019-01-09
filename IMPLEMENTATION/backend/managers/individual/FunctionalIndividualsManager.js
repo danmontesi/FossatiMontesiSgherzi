@@ -13,6 +13,8 @@ const {
   connect
 } = require('../config')
 
+const requiredParams = require('./requiredParams')
+
 /**
  * Allows to save the data of the given user in the database
  * @param auth_token: String
@@ -41,9 +43,9 @@ async function saveData(auth_token, bodyData) {
     await client.query('BEGIN')
 
     // Transform bodyData to an array
-    const gpsArray = toQueryArray(user.id, gps_coordinates)
-    const accArray = toQueryArray(user.id, accelerometer)
-    const heartArray = toQueryArray(user.id, heart_rate)
+    const gpsArray = toQueryArray(user.id, gps_coordinates, 'gps_coordinates')
+    const accArray = toQueryArray(user.id, accelerometer, 'accelerometer')
+    const heartArray = toQueryArray(user.id, heart_rate, 'heart_rate')
 
     // Inserts into the tables every data received
     await client.query(format('INSERT INTO gps_coordinates(user_id, lat, long, timestamp) VALUES %L RETURNING *', gpsArray))
@@ -220,13 +222,12 @@ async function getUserInfo(token) {
 
 }
 
-function toQueryArray(userId, el) {
+function toQueryArray(userId, el, type) {
   let template = []
-
+  console.log(el)
   el.forEach(e => {
     let elTemplate = [userId]
-    Object.keys(e)
-      .forEach(key => elTemplate.push(e[key]))
+    requiredParams[type].forEach(p => elTemplate.push(e[p]))
     template.push(elTemplate)
   })
 
