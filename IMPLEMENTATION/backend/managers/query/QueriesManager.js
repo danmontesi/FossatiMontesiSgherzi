@@ -29,7 +29,8 @@ const {
  * @returns {Promise<{query_id: *, success: boolean, message: string}>}
  */
 async function createQuery(company, query) {
-
+  console.log('creating query')
+  console.log(query.additional_params)
   const client = await connect()
   try {
 
@@ -121,21 +122,33 @@ async function performQuery(query) {
 
   // Takes all user data
   let allData = await Promise.all(userList.map(async (userId) => await getData(userId)))
-
+  console.log('ALL DATA')
+  console.log(allData)
   // Applies query filters to the query
   if (query && !query.additional_params.isEmpty()) {
+
+    // for every filter imposed by the query
     Object.keys(query.additional_params)
-      .forEach(param => {
-        Object.keys(query.additional_params[param])
-          .forEach(value => {
-            console.log(value)
-            allData.forEach((userData, index) => {
-              allData[index].data[param] = userData.data[param].filter(el => el[value] >= query.additional_params[param][value][0] && el[value] <= query.additional_params[param][value][1])
-            })
+      .forEach(additional_param => {
+
+        // for every element of the filter
+        Object.keys(query.additional_params[additional_param])
+          .forEach(p => {
+            // Take the range of the filter
+            let [min, max] = query.additional_params[additional_param][p]
+
+            let i = allData.length
+            while (i--) {
+              let user = allData[i]
+              let filtered = user.data[additional_param].filter(el => el[p] >= min && el[p] <= max)
+              // If none of the data respects the constraints
+              if (filtered.length === 0) allData.splice(i, 1)
+            }
           })
       })
   }
 
+  console.log(allData.length)
   // Additional feasibility check, after the application of the filters
   if (query.type !== 'individual' && allData.length < MIN_USER_NUMBER) {
     let err = new Error('Query too restrictive')
@@ -328,15 +341,12 @@ async function retriveQueries(company) {
     const {
       rows: companyQueries
     } = await client.query('SELECT * FROM query WHERE company_id = $1', [company.id])
-    console.log('COMPANY QUERIES')
-    console.log(companyQueries)
+
     // Select queries based on type
     await companyQueries.forEachAsync(async (query) => {
       const {
         rows
       } = await client.query(`SELECT * FROM ${query.query_type}_query WHERE id = $1 LIMIT 1`, [query.id])
-      console.log('PRINTING ROWS[0]')
-      console.log(rows[0])
       if (rows[0]) {
         if (!totalQueries[query.query_type]) totalQueries[query.query_type] = []
         totalQueries[query.query_type].push(rows[0])
@@ -344,15 +354,13 @@ async function retriveQueries(company) {
     })
 
     await client.release()
-    console.log('TOTAL QUERIES')
-    console.log(totalQueries)
+
     return {
       success: true,
       queries: totalQueries
     }
 
   } catch (err) {
-    console.log(err)
     await client.query('ROLLBACK')
     await client.release()
   }

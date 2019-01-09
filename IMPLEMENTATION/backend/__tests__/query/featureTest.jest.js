@@ -1,10 +1,6 @@
 const fetch = require('node-fetch')
 
 const {
-  connect
-} = require('../../managers/config')
-
-const {
   LOCAL_BASE_URL,
   userToken,
   companyToken
@@ -31,6 +27,8 @@ describe('Retrive company queries', () => {
 })
 
 describe('Post an individual query', () => {
+  beforeEach(() => jest.setTimeout(50000))
+
   test('Post an individual query - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query', {
       method: 'POST',
@@ -112,7 +110,7 @@ describe('Post an radius query', () => {
           radius: 100,
           additional_params: {
             heart_rate: {
-              bpm: [81, 86]
+              bpm: [0, 100]
             }
           }
         }
@@ -141,6 +139,35 @@ describe('Post an radius query', () => {
           additional_params: {
             heart_rate: {
               bpm: [81, 86]
+            }
+          }
+        }
+      })
+    })
+    res = await res.json()
+    expect(res.status).toBe(422)
+    expect(res.message).toBe('Query too restrictive')
+  })
+
+  test('Post an radius query - too restrictive because of additional_param', async () => {
+    let res = await fetch(LOCAL_BASE_URL + 'queries/query', {
+      method: 'POST',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        auth_token: companyToken,
+        query: {
+          type: 'radius',
+          center_lat: 45.4773403,
+          center_long: 9.2335757,
+          radius: 10,
+          additional_params: {
+            heart_rate: {
+              bpm: [-2, -1]
+            },
+            accelerometer: {
+              acc_x: [-111, -110]
             }
           }
         }
@@ -194,6 +221,8 @@ describe('Post an radius query', () => {
 })
 
 describe('Perform a query', () => {
+  beforeEach(() => jest.setTimeout(50000))
+
   test('Perform an individual query - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
       'auth_token=' + companyToken + '&' +
@@ -212,7 +241,7 @@ describe('Perform a query', () => {
   test('Perform a query - radius', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
       'auth_token=' + companyToken + '&' +
-      'query_id=73', {
+      'query_id=196', {
       method: 'GET',
       headers: new fetch.Headers({
         'Content-Type': 'application/json'
@@ -228,6 +257,7 @@ describe('Perform a query', () => {
 })
 
 describe('Pending individual queries', () => {
+  beforeEach(() => jest.setTimeout(50000))
   test('User retrives its pending query', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?' +
       'auth_token=' + userToken, {
@@ -237,7 +267,6 @@ describe('Pending individual queries', () => {
       })
     })
     res = await res.json()
-    console.log(res)
     expect(res.success).toBe(true)
     expect(res.queries).not.toBe(undefined)
   })
@@ -277,7 +306,6 @@ describe('Pending individual queries', () => {
   //   expect(res.message).toBe('Response saved')
   //
   // })
-
 })
 
 
