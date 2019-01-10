@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/managers/query/QueriesManager.js" line="118" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" afterDir="false" />
-    </list>
+    <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -57,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="24" column="53" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="24" selection-end-column="53" />
+            <state relative-caret-position="334">
+              <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
               <folding>
                 <element signature="e#837#1382#0" />
                 <element signature="e#1449#1898#0" />
@@ -210,7 +206,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="10" />
     <option name="y" value="40" />
     <option name="width" value="1900" />
@@ -398,14 +394,14 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.app.js" />
-      <item itemvalue="Node.js.testEndpoint.js" />
-      <item itemvalue="Node.js.test.js" />
       <item itemvalue="Jest.Create a run" />
       <item itemvalue="Jest.Pending individual queries" />
       <item itemvalue="Jest.Perform a query.Perform an individual query - unauthorized" />
       <item itemvalue="Jest.Perform a query.Perform an individual query - correct" />
       <item itemvalue="Jest.Post an individual query" />
+      <item itemvalue="Node.js.app.js" />
+      <item itemvalue="Node.js.testEndpoint.js" />
+      <item itemvalue="Node.js.test.js" />
     </list>
     <recent_temporary>
       <list>
@@ -460,7 +456,7 @@
       <workItem from="1546933429727" duration="8829000" />
       <workItem from="1546971651083" duration="18372000" />
       <workItem from="1547042931201" duration="344000" />
-      <workItem from="1547052083586" duration="20519000" />
+      <workItem from="1547052083586" duration="21110000" />
     </task>
     <servers />
   </component>
@@ -497,7 +493,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="234635000" />
+    <option name="totallyTimeSpent" value="235226000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -510,7 +506,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17412141" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -894,8 +889,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="24" column="53" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="24" selection-end-column="53" />
+        <state relative-caret-position="334">
+          <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
           <folding>
             <element signature="e#837#1382#0" />
             <element signature="e#1449#1898#0" />
