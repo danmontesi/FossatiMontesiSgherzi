@@ -129,30 +129,35 @@ async function performQuery(query) {
     Object.keys(query.additional_params)
       .forEach(additional_param => {
 
-        // for every element of the filter
-        Object.keys(query.additional_params[additional_param])
-          .forEach(p => {
-            // Take the range of the filter
-            let [min, max] = query.additional_params[additional_param][p]
+          // for every element of the filter
+          Object.keys(query.additional_params[additional_param])
+            .forEach(p => {
+              // Take the range of the filter
+              let [min, max] = query.additional_params[additional_param][p]
 
-            let i = allData.length
-            while (i--) {
-              let user = allData[i]
-              let filtered = user.data[additional_param].filter(el => el[p] >= min && el[p] <= max)
-              // If none of the data respects the constraints
-              if (filtered.length === 0) allData.splice(i, 1)
-            }
-          })
-      })
+              let i = allData.length
+              while (i--) {
+                let user = allData[i]
+                if (user) {
+                  let filtered = user.data[additional_param].filter(el => el[p] >= min && el[p] <= max)
+                  // If none of the data respects the constraints
+                  if (filtered.length === 0) allData.splice(i, 1)
+                }
+              }
+            })
+        }
+      )
   }
 
   console.log(allData.length)
-  // Additional feasibility check, after the application of the filters
+// Additional feasibility check, after the application of the filters
   if (query.type !== 'individual' && allData.length < MIN_USER_NUMBER) {
     let err = new Error('Query too restrictive')
     err.status = 422
     throw err
   }
+
+  console.log(allData)
 
   return {
     userList,
