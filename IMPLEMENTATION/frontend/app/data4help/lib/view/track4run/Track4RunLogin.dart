@@ -122,16 +122,20 @@ class _Track4RunLoginPageState extends State<Track4RunLoginPage> {
 
     new RunOrganizerPresenter(_email, _password).login().then((token) {
       print(token);
+      setState(() {
+        _loginDisabled = false;
+      });
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => DashboardRunOrganizer()));
     }).catchError((e) {
+      setState(() {
+        _loginDisabled = false;
+      });
       Scaffold.of(context).showSnackBar(new SnackBar(
         content: new Text("$e"),
       ));
     }).whenComplete(() {
-      setState(() {
-        _loginDisabled = false;
-      });
+
     });
   }
 

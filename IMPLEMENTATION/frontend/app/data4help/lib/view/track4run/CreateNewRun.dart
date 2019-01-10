@@ -262,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
         .then((data) {
       Navigator.pop(context);
     }).catchError((error) {
-      Scaffold.of(context)
+      _scaffoldState.currentState
           .showSnackBar(new SnackBar(content: new Text("$error")));
     });
   }

@@ -4,8 +4,8 @@ import 'package:data4help/view/track4run/CreateNewRun.dart';
 import 'package:flutter/material.dart';
 
 class DashboardRunOrganizer extends StatelessWidget {
-  final GlobalKey<_MyHomePageState> _myHomePageStateKey =
-      new GlobalKey<_MyHomePageState>();
+  GlobalKey<_DashBoardPageState> _DashBoardPageStateKey =
+      new GlobalKey<_DashBoardPageState>();
 
   DashboardRunOrganizer();
 
@@ -18,37 +18,40 @@ class DashboardRunOrganizer extends StatelessWidget {
         actions: <Widget>[
           new IconButton(
               icon: new Icon(Icons.refresh),
-              onPressed: () => _myHomePageStateKey.currentState.refresh())
+              onPressed: () => _DashBoardPageStateKey.currentState.refresh())
         ],
       ),
       body: new Container(
-        child: MyHomePage(title: 'Data4Help - Dashboard', key: _myHomePageStateKey,),
+        child: DashBoardPage(title: 'Data4Help - Dashboard', key: _DashBoardPageStateKey,),
       ),
       floatingActionButton: new FloatingActionButton(
-        onPressed: () =>_myHomePageStateKey.currentState.addNewRun(),
+        onPressed: () =>_DashBoardPageStateKey.currentState.addNewRun(),
         child: new Icon(Icons.add),
       ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+class DashBoardPage extends StatefulWidget {
+  DashBoardPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _DashBoardPageState createState() => new _DashBoardPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _DashBoardPageState extends State<DashBoardPage> {
   List<Run> _runList = [];
 
   @override
   void initState() {
-    refresh();
     super.initState();
+
+    //refresh();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(
-                    '${_runList[index].id} - ${_runList[index].description} - ${_runList[index].status.replaceAll("_", " ").toLowerCase()}'),
+                    'Run ${_runList[index].id} - ${_runList[index].description} - ${_runList[index].status.replaceAll("_", " ").toLowerCase()}'),
               );
             },
           ),
@@ -81,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _runList = data;
       });
     }).catchError((error) {
+      print("Error: $error");
       Scaffold.of(context).showSnackBar(new SnackBar(content: new Text("$error")));
     });
   }

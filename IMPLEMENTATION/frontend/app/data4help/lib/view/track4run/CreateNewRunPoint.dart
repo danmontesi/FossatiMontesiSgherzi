@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CreateNewPoint extends StatelessWidget {
   final List<RunPoint> runPointList;
-  final GlobalKey<_CreateNewPointPageState> _createNewPointPageStateKey =
+  GlobalKey<_CreateNewPointPageState> _createNewPointPageStateKey =
       new GlobalKey<_CreateNewPointPageState>();
 
   CreateNewPoint(
