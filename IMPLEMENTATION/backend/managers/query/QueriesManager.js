@@ -123,7 +123,7 @@ async function performQuery(query) {
   console.log('ALL DATA')
   console.log(allData)
   // Applies query filters to the query
-  if (query && !query.additional_params.isEmpty()) {
+  if (query && !query.additional_params.isEmpty() && query.type !== 'individual') {
 
     // for every filter imposed by the query
     Object.keys(query.additional_params)
@@ -149,7 +149,6 @@ async function performQuery(query) {
       )
   }
 
-  console.log(allData.length)
 // Additional feasibility check, after the application of the filters
   if (query.type !== 'individual' && allData.length < MIN_USER_NUMBER) {
     let err = new Error('Query too restrictive')

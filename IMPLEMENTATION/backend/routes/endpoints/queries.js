@@ -116,7 +116,7 @@ queryRouter.get('/query/data', authorizationMiddleware('company'), async (req, r
       allData
     } = await performQueryById(req.query.query_id)
 
-    if (userList && allData) {
+    if (userList && allData.length > 0) {
       response.success = true
       response.data = allData[0].data
       // If it is an individual query, add the user id to the response
