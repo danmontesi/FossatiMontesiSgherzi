@@ -10,12 +10,12 @@ class Track4RunLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: _buildBar(context),
-        body: Track4RunLoginPage(title: 'Data4Help Login'));
+        body: Track4RunLoginPage(title: 'Track4Run Login'));
   }
 
   Widget _buildBar(BuildContext context) {
     return new AppBar(
-      title: Text('Data4Help Login'),
+      title: Text('Track4Run Login'),
     );
   }
 }
