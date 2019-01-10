@@ -5,10 +5,6 @@ const {
   userToken
 } = require('../config')
 
-const {
-  connect
-} = require('../../managers/config')
-
 describe('User sends data', () => {
   test('User sends data formatted correctly', async () => {
 

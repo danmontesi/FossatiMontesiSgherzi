@@ -93,7 +93,6 @@ describe('Join', () => {
         })
       })
     res = await res.json()
-    console.log(res)
     expect(res.success).toBe(true)
     expect(res.message).toMatch(/Joined run /)
 
@@ -167,7 +166,6 @@ describe('Create a run', () => {
       })
     })
     res = await res.json()
-    console.log(res)
     expect(res.success).toBe(true)
     expect(res.run_id).not.toBe(undefined)
 

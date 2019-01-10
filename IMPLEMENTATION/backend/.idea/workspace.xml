@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/runs/RunManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/runs/RunManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/token/TokenManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/token/TokenManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,11 +29,74 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/managers/token/TokenManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1357">
-              <caret line="59" column="6" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+            <state relative-caret-position="322">
+              <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__tests__/auth/featureTest.jest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="437">
+              <caret line="111" selection-start-line="111" selection-end-line="111" />
+              <folding>
+                <element signature="e#270#1089#0" />
+                <element signature="e#1170#2718#0" />
+                <element signature="e#1203#1678#0" />
+                <element signature="e#2762#4268#0" />
+                <element signature="e#2795#3256#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="449">
+              <caret line="24" column="53" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="24" selection-end-column="53" />
+              <folding>
+                <element signature="e#837#1382#0" />
+                <element signature="e#1449#1898#0" />
+                <element signature="e#6003#6543#0" />
+                <element signature="e#6611#7135#0" />
+                <element signature="e#7701#9263#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+              <folding>
+                <element signature="e#191#2436#0" />
+                <element signature="e#251#1341#0" />
+                <element signature="e#2488#3362#0" />
+                <element signature="e#2526#2950#0" />
+                <element signature="e#3423#3780#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__tests__/runs/featureTest.jest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="141" column="31" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
+              <folding>
+                <element signature="e#209#1025#0" />
+                <element signature="e#1060#1908#0" />
+                <element signature="e#1934#3599#0" />
+                <element signature="e#3633#5459#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,13 +194,13 @@
         <option value="$PROJECT_DIR$/__tests__/config.js" />
         <option value="$PROJECT_DIR$/__tests__/auth/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
-        <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
-        <option value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
-        <option value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/managers/config.js" />
         <option value="$PROJECT_DIR$/managers/runs/RunManager.js" />
         <option value="$PROJECT_DIR$/managers/token/TokenManager.js" />
+        <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
+        <option value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
+        <option value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
       </list>
     </option>
   </component>
@@ -207,43 +269,7 @@
             <path>
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="managers" type="462c0819:PsiDirectoryNode" />
-              <item name="authentication" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="managers" type="462c0819:PsiDirectoryNode" />
-              <item name="individual" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="managers" type="462c0819:PsiDirectoryNode" />
-              <item name="query" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="managers" type="462c0819:PsiDirectoryNode" />
-              <item name="runs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="managers" type="462c0819:PsiDirectoryNode" />
-              <item name="token" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-              <item name="endpoints" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -296,58 +322,57 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Create a run.Create a run - correctly" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
-      <test-names>
-        <test-name value="Create a run" />
-        <test-name value="Create a run - correctly" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Create a run.Create a run - wrong" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
-      <test-names>
-        <test-name value="Create a run" />
-        <test-name value="Create a run - wrong" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Join.Join a run - Non existant run" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
-      <test-names>
-        <test-name value="Join" />
-        <test-name value="Join a run - Non existant run" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Runs position" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Pending individual queries" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
+      <test-file value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
       <test-names>
-        <test-name value="Runs position" />
+        <test-name value="Pending individual queries" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Perform a query.Perform an individual query - correct" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
+      <test-names>
+        <test-name value="Perform a query" />
+        <test-name value="Perform an individual query - correct" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Perform a query.Perform an individual query - unauthorized" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
+      <test-names>
+        <test-name value="Perform a query" />
+        <test-name value="Perform an individual query - unauthorized" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Post an individual query" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
+      <test-names>
+        <test-name value="Post an individual query" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -373,22 +398,22 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Jest.Create a run" />
-      <item itemvalue="Jest.Join.Join a run - Non existant run" />
-      <item itemvalue="Jest.Create a run.Create a run - wrong" />
-      <item itemvalue="Jest.Runs position" />
-      <item itemvalue="Jest.Create a run.Create a run - correctly" />
       <item itemvalue="Node.js.app.js" />
       <item itemvalue="Node.js.testEndpoint.js" />
       <item itemvalue="Node.js.test.js" />
+      <item itemvalue="Jest.Create a run" />
+      <item itemvalue="Jest.Pending individual queries" />
+      <item itemvalue="Jest.Perform a query.Perform an individual query - unauthorized" />
+      <item itemvalue="Jest.Perform a query.Perform an individual query - correct" />
+      <item itemvalue="Jest.Post an individual query" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.Create a run.Create a run - correctly" />
+        <item itemvalue="Jest.Post an individual query" />
+        <item itemvalue="Jest.Perform a query.Perform an individual query - correct" />
+        <item itemvalue="Jest.Perform a query.Perform an individual query - unauthorized" />
+        <item itemvalue="Jest.Pending individual queries" />
         <item itemvalue="Jest.Create a run" />
-        <item itemvalue="Jest.Runs position" />
-        <item itemvalue="Jest.Create a run.Create a run - wrong" />
-        <item itemvalue="Jest.Join.Join a run - Non existant run" />
       </list>
     </recent_temporary>
   </component>
@@ -435,44 +460,44 @@
       <workItem from="1546933429727" duration="8829000" />
       <workItem from="1546971651083" duration="18372000" />
       <workItem from="1547042931201" duration="344000" />
-      <workItem from="1547052083586" duration="19579000" />
+      <workItem from="1547052083586" duration="20519000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Create_a_run_Create_a_run_-_wrong - 2019.01.10 at 00h 15m 09s.xml">
-      <configuration name="Create a run.Create a run - wrong" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="List_of_runs - 2019.01.10 at 09h 38m 52s.xml">
+      <configuration name="List of runs" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Runs_position - 2019.01.10 at 00h 16m 03s.xml">
+    <history-entry file="Runs_position - 2019.01.10 at 09h 38m 56s.xml">
       <configuration name="Runs position" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Runs_position - 2019.01.10 at 00h 16m 26s.xml">
-      <configuration name="Runs position" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Join - 2019.01.10 at 09h 39m 02s.xml">
+      <configuration name="Join" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Runs_position - 2019.01.10 at 00h 16m 43s.xml">
-      <configuration name="Runs position" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Join - 2019.01.10 at 09h 39m 10s.xml">
+      <configuration name="Join" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Runs_position - 2019.01.10 at 00h 17m 06s.xml">
-      <configuration name="Runs position" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="Create_a_run - 2019.01.10 at 00h 21m 14s.xml">
+    <history-entry file="Create_a_run - 2019.01.10 at 09h 39m 15s.xml">
       <configuration name="Create a run" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Join_Join_a_run_correctly - 2019.01.10 at 00h 21m 36s.xml">
-      <configuration name="Join.Join a run correctly" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Create_a_run - 2019.01.10 at 09h 39m 27s.xml">
+      <configuration name="Create a run" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Create_a_run_Create_a_run_-_correctly - 2019.01.10 at 00h 21m 55s.xml">
-      <configuration name="Create a run.Create a run - correctly" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Pending_individual_queries - 2019.01.10 at 09h 41m 12s.xml">
+      <configuration name="Pending individual queries" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Join_Join_a_run_correctly - 2019.01.10 at 00h 23m 49s.xml">
-      <configuration name="Join.Join a run correctly" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Perform_a_query_Perform_an_individual_query_-_unauthorized - 2019.01.10 at 09h 41m 36s.xml">
+      <configuration name="Perform a query.Perform an individual query - unauthorized" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Join_Join_a_run_correctly - 2019.01.10 at 00h 23m 53s.xml">
-      <configuration name="Join.Join a run correctly" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Perform_a_query_Perform_an_individual_query_-_correct - 2019.01.10 at 09h 41m 46s.xml">
+      <configuration name="Perform a query.Perform an individual query - correct" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Post_an_individual_query - 2019.01.10 at 09h 41m 59s.xml">
+      <configuration name="Post an individual query" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="233695000" />
+    <option name="totallyTimeSpent" value="234635000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -493,7 +518,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.24887893" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997367" visible="true" weight="0.29372197" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.29372197" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39798206" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -501,7 +526,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.31278026" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31278026" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -770,34 +795,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/auth/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="110" lean-forward="true" selection-start-line="110" selection-end-line="110" />
-          <folding>
-            <element signature="e#116#122#0" />
-            <element signature="e#166#1743#0" />
-            <element signature="e#1787#3349#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="109" column="7" lean-forward="true" selection-start-line="109" selection-start-column="7" selection-end-line="109" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="254" selection-start-line="254" selection-end-line="254" />
-          <folding>
-            <element signature="e#734#2460#0" />
-            <element signature="e#2502#5860#0" />
-            <element signature="e#6967#8529#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -812,13 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="236" lean-forward="true" selection-start-line="236" selection-end-line="236" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -843,13 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/runs/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="175" column="26" lean-forward="true" selection-start-line="175" selection-start-column="26" selection-end-line="175" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2024">
@@ -859,8 +846,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/managers/token/TokenManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1357">
-          <caret line="59" column="6" selection-start-line="59" selection-start-column="6" selection-end-line="59" selection-end-column="6" />
+        <state relative-caret-position="322">
+          <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/auth/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="111" selection-start-line="111" selection-end-line="111" />
+          <folding>
+            <element signature="e#270#1089#0" />
+            <element signature="e#1170#2718#0" />
+            <element signature="e#1203#1678#0" />
+            <element signature="e#2762#4268#0" />
+            <element signature="e#2795#3256#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding>
+            <element signature="e#191#2436#0" />
+            <element signature="e#251#1341#0" />
+            <element signature="e#2488#3362#0" />
+            <element signature="e#2526#2950#0" />
+            <element signature="e#3423#3780#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/runs/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="141" column="31" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
+          <folding>
+            <element signature="e#209#1025#0" />
+            <element signature="e#1060#1908#0" />
+            <element signature="e#1934#3599#0" />
+            <element signature="e#3633#5459#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="24" column="53" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="24" selection-end-column="53" />
+          <folding>
+            <element signature="e#837#1382#0" />
+            <element signature="e#1449#1898#0" />
+            <element signature="e#6003#6543#0" />
+            <element signature="e#6611#7135#0" />
+            <element signature="e#7701#9263#0" />
+          </folding>
         </state>
       </provider>
     </entry>
