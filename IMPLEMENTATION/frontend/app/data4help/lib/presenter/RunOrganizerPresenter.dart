@@ -27,9 +27,9 @@ class RunOrganizerPresenter{
 
   /// Registers a new run organizer on the server, using the given details.
   /// [ssn] is the ssn of the user (16 characters), [name] the name of the user, [surname] the surname of the user, [birthDay] the birthday of the user formatted as yyyy-MM-dd
-  Future<bool> registerRunOrganizer(String ssn, String name, String surname,
+  Future<bool> registerRunOrganizer(String name, String surname,
       String birthday) async {
-  return await _runModel.registerRunOrganizer(ssn, name, surname, birthday);
+  return await _runModel.registerRunOrganizer(name, surname, birthday);
   }
 
   /// Creates a new run based on the given [runPoints], starting at [startDate] [startTime], ending at [endTime] [endDate], with the given [description].

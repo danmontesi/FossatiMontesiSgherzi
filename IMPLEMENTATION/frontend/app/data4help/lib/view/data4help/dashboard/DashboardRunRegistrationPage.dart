@@ -44,7 +44,7 @@ class _DashboardRunRegistrationPageState
                 title: Text('${_runList[index].id} - ${_runList[index].description}'),
                 trailing: (_runList[index].status=="ACCEPTING_SUBSCRIPTION"?
                     new MaterialButton(
-                      onPressed: () => _subscribeUser(index),
+                      onPressed: () => _subscribeUser(_runList[index].id),
                       child: new Text("SUBSCRIBE"),
                     )
                         :

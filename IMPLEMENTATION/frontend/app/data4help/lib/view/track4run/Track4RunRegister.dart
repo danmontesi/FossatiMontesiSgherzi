@@ -30,14 +30,14 @@ class Track4RunRegisterPage extends StatefulWidget {
 class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
   final TextEditingController _emailFilter = new TextEditingController();
   final TextEditingController _passwordFilter = new TextEditingController();
-  final TextEditingController _ssnFilter = new TextEditingController();
+  //final TextEditingController _ssnFilter = new TextEditingController();
   final TextEditingController _nameFilter = new TextEditingController();
   final TextEditingController _surnameFilter = new TextEditingController();
   final TextEditingController _datetimeFilter = new TextEditingController();
 
   String _email = "";
   String _password = "";
-  String _ssn = "";
+  //String _ssn = "";
   String _name = "";
   String _surname = "";
 
@@ -46,7 +46,7 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
   _Track4RunRegisterPageState() {
     _emailFilter.addListener(_emailListen);
     _passwordFilter.addListener(_passwordListen);
-    _ssnFilter.addListener(_ssnListen);
+    //_ssnFilter.addListener(_ssnListen);
     _nameFilter.addListener(_nameListen);
     _surnameFilter.addListener(_surnameListen);
   }
@@ -67,13 +67,13 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
     }
   }
 
-  void _ssnListen() {
+  /*void _ssnListen() {
     if (_ssnFilter.text.isEmpty) {
       _ssn = "";
     } else {
       _ssn = _ssnFilter.text;
     }
-  }
+  }*/
 
   void _nameListen() {
     if (_nameFilter.text.isEmpty) {
@@ -122,13 +122,13 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
               obscureText: true,
             ),
           ),
-          new Container(
+          /*new Container(
             child: new TextField(
               controller: _ssnFilter,
               decoration: new InputDecoration(labelText: 'SSN/Fiscal code'),
               obscureText: false,
             ),
-          ),
+          ),*/
           new Container(
             child: new TextField(
               controller: _nameFilter,
@@ -216,7 +216,7 @@ class _Track4RunRegisterPageState extends State<Track4RunRegisterPage> {
       _registerDisabled = true;
     });
 
-    new RunOrganizerPresenter(_email, _password).registerRunOrganizer(_ssn, _name, _surname, _datetimeFilter.text).then((token) {
+    new RunOrganizerPresenter(_email, _password).registerRunOrganizer(_name, _surname, _datetimeFilter.text).then((token) {
       print(token);
       Navigator.pop(context);
     }).catchError((ex) {
