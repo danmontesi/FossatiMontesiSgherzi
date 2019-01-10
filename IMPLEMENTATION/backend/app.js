@@ -36,16 +36,6 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use('/', routes)
-
-/**
- * 404 Error Catcher
- */
-app.use(function (req, res, next) {
-  let err = new Error('Endpoint not found')
-  err.status = 404
-  next(err)
-})
 
 /**
  * Allow CORS
@@ -55,6 +45,20 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.type('application/json')
   next()
+})
+
+/**
+ * Expose all the routes for the application
+ */
+app.use('/', routes)
+
+/**
+ * 404 Error Catcher
+ */
+app.use(function (req, res, next) {
+  let err = new Error('Endpoint not found')
+  err.status = 404
+  next(err)
 })
 
 if (process.env.TEST_API) {
