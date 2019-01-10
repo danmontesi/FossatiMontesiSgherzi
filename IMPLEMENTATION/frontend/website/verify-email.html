@@ -167,88 +167,86 @@
 
   <script>
 
-    function signInReq() {
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      const url = "https://data4halp.herokuapp.com/auth/login?action=success";
-      var username = $('#usernLogin').val();
-      var password = $('#passwLogin').val();
-      fetch(proxyurl + url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: username,
-          password: password,
-          company_name: 'asdf',
-          type: 'company'
+      function signInReq() {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url = "https://data4halp.herokuapp.com/auth/login";
+        var username = $('#usernLogin').val();
+        var password = $('#passwLogin').val();
+        fetch(proxyurl + url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: username,
+            password: password,
+            type: 'company'
+          })
         })
-      })
-        .then(response => response.text())
-        .then(contents => { //Assign to contents the response
-          var myObj = JSON.parse(contents); //Parse the response
-          if (myObj["status"] == 200) {
-            document.getElementById("demo2").innerHTML = myObj["auth_token"];
-            setCookie(myObj["auth_token"], 7)
-            document.location.href = "dashboard.html";
+          .then(response => response.text())
+          .then(contents => { //Assign to contents the response
+            var myObj = JSON.parse(contents); //Parse the response
+            if (myObj["success"] === true) {
+              document.getElementById("demo2").innerHTML = myObj["auth_token"];
+              setCookie(myObj["auth_token"], 7)
+              document.location.href = "dashboard.html";
+            }
+            else {
+              alert("Error Password or Username, retry.")/*displays error message*/
+            }
           }
-          else {
-            alert("Error Password or Username, retry.")/*displays error message*/
-          }
-        }
-        )
-        .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-    }
-
-
-
-  </script>
-
-  <script>
-    function signUpReq() {
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      const url2 = "https://data4halp.herokuapp.com/auth/register_company?action=success";
-      var username = $('#usernReg').val();
-      var password = $('#passwReg').val();
-      var company_name = $('#companyNameReg').val();
-      var email = $('#emailReg').val();
-      fetch(proxyurl + url2, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          company_name: company_name,
-          type: 'company'
+          )
+          .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+      }
+  
+  
+  
+    </script>
+  
+    <script>
+      function signUpReq() {
+        const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        const url2 = "https://data4halp.herokuapp.com/auth/register_company?action=success";
+        var username = $('#usernReg').val();
+        var password = $('#passwReg').val();
+        var company_name = $('#companyNameReg').val();
+        var email = $('#emailReg').val();
+        fetch(proxyurl + url2, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            company_name: company_name,
+            type: 'company'
+          })
         })
-      })
-        .then(response => response.text())
-        .then(contents => { //Assign to contents the response
-          var myObj = JSON.parse(contents); //Parse the response
-          if (myObj["status"] == 200) {
-
-            // SERVIZIO INVIO EMAIL
-
-            //Save cookie mail & authtoken (necessary for inserting the authCode)
-            setCookie_mail(email, myObj["auth_token"], 1) // 1 day only and expires, since is a verification mail
-
-
-            //Redirect to page where have to send the code and the email to confirm email
-            document.location.href = "verify-email.html";
+          .then(response => response.text())
+          .then(contents => { //Assign to contents the response
+            var myObj = JSON.parse(contents); //Parse the response
+            if (myObj["status"] == 200) {
+  
+              // SERVIZIO INVIO EMAIL
+  
+              //Save cookie mail & authtoken (necessary for inserting the authCode)
+              setCookie_mail(email, myObj["auth_token"], 1) // 1 day only and expires, since is a verification mail
+  
+  
+              //Redirect to page where have to send the code and the email to confirm email
+              document.location.href = "verify-email.html";
+            }
+            else {
+              alert("There was found the following error:\n" + myObj["message"] + "\nRetry!")/*displays error message*/
+            }
           }
-          else {
-            alert("There was found the following error:\n" + myObj["message"] + "\nRetry!")/*displays error message*/
-          }
-        }
-        )
-        .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-    }
-
-
-  </script>
-
+          )
+          .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+      }
+  
+  
+    </script>
   <!-- Triggers for login & sign up-->
   <script>
     $(document).ready(function () {
@@ -307,95 +305,95 @@
 
   <!-- Modal Structure signIn -->
   <div id="modal1" class="modal">
-    <div class="modal-content">
-      <div class="row">
-        <form class="col s12">
-
-          <div class="col s12">
-            <p id=demo2>Please insert your username and password:</p>
-          </div>
-          <!-- Username -->
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="usernLogin" type="text" class="validate">
-              <label for="username">Username</label>
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12">
+  
+            <div class="col s12">
+              <p id=demo2>Please insert your username and password:</p>
             </div>
-          </div>
-
-          <!-- Password -->
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="passwLogin" type="password" class="validate">
-              <label for="password">Password</label>
+            <!-- Username -->
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="usernLogin" type="text" class="validate">
+                <label for="username">Username</label>
+              </div>
             </div>
-          </div>
-
-          <div class="modal-footer">
-            <a href="#!" class="waves-effect transparent n btn-flat" onclick="signInReq()">Send</a>
-          </div>
+  
+            <!-- Password -->
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="passwLogin" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+  
+            <div class="modal-footer">
+              <a href="#!" class="waves-effect transparent n btn-flat" onclick="signInReq()">Send</a>
+            </div>
+        </div>
+  
       </div>
-
     </div>
-  </div>
-
-
-  <!-- Modal Structure signUp -->
-  <div id="modal2" class="modal">
-    <div class="modal-content">
-      <div class="row">
-        <form class="col s12">
-
-          <div class="col s12">
-            <p id=demo>Please insert your data: </p>
-          </div>
-          <!-- Username -->
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="usernReg" type="text" class="validate">
-              <label for="username">Username</label>
+  
+  
+    <!-- Modal Structure signUp -->
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12">
+  
+            <div class="col s12">
+              <p id=demo>Please insert your data: </p>
             </div>
-          </div>
-
-          <!-- Password -->
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="passwReg" type="password" class="validate">
-              <label for="password">Password</label>
+            <!-- Username -->
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="usernReg" type="text" class="validate">
+                <label for="username">Username</label>
+              </div>
             </div>
-          </div>
-
-          <!-- Repeat Password -->
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="repPasswordReg" type="password" class="validate">
-              <label for="password">Repeat password</label>
+  
+            <!-- Password -->
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="passwReg" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
             </div>
-          </div>
-
-
-          <div class="row">
+  
+            <!-- Repeat Password -->
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="repPasswordReg" type="password" class="validate">
+                <label for="password">Repeat password</label>
+              </div>
+            </div>
+  
+  
+            <div class="row">
               <div class="input-field col s12">
                 <input id="companyNameReg" type="text" class="validate">
                 <label for="email">Company name</label>
               </div>
             </div>
-
-
-          <div class="row">
+  
+  
+            <div class="row">
               <div class="input-field col s12">
                 <input id="emailReg" type="email" class="validate">
                 <label for="email">Email</label>
               </div>
             </div>
-
-
-          <div class="modal-footer">
-            <a href="#!" class="waves-effect transparent  btn-flat" onclick="signUpReq()">Send</a>
-          </div>
+  
+  
+            <div class="modal-footer">
+              <a href="#!" class="waves-effect transparent  btn-flat" onclick="signUpReq()">Send</a>
+            </div>
+        </div>
+  
       </div>
-
     </div>
-  </div>
 
 
 

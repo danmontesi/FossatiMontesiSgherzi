@@ -20,7 +20,7 @@ class WatchRun extends StatelessWidget {
         appBar: _buildBar(context),
         body: WatchRunPage(
           runId,
-          title: 'Track4Run',
+          title: 'Track4Run - Run',
           key: _watchRunPageStateKey,
         ));
   }

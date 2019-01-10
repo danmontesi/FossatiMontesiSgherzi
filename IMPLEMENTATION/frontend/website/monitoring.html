@@ -1,142 +1,146 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Starter Template - Materialize</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body>
 
 
-    <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Data4Help Website</a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="dashboard.html">Dashboard</a></li>
-                
-              <li><a href="subscription.html">Subscription Plans</a></li>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Data4Help Website</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="dashboard.html">Dashboard</a></li>
 
-              <li><a href="query.html">Query</a></li>
+          <li><a href="subscription.html">Subscription Plans</a></li>
 
-              <li class="active"><a href="monitoring.html">Monitoring</a></li>
-  
-              <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
-              
-            </ul>
-          </div>
-        </nav>
-      </div>
+          <li><a href="query.html">Query</a></li>
 
+          <li class="active"><a href="monitoring.html">Monitoring</a></li>
 
+          <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
 
-      
-
-      <div class="section no-pad-bot" id="index-banner">
-          <div class="container">
-
-              <div class="container">
-                  <div class="section">
-              
-              
-                      <div class="row center">
-                          <h5 class="header col s12 ">Data4Help let companies monitor single individuals, previus their approval.</h5>
-                          <h5 class="center">
-                            <button data-target="modal" class="btn red modal-trigger">Add new individual query</button>
-                            </h5>
-                            
-                          <h7 class="header col s12">Here is the list of your performed individual query.  
-                              To see data, click on the id button:
-                          </h5>
-
-                          <h6 id="loading_panel" class="header col s12 light"></h5>
-                          
-                        </div>
-                  
-          </div>
-        </div>
-
-
-
-      
-        <ul id="start_collection" class="collection">
         </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+
+      <div class="container">
+        <div class="section">
+
+
+          <div class="row center">
+            <h5 class="header col s12 ">Data4Help let companies monitor single individuals, previus their approval.</h5>
+            <h5 class="center">
+              <button data-target="modal" class="btn red modal-trigger">Add new individual query</button>
+            </h5>
+
+            <h7 class="header col s12">Here is the list of your performed individual query.
+              To see data, click on the id button:
+              </h5>
+
+              <h6 id="loading_panel" class="header col s12 light">
+                </h5>
+
+          </div>
 
         </div>
-
       </div>
-      
-          <footer class="page-footer orange">
-              <div class="container">
-                <div class="row">
-                  <div class="col l6 s12">
-                    <h5 class="white-text">TrackMe</h5>
-                    <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to companies in order monitor their individuals, for medical purpose and not only.
-                      Data4Help is available for all users and it is totally free.
-                    </p>
-          
-          
-                  </div>
-                  <div class="col l3 s12">
-                   
-                  </div>
-                  <div class="col l3 s12">
-                  
-                    <ul>
-                      
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <div class="footer-copyright">
-                <div class="container">
-                </div>
-              </div>
-          
-              
-            </footer>
 
 
-          </body>
-
-  <!--  Scripts-->
-  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="js/materialize.js"></script>
-  <script src="js/init.js"></script>
 
 
-  <script>
-      $(document).ready(
-        function () {
-         $('.modal').modal({
-            dismissible: true
-          });
+      <ul id="start_collection" class="collection">
+      </ul>
 
-        
-        if (getCookie("auth_token")==""){
-          alert("You are not logged in! \nSign in first.")/*displays error message*/
-          document.location.href = "index.html";
-        }
-        else{
-          console.log("calling get patient list ")
-          getPatientList()
+    </div>
 
-          //TODO : Authenticated-> Retrieve all useful information
+  </div>
 
-
-        }
-        //check the authCode != ""
-        //if null-> get error message and don't show anything
-
-        //else-> request list of queries from server and shows them in the dashboard
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">TrackMe</h5>
+          <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to
+            companies in order monitor their individuals, for medical purpose and not only.
+            Data4Help is available for all users and it is totally free.
+          </p>
 
 
+        </div>
+        <div class="col l3 s12">
+
+        </div>
+        <div class="col l3 s12">
+
+          <ul>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      </div>
+    </div>
+
+
+  </footer>
+
+
+</body>
+
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="js/materialize.js"></script>
+<script src="js/init.js"></script>
+
+
+<script>
+  $(document).ready(
+    function () {
+      $('.modal').modal({
+        dismissible: true
       });
+
+
+      if (getCookie("auth_token") == "") {
+        alert("You are not logged in! \nSign in first.")/*displays error message*/
+        document.location.href = "index.html";
+      }
+      else {
+        console.log("calling get patient list ")
+        getPatientList()
+
+        //TODO : Authenticated-> Retrieve all useful information
+
+
+      }
+      //check the authCode != ""
+      //if null-> get error message and don't show anything
+
+      //else-> request list of queries from server and shows them in the dashboard
+
+
+    });
 
 </script>
 
@@ -144,64 +148,78 @@
 
   function getPatientList() {
 
-  
-  document.getElementById("loading_panel").innerHTML = `
+
+    document.getElementById("loading_panel").innerHTML = `
                         
                         <span class="title">Loading queries ...</span>
                          
                        `;
-                             
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
 
-  fetch(proxyurl + url, {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
 
-    method: 'GET',
-    headers: {
- 		'Content-Type': 'application/json'
-    }
+    fetch(proxyurl + url, {
+
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
 
 
-  }) 
-  
-    .then(response => response.json())
-    .then(response => { //Assign to contents the response
-    console.log("here in response ")
+    })
 
-    console.log(response)
-    document.getElementById("loading_panel").innerHTML = ``;
-      if (response["success"] === true) {
+      .then(response => response.json())
+      .then(response => { //Assign to contents the response
+        console.log("here in response ")
 
         console.log(response)
-        //creating inner html to append to the page
-        var HtmlToAppend = ""
-        decodedResponse = response.queries.individual;
-        if (decodedResponse){       
+        document.getElementById("loading_panel").innerHTML = ``;
+        if (response["success"] === true) {
+          if (!response.queries.individual) {
+            document.getElementById("loading_panel").innerHTML = `You haven't performed any query yet!`;
+          }
+          else {
+            console.log(response)
+            //creating inner html to append to the page
+            var HtmlToAppend = ""
+            decodedResponse = response.queries.individual;
+            if (decodedResponse) {
 
-        for (var i = 0; i < decodedResponse.length; i++) {
-          curQuery = decodedResponse[i]; //TODO SOTTO: create query click
-          HtmlToAppend += `
+              for (var i = 0; i < decodedResponse.length; i++) {
+                curQuery = decodedResponse[i]; //TODO SOTTO: create query click
+                HtmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img query_id = ${curQuery["id"]} src="images/data_icon.png" alt="" class="circle"  >
-                  <span class="title">Patient SSN</span>
-                  <p>${curQuery["ssn"]}<br>
+                  <span class="title">SSN: ${curQuery["ssn"]}</span>
+                  <p>Query id: ${curQuery["id"]}<br>
                     <button href="#!" onclick=createXml(${curQuery["id"]}) class="btn red">Download query</button>
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="#!" class="secondary-content"><!-- Switch -->
+  <div class="switch">
+    <label>
+      Off
+      <input id = "input"+${curQuery["id"]} type="checkbox" onclick="changeSwitchState(${curQuery["id"]})" checked="${curQuery["subscribed"]}">
+      <span class="lever"></span>
+      On
+    </label>
+  </div>
+</a>
                 </li>
               </ul>
                 `
-              
+
+              }
+              document.getElementById("start_collection").innerHTML = HtmlToAppend;
+
+            }
+
+          }
         }
-        document.getElementById("start_collection").innerHTML = HtmlToAppend;
-            
-        
-      }
-      else {
-        alert("Endpoint of get_query still not working, filling last query with provisory data")
-        var htmlToAppend = ""
-        htmlToAppend += `
+        else {
+          alert("Endpoint of get_query still not working, filling last query with provisory data")
+          var htmlToAppend = ""
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -213,7 +231,7 @@
                 </li>
               </ul>
                 `
-        htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -225,7 +243,7 @@
                 </li>
               </ul>
                 `
-                htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -237,7 +255,7 @@
                 </li>
                 </ul>
                 `
-                htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -249,7 +267,7 @@
                 </li>
               </ul>
                 `
-                htmlToAppend += `
+          htmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
@@ -261,69 +279,68 @@
                 </li>
               </ul>
                 `
-        document.getElementById("start_collection").innerHTML += htmlToAppend
-        //alert("Error: You must login to see this page")/*displays error message*/
-        //document.href("index.html")
+          document.getElementById("start_collection").innerHTML += htmlToAppend
+          //alert("Error: You must login to see this page")/*displays error message*/
+          //document.href("index.html")
+        }
       }
-      }
-    }
-    )
-    .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-}
+      )
+      .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+  }
 
 </script>
 
 
-  <script>
-  function signOut(){
+<script>
+  function signOut() {
     deleteAllCookies();
     document.location.href = "index.html";
     alert("You have logged out.");/*displays info */
-    
+
   }
-  </script>
+</script>
 
-    <script>
-      function sendQuery() {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = "https://data4halp.herokuapp.com/queries/query";
-      var auth_token = getCookie("auth_token");//get authtoken
-        var SSN = $('#ssn').val();
-   
-        fetch(proxyurl + url, {
+<script>
+  function sendQuery() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/query";
+    var auth_token = getCookie("auth_token");//get authtoken
+    var SSN = $('#ssn').val();
 
-          method: 'POST',
-          headers: new Headers({
-     'Content-Type': 'application/json'
-   }),
-   body: JSON.stringify({
-     auth_token: auth_token,
-     query: {
-       type: 'individual',
-       ssn: SSN,
-       additional_params: {
-      
-    }
-  }
-   }
-        )
-      })
-          .then(response => response.text())
-          .then(contents => { //Assign to contents the response
-            var myObj = JSON.parse(contents); //Parse the response
-            if (myObj["success"] == true) {
-              $('.modal.open').modal('close')
-              $("#modal1").modal();
-              $("#modal1").modal('open');
-            }
-            else {
-              alert("Error:" + myObj["message"] + ".\nRetry!")
-            }
+    fetch(proxyurl + url, {
 
-          });
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        auth_token: auth_token,
+        query: {
+          type: 'individual',
+          ssn: SSN,
+          additional_params: {
+
+          }
+        }
       }
-          
-    </script>
+      )
+    })
+      .then(response => response.text())
+      .then(contents => { //Assign to contents the response
+        var myObj = JSON.parse(contents); //Parse the response
+        if (myObj["success"] == true) {
+          $('.modal.open').modal('close')
+          $("#modal1").modal();
+          $("#modal1").modal('open');
+        }
+        else {
+          alert("Error:" + myObj["message"] + ".\nRetry!")
+        }
+
+      });
+  }
+
+</script>
 
 
 <script>
@@ -333,11 +350,11 @@
     var authtoken = getCookie("auth_token");//get authtoken
     var SSN = $('#SSN').val();
 
-    
+
     fetch(proxyurl + url, {
 
       method: 'POST',
-      body: { 
+      body: {
         //TODO
       }
 
@@ -356,7 +373,7 @@
 
       });
   }
-      
+
 </script>
 
 <script>
@@ -364,170 +381,216 @@
     var cookies = document.cookie.split(";");
 
     for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
-}
+  }
 </script>
 
 <script>
-    function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
       }
-      return "";
-    }</script>
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }</script>
 
 
 <!-- Function get Xml from  server endpoint-->
 <script>
-    function createXml(query_id) {
+  function createXml(query_id) {
 
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      const url = "https://data4halp.herokuapp.com/queries/query/data";
-      var authtoken = getCookie("auth_token");//get authtoken
-      var query_id = query_id;
-      fetch(proxyurl + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/query/data";
+    var authtoken = getCookie("auth_token");//get authtoken
+    var query_id = query_id;
+    fetch(proxyurl + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
 
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    })
+      .then(response => response.text())
+      .then(contents => { //Assign to contents the response
+        var myObj = JSON.parse(contents); //Parse the response
+        if (myObj["success"] == true) {
+          //Show the json file
+          //window.webkitRequestFileSystem(window.TEMPORARY, 1024*1024, SaveDatFileBro);
+          console.log("contents:" + myObj.data);
+          var xml = json2xml(contents);
+          download_file(query_id + ".txt", xml.substring(58, xml.length), "text/plain")
+
+        }
+        else {
+          alert("Error:" + myObj["message"] + ".\nRetry!")
         }
 
-      })
-        .then(response => response.text())
-        .then(contents => { //Assign to contents the response
-          var myObj = JSON.parse(contents); //Parse the response
-          if (myObj["success"] == true) {
-            //Show the json file
-  //window.webkitRequestFileSystem(window.TEMPORARY, 1024*1024, SaveDatFileBro);
-console.log("contents:"+myObj.data);
-var xml = json2xml(contents);
-            download_file(query_id + ".txt", xml, "text/plain")
-
-          }
-          else {
-            alert("Error:" + myObj["message"] + ".\nRetry!")
-          }
-
-        });
-    }
-  </script>
+      });
+  }
+</script>
 
 <script>
-function json2xml(json) {
+  function json2xml(json) {
     var a = JSON.parse(json)
     var c = document.createElement("root");
     var t = function (v) {
-        return {}.toString.call(v).split(' ')[1].slice(0, -1).toLowerCase();
+      return {}.toString.call(v).split(' ')[1].slice(0, -1).toLowerCase();
     };
     var f = function (f, c, a, s) {
-        c.setAttribute("type", t(a));
-        if (t(a) != "array" && t(a) != "object") {
-            if (t(a) != "null") {
-                c.appendChild(document.createTextNode(a));
-            }
-        } else {
-            for (var k in a) {
-                var v = a[k];
-                if (k == "__type" && t(a) == "object") {
-                    c.setAttribute("__type", v);
-                } else {
-                    if (t(v) == "object") {
-                        var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
-                        f(f, ch, v);
-                    } else if (t(v) == "array") {
-                        var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
-                        f(f, ch, v, true);
-                    } else {
-                        var va = document.createElementNS(null, s ? "item" : k);
-                        if (t(v) != "null") {
-                            va.appendChild(document.createTextNode(v));
-                        }
-                        var ch = c.appendChild(va);
-                        ch.setAttribute("type", t(v));
-                    }
-                }
-            }
+      c.setAttribute("type", t(a));
+      if (t(a) != "array" && t(a) != "object") {
+        if (t(a) != "null") {
+          c.appendChild(document.createTextNode(a));
         }
+      } else {
+        for (var k in a) {
+          var v = a[k];
+          if (k == "__type" && t(a) == "object") {
+            c.setAttribute("__type", v);
+          } else {
+            if (t(v) == "object") {
+              var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+              f(f, ch, v);
+            } else if (t(v) == "array") {
+              var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+              f(f, ch, v, true);
+            } else {
+              var va = document.createElementNS(null, s ? "item" : k);
+              if (t(v) != "null") {
+                va.appendChild(document.createTextNode(v));
+              }
+              var ch = c.appendChild(va);
+              ch.setAttribute("type", t(v));
+            }
+          }
+        }
+      }
     };
     f(f, c, a, t(a) == "array");
     return c.outerHTML;
-}
+  }
 </script>
 <script>
-    function download_file(name, contents, mime_type) {
-        mime_type = mime_type || "text/plain";
+  function download_file(name, contents, mime_type) {
+    mime_type = mime_type || "text/plain";
 
-        var blob = new Blob([contents], {type: mime_type});
+    var blob = new Blob([contents], { type: mime_type });
 
-        var dlink = document.createElement('a');
-        dlink.download = name;
-        dlink.href = window.URL.createObjectURL(blob);
-        dlink.onclick = function(e) {
-            // revokeObjectURL needs a delay to work properly
-            var that = this;
-            setTimeout(function() {
-                window.URL.revokeObjectURL(that.href);
-            }, 1500);
-        };
+    var dlink = document.createElement('a');
+    dlink.download = name;
+    dlink.href = window.URL.createObjectURL(blob);
+    dlink.onclick = function (e) {
+      // revokeObjectURL needs a delay to work properly
+      var that = this;
+      setTimeout(function () {
+        window.URL.revokeObjectURL(that.href);
+      }, 1500);
+    };
 
-        dlink.click();
-        dlink.remove();
-    }</script>
- <!-- Modal Trigger for Successful Query add-->
- <a class="modal-trigger"href="#modal1"></a>
+    dlink.click();
+    dlink.remove();
+  }</script>
+<!-- Modal Trigger for Successful Query add-->
+<a class="modal-trigger" href="#modal1"></a>
 
- <!-- Modal Structure -->
- <div id="modal1" class="modal" >
-   <div class="modal-content ">
-     <h4>Success</h4>
-     <p>Request has been sent. The query will be available in this page once the individual accepts to be monitored.</p>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content ">
+    <h4>Success</h4>
+    <p>Request has been sent. The query will be available in this page once the individual accepts to be monitored.</p>
 
-   </div>
-   <div class="modal-footer">
-     <a href="#!" class="modal-close waves-effect transparent btn-flat">Done</a>
-   </div>
- </div>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect transparent btn-flat">Done</a>
+  </div>
+</div>
 
 
-    <!-- Modal Structure QueryForm -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
-          <div class="row">
-            <form class="col s12">
-    
-              <div class="col s12">
-                <p id=demo>Please insert SSN of the patient you want to monitor: </p>
-              </div>
+<!-- Modal Structure QueryForm -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <div class="row">
+      <form class="col s12">
 
-              <div class="row">
-                  <div class="input-field col s12">
-                    <input id="ssn" type="text" class="validate">
-                    <label for="ssn">SSN of monitored patient</label>
-                  </div>
-                </div>
-
-              <div class="modal-footer">
-                <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQuery()">Send</a>
-              </div>
-          </div>
-    
+        <div class="col s12">
+          <p id=demo>Please insert SSN of the patient you want to monitor: </p>
         </div>
-      </div>
 
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="ssn" type="text" class="validate">
+            <label for="ssn">SSN of monitored patient</label>
+          </div>
+        </div>
 
+        <div class="modal-footer">
+          <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQuery()">Send</a>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function changeSwitchState(query_id) {
+    console.log("entra");
+    $("input" + query_id).change(function () {
+      if ($(this).is(":checked")) {
+        console.log("Is checked");
+        changeSubscriptionToQuery(query_id, 'individual', true);
+      }
+      else {
+        console.log("Is Not checked");
+        changeSubscriptionToQuery(query_id, 'individual', false);
+      }
+    })
+  }
+
+  function changeSubscriptionToQuery(query_id, query_type, subscribed) {
+    console.log("SubscribeToQuery");
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/subscribe";
+    var auth_token = getCookie("auth_token");//get authtoken
+    var SSN = $('#ssn').val();
+
+    fetch(proxyurl + url, {
+
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        auth_token: auth_token,
+        query_type: query_type,
+        query_id: query_id,
+        subscribed: subscribed
+      }
+      )
+    })
+      .then(response => response.text())
+      .then(contents => {
+
+        if (response["success"] === true) {
+          console.log("success change query_id=" + query_id);
+        }
+      }
+      )
+  }
+
+</script>
 
 
 

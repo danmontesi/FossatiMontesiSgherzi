@@ -50,17 +50,20 @@
           <div class="row center">
             <h5 class="header col s12 ">Data4Help let companies query on their database</h5>
 
-            <h5 class="header col s12 light">Add new query choosing from query types:</h5>
+            <h5 class="header col s12 light">Add new query by clicking the following button:</h5>
             <h5 class="center">
-              <button data-target="modal-regional" class="btn green modal-trigger">Regional</button>
-              <button data-target="modal-radius" class="btn red modal-trigger">Radius </button>
+              <button data-target="modal-radius" class="btn red modal-trigger">+ New Query </button>
             </h5>
 
-            <div><h3></h3></div>
-            <h7 class="header col s12">Here the list of all performed queries. Click on the button to download the json file</h5>
+            <div>
+              <h3></h3>
+            </div>
+            <h7 class="header col s12">Here the list of all performed queries. Click on the button to download the json
+              file</h5>
 
 
-            <h6 id="loading_panel" class="header col s12 light"></h5>
+              <h6 id="loading_panel" class="header col s12 light">
+                </h5>
           </div>
 
         </div>
@@ -130,7 +133,6 @@
         document.location.href = "index.html";
       }
       else {
-
         getAllQueries()
 
         //TODO : Authenticated-> Retrieve all useful information
@@ -151,14 +153,14 @@
 
   function getAllQueries() {
 
-  
+
 
     document.getElementById("loading_panel").innerHTML = `
                         
                         <span class="title">Loading queries ...</span>
                          
                        `;
-                             
+
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
     fetch(proxyurl + url, {
@@ -174,56 +176,47 @@
         document.getElementById("loading_panel").innerHTML = ``;
         if (response["success"] === true) {
 
+          if (!response.queries.radius) {
+            document.getElementById("loading_panel").innerHTML = `You haven't performed any query yet!`;
+          }
+          else {
+            //creating inner html to append to the page
+            var HtmlToAppend = ""
+            decodedResponse = response.queries.radius;
+            console.log(decodedResponse);
 
-          //creating inner html to append to the page
-          var HtmlToAppend = ""
-          decodedResponse = response.queries.radius;
-          console.log(decodedResponse);
+            for (var i = 0; i < decodedResponse.length; i++) {
 
-          for (var i = 0; i < decodedResponse.length; i++) {
+              curQuery = decodedResponse[i];
 
-            curQuery = decodedResponse[i];
-
-            HtmlToAppend += `
+              HtmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
                   <img src="images/data_icon.png" alt="" class="circle">
                   <span class="title">Radius query id: ${curQuery.id}</span>
-                  <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
-                    ${"bpm min: " + curQuery.additional_params.heart_rate.bpm[0] + ", bpm max: " + curQuery.additional_params.heart_rate.bpm[1]}
+                  <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}
+                  <br>${"bpm min: " + curQuery.additional_params.heart_rate.bpm[0] + ", bpm max: " + curQuery.additional_params.heart_rate.bpm[1]}
+                  <br>${"bpm min: " + curQuery.additional_params.accelerometer.acc_x[0] + ", bpm max: " + curQuery.additional_params.accelerometer.acc_x[1]}
                   </p>
                   <button href="#!" onclick=createXml(${curQuery.id}) class="btn red">Download query</button>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="#!" class="secondary-content"><!-- Switch -->
+  <div class="switch">
+    <label>
+      Off
+      <input id = "input"+${curQuery["id"]} type="checkbox" onclick="changeSwitchState(${curQuery["id"]})" checked="${curQuery["subscribed"]}">
+      <span class="lever"></span>
+      On
+    </label>
+  </div></a>
                 </li>
               </ul>
                 `;
 
-          }
+            }
 
-          decodedResponse = response.regional;
-          if (decodedResponse){
-          for (var i = 0; i < decodedResponse.length; i++) {
-
-            curQuery = decodedResponse[i];
-            HtmlToAppend += `
-              <ul class="collection">
-      <li class="collection-item avatar">
-        <img src="images/data_icon.png" alt="" class="circle">
-        <span class="title">Regional query id: ${i}</span>
-        <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
-          ${"bpm min: " + curQuery.additional_params.bpm[0] + ", bpm max: " + curQuery.additional_params.bpm[1]}
-        </p>
-        <button href="#!" onclick=createXml(${curQuery["id"]}) class="btn red">Download query</button>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      </li>
-    </ul>
-      `
+            document.getElementById("start_collection").innerHTML = HtmlToAppend;
 
           }
-          }
-          document.getElementById("start_collection").innerHTML = HtmlToAppend;
-
-
         }
         else {
           alert("Endpoint of get_query still not working, filling last query with provisory data")
@@ -322,7 +315,7 @@
     var bpm_min = parseInt($('#min_bpmR').val());
     var bpm_max = parseInt($('#max_bpmR').val());
     var radius = parseInt($('#radius').val());
-    console.log(center_lat, center_long, radius)
+    console.log(center_lat, center_long, radius, acc_max, acc_min, bpm_min, bpm_max)
     fetch(proxyurl + url, {
 
       method: 'POST',
@@ -340,9 +333,6 @@
             accelerometer: {
               acc_x: [acc_min, acc_max]
             },
-            gps_coordinates: {
-              lat: []
-            },
             heart_rate: {
               bpm: [bpm_min, bpm_max]
             }
@@ -359,6 +349,9 @@
           $('.modal.open').modal('close')
           $("#modal1").modal();
           $("#modal1").modal('open');
+
+          //Reload queries after new one performed
+          getAllQueries();
         }
         else {
           alert("Error:" + myObj["message"] + ".\nRetry!")
@@ -368,63 +361,6 @@
   }
 
 </script>
-
-
-<script>
-  function sendQueryRegional() {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = "https://data4halp.herokuapp.com/queries/query";
-    var authtoken = getCookie("auth_token");//get authtoken
-
-    var region = $('#region').val();
-    var acc_min = $('#min_accR').val();
-    var acc_min = $('#max_accR').val();
-    var bpm_min = $('#min_bpmR').val();
-    var bpm_max = $('#max_bpmR').val();
-
-    fetch(proxyurl + url, {
-
-      method: 'POST',
-      headers: new fetch.Headers({
-        'Content-Type': 'application/json'
-      }),
-      body: JSON.stringify({
-        auth_token: authtoken,
-        query: {
-          type: 'regional', //TODO metti form giusto ew questo parametro
-          region: region,
-          additional_params: {
-            accelerometer: {
-              acc_x: [acc_min, acc_max]
-            },
-            gps_coordinates: {
-              lat: []
-            },
-            heart_rate: {
-              bpm: [bpm_min, bpm_max]
-            }
-          }
-        }
-      }
-      )
-    })
-      .then(response => response.text())
-      .then(contents => { //Assign to contents the response
-        var myObj = JSON.parse(contents); //Parse the response
-        if (myObj["success"] === true) {
-          $('.modal.open').modal('close')
-          $("#modal1").modal();
-          $("#modal1").modal('open');
-        }
-        else {
-          alert("Error:" + myObj["message"] + ".\nRetry!")
-        }
-
-      });
-  }
-
-</script>
-
 
 <script>
   function deleteAllCookies() {
@@ -466,6 +402,157 @@
   }
 </script>
 
+<script>
+  function changeSwitchState(query_id) {
+    console.log("entra");
+    $("input" + query_id).change(function () {
+      if ($(this).is(":checked")) {
+        console.log("Is checked");
+        changeSubscriptionToQuery(query_id, 'individual', true);
+      }
+      else {
+        console.log("Is Not checked");
+        changeSubscriptionToQuery(query_id, 'individual', false);
+      }
+    })
+  }
+
+  function changeSubscriptionToQuery(query_id, query_type, subscribed) {
+    console.log("SubscribeToQuery");
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/subscribe";
+    var auth_token = getCookie("auth_token");//get authtoken
+    var SSN = $('#ssn').val();
+
+    fetch(proxyurl + url, {
+
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        auth_token: auth_token,
+        query_type: query_type,
+        query_id: query_id,
+        subscribed: subscribed
+      }
+      )
+    })
+      .then(response => response.text())
+      .then(contents => {
+
+        if (response["success"] === true) {
+          console.log("success change query_id=" + query_id);
+        }
+      }
+      )
+  }
+
+</script>
+
+
+<!-- Function get Xml from  server endpoint-->
+<script>
+  function createXml(query_id) {
+    console.log("query id= " + query_id)
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = "https://data4halp.herokuapp.com/queries/query/data";
+    var authtoken = getCookie("auth_token");//get authtoken
+    var query_id = query_id;
+    fetch(proxyurl + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
+
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    })
+      .then(response => response.text())
+      .then(contents => { //Assign to contents the response
+        var myObj = JSON.parse(contents); //Parse the response
+        if (myObj["success"] == true) {
+          //Show the json file
+          console.log(myObj["data"]);
+          var xml = json2xml(contents);
+          download_file(query_id + ".txt", xml.substring(58, xml.length), "text/plain")
+
+        }
+        else {
+          alert("Error:" + myObj["message"] + ".\nRetry!")
+        }
+
+      });
+  }
+</script>
+
+<script>
+  function json2xml(json) {
+    var a = JSON.parse(json)
+    var c = document.createElement("root");
+    var t = function (v) {
+      return {}.toString.call(v).split(' ')[1].slice(0, -1).toLowerCase();
+    };
+    var f = function (f, c, a, s) {
+      c.setAttribute("type", t(a));
+      if (t(a) != "array" && t(a) != "object") {
+        if (t(a) != "null") {
+          c.appendChild(document.createTextNode(a));
+        }
+      } else {
+        for (var k in a) {
+          var v = a[k];
+          if (k == "__type" && t(a) == "object") {
+            c.setAttribute("__type", v);
+          } else {
+            if (t(v) == "object") {
+              var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+              f(f, ch, v);
+            } else if (t(v) == "array") {
+              var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+              f(f, ch, v, true);
+            } else {
+              var va = document.createElementNS(null, s ? "item" : k);
+              if (t(v) != "null") {
+                va.appendChild(document.createTextNode(v));
+              }
+              var ch = c.appendChild(va);
+              ch.setAttribute("type", t(v));
+            }
+          }
+        }
+      }
+    };
+    f(f, c, a, t(a) == "array");
+    return c.outerHTML;
+  }
+</script>
+
+<script>
+  function stringify(x) {
+    console.log(Object.prototype.toString.call(x));
+  }
+</script>
+<script>
+  function download_file(name, contents, mime_type) {
+    mime_type = mime_type || "text/plain";
+
+    var blob = new Blob([contents], { type: mime_type });
+
+    var dlink = document.createElement('a');
+    dlink.download = name;
+    dlink.href = window.URL.createObjectURL(blob);
+    dlink.onclick = function (e) {
+      // revokeObjectURL needs a delay to work properly
+      var that = this;
+      setTimeout(function () {
+        window.URL.revokeObjectURL(that.href);
+      }, 1500);
+    };
+
+    dlink.click();
+    dlink.remove();
+  }</script>
+
 <!-- Modal Trigger for Successful Query add-->
 <a class="modal-trigger" href="#modal1"></a>
 
@@ -473,177 +560,14 @@
 <div id="modal1" class="modal">
   <div class="modal-content " id="modal_success">
     <h4>Success</h4>
-    <p>Query has been created successfully. Json file will be downloadable from the button just appeared in the query list.</p>
+    <p>Query has been created successfully. Json file will be downloadable from the button just appeared in the query
+      list.</p>
 
-    <!-- TODO add XML file download-->
   </div>
   <div class="modal-footer">
     <a href="#!" class="modal-close waves-effect transparent btn-flat">Done</a>
   </div>
 </div>
-
-
-<!-- Modal Structure QueryForm Regional -->
-<div id="modal-regional" class="modal">
-  <div class="modal-content">
-    <div class="row">
-      <form class="col s12">
-
-        <div class="col s12">
-          <p id=demo>Please insert your query filters: </p>
-        </div>
-
-
-        <!-- Data for Query -->
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="region" type="text" class="validate">
-            <label for="region">Region</label>
-          </div>
-        </div>
-
-        <!-- Function get Xml from  server endpoint-->
-        <script>
-          function createXml(query_id) {
-            console.log("query id= "+ query_id)
-            const proxyurl = "https://cors-anywhere.herokuapp.com/";
-            const url = "https://data4halp.herokuapp.com/queries/query/data";
-            var authtoken = getCookie("auth_token");//get authtoken
-            var query_id = query_id;
-            fetch(proxyurl + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
-      
-              method: 'GET',
-              headers: {
-                'Content-Type': 'application/json'
-              }
-      
-            })
-              .then(response => response.text())
-              .then(contents => { //Assign to contents the response
-                var myObj = JSON.parse(contents); //Parse the response
-                if (myObj["success"] == true) {
-                  //Show the json file
-                  console.log(myObj["data"]);
-                  var xml = json2xml(contents);
-            download_file(query_id + ".txt", xml, "text/plain")
-
-          }
-          else {
-            alert("Error:" + myObj["message"] + ".\nRetry!")
-          }
-
-        });
-    }
-  </script>
-
-<script>
-function json2xml(json) {
-    var a = JSON.parse(json)
-    var c = document.createElement("root");
-    var t = function (v) {
-        return {}.toString.call(v).split(' ')[1].slice(0, -1).toLowerCase();
-    };
-    var f = function (f, c, a, s) {
-        c.setAttribute("type", t(a));
-        if (t(a) != "array" && t(a) != "object") {
-            if (t(a) != "null") {
-                c.appendChild(document.createTextNode(a));
-            }
-        } else {
-            for (var k in a) {
-                var v = a[k];
-                if (k == "__type" && t(a) == "object") {
-                    c.setAttribute("__type", v);
-                } else {
-                    if (t(v) == "object") {
-                        var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
-                        f(f, ch, v);
-                    } else if (t(v) == "array") {
-                        var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
-                        f(f, ch, v, true);
-                    } else {
-                        var va = document.createElementNS(null, s ? "item" : k);
-                        if (t(v) != "null") {
-                            va.appendChild(document.createTextNode(v));
-                        }
-                        var ch = c.appendChild(va);
-                        ch.setAttribute("type", t(v));
-                    }
-                }
-            }
-        }
-    };
-    f(f, c, a, t(a) == "array");
-    return c.outerHTML;
-}
-</script>
-
-<script>
-function stringify (x) {
-    console.log(Object.prototype.toString.call(x));
-}
-</script>
-<script>
-function download_file(name, contents, mime_type) {
-mime_type = mime_type || "text/plain";
-
-var blob = new Blob([contents], {type: mime_type});
-
-var dlink = document.createElement('a');
-dlink.download = name;
-dlink.href = window.URL.createObjectURL(blob);
-dlink.onclick = function(e) {
-  // revokeObjectURL needs a delay to work properly
-  var that = this;
-  setTimeout(function() {
-      window.URL.revokeObjectURL(that.href);
-  }, 1500);
-};
-
-dlink.click();
-dlink.remove();
-}</script>
-
-
-        <p id=demo>Additional parameter filters: </p>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="min_bpmR" type="text" class="validate">
-            <label for="min_bpmR">Min heart beat (in bpm):</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="max_bpmR" type="text" class="validate">
-            <label for="max_bpmR">Max heart beat (in bpm):</label>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="min_accR" type="text" class="validate">
-            <label for="min_accR">Min accemerometer value (float number i.e. 1.21):</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="max_accR" type="text" class="validate">
-            <label for="max_axxcR">Max accelerometer value (float number i.e. 12.33):</label>
-          </div>
-        </div>
-
-        <div class="modal-footer">
-          <a href="#!" class="waves-effect waves-green btn-flat" onclick="sendQueryRegional()">Send</a>
-        </div>
-    </div>
-
-  </div>
-</div>
-
 
 <!-- Modal Structure QueryForm Radius -->
 <div id="modal-radius" class="modal">
@@ -687,30 +611,30 @@ dlink.remove();
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="min_bpmRad" type="text" class="validate">
-            <label for="min_bpmRad">Min heart beat (in bpm):</label>
+            <input id="min_bpmR" type="text" class="validate">
+            <label for="min_bpmR">Min heart beat (in bpm):</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="max_bpmRad" type="text" class="validate">
-            <label for="max_bpmRad">Max heart beat (in bpm):</label>
+            <input id="max_bpmR" type="text" class="validate">
+            <label for="max_bpmR">Max heart beat (in bpm):</label>
           </div>
         </div>
 
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="min_accRad" type="text" class="validate">
-            <label for="min_accRad">Min accemerometer value (float number i.e. 1.21):</label>
+            <input id="min_accR" type="text" class="validate">
+            <label for="min_accR">Min accemerometer value (float number i.e. 1.21):</label>
           </div>
         </div>
 
         <div class="row">
           <div class="input-field col s12">
-            <input id="max_accRad" type="text" class="validate">
-            <label for="max_axxcRad">Max accelerometer value (float number i.e. 12.33):</label>
+            <input id="max_accR" type="text" class="validate">
+            <label for="max_accR">Max accelerometer value (float number i.e. 12.33):</label>
           </div>
         </div>
 

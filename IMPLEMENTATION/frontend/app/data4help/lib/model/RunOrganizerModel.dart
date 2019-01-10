@@ -106,7 +106,7 @@ class RunOrganizerModel {
 
     print(response.body);
     print(json.decode(response.body)['message']);
-    if (response.statusCode != 200) {
+    if (response.statusCode == 200) {
       return json.decode(response.body)['message'] ?? "Connection error!";
     }
 
@@ -122,10 +122,12 @@ class RunOrganizerModel {
     if (response.statusCode == 200) {
       print(response.body);
       json.decode(response.body)["runs"].forEach((elem) {
+        print(elem);
         runList.add(Run.fromJson(elem));
       });
 
       //runList.removeWhere((run) => run.status != "RUN_ENDED");
+
       return runList;
     } else {
       throw new Exception(

@@ -165,100 +165,92 @@
 
 <script>
 
-    function getFirst5Query() {
+function getFirst5Query() {
 
-    document.getElementById("loading_panel").innerHTML = `
-                        
-     <span class="title">Loading queries ...</span>
-      
-    `;
-          
+
+
+  document.getElementById("loading_panel").innerHTML = `
+                      
+                      <span class="title">Loading queries ...</span>
+                       
+                     `;
+                           
   const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = "https://data4halp.herokuapp.com/queries/query?auth_token="+getCookie("auth_token");
+  const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
   fetch(proxyurl + url, {
 
     method: 'GET',
     headers: {
- 		'Content-Type': 'application/json'
+      'Content-Type': 'application/json'
     }
 
-  }) 
+  })
     .then(response => response.json())
-    .then(response => { //Assign to contents the respon se
+    .then(response => { //Assign to contents the response
       document.getElementById("loading_panel").innerHTML = ``;
-      if (response["success"] == true) {
+      if (response["success"] === true) {
+        if (!response.queries.regional && !response.queries.radius){
+          document.getElementById("loading_panel").innerHTML = `You haven't performed any query yet!`;
+        }
+        else{
 
         //creating inner html to append to the page
         var HtmlToAppend = ""
-
-        //Clearing the temporal load text
-        $(".loading_panel").first().innerHTML = "You clicked me!";
-        $("loading_panel").get(0).innerHTML = "You clicked me!";
-
         decodedResponse = response.queries.radius;
+        console.log(decodedResponse);
 
-        for (var i = 0; i < i < decodedResponse.length && i < 5; i++) {
+        for (var i = 0; i < decodedResponse.length && i<5; i++) {
 
           curQuery = decodedResponse[i];
 
           HtmlToAppend += `
-              <ul class="collection">
-      <li class="collection-item avatar">
-        <img src="images/data_icon.png" alt="" class="circle">
-        <span class="title">Radius query id: ${curQuery.id}</span>
-        <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
-          ${"bpm min: " + curQuery.additional_params.heart_rate.bpm[0] + ", bpm max: " + curQuery.additional_params.heart_rate.bpm[1]}
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      </li>
-    </ul>
-      `;
-
+                      <ul class="collection">
+              <li class="collection-item avatar">
+                <img src="images/data_icon.png" alt="" class="circle">
+                <span class="title">Radius query id: ${curQuery.id}</span>
+                <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
+                  ${"bpm min: " + curQuery.additional_params.heart_rate.bpm[0] + ", bpm max: " + curQuery.additional_params.heart_rate.bpm[1]}
+                </p>
+                <button href="#!" onclick=createXml(${curQuery.id}) class="btn red">Download query</button>
+                <a href="#!" class="secondary-content"><!-- Switch -->
+  <div class="switch">
+    <label>
+      Off
+      <input id = "input"+${curQuery["id"]} type="checkbox" onclick="changeSwitchState(${curQuery["id"]})" checked="${curQuery["subscribed"]}">
+      <span class="lever"></span>
+      On
+    </label>
+  </div></a>
+              </li>
+            </ul>
+              `;
 
         }
 
-        decodedResponse = response.regional;
-        if (decodedResponse) {
-          for (var i = 0; i < decodedResponse.length; i++) {
-
-            curQuery = decodedResponse[i];
-            HtmlToAppend += `
-    <ul class="collection">
-<li class="collection-item avatar">
-<img src="images/data_icon.png" alt="" class="circle">
-<span class="title">Regional query id: ${curQuery.id}</span>
-<p>${"Center latitude: " + curQuery.region}<br>
-${"bpm min: " + curQuery.additional_params.bpm[0] + ", bpm max: " + curQuery.additional_params.bpm[1]}
-</p>
-<a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-</li>
-</ul>
-`
-
-          }
-        }
-        //prova
         document.getElementById("start_collection").innerHTML = HtmlToAppend;
+}
+
 
       }
       else {
-        //alert("Endpoint of get_query still not working, filling last query with provisory data")
         var htmlToAppend = ""
         htmlToAppend += `
-                        <ul class="collection">
-                <li class="collection-item avatar">
-                  <img src="images/data_icon.png" alt="" class="circle">
-                  <span class="title">You haven't a query performed yet!</span>
-                  <p>!!<br>
-                    Data4Help
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-              </ul>
-                `
-      
-        document.getElementById("start_collection").innerHTML = htmlToAppend
+                      <ul class="collection">
+              <li class="collection-item avatar">
+                <img src="images/data_icon.png" alt="" class="circle">
+                <span class="title">ToBeFilled once endpoint works</span>
+                <p>!!<br>
+                  Data4Help
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+              </li>
+            </ul>
+              `
+        document.getElementById("start_collection").innerHTML += htmlToAppend
+        //alert("Error: You must login to see this page")/*displays error message*/
+        //document.href("index.html")
       }
+    
     }
     )
     .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
@@ -266,5 +258,100 @@ ${"bpm min: " + curQuery.additional_params.bpm[0] + ", bpm max: " + curQuery.add
 
 </script>
 
+  <script>
+    function createXml(query_id) {
+      console.log("query id= "+ query_id)
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      const url = "https://data4halp.herokuapp.com/queries/query/data";
+      var authtoken = getCookie("auth_token");//get authtoken
+      var query_id = query_id;
+      fetch(proxyurl + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
+
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+
+      })
+        .then(response => response.text())
+        .then(contents => { //Assign to contents the response
+          var myObj = JSON.parse(contents); //Parse the response
+          if (myObj["success"] == true) {
+            //Show the json file
+            console.log(myObj["data"]);
+            var xml = json2xml(contents);
+      download_file(query_id + ".txt", xml.substring(58, xml.length), "text/plain")
+
+    }
+    else {
+      alert("Error:" + myObj["message"] + ".\nRetry!")
+    }
+
+  });
+}
+</script>
+
+<script>
+  function json2xml(json) {
+      var a = JSON.parse(json)
+      var c = document.createElement("root");
+      var t = function (v) {
+          return {}.toString.call(v).split(' ')[1].slice(0, -1).toLowerCase();
+      };
+      var f = function (f, c, a, s) {
+          c.setAttribute("type", t(a));
+          if (t(a) != "array" && t(a) != "object") {
+              if (t(a) != "null") {
+                  c.appendChild(document.createTextNode(a));
+              }
+          } else {
+              for (var k in a) {
+                  var v = a[k];
+                  if (k == "__type" && t(a) == "object") {
+                      c.setAttribute("__type", v);
+                  } else {
+                      if (t(v) == "object") {
+                          var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+                          f(f, ch, v);
+                      } else if (t(v) == "array") {
+                          var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
+                          f(f, ch, v, true);
+                      } else {
+                          var va = document.createElementNS(null, s ? "item" : k);
+                          if (t(v) != "null") {
+                              va.appendChild(document.createTextNode(v));
+                          }
+                          var ch = c.appendChild(va);
+                          ch.setAttribute("type", t(v));
+                      }
+                  }
+              }
+          }
+      };
+      f(f, c, a, t(a) == "array");
+      return c.outerHTML;
+  }
+  </script>
+
+<script>
+  function download_file(name, contents, mime_type) {
+  mime_type = mime_type || "text/plain";
+  
+  var blob = new Blob([contents], {type: mime_type});
+  
+  var dlink = document.createElement('a');
+  dlink.download = name;
+  dlink.href = window.URL.createObjectURL(blob);
+  dlink.onclick = function(e) {
+    // revokeObjectURL needs a delay to work properly
+    var that = this;
+    setTimeout(function() {
+        window.URL.revokeObjectURL(that.href);
+    }, 1500);
+  };
+  
+  dlink.click();
+  dlink.remove();
+  }</script>
   </body>
 </html>

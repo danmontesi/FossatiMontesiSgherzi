@@ -13,7 +13,7 @@ class Track4RunRegister extends StatelessWidget {
 
   Widget _buildBar(BuildContext context) {
     return new AppBar(
-      title: Text('Data4Help Register'),
+      title: Text('Track4Run Register'),
     );
   }
 }
