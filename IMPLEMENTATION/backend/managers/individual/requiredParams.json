@@ -1,0 +1,15 @@
+{
+  "gps_coordinates": [
+    "lat", "long", "timestamp"
+  ],
+  "heart_rate": [
+    "timestamp",
+    "bpm"
+  ],
+  "accelerometer": [
+    "timestamp",
+    "acc_x",
+    "acc_y",
+    "acc_z"
+  ]
+}

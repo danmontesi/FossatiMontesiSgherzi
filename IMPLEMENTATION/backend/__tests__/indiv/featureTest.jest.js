@@ -51,6 +51,7 @@ describe('User sends data', () => {
     res = await res.json()
     expect(res.success).toBe(true)
     expect(res.message).toBe('Sync successful')
+
   })
   test('User sends data formatted badly', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'indiv/data', {
@@ -127,7 +128,7 @@ describe('User wants to retrive his data', () => {
   })
 })
 
-describe('User wants to retrive it\'s information',  () => {
+describe('User wants to retrive it\'s information', () => {
   test('', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'indiv/user?'
       + 'auth_token=' + userToken,

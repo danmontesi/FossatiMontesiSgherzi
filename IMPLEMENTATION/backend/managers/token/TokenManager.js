@@ -1,9 +1,13 @@
 const jwt = require('jsonwebtoken')
 const {
-  Pool
-} = require('pg')
+  connect
+} = require('../config')
 
-
+/**
+ * Gets the information on the actor, namely id and mail, by the token
+ * @param authToken
+ * @returns {Actor}
+ */
 function getActor(authToken) {
   try {
     return jwt.decode(authToken, process.env.JWT_SECRET)
@@ -14,29 +18,14 @@ function getActor(authToken) {
   }
 }
 
-// id: rows[0].id,
-// email: rows[0].email,
-// begin_time: new Date()
-
-async function generateToken(id, email, begin_time) {
-
-  const client = await new Pool({
-    connectionString: process.env.DATABASE_URL + '?ssl=true',
-    max: 5
-  }).connect()
-  const token = jwt.sign({
-    id, email, begin_time
-  }, process.env.JWT_SECRET, {
-    expiresIn: 86400 // By default expire in 24h
-  })
-  await client.query('INSERT INTO user_token(user_id, value, expiry_date) VALUES($1, $2, $3)', [id, token, new Date(begin_time.getTime() + 60 * 60 * 24 * 1000)])
-}
-
+/**
+ * Check if a given actor is the actor given as a parameter
+ * @param authToken: String
+ * @param actor: String
+ * @returns {Promise<boolean>}
+ */
 async function isActor(authToken, actor) {
-  const client = await new Pool({
-    connectionString: process.env.DATABASE_URL + '?ssl=true',
-    max: 5
-  }).connect()
+  const client = await connect()
   try {
     let decodedActor = jwt.decode(authToken, process.env.JWT_SECRET)
     const {
@@ -53,35 +42,24 @@ async function isActor(authToken, actor) {
 
 }
 
-// function authorizationMiddleware(actor) {
-//   return async (req, res, next) => {
-//     const token = req.body.auth_token || req.query.auth_token
-//     try {
-//       if (!(token && await isActor(token, actor))) {
-//         let err = new Error('Unauthorized')
-//         err.status = 401
-//         next(err)
-//       } else {
-//         next()
-//       }
-//     } catch (err) {
-//       next(err)
-//     }
-//   }
-// }
-
+/**
+ * Prevents all access to the endpoint if the user is not
+ * one specified by its arguments
+ * @returns {Function}
+ */
 function authorizationMiddleware() {
   return async (req, res, next) => {
     const token = req.body.auth_token || req.query.auth_token
-    console.log(getActor(token))
     try {
-
       let isEntity = (await Promise.all(
         Object.keys(arguments)
           .map(async (key) => await isActor(token, arguments[key]))
       ))
         .filter(el => el === true)
         .length >= 1
+
+      // If is at least one of the given actors
+      // go to the next middleware
       if (isEntity) next()
       else {
         let err = new Error('Unauthorized')
@@ -96,7 +74,6 @@ function authorizationMiddleware() {
 
 
 module.exports = {
-  generateToken,
   isActor,
   getActor,
   authorizationMiddleware

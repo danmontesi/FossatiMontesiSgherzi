@@ -188,7 +188,6 @@ queryRouter.get('/query/individual/pending', authorizationMiddleware('individual
  */
 queryRouter.post('/query/individual/pending', authorizationMiddleware('individual'), async (req, res, next) => {
   try {
-    console.log(getActor(req.body.auth_token))
     const response = await confirmRequest(getActor(req.body.auth_token).id, req.body.query_id, req.body.decision)
     res
       .status(200)

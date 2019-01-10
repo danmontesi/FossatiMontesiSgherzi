@@ -7,7 +7,7 @@ const {
   saveData,
   getData,
   getUserInfo
-} = require('../../managers/individual/FunctionalIndividualsManager')
+} = require('../../managers/individual/IndividualsManager')
 
 const {
   authorizationMiddleware

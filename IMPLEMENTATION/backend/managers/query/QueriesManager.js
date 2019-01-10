@@ -20,7 +20,7 @@ const templateQueries = require('./templateQueries')
 
 const {
   getData
-} = require('../individual/FunctionalIndividualsManager')
+} = require('../individual/IndividualsManager')
 
 /**
  * Creates a query for the given company
@@ -29,7 +29,6 @@ const {
  * @returns {Promise<{query_id: *, success: boolean, message: string}>}
  */
 async function createQuery(company, query) {
-
   const client = await connect()
   try {
 
@@ -39,7 +38,8 @@ async function createQuery(company, query) {
     const {
       userList
     } = await performQuery(query)
-
+    console.log('User List')
+    console.log(userList)
     // Insert the query into the general `query` database
     const {
       rows: globalQuery
@@ -120,23 +120,35 @@ async function performQuery(query) {
 
   // Takes all user data
   let allData = await Promise.all(userList.map(async (userId) => await getData(userId)))
-
+  console.log('ALL DATA')
+  console.log(allData)
   // Applies query filters to the query
   if (query && !query.additional_params.isEmpty()) {
+
+    // for every filter imposed by the query
     Object.keys(query.additional_params)
-      .forEach(param => {
-        Object.keys(query.additional_params[param])
-          .forEach(value => {
-            console.log(value)
-            allData.forEach((userData, index) => {
-              allData[index].data[param] = userData.data[param].filter(el => el[value] >= query.additional_params[param][value][0] && el[value] <= query.additional_params[param][value][1])
-            })
+      .forEach(additional_param => {
+
+        // for every element of the filter
+        Object.keys(query.additional_params[additional_param])
+          .forEach(p => {
+            // Take the range of the filter
+            let [min, max] = query.additional_params[additional_param][p]
+
+            let i = allData.length
+            while (i--) {
+              let user = allData[i]
+              let filtered = user.data[additional_param].filter(el => el[p] >= min && el[p] <= max)
+              // If none of the data respects the constraints
+              if (filtered.length === 0) allData.splice(i, 1)
+            }
           })
       })
   }
 
+  console.log(allData.length)
   // Additional feasibility check, after the application of the filters
-  if (query.type !== 'individual' && allData.length <= MIN_USER_NUMBER) {
+  if (query.type !== 'individual' && allData.length < MIN_USER_NUMBER) {
     let err = new Error('Query too restrictive')
     err.status = 422
     throw err
@@ -184,11 +196,15 @@ async function performQueryById(queryId) {
     let query = fullQuery[0]
     query.type = rows[0].query_type
 
-    await client.release()
-
-    // Performs the query
-    return await performQuery(query)
-
+    if (query.type === 'individual' && !query.auth) {
+      let err = new Error('User hasn\'t allowed this query!')
+      err.status = 403
+      throw err
+    } else {
+      await client.release()
+      // Performs the query
+      return await performQuery(query)
+    }
   } catch (err) {
     await client.release()
     throw err
@@ -222,7 +238,7 @@ async function updateUserList(userIds, queryId) {
     await client.release()
 
   } catch (err) {
-
+    console.log(err)
     await client.query('ROLLBACK')
     await client.release()
 
@@ -291,7 +307,10 @@ async function checkRadiusQuery(query) {
     // Check if there are a sufficent number of users
     const {
       rows: userList
-    } = await client.query('SELECT user_id FROM gps_coordinates WHERE lat BETWEEN $1 AND $2 AND long BETWEEN $3 AND $4', [query.center_lat, query.center_lat + query.radius / LAT_DEGREE, query.center_long, query.center_long + query.radius / LONG_DEGREE])
+    } = await client.query('SELECT DISTINCT user_id FROM gps_coordinates WHERE lat BETWEEN $1 AND $2 AND long BETWEEN $3 AND $4', [query.center_lat, query.center_lat + query.radius / LAT_DEGREE, query.center_long, query.center_long + query.radius / LONG_DEGREE])
+
+
+    console.log(userList.length)
 
     if (userList.length < MIN_USER_NUMBER) {
       let err = new Error('Query too restrictive')
@@ -329,8 +348,11 @@ async function retriveQueries(company) {
     await companyQueries.forEachAsync(async (query) => {
       const {
         rows
-      } = await client.query(`SELECT * FROM ${query.query_type}_query WHERE id = $1`, [query.id])
-      totalQueries[query.query_type] = rows
+      } = await client.query(`SELECT * FROM ${query.query_type}_query WHERE id = $1 LIMIT 1`, [query.id])
+      if (rows[0]) {
+        if (!totalQueries[query.query_type]) totalQueries[query.query_type] = []
+        totalQueries[query.query_type].push(rows[0])
+      }
     })
 
     await client.release()
