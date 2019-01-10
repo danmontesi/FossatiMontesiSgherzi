@@ -77,5 +77,6 @@ if (process.env.TEST_API) {
 
 app.listen(PORT, function () {
   console.log(`Data4Help backend ready, listening on port: ${PORT}`)
+  console.log('DATABASE ON ' + process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL)
   debugLog('DEBUG ACTIVE')
 })
