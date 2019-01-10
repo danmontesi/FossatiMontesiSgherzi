@@ -205,9 +205,15 @@ async function performQueryById(queryId) {
       err.status = 403
       throw err
     } else {
-      await client.release()
+
       // Performs the query
-      return await performQuery(query)
+      let data = await performQuery(query)
+
+      // Release the client only after
+      // waiting for the query to finish
+      await client.release()
+
+      return data
     }
   } catch (err) {
     await client.release()

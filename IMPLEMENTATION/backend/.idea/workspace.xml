@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/endpoints/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/queries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/managers/runs/RunManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/runs/RunManager.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="88" column="62" selection-start-line="88" selection-start-column="62" selection-end-line="88" selection-end-column="62" />
+            <state relative-caret-position="130">
+              <caret line="217" column="6" selection-start-line="217" selection-start-column="6" selection-end-line="217" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -42,13 +40,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="151" column="29" lean-forward="true" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
+            <state relative-caret-position="161">
+              <caret line="156" column="3" lean-forward="true" selection-start-line="156" selection-start-column="3" selection-end-line="156" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
@@ -57,11 +55,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/managers/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="17" column="190" selection-start-line="17" selection-start-column="190" selection-end-line="17" selection-end-column="190" />
+            <state relative-caret-position="135">
+              <caret line="17" column="79" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="79" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -99,8 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>accelerometer</find>
-      <find>toQ</find>
       <find />
       <find>userList</find>
       <find>ret</find>
@@ -129,6 +134,8 @@
       <find>getPosi</find>
       <find>Post an individual query</find>
       <find>.data</find>
+      <find>subscribe</find>
+      <find>console.</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,15 +186,15 @@
         <option value="$PROJECT_DIR$/__tests__/auth/testCompany.js" />
         <option value="$PROJECT_DIR$/__tests__/config.js" />
         <option value="$PROJECT_DIR$/__tests__/auth/featureTest.jest.js" />
-        <option value="$PROJECT_DIR$/managers/runs/RunManager.js" />
         <option value="$PROJECT_DIR$/managers/token/TokenManager.js" />
         <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
-        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
-        <option value="$PROJECT_DIR$/managers/config.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/queries.js" />
+        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
+        <option value="$PROJECT_DIR$/managers/runs/RunManager.js" />
+        <option value="$PROJECT_DIR$/managers/config.js" />
       </list>
     </option>
   </component>
@@ -197,7 +204,7 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="40" />
     <option name="width" value="1900" />
@@ -262,6 +269,12 @@
             <path>
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="managers" type="462c0819:PsiDirectoryNode" />
+              <item name="runs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -307,7 +320,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.Post an radius query.Post an radius query - correct">
+  <component name="RunManager" selected="Node.js.app.js">
     <configuration name="Perform a query.Perform an individual query - correct" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -462,7 +475,7 @@
       <workItem from="1546971651083" duration="18372000" />
       <workItem from="1547042931201" duration="344000" />
       <workItem from="1547052083586" duration="21110000" />
-      <workItem from="1547140327186" duration="3075000" />
+      <workItem from="1547140327186" duration="6175000" />
     </task>
     <servers />
   </component>
@@ -499,7 +512,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="238301000" />
+    <option name="totallyTimeSpent" value="241401000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -514,13 +527,13 @@
     <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17412141" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17412141" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.24887893" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4997367" weight="0.29372197" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4997367" visible="true" weight="0.23430493" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39798206" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -528,7 +541,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5002633" side_tool="true" weight="0.25398633" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.31278026" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.2690583" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -744,13 +757,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/auth/testUser.js" />
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="96" column="39" selection-start-line="96" selection-start-column="39" selection-end-line="96" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -807,24 +813,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="17" column="190" selection-start-line="17" selection-start-column="190" selection-end-line="17" selection-end-column="190" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="218" column="19" selection-start-line="218" selection-start-column="19" selection-end-line="218" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="88" column="62" selection-start-line="88" selection-start-column="62" selection-end-line="88" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -835,17 +827,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="151" column="29" lean-forward="true" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="156" column="3" lean-forward="true" selection-start-line="156" selection-start-column="3" selection-end-line="156" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="58" column="30" lean-forward="true" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="217" column="6" selection-start-line="217" selection-start-column="6" selection-end-line="217" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="17" column="79" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="79" />
         </state>
       </provider>
     </entry>

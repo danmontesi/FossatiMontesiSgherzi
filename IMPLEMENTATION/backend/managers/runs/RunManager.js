@@ -81,8 +81,8 @@ async function getAllRuns(position, organizerId = undefined) {
 
     // Adds the status
     runs.forEach(run => {
-      if (new Date(run.begin_time) > new Date()) run.status = ACCEPTING_SUBSCRIPTION
-      else if (new Date(run.begin_time) < new Date() && new Date(run.end_time) > new Date()) run.status = RUN_STARTED
+      if (new Date(run.start_time) > new Date()) run.status = ACCEPTING_SUBSCRIPTION
+      else if (new Date(run.start_time) < new Date() && new Date(run.end_time) > new Date()) run.status = RUN_STARTED
       else run.status = RUN_ENDED
     })
 
@@ -182,8 +182,6 @@ async function getRunnersPosition(run_id) {
     const {
       rows: runSubs
     } = await client.query('SELECT rs.run_id, rs.user_id, rs.subscription_date, ia.id, ia.name, ia.surname FROM run_subscription as rs, individual_account as ia WHERE rs.run_id = $1 AND rs.user_id = ia.id', [run_id])
-
-    console.log(runSubs)
 
     // For each run subscriber
     await runSubs.forEachAsync(async (runSub) => {
