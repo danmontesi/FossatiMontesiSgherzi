@@ -55,7 +55,6 @@ async function saveData(auth_token, bodyData) {
     await client.query('COMMIT')
     await client.release()
 
-    // TODO: NOTIFY COMPANIES
     await notifyCompanies(user.id)
 
     return {
@@ -255,9 +254,13 @@ async function getLastPosition(id) {
       resp.long = rows[0].long
     }
 
+    await client.release()
+
     return resp
 
   } catch (err) {
+    console.log('in getLastPosition')
+    console.log(err)
     await client.release()
     throw err
   }

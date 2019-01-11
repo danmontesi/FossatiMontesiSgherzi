@@ -38,8 +38,7 @@ async function createQuery(company, query) {
     const {
       userList
     } = await performQuery(query)
-    console.log('User List')
-    console.log(userList)
+
     // Insert the query into the general `query` database
     const {
       rows: globalQuery
@@ -53,6 +52,8 @@ async function createQuery(company, query) {
 
     // Insert the query into the specific `query` database
     await client.query(insertQuery, [globalQuery[0].id, ...toQueryArray(query, params)])
+
+    // TODO: send a mail to the user if the query was an individual one
 
     // update user list in query_user
     await updateUserList(userList, globalQuery[0].id)
@@ -422,20 +423,11 @@ async function confirmRequest(userId, queryId, response) {
 
     await client.query('BEGIN')
 
-    // const {
-    //   rows
-    // } = await client.query(
-    //   'SELECT * ' +
-    //   'FROM individual_account as ia, individual_query as iq ' +
-    //   'WHERE ia.id = $1 AND iq.id = $2 AND ia.ssn = iq.ssn', [userId, queryId]
-    // )
-    // console.log(rows)
-
-
     await client.query('UPDATE individual_query SET auth = $1 WHERE id = $2 RETURNING *', [response, queryId])
 
     if (response) {
       await client.query('INSERT INTO query_user(query_id, user_id) VALUES($1, $2) RETURNING *', [queryId, userId])
+      // TODO: Send a mail to the company if the user has accepted the request
     }
 
     await client.query('COMMIT')

@@ -306,7 +306,7 @@ async function login({ email, password, type }) {
 
     const {
       rows: actor
-    } = await client.query(`SELECT * FROM ${type}_account WHERE email = $1`, [email])
+    } = await client.query(`SELECT * FROM account WHERE email = $1`, [email])
 
     // If the user wasn't found on the db, throw an error
     if (actor.length === 0) {
