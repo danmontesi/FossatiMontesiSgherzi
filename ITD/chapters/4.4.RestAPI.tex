@@ -1,0 +1,1768 @@
+In the following paragraph are represented the Rest API.
+Many of the API are also present in the DD, this paragraph aims to describe in much details the request data and of the response.
+
+
+    \textbf{Authentication Manager}
+    \begin{itemize}
+        \item User Registration
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/register\_user \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Request Data} & mail: String \\
+            &                 password: String \\
+            &                 SSN: String \\
+            &                 name: String \\
+            &                 surname: String \\
+            &                 birthday: Date \\
+            &                 smartwatch: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_code: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InfoNotValid',
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{message} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{Unsupported smartwatch}
+                    \item \texttt{Mail already used}
+                    \item \texttt{SSN not valid} \\
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to register a new User \\
+            \hline
+             \textbf{Request example}
+             & POST /auth/register\_user \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+        \end{longtable}
+    \end{adjustwidth}
+
+    \begin{itemize}
+        \item Company Registration
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/register\_company \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{Request Data} & email: String \\
+            &                 password: String \\
+            &                 company\_name: String \\
+
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_code: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InfoNotValid',
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{message} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{Email already in use}\\
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to register a new Company \\
+            \hline
+                        \hline
+             \textbf{Request example}
+             & POST /auth/register\_user \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+        \end{longtable}
+    \end{adjustwidth}
+
+\begin{itemize}
+        \item Run Organizer Registration
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/register\_run\_organizer \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & email: String \\
+            &                 password: String \\
+            &                 name: String \\
+            &                 surname: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_code: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InfoNotValid',
+    message: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \texttt{message} can be one of the following: 
+                \begin{itemize}
+                    \item \texttt{SSN not valid}\\
+                \end{itemize}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to register a new run organizer \\
+            \hline
+             \textbf{Request example}
+             & POST /auth/register\_user \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+        \end{longtable}
+    \end{adjustwidth}
+
+    \begin{itemize}
+        \item User Login
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/login \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & email: String \\
+            &                 password: String \\
+            &                 type: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    auth_token: ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{404 NOT FOUND} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'UserNotFound' ,
+    message: 'User does not exists'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                \vspace{4pt}
+              \end{minipage} \\
+              & code: \texttt{403 FORBIDDEN} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidCredentials' ,
+    message: 'Invalid Credentials'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to login \\
+            \hline
+             \textbf{Request example}
+             & POST /auth/register\_user \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+        \end{longtable}
+    \end{adjustwidth}
+    
+    \begin{itemize}
+        \item Verify mail
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /auth/verify \\
+            \hline
+            \textbf{Method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} & mail: String \\
+            &                     code: String \\
+            &                     type: String \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: email verified
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{401 UNAUTHORIZED} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidCode',
+    message: 'Code is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows verification of the account \\
+            \hline
+             \textbf{Request example}
+             & POST /auth/register\_user \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+        \end{longtable}
+    \end{adjustwidth}
+    
+    \textbf{Individuals Manager}
+    \begin{itemize}
+        \item Data store
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /indiv/data \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & auth\_token: String \\
+            &                 data: JSON < Array < JSON > > \\
+            
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: 'Sync successful'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidData',
+    message: 'Data are invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+          &                         code: \texttt{400 BAD REQUEST} \\
+          &                         content: \\
+          & \begin{minipage}[t]{0.7\textwidth}
+            \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+          \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to store sensor data in the database \\
+            \hline
+             \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+        \end{longtable}
+    \end{adjustwidth}
+    
+    \begin{itemize}
+        \item Data retrival
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /indiv/data \\
+            \hline
+            \textbf{Method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            & begin\_date: Date \\
+            & end\_date: Date \\
+            \hline
+            \textbf{Request Data} &  \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    data: SensorsData
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to retrive sensor data from the database \\
+            \hline
+   \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+       
+        \end{longtable}
+    \end{adjustwidth}
+    
+    \begin{itemize}
+        \item User information retrival
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /indiv/user \\
+            \hline
+            \textbf{Method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            \hline
+            \textbf{Request Data} &  \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    user: ...userInfo
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+              & code: \texttt{404 Not Found} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'Not found',
+    message: 'The user wasn't found'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to retrive user informations \\
+            \hline
+               \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+       
+        \end{longtable}
+    \end{adjustwidth}
+   \textbf{Query Manager}
+    
+    \begin{itemize}
+        \item Query creation
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/query \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & auth\_token: String \\
+            &                 query: json \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+	message: 'Query successfully posted'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'QueryTooRestrictive',
+    message: 'Query on too few users'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'BadQuery',
+    message: 'Query is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                 \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{402 PAYMENT REQUIRED} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PaymentRequired',
+    message: 'Payment required'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to create a query \\
+            \hline
+               \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+        \end{longtable}
+    \end{adjustwidth} 
+    
+    \begin{itemize}
+        \item Query Retrival
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/query \\
+            \hline
+            \textbf{method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    queries: ...totalQueries
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to retrive the queries created by a company \\
+            \hline
+                           \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+        \end{longtable}
+    \end{adjustwidth} 
+    
+    \begin{itemize}
+        \item Perform Query
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/query/data \\
+            \hline
+            \textbf{method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            &  query\_id: Integer \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    data: ...data
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to perform a query \\
+            \hline
+                           \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+        \end{longtable}
+    \end{adjustwidth} 
+    
+    
+        \begin{itemize}
+        \item (still) Unauthorized queries retrieval
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/individual/pending \\
+            \hline
+            \textbf{method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    queries: ...queries
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Get unapproved individual querie \\
+            \hline
+                           \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+        \end{longtable}
+    \end{adjustwidth}
+    
+    \begin{itemize}
+        \item Allow/Negate individual query
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/individual/pending \\
+            \hline
+            \textbf{method} & \textbf{POST} \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} &  auth\_token: String \\
+            & query\_id: Integer \\
+            & decision: Boolean \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: 'Response Saved'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Specify decision for individual query \\
+            \hline
+            
+            
+                           \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+ 
+        \end{longtable}
+    \end{adjustwidth}
+    
+    
+    \textbf{Subscription Manager}
+    \begin{itemize}
+        \item Buy subscription plan
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /subs/plan \\
+            \hline
+            \textbf{Method} & \textbf{POST} \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} & auth\_token: String \\
+            &                 mail: String \\
+            &                 plan: String \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: {$PLAN} bought
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{1.39\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{402 PAYMENT REQUIRED} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PaymentRequired',
+    message: 'Payment required'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              &                     code: \texttt{404 NOT FOUND} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PlanNotFound',
+    message: 'Plan not found'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client buy a subscription to a new plan \\
+            \hline
+            
+                           \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+ 
+ 
+        \end{longtable}
+    \end{adjustwidth} 
+    
+    \begin{itemize}
+        \item Get plan informations
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /subs/plan \\
+            \hline
+            \textbf{Method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  plan: String \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    plan: ...planDetails
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PlanUnavailable',
+    message: 'Plan is not available'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{1.2\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              
+              &                     code: \texttt{404 NOT FOUND} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'PlanNotFound',
+    message: 'Plan not found'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client retrive informations about a subscription plan \\
+            \hline
+            
+                           \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+ 
+ 
+        \end{longtable}
+    \end{adjustwidth}
+    
+    \textbf{Run Manager}
+        \begin{itemize}
+            \item Create a Run
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs/run \\
+                \hline
+                \textbf{Method} & \textbf{POST} \\
+                \hline
+                \textbf{URL Params} &  \\
+                \hline
+                \textbf{Request Data} & auth\_token: String \\
+                &                 time\_begin: Date \\
+                &                 time\_end: Date \\
+                &                 description: String \\
+                &                 coordinates: Array < JSON > \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        run_id: $ID
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InfoNotValid',
+        message: ...
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                    \texttt{message} can be one of the following: 
+                    \begin{itemize}
+                        \item \texttt{Time not valid}
+                        \item \texttt{Coordinates not valid}
+                    \end{itemize}
+                     \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+                  \end{minipage} \\
+                & code: \texttt{403 FORBIDDEN} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InvalidCredentials',
+        message: 'Invalid Credentials'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Uses} & Allows the client to create a new run \\
+                \hline
+                
+                               \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+ 
+ 
+            \end{longtable}
+        \end{adjustwidth}
+
+    \begin{itemize}
+            \item List all available runs
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs \\
+                \hline
+                \textbf{Method} & \textbf{GET} \\
+                \hline
+                \textbf{URL Params} &  auth\_token:  String \\
+                &                      organizer\_id? : String\\
+                \hline
+                \textbf{Request Data} &  \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        runs: ...runList
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} &  code: \texttt{401 FORBIDDEN} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InvalidCredentials',
+        message: 'Invalid Credentials'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\\\
+                  \hline
+                \textbf{Uses} & Allows the client to list all runs\\ 
+                              &  satisfying the parameters above \\
+                \hline
+                
+                               \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+ 
+ 
+            \end{longtable}
+        \end{adjustwidth}
+    
+    \begin{itemize}
+            \item Join a run
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs/join \\
+                \hline
+                \textbf{URL Params} &  \\
+                \hline
+                \textbf{Method} & \textbf{POST} \\
+                \hline
+                \textbf{Request Data} & auth\_token: String \\
+                &                 run\_id: String \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        message: 'Joined run $RUN_ID'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} & code: \texttt{403 FORBIDDEN} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InvalidCredentials',
+        message: 'Invalid credentials'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                     \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+                  \end{minipage} \\
+                & code: \texttt{404 NOT FOUND} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'RunNotFound',
+        message: 'Run not found'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                     \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+                  \end{minipage} \\
+                  & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'RunError',
+        message: 'Run doesn't accept 
+        participants'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Uses} & Allows the client to join a run \\
+                \hline
+                
+                               \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+ 
+ 
+            \end{longtable}
+        \end{adjustwidth}
+    
+    
+    \begin{itemize}
+            \item Get the positions of runners in a run
+        \end{itemize}
+        \begin{adjustwidth}{1cm}{}
+            \begin{longtable}{|c|l|}
+                \hline
+                \textbf{Endpoint} & /runs/positions \\
+                \hline
+                \textbf{Method} & \textbf{GET} \\
+                \hline
+                \textbf{URL Params} &  run\_id: String \\
+                &                      auth\_token: String \\
+                \hline
+                \textbf{Request Data} & \\
+                \hline
+                \textbf{Success Response} & code: \texttt{200 OK} \\
+                &                           content: \\
+                & \begin{minipage}[t]{0.5\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: true, 
+        position: position
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Error Response} & code: \texttt{404 NOT FOUND} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'RunNotFound',
+        message: 'Run not found'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\
+                  \hline
+                \textbf{Uses} & Allows the client get the position of a runner in a run \\
+                \hline
+                
+                               \textbf{Request example}
+             & POST /indiv/data \\
+             & Host: addr:80\\
+             & User-Agent: * \\
+             & Content-Type: application/json\\
+             & Accept: application/json\\
+             & Authorization: \\
+             & content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+            \hline
+             \textbf{Response example} & 
+              \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    ...
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+ 
+ 
+ 
+            \end{longtable}
+        \end{adjustwidth}
+    
+    % TEMPLATEs
+%\textbf{Authentication Manager}
+%    \begin{itemize}
+%        \item AAAAAAAAAAAAAAAAAAAAAAAAA
+%    \end{itemize}
+%    \begin{adjustwidth}{1cm}{}
+%        \begin{longtable}{|c|l|}
+%            \hline
+%            \textbf{Endpoint} & /auth/login\_user \\
+%            \hline
+%            \textbf{Request Data} & username: String \\
+%            &                 password: String \\
+%            &                 SSN: String \\
+%            &                 name: String \\
+%            &                 surname: String \\
+%            &                 birthday: Date \\
+%            &                 smartwatch: String \\
+%            \hline
+%            \textbf{Success Response} & code: \texttt{200 OK} \\
+%            &                           content: \\
+%            & \begin{minipage}[t]{0.5\textwidth}
+%                \begin{adjustwidth}{1.5cm}{}
+%                \begin{verbatim}
+%{
+%    success: true, 
+%    auth_code: ...
+%}
+%                \end{verbatim}
+%                \end{adjustwidth}
+%              \end{minipage} \\
+%              \hline
+%            \textbf{Error Response} & code: \texttt{422 UNPROCESSABLE ENTITY} \\
+%%            &                         content: \\
+%            & \begin{minipage}[t]{0.7\textwidth}
+%                \begin{adjustwidth}{1.5cm}{}
+%%                \begin{verbatim}
+%{
+%    success: false, 
+%    error: 'InfoNotValid',
+%    message: ...
+%}
+%                \end{verbatim}
+%                \end{adjustwidth}
+%                \texttt{message} can be one of the following: 
+%                \begin{itemize}
+%                    \item \texttt{Unsupported smartwatch}
+%                    \item \texttt{Username already used}
+%                    \item \texttt{SSN not valid}
+%                \end{itemize}
+%              \end{minipage} \\
+%              \hline
+%            \textbf{Uses} & Allows the client to register a new user \\
+%            \hline
+%        \end{longtable}
+%    \end{adjustwidth}
