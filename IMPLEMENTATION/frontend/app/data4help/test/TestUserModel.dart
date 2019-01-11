@@ -37,15 +37,6 @@ void main() {
     }
   });
 
-  test("Get user information", () async{
-    var a = UserModel("fossanico@gmail.com", "password");
-    await a.login();
-
-    var data = await a.retriveUserPersonalData();
-
-    expect(data.surname, "Fossa");
-    expect(data.name, "Nico");
-  });
 
   test("List of runs not null", () async{
     var a = UserModel("fossanico@gmail.com", "password");
@@ -111,7 +102,7 @@ void main() {
     expect(data, isNotNull);
   });
 
-  test("Respond to query not mine", () async{
+  test("Respond to not existing query", () async{
     var a = UserModel("fossanico@gmail.com", "password");
     await a.login();
 
