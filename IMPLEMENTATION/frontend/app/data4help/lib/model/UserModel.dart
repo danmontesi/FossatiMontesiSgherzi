@@ -27,7 +27,7 @@ class UserModel {
     if (response.statusCode == 200) {
       print(response.body);
       final userData = json.decode(response.body)["user"];
-      return new UserPersonalData(userData["name"], userData["surname"]);
+      return  new UserPersonalData.fromJson(userData);
     }
     throw Exception("Connection error");
   }
@@ -101,8 +101,8 @@ class UserModel {
 
       jsonp["positions"].forEach((el) {
         if (el["lastPosition"]["lat"] != -9999.0) {
-          list.add(new RunPoint(el["lastPosition"]["lat"],
-              el["lastPosition"]["long"], 0, el["id"].toString()));
+          //list.add(new RunPoint(el["lastPosition"]["lat"], el["lastPosition"]["long"], 0, el["id"].toString()));
+          list.add(new RunPoint.fromJson(el));
         }
       });
       return list;
