@@ -1,0 +1,38 @@
+\subsection{Database setup}
+
+\subsection{Backend setup}
+
+\subsection{External services setup}
+\subsubsection{Google Maps API}
+In order to be able to use the Google Maps View in the Flutter project you need to obtain a Maps API key from Google. To do so, please refer to the following webpage:
+\href{https://developers.google.com/maps/documentation/android-sdk/signup}{Get API Key | Maps SDK for Android}.
+
+You should put the obtained key in the \texttt{AndroidManifest.xml} file. Please refer to the following document to get detailed instruction on how to do so:
+\href{https://pub.dartlang.org/packages/google_maps_flutter}{google\_maps\_flutter | Flutter Packages}.
+
+\subsection{Flutter Application setup}
+In this section will be present all the necessary information to build the Flutter project.
+\subsubsection{Requirements}
+\begin{itemize}
+    \item Internet connection
+\end{itemize}
+
+\subsubsection{Flutter}
+In order to install the Flutter SDK with all its dependency, please refer to the following webpage: \href{https://flutter.io/docs/get-started/install}{Install - Flutter}.
+
+Remember to also install all the needed dependencies to build Android Apps.
+
+\subsubsection{Build the app for Android}
+\begin{itemize}
+    \item Download the project into a local folder;
+    \item open a terminal and go into the project folder;
+    \item launch the command \texttt{flutter doctor} to check that the project is ok;
+    \item launch the command \texttt{flutter packages get};
+    \item launch the command \texttt{flutter build apk} to actually build the apk.
+\end{itemize}
+
+\subsubsection{Known issues}
+\begin{itemize}
+    \item the app was developed under Android and has not been tested under iOS, so there can be some problem on this platform.
+    \item You should include your personal Google Maps API as stated before, in order to make the Google Maps View work.
+\end{itemize}
