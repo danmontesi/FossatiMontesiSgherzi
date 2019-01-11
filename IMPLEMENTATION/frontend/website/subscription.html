@@ -138,12 +138,13 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/cookie-management.js"></script>
+  <script src="js/signout-modal.js"></script>
 
 
   <script>
       $(document).ready(
         function () {
-        $('.modal').modal();
         
         if (getCookie("auth_token")==""){
           alert("You are not logged in! \nSign in first.")/*displays error message*/
@@ -167,53 +168,14 @@
     </script>
 
 
-  <script>
-  function signOut(){
-    deleteAllCookies();
-    document.location.href = "index.html";
-    alert("You have logged out.");/*displays info */
-    
-  }
-  </script>
-
 <script>
     function purchase(subscription_id){
       //TODO
       //document.location.href = "dashboard.html";
-      alert("Not implemented yet");/*displays info */
+      alert("Function not implemented yet.");/*displays info */
       
     }
     </script>
-
-<script>
-  function deleteAllCookies() {
-    var cookies = document.cookie.split(";");
-
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-}
-</script>
-
-<script>
-    function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }</script>
-
+    
   </body>
 </html>
