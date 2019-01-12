@@ -6,6 +6,9 @@ const {
 } = require('../config')
 
 describe('User sends data', () => {
+
+  beforeEach(() => jest.setTimeout(50000))
+
   test('User sends data formatted correctly', async () => {
 
     let res = await fetch(LOCAL_BASE_URL + 'indiv/data', {
@@ -49,6 +52,7 @@ describe('User sends data', () => {
       })
     })
     res = await res.json()
+    console.log(res)
     expect(res.success).toBe(true)
     expect(res.message).toBe('Sync successful')
 

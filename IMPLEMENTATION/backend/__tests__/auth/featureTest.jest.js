@@ -15,6 +15,8 @@ const {
 
 describe('Registration', () => {
 
+  beforeEach(() => jest.setTimeout(50000))
+
   afterEach(async () => {
     const client = await connect()
     await client.query('DELETE FROM individual_account WHERE ssn=\'TESTTESTTESTTEST\'')

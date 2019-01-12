@@ -1,14 +1,11 @@
 const jwt = require('jsonwebtoken')
 const {
-  Pool
-} = require('pg')
+  connect
+} = require('../config')
 
 
 async function getPlanByName(planName) {
-  const client = await new Pool({
-    connectionString: process.env.DATABASE_URL + '?ssl=true',
-    max: 5
-  }).connect()
+  const client = await connect()
 
   const {
     rows
@@ -22,10 +19,7 @@ async function getPlanByName(planName) {
 }
 
 async function getPlans() {
-  const client = await new Pool({
-    connectionString: process.env.DATABASE_URL + '?ssl=true',
-    max: 5
-  }).connect()
+  const client = await connect()
 
   const {
     rows

@@ -204,8 +204,6 @@ async function getRunnersPosition(run_id) {
     }
 
   } catch (err) {
-    console.log('in getRunnserPosition')
-    console.log(err)
     await client.release()
     throw err
   }
@@ -312,6 +310,7 @@ module.exports = {
   createRun,
   joinRun,
   getAllRuns,
+  isRunInRange,
   getRunParamsFromRequest,
   runPresenceMiddleware,
   getRunnersPosition,

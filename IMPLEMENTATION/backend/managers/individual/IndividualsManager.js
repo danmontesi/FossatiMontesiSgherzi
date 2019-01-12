@@ -81,18 +81,33 @@ async function saveData(auth_token, bodyData) {
  */
 async function notifyCompanies(userId) {
 
+  const LAT_DEGREE = 110.57 // km
+  const LONG_DEGREE = 111.32 // km
+
+
   // Connect to the database
   const client = await connect()
 
   try {
 
     // Look for all companies having a query on that individual
-    const {
+    let {
       rows: companies
     } = await client.query('SELECT ca.email ' +
       'FROM query_user as qu, query as q, company_account as ca ' +
       'WHERE qu.user_id = $1 AND qu.query_id = q.id AND q.company_id = ca.id', [userId])
-    console.log(companies)
+
+    // Select all the queries in which the user could be, by position
+    const lastPos = await getLastPosition(userId)
+
+    // Those are the queries in which the user can now appear
+    let {
+      rows: queries
+    } = await client.query(`SELECT rq.id, email FROM radius_query as rq, query as q, company_account as ca WHERE center_lat BETWEEN $1 - radius / ${LAT_DEGREE} AND $1 + radius / ${LAT_DEGREE} AND center_long BETWEEN $2 - radius / ${LONG_DEGREE} AND $1 + radius / ${LONG_DEGREE} `, [lastPos.lat, lastPos.long])
+
+    queries.forEach(q => {
+      if (companies.indexOf({ email: q.email }) === -1) companies.push({ email: q.email })
+    })
     // Send an email to all of them
     companies.forEach(company => sendNotificationEmail(company.email))
 
@@ -106,7 +121,10 @@ async function notifyCompanies(userId) {
 
 }
 
-
+/**
+ * Sends the notification email to the companies subscribing a query
+ * @param email
+ */
 function sendNotificationEmail(email) {
 
   console.log('Sending mail to ' + email)
@@ -126,8 +144,7 @@ function sendNotificationEmail(email) {
     html: `<p>New data available for your query, download them on the website</p>`
   }
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) console.log('There was an error sending the email')
+  transporter.sendMail(mailOptions, (err, info) => {
   })
 
 }
@@ -221,9 +238,23 @@ async function getUserInfo(token) {
 
 }
 
+/**
+ *
+ * @param userId{number} The userid
+ * @param el{JSON} The structure to unpack
+ * @param type{string} The type of the data
+ * @returns {Array}
+ */
 function toQueryArray(userId, el, type) {
+
   let template = []
-  console.log(el)
+
+  if (!userId || !el | !type) {
+    let err = new Error('Bad formatting passed')
+    err.status = 400
+    throw err
+  }
+
   el.forEach(e => {
     let elTemplate = [userId]
     requiredParams[type].forEach(p => elTemplate.push(e[p]))
@@ -272,5 +303,6 @@ module.exports = {
   saveData,
   getData,
   getUserInfo,
-  getLastPosition
+  getLastPosition,
+  toQueryArray
 }

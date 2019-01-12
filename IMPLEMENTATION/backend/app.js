@@ -50,7 +50,7 @@ app.use(function (req, res, next) {
 /**
  * Expose all the routes for the application
  */
-app.use('/', routes)
+app.use('/v1', routes)
 
 /**
  * 404 Error Catcher
