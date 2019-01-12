@@ -6,6 +6,14 @@ const {
   companyToken
 } = require('../config')
 
+const {
+  getActor
+} = require('../../managers/token/TokenManager')
+
+const {
+  connect
+} = require('../../managers/config')
+
 describe('Retrive company queries', () => {
 
   beforeEach(() => jest.setTimeout(50000))
@@ -206,7 +214,7 @@ describe('Perform a query', () => {
   test('Perform an individual query - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
       'auth_token=' + companyToken + '&' +
-      'query_id=216', {    // const client = await connect()
+      'query_id=309', {    // const client = await connect()
       // await client.query('DELETE FROM user_data WHERE user_id = 111')
       // await client.release()
       method: 'GET',
@@ -223,7 +231,7 @@ describe('Perform a query', () => {
   test('Perform an individual query - unauthorized', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
       'auth_token=' + companyToken + '&' +
-      'query_id=218', {    // const client = await connect()
+      'query_id=310', {    // const client = await connect()
       // await client.query('DELETE FROM user_data WHERE user_id = 111')
       // await client.release()
       method: 'GET',
@@ -236,26 +244,28 @@ describe('Perform a query', () => {
     expect(res.message).toMatch(/User hasn\'t allowed this query!/)
   })
 
-  // test('Perform a query - radius', async () => {
-  //   let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
-  //     'auth_token=' + companyToken + '&' +
-  //     'query_id=196', {
-  //     method: 'GET',
-  //     headers: new fetch.Headers({
-  //       'Content-Type': 'application/json'
-  //     })
-  //   })
-  //   res = await res.json()
-  //   expect(res.success).toBe(true)
-  //   expect(res.data).not.toBe(undefined)
-  //   // User must be undefined in order for the query to be anonymized
-  //   expect(res.user).toBe(undefined)
-  // })
+  test('Perform a query - radius', async () => {
+    let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
+      'auth_token=' + companyToken + '&' +
+      'query_id=308', {
+      method: 'GET',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+    res = await res.json()
+    expect(res.success).toBe(true)
+    expect(res.data).not.toBe(undefined)
+    // User must be undefined in order for the query to be anonymized
+    expect(res.user).toBe(undefined)
+  })
 
 })
 
 describe('Pending individual queries', () => {
+
   beforeEach(() => jest.setTimeout(50000))
+
   test('User retrives its pending query', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?' +
       'auth_token=' + userToken, {
@@ -268,42 +278,50 @@ describe('Pending individual queries', () => {
     expect(res.success).toBe(true)
     expect(res.queries).not.toBe(undefined)
   })
-  // test('User allows a pending individual query', async () => {
-  //   let res = await fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?', {
-  //     method: 'POST',
-  //     headers: new fetch.Headers({
-  //       'Content-Type': 'application/json'
-  //     }),
-  //     body: JSON.stringify({
-  //       query_id: 201,
-  //       auth_token: userToken,
-  //       decision: true
-  //     })
-  //   })
-  //   res = await res.json()
-  //   console.log(res)
-  //   expect(res.success).toBe(true)
-  //   expect(res.message).toBe('Response saved')
-  //
-  // })
-  //
-  // test('User negates a pending individual query', async () => {
-  //   let res = await fetch(LOCAL_BASE_URL + 'queries/query/individual/pending', {
-  //     method: 'POST',
-  //     headers: new fetch.Headers({
-  //       'Content-Type': 'application/json'
-  //     }),
-  //     body: JSON.stringify({
-  //       auth_token: userToken,
-  //       query_id: 162,
-  //       decision: false
-  //     })
-  //   })
-  //   res = await res.json()
-  //   expect(res.success).toBe(true)
-  //   expect(res.message).toBe('Response saved')
-  //
-  // })
+
+  test('User allows a pending individual query', async () => {
+    let res = await fetch(LOCAL_BASE_URL + 'queries/query/individual/pending?', {
+      method: 'POST',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        query_id: 310,
+        auth_token: userToken,
+        decision: true
+      })
+    })
+    res = await res.json()
+    console.log(res)
+    expect(res.success).toBe(true)
+    expect(res.message).toBe('Response saved')
+
+    const client = await connect()
+    await client.query('UPDATE individual_query SET auth = NULL WHERE id = 310')
+    await client.query('DELETE from query_user WHERE user_id = $1 AND query_id = 222', [getActor(userToken).id])
+    await client.release()
+
+  })
+
+  test('User negates a pending individual query', async () => {
+    let res = await fetch(LOCAL_BASE_URL + 'queries/query/individual/pending', {
+      method: 'POST',
+      headers: new fetch.Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({
+        auth_token: userToken,
+        query_id: 310,
+        decision: false
+      })
+    })
+    res = await res.json()
+    expect(res.success).toBe(true)
+    expect(res.message).toBe('Response saved')
+    const client = await connect()
+    await client.query('UPDATE individual_query SET auth = NULL WHERE id = 218')
+    await client.release()
+  })
 })
 
 

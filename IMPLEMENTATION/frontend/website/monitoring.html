@@ -117,35 +117,29 @@
 <script src="js/query-list-retrieval.js"></script>
 <script src="js/switch-management.js"></script>
 <script src="js/xml-download-management.js"></script>
+<script src="js/query-post.js"></script>
+
 
 
 
 <script>
   $(document).ready(
     function () {
+      // Load modal
       $('.modal').modal({
         dismissible: true
       });
 
-
+      // Check if auth_token still in cookies, if not, request login
       if (getCookie("auth_token") == "") {
         alert("You are not logged in! \nSign in first.")/*displays error message*/
         document.location.href = "index.html";
       }
       else {
-        console.log("calling get patient list ")
         getPatientList()
-
-        //TODO : Authenticated-> Retrieve all useful information
 
 
       }
-      //check the authCode != ""
-      //if null-> get error message and don't show anything
-
-      //else-> request list of queries from server and shows them in the dashboard
-
-
     });
 
 </script>

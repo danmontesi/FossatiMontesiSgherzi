@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Starter Template - Materialize</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body>
 
 
-    <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
-            <ul class="right hide-on-med-and-down">
-              <li class="active"><a href="dashboard.html">Dashboard</a></li>
-                
-              <li><a href="subscription.html">Subscription Plans</a></li>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Data4Help Website</a>
+        <ul class="right hide-on-med-and-down">
+          <li class="active"><a href="dashboard.html">Dashboard</a></li>
 
-              <li><a href="query.html">Query</a></li>
+          <li><a href="subscription.html">Subscription Plans</a></li>
 
-              <li><a href="monitoring.html">Monitoring</a></li>
-  
-              <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
-  
-    
-            </ul>
-          </div>
-        </nav>
+          <li><a href="query.html">Query</a></li>
+
+          <li><a href="monitoring.html">Monitoring</a></li>
+
+          <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
+
+
+        </ul>
       </div>
+    </nav>
+  </div>
 
 
-      
+
 
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -44,51 +46,53 @@
         <h5 class="header col s12 light"></h5>
       </div>
       <div class="row center">
-          <h5 class="header col s12 ">Welcome to your dashboard</h5>
-            
-          <h5 class="header col s12 light">Last 5 queries performed:</h5>
+        <h5 class="header col s12 ">Welcome to your dashboard</h5>
 
-          <h6 id="loading_panel" class="header col s12 light"></h5>
+        <h5 class="header col s12 light">Last 5 queries performed:</h5>
 
-        </div>
+        <h6 id="loading_panel" class="header col s12 light">
+          </h5>
 
-  <ul id="start_collection" class="collection">
-     
+      </div>
+
+      <ul id="start_collection" class="collection">
 
 
+
+    </div>
   </div>
-</div>
 
-    <footer class="page-footer orange">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">TrackMe</h5>
-              <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to companies in order to track better their customer activities.
-                Data4Help is available for all users and it is totally free.
-              </p>
-    
-    
-            </div>
-            <div class="col l3 s12">
-             
-            </div>
-            <div class="col l3 s12">
-              <h5 class="white-text">Connect</h5>
-              <ul>
-                
-              </ul>
-            </div>
-          </div>
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">TrackMe</h5>
+          <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to
+            companies in order to track better their customer activities.
+            Data4Help is available for all users and it is totally free.
+          </p>
+
+
         </div>
-        <div class="footer-copyright">
-          <div class="container">
-          Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
-          </div>
+        <div class="col l3 s12">
+
         </div>
-    
-        
-      </footer>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+
+
+  </footer>
 
 
   <!--  Scripts-->
@@ -104,128 +108,24 @@
 
 
   <script>
-      $(document).ready(
-        function () {
-        if (getCookie("auth_token")==""){
+    $(document).ready(
+      function () {
+        // Check if auth_token still in cookies, if not, request login
+        if (getCookie("auth_token") == "") {
           alert("You are not logged in! \nSign in first.")/*displays error message*/
           document.location.href = "index.html";
         }
-        else{
+        else {
           getFirst5Query()
-
-          //Authenticated-> Retrieve all useful information
-          
-
         }
-        //check the authCode != ""
-        //if null-> get error message and don't show anything
-
-        //else-> request list of queries from server and shows them in the dashboard
-
 
       });
 
 
-</script>
-
-
-
-
-
-
-  <script>
-    function createXml(query_id) {
-      console.log("query id= "+ query_id)
-      const url = "https://data4halp.herokuapp.com/queries/query/data";
-      var authtoken = getCookie("auth_token");//get authtoken
-      var query_id = query_id;
-      fetch(url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
-
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-
-      })
-        .then(response => response.text())
-        .then(contents => { //Assign to contents the response
-          var myObj = JSON.parse(contents); //Parse the response
-          if (myObj["success"] == true) {
-            //Show the json file
-            console.log(myObj["data"]);
-            var xml = json2xml(contents);
-      download_file(query_id + ".txt", xml.substring(58, xml.length), "text/plain")
-
-    }
-    else {
-      alert("Error:" + myObj["message"] + ".\nRetry!")
-    }
-
-  });
-}
-</script>
-
-<script>
-  function json2xml(json) {
-      var a = JSON.parse(json)
-      var c = document.createElement("root");
-      var t = function (v) {
-          return {}.toString.call(v).split(' ')[1].slice(0, -1).toLowerCase();
-      };
-      var f = function (f, c, a, s) {
-          c.setAttribute("type", t(a));
-          if (t(a) != "array" && t(a) != "object") {
-              if (t(a) != "null") {
-                  c.appendChild(document.createTextNode(a));
-              }
-          } else {
-              for (var k in a) {
-                  var v = a[k];
-                  if (k == "__type" && t(a) == "object") {
-                      c.setAttribute("__type", v);
-                  } else {
-                      if (t(v) == "object") {
-                          var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
-                          f(f, ch, v);
-                      } else if (t(v) == "array") {
-                          var ch = c.appendChild(document.createElementNS(null, s ? "item" : k));
-                          f(f, ch, v, true);
-                      } else {
-                          var va = document.createElementNS(null, s ? "item" : k);
-                          if (t(v) != "null") {
-                              va.appendChild(document.createTextNode(v));
-                          }
-                          var ch = c.appendChild(va);
-                          ch.setAttribute("type", t(v));
-                      }
-                  }
-              }
-          }
-      };
-      f(f, c, a, t(a) == "array");
-      return c.outerHTML;
-  }
   </script>
 
-<script>
-  function download_file(name, contents, mime_type) {
-  mime_type = mime_type || "text/plain";
-  
-  var blob = new Blob([contents], {type: mime_type});
-  
-  var dlink = document.createElement('a');
-  dlink.download = name;
-  dlink.href = window.URL.createObjectURL(blob);
-  dlink.onclick = function(e) {
-    // revokeObjectURL needs a delay to work properly
-    var that = this;
-    setTimeout(function() {
-        window.URL.revokeObjectURL(that.href);
-    }, 1500);
-  };
-  
-  dlink.click();
-  dlink.remove();
-  }</script>
-  </body>
+
+
+</body>
+
 </html>

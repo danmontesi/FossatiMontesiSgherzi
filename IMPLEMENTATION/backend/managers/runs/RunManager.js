@@ -176,6 +176,7 @@ function getRunParamsFromRequest(reqBody) {
  * @returns {Promise<{success: boolean, positions}>}
  */
 async function getRunnersPosition(run_id) {
+
   const client = await connect()
 
   try {
@@ -194,7 +195,9 @@ async function getRunnersPosition(run_id) {
       runSub.subscription_date = undefined
       runSub.run_id = undefined
     })
+
     await client.release()
+
     return {
       success: true,
       positions: runSubs
@@ -307,6 +310,7 @@ module.exports = {
   createRun,
   joinRun,
   getAllRuns,
+  isRunInRange,
   getRunParamsFromRequest,
   runPresenceMiddleware,
   getRunnersPosition,

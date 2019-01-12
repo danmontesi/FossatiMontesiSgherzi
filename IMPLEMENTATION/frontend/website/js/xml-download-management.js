@@ -1,12 +1,14 @@
+//Var of path url
+var path_url = "https://data4halp.herokuapp.com/v1/";
 
 //<!-- Function get Xml from  server endpoint-->
 
   function createXml(query_id) {
 
-    const url = "https://data4halp.herokuapp.com/queries/query/data";
+    const url = "queries/query/data";
     var authtoken = getCookie("auth_token");//get authtoken
     var query_id = query_id;
-    fetch(url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
+    fetch(path_url + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
 
       method: 'GET',
       headers: {
@@ -19,11 +21,10 @@
         var myObj = JSON.parse(contents); //Parse the response
         if (myObj["success"] == true) {
           //Show the json file
-          //window.webkitRequestFileSystem(window.TEMPORARY, 1024*1024, SaveDatFileBro);
-          
+			
           var xml = json2xml(contents);
-          download_file(query_id + ".txt", xml.substring(58, xml.length), "text/plain")
-
+          
+          download_file(query_id + ".xml", xml.substring(58, xml.length-7), "text/plain")
         }
         else {
           alert("Error:" + myObj["message"] + ".\nRetry!")

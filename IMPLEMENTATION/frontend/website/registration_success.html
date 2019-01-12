@@ -21,7 +21,7 @@
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Logo</a>
+        <a href="#!" class="brand-logo">Data4Help Website</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="services.html">Services</a></li>
 
@@ -138,95 +138,95 @@
 
   <!-- Modal Structure signIn -->
   <div id="modal1" class="modal">
-      <div class="modal-content">
-        <div class="row">
-          <form class="col s12">
-  
-            <div class="col s12">
-              <p id=demo2>Please insert your username and password:</p>
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+
+          <div class="col s12">
+            <p id=demo2>Please insert your username and password:</p>
+          </div>
+          <!-- Username -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="usernLogin" type="text" class="validate">
+              <label for="username">Username</label>
             </div>
-            <!-- Username -->
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="usernLogin" type="text" class="validate">
-                <label for="username">Username</label>
-              </div>
+          </div>
+
+          <!-- Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="passwLogin" type="password" class="validate">
+              <label for="password">Password</label>
             </div>
-  
-            <!-- Password -->
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="passwLogin" type="password" class="validate">
-                <label for="password">Password</label>
-              </div>
-            </div>
-  
-            <div class="modal-footer">
-              <a href="#!" class="waves-effect transparent n btn-flat" onclick="signInReq()">Send</a>
-            </div>
-        </div>
-  
+          </div>
+
+          <div class="modal-footer">
+            <a href="#!" class="waves-effect transparent n btn-flat" onclick="signInReq()">Send</a>
+          </div>
       </div>
+
     </div>
-  
-  
-    <!-- Modal Structure signUp -->
-    <div id="modal2" class="modal">
-      <div class="modal-content">
-        <div class="row">
-          <form class="col s12">
-  
-            <div class="col s12">
-              <p id=demo>Please insert your data: </p>
+  </div>
+
+
+  <!-- Modal Structure signUp -->
+  <div id="modal2" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <form class="col s12">
+
+          <div class="col s12">
+            <p id=demo>Please insert your data: </p>
+          </div>
+          <!-- Username -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="usernReg" type="text" class="validate">
+              <label for="username">Username</label>
             </div>
-            <!-- Username -->
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="usernReg" type="text" class="validate">
-                <label for="username">Username</label>
-              </div>
+          </div>
+
+          <!-- Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="passwReg" type="password" class="validate">
+              <label for="password">Password</label>
             </div>
-  
-            <!-- Password -->
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="passwReg" type="password" class="validate">
-                <label for="password">Password</label>
-              </div>
+          </div>
+
+          <!-- Repeat Password -->
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="repPasswordReg" type="password" class="validate">
+              <label for="password">Repeat password</label>
             </div>
-  
-            <!-- Repeat Password -->
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="repPasswordReg" type="password" class="validate">
-                <label for="password">Repeat password</label>
-              </div>
+          </div>
+
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="companyNameReg" type="text" class="validate">
+              <label for="email">Company name</label>
             </div>
-  
-  
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="companyNameReg" type="text" class="validate">
-                <label for="email">Company name</label>
-              </div>
+          </div>
+
+
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="emailReg" type="email" class="validate">
+              <label for="email">Email</label>
             </div>
-  
-  
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="emailReg" type="email" class="validate">
-                <label for="email">Email</label>
-              </div>
-            </div>
-  
-  
-            <div class="modal-footer">
-              <a href="#!" class="waves-effect transparent  btn-flat" onclick="signUpReq()">Send</a>
-            </div>
-        </div>
-  
+          </div>
+
+
+          <div class="modal-footer">
+            <a href="#!" class="waves-effect transparent  btn-flat" onclick="signUpReq()">Send</a>
+          </div>
       </div>
+
     </div>
+  </div>
 
 
 </body>
@@ -242,6 +242,7 @@
     function () {
       $('.modal').modal();
 
+      // Check if exists an auth_token in the cookies. If so, redirects to the dashboard
       if (getCookie("auth_token") != "") {
         document.location.href = "dashboard.html";
       }
@@ -253,6 +254,6 @@
 <script>
 
   function getToHome() {
-    document.location.href = "index.html"; //TODO cancella cookie
+    document.location.href = "index.html";
   }
 </script>

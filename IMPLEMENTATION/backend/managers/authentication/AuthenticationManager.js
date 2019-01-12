@@ -34,9 +34,9 @@ const {
 
 /**
  * Sends a verification email with a link, by clicking which the client is automatically verified
- * @param mail String: The email to which send the verification code
- * @param code String: The verification code
- * @param type String: The type of actor
+ * @param mail {string}: The email to which send the verification code
+ * @param code {string}: The verification code
+ * @param type {(ACTOR.INDIVIDUAL|ACTOR.RUN_ORGANIZER|ACTOR.COMPANY)}: The type of actor
  */
 function sendVerificationMail(mail, code, type) {
   console.log('Sending mail to ' + mail)
@@ -57,8 +57,7 @@ function sendVerificationMail(mail, code, type) {
   }
 
   transporter.sendMail(mailOptions, (error, info) => {
-    if (error) throw error
-    console.log(info)
+
   })
 }
 
@@ -306,7 +305,7 @@ async function login({ email, password, type }) {
 
     const {
       rows: actor
-    } = await client.query(`SELECT * FROM ${type}_account WHERE email = $1`, [email])
+    } = await client.query(`SELECT * FROM account WHERE email = $1`, [email])
 
     // If the user wasn't found on the db, throw an error
     if (actor.length === 0) {
@@ -361,5 +360,8 @@ module.exports = {
   registerCompany,
   registerRunOrganizer,
   verify,
-  login
+  login,
+  checkRequiredParams,
+  ACTOR,
+  ACTION
 }
