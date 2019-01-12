@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Starter Template - Materialize</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
+
 <body>
 
 
-    <div class="navbar-fixed">
-        <nav>
-          <div class="nav-wrapper">
-            <a href="#!" class="brand-logo">Logo</a>
-            <ul class="right hide-on-med-and-down">
-              <li><a href="dashboard.html">Dashboard</a></li>
-                
-              <li class="active"><a href="subscription.html">Subscription Plans</a></li>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Data4Help Website</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="dashboard.html">Dashboard</a></li>
 
-              <li><a href="query.html">Query</a></li>
+          <li class="active"><a href="subscription.html">Subscription Plans</a></li>
 
-              <li><a href="monitoring.html">Monitoring</a></li>
-  
-              <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
-  
-    
-            </ul>
-          </div>
-        </nav>
+          <li><a href="query.html">Query</a></li>
+
+          <li><a href="monitoring.html">Monitoring</a></li>
+
+          <button href="#!" onclick=signOut() class="btn transparent modal-trigger">Sign out</button>
+
+
+        </ul>
       </div>
+    </nav>
+  </div>
 
 
   <div class="container">
     <div class="section">
 
 
-        <div class="row center">
-            <h5 class="header col s12 ">Data4Help offers 3 different subscription plans for multiple individual query.</h5>
-              
-            <h5 class="header col s12 light">Choose your subscription based on your esigence:</h5>
+      <div class="row center">
+        <h5 class="header col s12 ">Data4Help offers 3 different subscription plans for multiple individual query.</h5>
 
-          </div>
-    
+        <h5 class="header col s12 light">Choose your subscription based on your esigence:</h5>
+
+      </div>
+
       <!--   Icon Section   -->
       <div class="row">
         <div class="col s12 m4">
@@ -57,7 +59,7 @@
             <h5 class="center">50€</h5>
 
             <h5 class="center">
-            <button href="#!" onclick=purchase() class="btn red modal-trigger">Purchase</button>
+              <button href="#!" onclick=purchase() class="btn red modal-trigger">Purchase</button>
             </h5>
 
 
@@ -73,7 +75,7 @@
             <h5 class="center">200€</h5>
 
             <h5 class="center">
-            <button href="#!" onclick=purchase() class="btn red modal-trigger">Purchase</button>
+              <button href="#!" onclick=purchase() class="btn red modal-trigger">Purchase</button>
             </h5>
 
           </div>
@@ -89,8 +91,8 @@
 
 
             <h5 class="center">
-                <button href="#!" onclick=purchase() class="btn red modal-trigger">Purchase</button>
-                </h5>
+              <button href="#!" onclick=purchase() class="btn red modal-trigger">Purchase</button>
+            </h5>
           </div>
         </div>
       </div>
@@ -104,30 +106,31 @@
       <div class="row">
         <div class="col l6 s12">
           <h5 class="white-text">TrackMe</h5>
-          <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to companies in order to track better their customer activities.
+          <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service to
+            companies in order to track better their customer activities.
             Data4Help is available for all users and it is totally free.
           </p>
 
 
         </div>
         <div class="col l3 s12">
-         
+
         </div>
         <div class="col l3 s12">
           <h5 class="white-text">Connect</h5>
           <ul>
-            
+
           </ul>
         </div>
       </div>
     </div>
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
     </div>
 
-    
+
   </footer>
 
 
@@ -143,39 +146,33 @@
 
 
   <script>
-      $(document).ready(
-        function () {
-        
-        if (getCookie("auth_token")==""){
+    $(document).ready(
+      function () {
+        // Load modals
+        $('.modal').modal({
+          dismissible: true
+        });
+
+        // Check if auth_token still in cookies, if not, request login
+        if (getCookie("auth_token") == "") {
           alert("You are not logged in! \nSign in first.")/*displays error message*/
           document.location.href = "index.html";
         }
-        else{
-
-          //Authenticated-> Retrieve all useful information
-
-
-        }
-        //check the authCode != ""
-        //if null-> get error message and don't show anything
-
-        //else-> request list of queries from server and shows them in the dashboard
 
 
       });
 
 
-    </script>
+  </script>
 
 
-<script>
-    function purchase(subscription_id){
-      //TODO
-      //document.location.href = "dashboard.html";
+  <script>
+    function purchase(subscription_id) {
       alert("Function not implemented yet.");/*displays info */
-      
+
     }
-    </script>
-    
-  </body>
+  </script>
+
+</body>
+
 </html>

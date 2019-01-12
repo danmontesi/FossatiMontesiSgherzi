@@ -18,7 +18,7 @@
   <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Data4Help</a>
+        <a href="#!" class="brand-logo">Data4Help Website</a>
         <ul class="right hide-on-med-and-down">
           <li class="active"><a href="index.html">Home Page</a></li>
 
@@ -102,6 +102,7 @@
   <script>
     $(document).ready(
       function () {
+        // Check if exists an auth_token in the cookies. If so, redirects to the dashboard
         if (getCookie("auth_token") != "") {
           document.location.href = "dashboard.html";
         }
@@ -120,13 +121,14 @@
         <form class="col s12">
 
           <div class="col s12">
-            <p id=demo2>Please insert your username and password:</p>
+            <p id=demo2>Please insert your email and password:</p>
           </div>
-          <!-- Username -->
+
+          <!-- Email -->
           <div class="row">
             <div class="input-field col s12">
-              <input id="usernLogin" type="text" class="validate">
-              <label for="username">Username</label>
+              <input id="usernLogin" type="email" class="validate">
+              <label for="email">Email</label>
             </div>
           </div>
 
@@ -156,11 +158,11 @@
           <div class="col s12">
             <p id=demo>Please insert your data: </p>
           </div>
-          <!-- Username -->
+          <!-- Email -->
           <div class="row">
             <div class="input-field col s12">
-              <input id="usernReg" type="text" class="validate">
-              <label for="username">Username</label>
+              <input id="emailReg" type="email" class="validate">
+              <label for="email">Email</label>
             </div>
           </div>
 
@@ -185,14 +187,6 @@
             <div class="input-field col s12">
               <input id="companyNameReg" type="text" class="validate">
               <label for="email">Company name</label>
-            </div>
-          </div>
-
-
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="emailReg" type="email" class="validate">
-              <label for="email">Email</label>
             </div>
           </div>
 
