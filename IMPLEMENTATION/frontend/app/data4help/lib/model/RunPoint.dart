@@ -2,8 +2,10 @@
 class RunPoint {
   /// The position of the checkpoint.
   final double lat, long;
+
   /// The order in the run
   final int order;
+
   ///A description of the checkpoint
   final String desc;
 
@@ -17,4 +19,10 @@ class RunPoint {
         "\"description\": \"$order - $desc\""
         "}";
   }
+
+  RunPoint.fromJson(Map<String, dynamic> json)
+      : lat = json["lastPosition"]["lat"],
+        long = json["lastPosition"]["long"],
+        order = json["order"] ?? 0,
+        desc = json["id"] ?? "";
 }

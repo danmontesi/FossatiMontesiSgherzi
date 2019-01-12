@@ -3,7 +3,7 @@ Below there are listed all the functionality of the system, explained in terms o
 
 
 
-\subsection{User Registration}
+\subsection{Actor Registration}
 \begin{itemize}
 \item \textbf{Implemented} requirements
         \begin{itemize}
@@ -27,12 +27,14 @@ Below there are listed all the functionality of the system, explained in terms o
 \end{itemize}
 
 \paragraph{Database} \mbox{}\\ 
-The database stores the user data in the table "account".
+The database stores the actor data in the table "account".
 Passwords are hashed and salted in order to avoid a security flaw.
-The specific data for each type of user is stored in specific tables, each for every user type: individual\_account, company\_account, run\_organizer.
+The specific data for each type of actor is stored in specific tables, each for every actor type: individual\_account, company\_account, run\_organizer.
+If the registering actor has, for instance, the same email of an actor already present on the database, the transaction is rolled back.
+The same can be said for other \texttt{unique} parameters, such as the \texttt{SSN} for the \texttt{individual\_account}
 
 \paragraph{Back-end} \mbox{}\\ 
-
+The server first checks the required parameters for registration, depending on the actor, hashes the password and performs the first insertion into the table reserved for the actor (namely \texttt{individual\_account} \texttt{run\_organizer\_account} \texttt{company\_account}). Then generates a token which is stored and then sent to the actor mail in order to verify the account.
 \paragraph{Front-end} \mbox{}\\
 
 \begin{itemize}
@@ -41,7 +43,7 @@ The specific data for each type of user is stored in specific tables, each for e
 \end{itemize}
 
 
-\subsection{User Authentication}
+\subsection{Actor Authentication}
 \begin{itemize}
     \item \textbf{Implemented} requirements
         \begin{itemize}
@@ -63,10 +65,10 @@ The specific data for each type of user is stored in specific tables, each for e
 \end{itemize}
 
 \paragraph{Database} \mbox{}\\ 
-The database checks the user data in the table "account".
-If the given username and password are correct, a token is created and stored in a table user\_token. 
+The given actor is requested from the database, if the comparison of the stored password and the given one is successful a token is inserted into the \texttt{user\_token} table.
 
 \paragraph{Back-end} \mbox{}\\ 
+The server checks the required parameters for the request, then proceedes to compare the hashed and non-hashed provided password. If the compare is successful it creates a token and stores it into the database, otherwise it negates the access to the actor.
 
 \paragraph{Front-end} \mbox{}\\
 
@@ -75,11 +77,7 @@ If the given username and password are correct, a token is created and stored in
     \item \textbf{Website}: Company can login through the homepage clicking on a button "Sign in" that opens a modal. After inserting the data, company clicks 'Send' and access to the dashboard of his account.
 \end{itemize}
 
-\subsection{User Management}
-
-
-   
-
+\subsection{Individuals Management}
 
 \begin{itemize}
     \item \textbf{Implemented} requirements
@@ -113,7 +111,11 @@ The authorizations for each individual monitoring request is stored in the table
 Back-end accesses column "email" in table account in order to send emails to the users.
 
 
-\paragraph{Back-end} \mbox{}\\  \paragraph{Front-end} \mbox{}\\
+\paragraph{Back-end} \mbox{}\\
+The \texttt{/queries/query/individual/pending} endpoint allows the user to accept or decline the pending monitoring request.
+The server sends online notification to every actor when he registers, in order to verify the email, and to the company that has performed a query when new data are available.
+
+\paragraph{Front-end} \mbox{}\\
 \textbf{Application:} Individual users can accept or decline a company monitoring request by the section reachable through the navigation drawer in the Dashboard.\\
 \textbf{Website:} Company can see all account information in the panel 'Account' accessible via the navbar through all the pages, after having logged in.\\
 
@@ -131,6 +133,7 @@ Back-end accesses column "email" in table account in order to send emails to the
 \end{itemize}
 
 \paragraph{Database} \mbox{}\\ 
+The server answers with the mockup.
 \paragraph{Back-end} \mbox{}\\  
 \paragraph{Front-end} \mbox{}\\
 \textbf{Web site}: The user can see all subscription plan available by clicking in the panel 'Account' accessible via the nav bar through all the pages, after having logged in.
@@ -165,6 +168,10 @@ User data is stored in the tables "accelerometer", "gps\_coordinates", "hear\_ra
 
 
 \paragraph{Back-end} \mbox{}\\  
+The individual user can send his data via the {indiv/data} endpoint.
+The server inserts the user data into the respective table, if well formatted.
+Then proceedes to notify the company for new data if the user is in one of the previously posted query.
+
 \paragraph{Front-end} \mbox{}\\
 \textbf{Application:} The data is not actually read from the sensors but the app can generate dummy test data and send it to the server, by the Test option in navigator drawer in he Dashboard.\\
 \textbf{Web site: }Company can see data relative to their queries or to their monitored individuals right after having performed a query, clicking in the link provided by the server that redirects the user to a XML file containing the data requested.
@@ -176,7 +183,6 @@ User data is stored in the tables "accelerometer", "gps\_coordinates", "hear\_ra
         \begin{itemize}
     %company
     \item \textbf{[R6$_W$]}: Logged-in companies can query on some group of individuals data
-    \item \textbf{[R6bis$_W$]}: Logged-in companies can subscribe to a query data
     \item \textbf{[R7$_W$]}: Registered companies can request access to data of individuals
     \item \textbf{[R8$_W$]}: Logged-in companies can access to an individual data, if the user has given approval
     \item \textbf{[R9$_W$]}: Logged-in companies can export data previously queried using Data4Help
@@ -194,8 +200,12 @@ User data is stored in the tables "accelerometer", "gps\_coordinates", "hear\_ra
 
 \paragraph{Database} \mbox{}\\ 
 General information of queries are saved in table "query", while in tables "query\_user", "radius\_query" and "general\_query" are saved the specific information of queries.
+The list of users subjected to the query is stored in the \texttt{query\_user} table.
 
 \paragraph{Back-end} \mbox{}\\  
+First, the given query is performed to assess feasibility (i.e on a high enough number of user) and then it is inserted in the database.
+The list of users subjected to the query is inserted into the database as well.
+
 \paragraph{Front-end} \mbox{}\\
 \textbf{Web site}: Company can perform a query for group of individuals in the panel 'Query' accessible via the navbar through all the pages, after having logged in.\\
 In the Query page it will appear a button to start a query. When clicked, it opens a modal with all fields to filter query parameters.
@@ -207,7 +217,7 @@ Same works for single individuals: a company can perform a query clicking in the
 \begin{itemize}
     \item \textbf{Implemented} requirements
         \begin{itemize}
-            \item 
+ \item \textbf{[R6bis$_W$]}: Logged-in companies can subscribe to a query data
         \end{itemize}
     \item \textbf{Non-implemented} requirements
     \begin{itemize}
@@ -216,7 +226,11 @@ Same works for single individuals: a company can perform a query clicking in the
 \end{itemize}
 
 
-\paragraph{Database} \mbox{}\\  \paragraph{Back-end} \mbox{}\\  \paragraph{Front-end} \mbox{}\\
+\paragraph{Database} \mbox{}\\
+\paragraph{Back-end} \mbox{}\\
+
+
+\paragraph{Front-end} \mbox{}\\
 \textbf{Web site:} In order to subscribe to a query, a company can simply select the tick-box in the subscription tick-box in the form of the 'Query' panel.
 Company can subscribe to a query of group of individuals only, since there is no need to subscribe to single individuals query.
 
@@ -229,18 +243,24 @@ Company can subscribe to a query of group of individuals only, since there is no
     \item \textbf{[R9$_M$]}: Logged-in users can see a run information
     \item \textbf{[R13$_M$]}: Logged-in run organizers can organize a run
     \item \textbf{[R14$_M$]}: Organizers of a run can define the path and additional information for that run
-    \item \textbf{[R15$_M$]}: Organizers of a run can start the run
 
         \end{itemize}
     \item \textbf{Non-implemented} requirements
     \begin{itemize}
-            \item 
+            \item \textbf{[R15$_M$]}: Organizers of a run can start the run
         \end{itemize}
 \end{itemize}
 
 \paragraph{Database} \mbox{}\\
 Information about a run are stored in the table "run". The checkpoints of the run are saved in the table "run\_check\_point". The subscriptions of each individual to runs are stored in the table "run\_subscription";
 \paragraph{Back-end} \mbox{}\\
+The \texttt{/runs} endpoint gives the client a way to exploit the requirements specified.
+More specifically: 
+\begin{itemize}
+    \item \textbf{[R8$_W$]}: \texttt{/runs/join} allows the user to join a run, if exists
+    \item \textbf{[R9$_W$]}: \texttt{/runs/positions} allows the user to gather informations on the position of the runners in a given run, if exists
+    \item \textbf{[R13$_W$]}  \textbf{[R14$_W$]}: \texttt{/runs/} allows a run organizer to create a run, specifying its path, if it is well formed
+\end{itemize}
 \paragraph{Front-end} \mbox{}\\
 \textbf{Application:} The user can register to a nearby run by using the Track4Run functionality reachable from the Dashboard. Here the user can also see the run information. Run Organizers can create a new run from their control panel, clicking the plus icon and defining checkpoints. The run start automatically at the defined time.
 
@@ -255,19 +275,22 @@ Information about a run are stored in the table "run". The checkpoints of the ru
 
 
         %core
-    \item \textbf{[R12$_C$]}: Can compute each athlete's rank in a run and send it to each user device.
+
     \item \textbf{[R13$_C$]}: Can send the position and rank of athletes during a run to spectator's devices.
 
 
         \end{itemize}
     \item \textbf{Non-implemented} requirements
     \begin{itemize}
-            \item 
+\item \textbf{[R12$_C$]}: Can compute each athlete's rank in a run and send it to each user device.
         \end{itemize}
 \end{itemize}
 
 \paragraph{Database} \mbox{}\\
-The positions of the users are retrieved exploiting Data4Help functionality, so the data is in the "gps\_coordinates" table. The athlete's rank are stored in table "runner\_position";
+The positions of the users are retrieved exploiting Data4Help functionality, so the data is in the "gps\_coordinates" table.
+
 \paragraph{Back-end} \mbox{}\\
+The server requests the runners position from the database for the given run, if exists.
+
 \paragraph{Front-end} \mbox{}\\
 \textbf{Application:} The users can see the position of participants on a map by clicking on View on the Track4Run section in the dashboard.

@@ -1,7 +1,130 @@
 \subsubsection{Website}
 
+
+
+\textbf{HTML} \\
+For what concerning the company management, we decided to develop a website.\\
+It was developed using html as hypertext markup language.\\
+Advantages of using Html are:
+\begin{itemize}
+    \item easy to create web pages
+    \item every browser supports HTML language
+    \item it is a tag based language
+    \item is compressible text so is easy to download
+\end{itemize}
+
+\paragraph{Features of Html5}
+HTML5 is the latest version of HTML. Below are some HTML5 features used for the system:
+
+\begin{itemize}
+    \item \textbf{Sections}, used to organize webpage content into thematic groups
+\begin{verbatim}
+ <div class="section">
+          <div class="row center">
+            <h5 class="header col s12 ">Data4Help let companies query on their database</h5>
+
+            <h5 class="header col s12 light">Add new query by clicking the following button:</h5>
+            ...
+\end{verbatim}
+
+    \item \textbf{Nav}, tag used for the navbar of the page
+\begin{verbatim}
+<div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Data4Help Website</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="dashboard.html">Dashboard</a></li>
+        ...
+      </div>
+    </nav>
+  </div>
+\end{verbatim}
+
+    \item \textbf{Footer}, tag used for footer and brief description of the page
+\begin{verbatim}
+<footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">TrackMe</h5>
+          <p class="grey-text text-lighten-4">TrackMe is a company that wants to offer an innovative service
+          ...
+\end{verbatim}
+
+    \item \textbf{Header}, tag used for important text in the page
+\begin{verbatim}
+<div class="row center">
+            <h5 class="header col s12 ">Data4Help let companies query on their database</h5>
+
+            <h5 class="header col s12 light">Add new query by clicking the following button:</h5>
+\end{verbatim}
+
+\end{itemize}
+
+\paragraph{Javascript}
+For the website, we decided to use Javascript as scripting programming language.
+It has the following advantages.
+\begin{itemize}
+    \item Web-oriented interface
+    \item compatible with a wide number of devices because does not rely on a particular OS
+    \item is the only programming language to do web applications 
+    \item compatible with any browser
+\end{itemize}
+
+\noindent Some of the components of javascript used are below:
+
+\begin{itemize}
+    \item \textbf{Modals}, used to signup/signin forms and for queries forms.
+\begin{verbatim}
+<!-- Modal Trigger for Successful Query add-->
+<a class="modal-trigger" href="#modal1"></a>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content " id="modal_success">
+    <h4>Success</h4>
+    <p>Query has been created successfully. Json file will be downloadable from the button just appeared in the query
+      list.</p>
+ ...
+\end{verbatim}
+    \item \textbf{Parallax}, is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling. Used in the index page.
+\begin{verbatim}
+    
+\begin{verbatim}
+<div class="parallax"><img src="images/parallax1.jpg"></div>
+  </div>
+
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+  ...
+
+    </div>
+  </div> 
+\end{verbatim}
+\end{itemize}
+
+\subsubsection{External libraries}
+The following external libraries have been used in order to add some functionality to the app. 
+\begin{itemize}
+    \item JQuery: 
+    \item MaterializeJs
+\end{itemize}
+
+\paragraph{Materialize}
+As a framework for the html page, we decided to develop the website using Materialize, since it provides for very good graphical effects without particular effort.
+Materialize is a modern responsive CSS framework based on Material Design by Google. \\
+Material Design is a design language that combines the classic principles of successful design along with innovation and technology.
+
+Some of the components used
+\paragraph{JQuery}
+We decided to use jQuery to start requests on the back-end using the endpoints provided by the server.
+jQuery is a JavaScript library designed to simplify HTML DOM.
+jQuery also provides capabilities for developers to create plug-ins on top of the JavaScript library.
+
+
 \subsubsection{Mobile App}
-\textbf{iOS / Android}
+\paragraph{iOS / Android}
 For the presentation layer, for what concerning the individual management and the run organizer part, we decided to build a native mobile app for the two main operating systems on the market, iOS and Android, using Flutter.
 In this way we can cover about the 100\% of the market. [https://www.statista.com/statistics/266136/global-market-share-held-by-smartphone-operating-systems/]
 Advantages of using Flutter are:
@@ -13,7 +136,7 @@ Advantages of using Flutter are:
 
 On the other hand, the Flutter project exited recently from the beta stage, and is in active development, but it's enough stable to be used in a production environment.
 
-\textbf{Dart} Application built on Flutter needs to be written in Dart, which is a programming language designed by Google to let developers create high-quality, mission-critical apps for iOS, Android, and the web. It is an Object oriented programming language, which ereditates a lot from others programming language like Java, C\# and C++ in order to be very easy to learn.
+\paragraph{Dart} Application built on Flutter needs to be written in Dart, which is a programming language designed by Google to let developers create high-quality, mission-critical apps for iOS, Android, and the web. It is an Object oriented programming language, which ereditates a lot from others programming language like Java, C\# and C++ in order to be very easy to learn.
 It also support many new programming style, like the reactive programming, and support is strongly typed.
 
 It compiles directly to native code (in case of Flutter) so that applications can run natively on devices, allowing a better management of resources and optimization of the subproducts of the compilation.
@@ -21,20 +144,20 @@ There are also a ton of different libraries that allow interoperability between 
 
 It is also free and open source.
 
-\textbf{External libraries} The following external libraries have been used in order to add some functionality to the app. All the libraries are open source and publicly available from the Dart repository.
+\paragraph{External libraries} The following external libraries have been used in order to add some functionality to the app. All the libraries are open source and publicly available from the Dart repository.
 \begin{itemize}
     \item \textbf{google\_maps\_flutter}: allows to show a Google Map component in the app, which offers also the ability to place markers on it;
     \item \textbf{charts\_flutter}: allow to show chart of any type while being consistent with Material Design.
 \end{itemize}
 
 
-\textbf{External libraries} The following internal libraries have been used:
+\paragraph{External libraries} The following internal libraries have been used:
 \begin{itemize}
     \item \textbf{http}: to make http/https queries to the backend,
     \item \textbf{material\_flutter}: offers the user interfaces main blocks, the widgets, in Material Design. It also manages all the life cycle of the app and the navigation in it.
 \end{itemize}
 
-\textbf{The MVP pattern} The Flutter application follows the MVP pattern that does not only define the actors of the app but also describe the way of how they communicate together. It consists of three components:
+\paragraph{The MVP pattern} The Flutter application follows the MVP pattern that does not only define the actors of the app but also describe the way of how they communicate together. It consists of three components:
 \begin{itemize}
     \item \textbf{Model}: it contains the logic that retrives the data that needs to be show to the user. It basically makes requests to the backend and decode the responses.
     \item \textbf{View}: it mains purpose is to show the data of the model to the user, formatted in an elegant way. It receives the user input and passes it to the Presenter.
@@ -42,3 +165,5 @@ It is also free and open source.
 \end{itemize}
 
 Note that this is a \textit{thin client}, i.e. all the validation of the data inserted by the user is done mainly on the server. On the client side is done only the needed preprocessing for interoperability. 
+
+

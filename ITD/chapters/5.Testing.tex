@@ -1,0 +1,86 @@
+\subsection{Backend testing}
+
+
+
+
+
+
+
+
+\subsection{Flutter project testing}
+\subsubsection{Unit testing}
+
+
+\noindent\textbf{PendingQueryRequest} 
+
+\begin{longtable}[htb]{|p{0.2 \textwidth}|p{0.8 \textwidth}|}
+    \hline
+    \textbf{Test} & \textbf{Assertions} \\
+    \hline
+    Json decoding & Values decoded are exactly the ones present in the json provided\\
+    \hline
+\end{longtable}
+
+\noindent\textbf{Run}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.8 \textwidth}|}
+    \hline
+    \textbf{Test} & \textbf{Assertions} \\
+    \hline
+    Json decoding & Values decoded are exactly the ones present in the json provided\\
+    \hline
+\end{longtable}
+
+\noindent\textbf{UserPersonalData}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.8 \textwidth}|}
+    \hline
+    \textbf{Test} & \textbf{Assertions} \\
+    \hline
+    Json decoding & Values decoded are exactly the ones present in the json provided\\
+    \hline
+\end{longtable}
+
+\subsubsection{Integration testing}
+\noindent\textbf{Run Organizer}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+    \hline
+    \textbf{Functionality} & \textbf{Request} & \textbf{Assertions} \\
+    \hline
+    Login & Correct username and password & The call returns a success state (true) and does not threw any exception\\
+    \hline
+    Login & Wrong username or password & The call threws an exception\\
+    \hline
+    List of runs & Get the list of run & The call does not return null\\
+    \hline
+    Run creation & Invalid run creation & The call threws an exception\\
+    \hline
+    
+\end{longtable}
+
+\noindent\textbf{Individual}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+    \hline
+    \textbf{Functionality} & \textbf{Request} & \textbf{Assertions} \\
+    \hline
+    Login & Correct username and password & The call returns a success state (true) and does not threw any exception\\
+    \hline
+    Login & Wrong username or password & The call threws an exception\\
+    \hline
+    Register user & Registering an existent user & The call threws an exception\\
+    \hline
+    User information & Retriving user informations & The call does return the correct Name and Surname\\
+    \hline
+    List of nearby runs & Get the list of run & The call does not return null\\
+    \hline
+    Load user data & Get the user data of a valid date & The call does not return null\\
+    \hline
+    Push user data & Pushing new user data to the server & The lenght of the data retrieved is not 0\\
+    \hline
+    Runners positions & Get the positions of runners in a valid run & The call does not return null\\
+    \hline
+    Runners positions & Get the positions of runners in an invalid run & The call threws an exception\\
+    \hline
+    Pending queries & Get the list of pending queries & The call does not return null\\
+    \hline
+    Respond to query & Respond to an invalid query & The call threws an exception\\
+    \hline
+\end{longtable}

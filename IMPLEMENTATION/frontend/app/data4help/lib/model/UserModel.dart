@@ -27,7 +27,7 @@ class UserModel {
     if (response.statusCode == 200) {
       print(response.body);
       final userData = json.decode(response.body)["user"];
-      return new UserPersonalData(userData["name"], userData["surname"]);
+      return  new UserPersonalData.fromJson(userData);
     }
     throw Exception("Connection error");
   }
@@ -101,8 +101,8 @@ class UserModel {
 
       jsonp["positions"].forEach((el) {
         if (el["lastPosition"]["lat"] != -9999.0) {
-          list.add(new RunPoint(el["lastPosition"]["lat"],
-              el["lastPosition"]["long"], 0, el["id"].toString()));
+          //list.add(new RunPoint(el["lastPosition"]["lat"], el["lastPosition"]["long"], 0, el["id"].toString()));
+          list.add(new RunPoint.fromJson(el));
         }
       });
       return list;
@@ -169,10 +169,11 @@ class UserModel {
     if (response.statusCode == 200) {
       print(response.body);
       json.decode(response.body)["runs"].forEach((elem) {
+        //print(elem);
         runList.add(Run.fromJson(elem));
       });
 
-      runList.removeWhere((run) => run.status != "RUN_ENDED");
+      runList.removeWhere((run) => run.status == "RUN_ENDED");
       return runList;
     } else {
       throw new Exception(
@@ -182,6 +183,7 @@ class UserModel {
 
   /// Subscribe the logged in user to the run specified in [id].
   Future<String> subscribeUserToRun(int id) async {
+    print(id);
     if (_authToken == null) throw LoginException();
     Map<String, String> body = new Map<String, String>();
     body.putIfAbsent("auth_token", () => _authToken);

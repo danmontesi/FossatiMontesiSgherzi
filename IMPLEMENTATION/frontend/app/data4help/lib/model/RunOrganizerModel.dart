@@ -41,13 +41,12 @@ class RunOrganizerModel {
 
   /// Registers a new run organizer on the server, using the given details.
   /// [ssn] is the ssn of the user (16 characters), [name] the name of the user, [surname] the surname of the user, [birthDay] the birthday of the user formatted as yyyy-MM-dd
-  Future<bool> registerRunOrganizer(String ssn, String name, String surname,
+  Future<bool> registerRunOrganizer(String name, String surname,
       String birthday) async {
     Map<String, String> body = new Map<String, String>();
     body.putIfAbsent("email", () => _email);
     body.putIfAbsent("username", () => _email);
     body.putIfAbsent("password", () => _password);
-    body.putIfAbsent("SSN", () => ssn);
     body.putIfAbsent("name", () => name);
     body.putIfAbsent("surname", () => surname);
     body.putIfAbsent("birthday", () => birthday);

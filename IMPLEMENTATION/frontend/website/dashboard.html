@@ -95,6 +95,12 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/cookie-management.js"></script>
+  <script src="js/signout-modal.js"></script>
+  <script src="js/query-list-retrieval.js"></script>
+  <script src="js/switch-management.js"></script>
+  <script src="js/xml-download-management.js"></script>
+
 
 
   <script>
@@ -120,152 +126,20 @@
       });
 
 
-    </script>
-
-
-  <script>
-  function signOut(){
-    deleteAllCookies();
-    document.location.href = "index.html";
-    alert("You have logged out.");/*displays info */
-    
-  }
-  </script>
-
-<script>
-  function deleteAllCookies() {
-    var cookies = document.cookie.split(";");
-
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
-}
 </script>
 
-<script>
-    function getCookie(cname) {
-      var name = cname + "=";
-      var decodedCookie = decodeURIComponent(document.cookie);
-      var ca = decodedCookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-          return c.substring(name.length, c.length);
-        }
-      }
-      return "";
-    }</script>
-
-
-<script>
-
-function getFirst5Query() {
 
 
 
-  document.getElementById("loading_panel").innerHTML = `
-                      
-                      <span class="title">Loading queries ...</span>
-                       
-                     `;
-                           
-  const proxyurl = "https://cors-anywhere.herokuapp.com/";
-  const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
-  fetch(proxyurl + url, {
 
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-
-  })
-    .then(response => response.json())
-    .then(response => { //Assign to contents the response
-      document.getElementById("loading_panel").innerHTML = ``;
-      if (response["success"] === true) {
-        if (!response.queries.regional && !response.queries.radius){
-          document.getElementById("loading_panel").innerHTML = `You haven't performed any query yet!`;
-        }
-        else{
-
-        //creating inner html to append to the page
-        var HtmlToAppend = ""
-        decodedResponse = response.queries.radius;
-        console.log(decodedResponse);
-
-        for (var i = 0; i < decodedResponse.length && i<5; i++) {
-
-          curQuery = decodedResponse[i];
-
-          HtmlToAppend += `
-                      <ul class="collection">
-              <li class="collection-item avatar">
-                <img src="images/data_icon.png" alt="" class="circle">
-                <span class="title">Radius query id: ${curQuery.id}</span>
-                <p>${"Center latitude: " + curQuery.center_lat + ", Center longitude:" + curQuery.center_long}<br>
-                  ${"bpm min: " + curQuery.additional_params.heart_rate.bpm[0] + ", bpm max: " + curQuery.additional_params.heart_rate.bpm[1]}
-                </p>
-                <button href="#!" onclick=createXml(${curQuery.id}) class="btn red">Download query</button>
-                <a href="#!" class="secondary-content"><!-- Switch -->
-  <div class="switch">
-    <label>
-      Off
-      <input id = "input"+${curQuery["id"]} type="checkbox" onclick="changeSwitchState(${curQuery["id"]})" checked="${curQuery["subscribed"]}">
-      <span class="lever"></span>
-      On
-    </label>
-  </div></a>
-              </li>
-            </ul>
-              `;
-
-        }
-
-        document.getElementById("start_collection").innerHTML = HtmlToAppend;
-}
-
-
-      }
-      else {
-        var htmlToAppend = ""
-        htmlToAppend += `
-                      <ul class="collection">
-              <li class="collection-item avatar">
-                <img src="images/data_icon.png" alt="" class="circle">
-                <span class="title">ToBeFilled once endpoint works</span>
-                <p>!!<br>
-                  Data4Help
-                </p>
-                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-              </li>
-            </ul>
-              `
-        document.getElementById("start_collection").innerHTML += htmlToAppend
-        //alert("Error: You must login to see this page")/*displays error message*/
-        //document.href("index.html")
-      }
-    
-    }
-    )
-    .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-}
-
-</script>
 
   <script>
     function createXml(query_id) {
       console.log("query id= "+ query_id)
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
       const url = "https://data4halp.herokuapp.com/queries/query/data";
       var authtoken = getCookie("auth_token");//get authtoken
       var query_id = query_id;
-      fetch(proxyurl + url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
+      fetch(url + "?auth_token=" + authtoken + "&query_id=" + query_id, {
 
         method: 'GET',
         headers: {

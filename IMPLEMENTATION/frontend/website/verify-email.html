@@ -130,149 +130,14 @@
     </footer>
 
 
-  <script>
-
-    function sendVerifCode() {
-      const proxyurl = "https://cors-anywhere.herokuapp.com/";
-      const url = "https://data4halp.herokuapp.com/auth/verify?action=success"; // site that doesn’t send Access-Control-*
-      var mail = getCookie("mail"); //TODO mail from cookie
-      var verification_code = $('#verification_code').val();
-      fetch(proxyurl + url, {
-        method: 'POST',
-        body: { "mail": mail, "verification_code": verification_code }
-
-    }) // https://cors-anywhere.herokuapp.com/https://example.com
-      .then(response => response.json())
-      .then(response => { //response is in json already
-  
-        if (response["status"] == 200) {
-          document.location.href = "registration_success.html"; //TODO cancella cookie
-        }
-        else {
-          alert("Error:" + response["message"] + ".\nRetry!")/*displays error message*/
-        }
-      }
-      )
-      .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-  }
-
-</script>
-
 
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="js/cookie-management.js"></script>
+  <script src="js/signin-signout-modal.js"></script>
 
-
-  <script>
-
-      function signInReq() {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url = "https://data4halp.herokuapp.com/auth/login";
-        var username = $('#usernLogin').val();
-        var password = $('#passwLogin').val();
-        fetch(proxyurl + url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: username,
-            password: password,
-            type: 'company'
-          })
-        })
-          .then(response => response.text())
-          .then(contents => { //Assign to contents the response
-            var myObj = JSON.parse(contents); //Parse the response
-            if (myObj["success"] === true) {
-              document.getElementById("demo2").innerHTML = myObj["auth_token"];
-              setCookie(myObj["auth_token"], 7)
-              document.location.href = "dashboard.html";
-            }
-            else {
-              alert("Error Password or Username, retry.")/*displays error message*/
-            }
-          }
-          )
-          .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-      }
-  
-  
-  
-    </script>
-  
-    <script>
-      function signUpReq() {
-        const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const url2 = "https://data4halp.herokuapp.com/auth/register_company?action=success";
-        var username = $('#usernReg').val();
-        var password = $('#passwReg').val();
-        var company_name = $('#companyNameReg').val();
-        var email = $('#emailReg').val();
-        fetch(proxyurl + url2, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-            company_name: company_name,
-            type: 'company'
-          })
-        })
-          .then(response => response.text())
-          .then(contents => { //Assign to contents the response
-            var myObj = JSON.parse(contents); //Parse the response
-            if (myObj["status"] == 200) {
-  
-              // SERVIZIO INVIO EMAIL
-  
-              //Save cookie mail & authtoken (necessary for inserting the authCode)
-              setCookie_mail(email, myObj["auth_token"], 1) // 1 day only and expires, since is a verification mail
-  
-  
-              //Redirect to page where have to send the code and the email to confirm email
-              document.location.href = "verify-email.html";
-            }
-            else {
-              alert("There was found the following error:\n" + myObj["message"] + "\nRetry!")/*displays error message*/
-            }
-          }
-          )
-          .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
-      }
-  
-  
-    </script>
-  <!-- Triggers for login & sign up-->
-  <script>
-    $(document).ready(function () {
-      $('.modal').modal();
-    });
-  </script>
-
-
- <!-- Function for save login cookie authcode -->
-  <script>
-    function setCookie(auth_token, exdays) {
-      var d = new Date();
-      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-      var expires = "expires=" + d.toUTCString();
-      document.cookie = "auth_token=" + auth_token + "; expires=" + expires;
-    }
-  </script>
-
-<script>
-  function setCookie_mail(mail, auth_token, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-    var expires = d.toUTCString();
-    document.cookie = "mail=" + mail +"; auth_token=" + auth_token + "; expires=" + expires;
-  }
-</script>
 
   <!-- Triggers for login & sign up-->
 <script>
@@ -285,22 +150,6 @@
 </script>
 
 
-<script>
-  function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }</script>
 
 
   <!-- Modal Structure signIn -->
