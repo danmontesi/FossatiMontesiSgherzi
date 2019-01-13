@@ -1,0 +1,40 @@
+\subsubsection{External services}
+An external email service is used to send a verification email to each actor in order to verify the account.
+Our system is email-provider independent, therefore it just needs the email, the password to be set via environmental variables.
+See the insallation section for the details.
+
+\subsubsection{Platform \& Used libraries}
+\textbf{Nodejs}\\
+\textbf{Nodejs} is a Javascript runtime.
+This platform has been chosen because it is OS indipended, it offers many stable and well known libraries (ie \texttt{express} for the backend), it is well supported by the majority of the \textit{PAAS} and \textit{Heroku}, in our case. \\ Additionally its asynchronous handling of \textit{IO} has been proven to be fundamental for applications expecting high throughput. 
+\vspace{1em} \\
+\noindent \textbf{Libraries}\\
+\textbf{Express} \\
+Express is a \textit{Free and Open Source} web application framework that provides a robust set of features for building \textit{API}. Its functional approach in the use of middlewares and in routing (i.e. adding a new middleware to an \textit{endpoint} is done via adding one or multiple functions in the declaration of the endpoint) was proven to be critical to enhance the scalability of the code. Moreover the use of functions as middlewares provides great modularity to the application (i.e. adding and enpoint is done via adding a function in response to that route).
+\vspace{0.5em}
+\\
+\textbf{Node Postgres} \\
+Node Postgres is a collection of modules for interacting with the \texttt{PostgreSQL} database.
+Due to the limitation imposed by \textit{Heroku PostgreSQL} (i.e. maximum of 20 active connections) it has been opted for this library as it provides an excellent pooling system, allowing the limiting of the maximum connection per pool. \\ Additionally it provides database \textit{Parametrized queries}, where the query string is passed directly to the database and parameters are substituted there instead of perform a string concatenation on the server, that could lead to an \textit{SQL Injection}.
+\vspace{0.5em}
+\\
+\textbf{Security and Authentication}
+\\
+\textbf{BCrypt}\\
+\textit{BCrypt} is the \textit{Javascript} implementation of the bcrypt hashing function based.
+I provides a simple and criptographically secure way to hash password and compare them during authentication.\\
+\vspace{0.5em}
+\\
+\textbf{JSONWebToken} \\
+\textit{jsonwebtoken} is the \textit{javascript} implementation of the JSON Web Token Web standard. It provides a secure (\textit{URL Safe}) way to store user informations that need to be transferred between two parts. 
+\vspace{0.5em}
+\\
+\textbf{Testing}\\
+\textbf{Jest}\\
+\textit{Jest} is an all in one 'zero configuration' testing platform. It provides simple methods to seamlessly test synchronous and asynchronous functions (which was mandatory for us) and either: 
+\begin{itemize}
+    \item Make an assertion on their output values
+    \item Make an assertion on the resolving or rejection of an asynchronous function
+    \item Make an assertion on the throwing of exception
+\end{itemize}
+Additionally, testing those three aspects is done similarly between synchronous and asynchronous functions, thus reducing the upfront setup code for the test.

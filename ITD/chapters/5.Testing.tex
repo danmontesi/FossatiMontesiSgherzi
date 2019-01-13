@@ -1,13 +1,190 @@
 \subsection{Backend testing}
+\subsubsection{Unit testing}
+
+\noindent\textbf{\texttt{AuthenticationManager.checkRequiredParams}}  \\
+\textbf{Login}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+    \hline
+    \textbf{Functionality} & \textbf{Input} & \textbf{Assertions} \\
+    \hline
+    Check required parameters - Individual & A username and a password &  Does not throw an exception \\
+    \hline
+    Check required parameters - Run Organizer & A username and a password & Does not throw an exception \\
+    \hline
+    Check required parameters - Company & A username and a password & Does not throw an exception \\
+    \hline
+    
+    Check required parameters - Individual & Missing username or password &  Throws an exception \\
+    \hline
+    Check required parameters - Run Organizer & Missing username or passord & Throws an exception \\
+    \hline
+    Check required parameters - Company & Missing username or password & Throws an exception \\
+    \hline
+\end{longtable}
+
+\noindent \textbf{Registration}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+    \hline
+    \textbf{Functionality} & \textbf{Input} & \textbf{Assertions} \\
+    \hline
+    Check required parameters - Individual & All needed parameters ("email",
+      "password",
+      "SSN",
+      "name",
+      "surname",
+      "birthday",
+      "smartwatch") &  Does not throw an exception \\
+    \hline
+    Check required parameters - Run Organizer & All needed parameters ( "email",
+      "password",
+      "name",
+      "surname") & Does not throw an exception \\
+    \hline
+    Check required parameters - Company & All required parameters ("email",
+      "password",
+      "company\_name") & Does not throw an exception \\
+    \hline
+    
+    Check required parameters - Individual & Some parameters missing &  Throws an exception \\
+    \hline
+    Check required parameters - Run Organizer & Some parameters missingSome parameters missing & Throws an exception \\
+    \hline
+    Check required parameters - Company & Some parameters missing & Throws an exception \\
+    \hline
+\end{longtable}
+
+\noindent\textbf{\texttt{IndividualsManager.toQueryArray}}  \\
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+ \hline
+    \textbf{Functionality} & \textbf{Request} & \textbf{Assertions} \\
+\hline
+Test behaviour with valid request & Unpack the JSON into an Array suitable for insertion in the database & All the elements of the JSON are present in the array and they are equal to the corresponding value in the input structure. \\
+\hline
+
+Bad arguments & Bad arguments as input & Throws an exception. \\
+\hline
+\end{longtable}
+
+\noindent\textbf{\texttt{IndividualsManager.checkQueryParams}}  \\
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+
+ \hline
+    \textbf{Functionality} & \textbf{Request} & \textbf{Assertions} \\
+\hline
+
+Check query parameters & Valid Individual Query (all parameters are present) & Not throw an exception \\
+\hline
+
+Check query parameters & Valid Radius Query (all parameters are present) & Not throw an exception \\
+\hline
+
+Check query parameters & Invalid Individual Query (missing parameters) & Throws an exception \\
+\hline
+
+Check query parameters & Invalid Radius Query (missing parameters) & Throws an exception \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{\texttt{RunsManager.getRunParamsFromRequest}}  \\
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+ \hline
+    \textbf{Functionality} & \textbf{Request} & \textbf{Assertions} \\
+\hline
+Extrapolate run parameters from request & Valid request & Not throw an exception and correctly unpack only the needed parameters of the request without modifing their values. \\
+\hline
+Extrapolate run parameters from request & With bad request body & Not throw an exception and correctly unpack only the needed parameters of the request without modifing their values.\\
+\hline
+\end{longtable}
+
+\subsubsection{Feature testing}
+\noindent\textbf{\texttt{auth}}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+\hline
+\textbf{Functionality} & \textbf{Request} & \textbf{Assertions} \\
+\hline
+User registration & Valid registration & Expect the success value of the response to be true and the auth token to be present\\
+\hline
+Company login & Wrong email or password & Expect the status of the response to be 403 and the message to be Invalid Credentials \\
+\hline
+Run organizer login & Wrong email or password & Expect the status of the response to be 403 and the message to be Invalid Credentials \\
+\hline
+Individual login & Wrong email or password & Expect the status of the response to be 403 and the message to be Invalid Credentials \\
+\hline
+Company login & Correct email and password &Expect the success value of the response to be true and the auth token to be present \\
+\hline
+Run organizer login & Correct email and password &Expect the success value of the response to be true and the auth token to be present \\
+\hline
+Individual login & Correct email and password & Expect the success value of the response to be true and the auth token to be present \\
+
+\end{longtable}
+
+\noindent\textbf{\texttt{indiv}}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+\hline
+\textbf{Functionality} & \textbf{Request} & \textbf{Assertions} \\
+\hline
+User sends data & User sends data correctly formatted & Expect the success value of the response to be true and the message to be 'Sync successfull'\\
+\hline
+User sends data & User sends data badly formatted & Expect the request status to be 422 and the message to be 'Invalid data'\\
+\hline
+User retreives data & User retreives data correcly & Expect the success value of the response to be true and the data to be not \texttt{undefined} \\
+\hline
+User retreives data & User tries to retrive data sending a badly formatted request & Expect the success value of the response to be true and the data to be not \texttt{undefined} \\
+\hline
+User retrieves its personal information & Requests personal information & Expect the success value of the response to be true and data to be not \texttt{undefined} \\
+\hline
+
+\end{longtable}
+
+\noindent\textbf{\texttt{query}}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+Retreive company queries & Correctly form request & Expect the success value of the response to be true and queries to be not \texttt{undefined} \\
+\hline
+Post query & Post queries both individual and radius & Expect the success value of the response to be true and message to be 'Query successfully posted' and \texttt{query\_id} not to be undefined. \\
+\hline
+Post query & Post queries both individual and radius - Malformed query, missing parameters & Expect the status of the request to be 400 and the message to contain the missing parameter. \\
+\hline
+
+Perform a query - individual & Correct parameters &  Expect the success value of the response to be true and data and user not to be \texttt{undefined}. \\
+\hline
+Perform a query - individual & Correct parameters but unauthorized by user &   Expect the status of the request to be 403 and the message to be 'Unauthorized'. \\
+\hline
+Perform a query - radius & Correct parameters &  Expect the success value of the response to be true and data and user not to be \texttt{undefined} and the users' id to be \texttt{undefined}. \\
+\hline
+Pending individual query retrieval & Correct parameters &  Expect the success value of the response to be true and queries not to be \texttt{undefined} \\
+\hline
+
+User allows or denies a pending query & Correct parameters &  Expect the success value of the response to be true and message to be 'Response saved'\\
+\hline
 
 
+\end{longtable}
 
-
-
-
+\noindent\textbf{\texttt{runs}}
+\begin{longtable}{|p{0.2 \textwidth}|p{0.3 \textwidth}|p{0.5 \textwidth}|}
+Get the list of runs  & Correctly formatted with the individuals' token or the run organizer token  & Expect the success property to be true and the runs property not to be \texttt{undefined} \\
+\hline
+Get the position of the runners in a run & Correct parameters & Expect the success property to be true and the positions property not to be \texttt{undefined} \\ 
+\hline
+Get the position of the runners in a run & non existent run & Expect the status of the response to be 404 and its message to contain 'No run' \\
+\hline
+Join a run & Correctly formatted request & Expect the success property to be true and the message property to contain 'Joined run' \\
+\hline
+Join a run & Join an already joined run & Expect the response status to be 500 and the message to be 'You cannot join a run you've already joined' \\
+\hline
+Join a run & Non existant run & Expect the response status to be 404 and the message to be 'There isn\'t any run available with that id atm' \\
+\hline
+Create a run & Correctly formatted request & Expect the response success property to be true and the run\_id not to be \texttt{undefined} \\
+\hline
+Create a run & Badly formatted request & Expect the response status to be 400 and the message to be 'Missing parameters' \\
+\hline
+\end{longtable}
 
 
 \subsection{Flutter project testing}
+
+
 \subsubsection{Unit testing}
 
 

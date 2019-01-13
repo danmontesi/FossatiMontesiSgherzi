@@ -134,17 +134,20 @@ The following lists only explain the content of the html files and what do they 
 
 \paragraph{Website structure}
 \begin{figure}[H]
-	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/Android_App_Flow.pdf}
-	\caption{Storyboard structure of the Mobile Application}
+	\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{assets/Website_Flow.pdf}
+	\caption{Storyboard structure of the Website}
 	\label{fig:StoryBoard}
 \end{figure}
-The figure above shows the UI flow of the app.
+The figure above shows the UI flow of the website.
 It is dived in four parts:
 \begin{itemize}
-    \item \textbf{Welcome page}: allows the user to access either the management part of the Individual or of the Runs;
-    \item \textbf{Authentication and registration}: allows the user to login and register (the upper part to the individual part, the lower part to run organizer part);
-    \item \textbf{Individual management}: allow the user to access its information, send and retrieve its data, join a run and view position of the runners in an ongoing run.
-    \item \textbf{Run organizer management}: allows the run organizer to access information about its organized run and create new runs.
+    \item \textbf{Home page}: allows the user to either login or sign up. If correctly signed up, shows a successful registration page;
+    \item \textbf{Login and Registration form}: the forms that user compiles in order to register.
+    \item \textbf{Dashboard}: the page where the user is redirected after correct login;
+    \item \textbf{Query}: allows the company to perform a new query on a group of individual and to download the xml of the already performed queries.
+    \item \textbf{Monitoring}: allows the company to perform a new query on individuals and to download the XML content of the already performed queries.
+    \item \textbf{Query form}: the forms that user compiles in order to perform queries.
+
 \end{itemize}
 
 
@@ -156,6 +159,8 @@ Note that this section only briefly describes the directories and the files in i
 The root directory contains the following files: 
 \begin{itemize}
     \item \texttt{app.js} The entry point of the app. It defines how to handle different endpoints, how to catch errors and starts the server.
+    \item \texttt{dbdump} Current dump of the database.
+    \item \texttt{start.sh} Start script.
     \item \texttt{jest.config.js} The configuration file for \texttt{jest}, the testing framework.
     \item \texttt{package.json} Lists all the dependencies needed for the program to run and various other informations on the application.
     \item \texttt{package-lock.json} Contains the state of the dependency tree of the application.
@@ -235,22 +240,27 @@ The routes folder contains a single file:
     \item \texttt{config.js}: Internal configuration for the tests. Exports the token for company, run organizer, individual their mail and their password. Additionally it exports the URL on which perform the tests.
 \end{itemize}
 
-And the following directories with their respective files \\
+\noindent And the following directories with their respective files: \\
 \noindent \textbf{auth}
 \begin{itemize}
     \item \texttt{featureTest.jest.js}: Feature tests for the /auth endpoint
+    \item \texttt{unitTest.jest.js}: Unit tests for the helper functions of \texttt{AuthenticationManager.js}
 \end{itemize}
 \noindent \textbf{indiv}
 \begin{itemize}
     \item \texttt{featureTest.jest.js}: Feature tests for the /indiv endpoint
+    \item \texttt{unitTest.jest.js}: Unit tests for the helper functions of \texttt{IndividualsManager.js}
 \end{itemize}
 \noindent \textbf{query}
 \begin{itemize}
     \item \texttt{featureTest.jest.js}: Feature tests for the /queries endpoint
+    \item \texttt{unitTest.jest.js}: Unit tests for the helper functions of \texttt{QueriesManager.js}
 \end{itemize}
 \noindent \textbf{runs}
 \begin{itemize}
     \item \texttt{featureTest.jest.js}: Feature tests for the /runs endpoint
+    \item \texttt{unitTest.jest.js}: Unit tests for the helper functions of \texttt{RunsManager.js}
+
 \end{itemize}
 
 

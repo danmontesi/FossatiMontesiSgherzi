@@ -63,6 +63,8 @@ void main() {
     var a = UserModel("fossanico@gmail.com", "password");
     await a.login();
 
+    print(UserData.generateSampleData(DateTime(2018, 1, 1)).toJson());
+
     await a.sendUserDataToServer(UserData.generateSampleData(DateTime(2018, 1, 1)));
 
     var data = await a.loadDataOfDatetime("2018-01-01");

@@ -1,5 +1,7 @@
 In the following paragraph are represented the Rest API.
-Many of the API are also present in the DD, this paragraph aims to describe in much details the request data and of the response.
+The API path has been modified putting as prefix \texttt{/v1}. In this way, we can provide a kind of versioning of the API interface so that future releases won't interfere with previous ones.
+
+The following API are also present in the DD, this paragraph aims to describe in much details the request data and of the response.
 
 
     \textbf{Authentication Manager}
@@ -9,7 +11,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /auth/register\_user \\
+            \textbf{Endpoint} & /v1/auth/register\_user \\
             \hline
             \textbf{URL Params} &  \\
             \hline
@@ -29,8 +31,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    success: true, 
-    auth_code: ...
+    "success": true, 
+    "auth_code": ...
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -59,31 +61,31 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to register a new User \\
             \hline
              \textbf{Request example}
-             & POST /auth/register\_user \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/auth/register\_user \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+mail: example@gmail.com
+password: password
+SSN: 0123456789012345
+name: Nico
+surname: Fossa
+birthday: 1996-01-01
+smartwatch: SonySmartwatch3
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
               \hline
-            \hline
              \textbf{Response example} & 
               \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "success":true,
+    "auth_token":"eyJhbGciOiJIUz..."
 }
+
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -97,7 +99,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /auth/register\_company \\
+            \textbf{Endpoint} & /v1/auth/register\_company \\
             \hline
             \textbf{URL Params} &  \\
             \hline
@@ -141,32 +143,29 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
               \hline
             \textbf{Uses} & Allows the client to register a new Company \\
             \hline
-                        \hline
              \textbf{Request example}
-             & POST /auth/register\_user \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/auth/register\_company \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    email: "Htower@Htower.com",
+    "password": "2Cid34242j",
+    "company_name": "H-Tower",
+    "type": 'company'
 }
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
               \hline
-            \hline
              \textbf{Response example} & 
               \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "success":true, 
+    "auth_code":"eyJhbGciOiJIUz..."
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -181,7 +180,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /auth/register\_run\_organizer \\
+            \textbf{Endpoint} & /v1/auth/register\_run\_organizer \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
@@ -226,19 +225,16 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to register a new run organizer \\
             \hline
              \textbf{Request example}
-             & POST /auth/register\_user \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/auth/register\_run\_organizer \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+mail: example.runorganizer@gmail.com
+password: password
+name: Nico
+surname: Fossa
+birthday: 1996-01-01
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -248,7 +244,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "success":true,
+    "auth_token":"eyJhbGciOiJIUz..."
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -263,7 +260,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /auth/login \\
+            \textbf{Endpoint} & /v1/auth/login \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
@@ -318,19 +315,14 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to login \\
             \hline
              \textbf{Request example}
-             & POST /auth/register\_user \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/auth/login \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+email: example@gmail.com
+password: password
+type: individual
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -340,7 +332,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "success":true,
+    "auth_token":"eyJhbGciOiJIUz..."
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -355,7 +348,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /auth/verify \\
+            \textbf{Endpoint} & /v1/auth/verify \\
             \hline
             \textbf{Method} & \textbf{GET} \\
             \hline
@@ -395,19 +388,13 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows verification of the account \\
             \hline
              \textbf{Request example}
-             & POST /auth/register\_user \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/auth/verify \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+?mail=example@gmail.com&code=
+eyJhbGciOiJ...&type=individual
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -417,7 +404,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    success: true, 
+    message: email verified
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -433,7 +421,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /indiv/data \\
+            \textbf{Endpoint} & /v1/indiv/data \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
@@ -488,18 +476,36 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to store sensor data in the database \\
             \hline
              \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/indiv/data \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "gps_coordinates":[
+      {
+         "lat":45.473641,
+         "long":9.228704,
+         "timestamp":"2018-01-01
+                      T00:00:00Z"
+      }
+   ],
+   "accelerometer":[
+      {
+         "acc_x":0.147145,
+         "acc_y":0.016155,
+         "acc_z":0.917696,
+         "timestamp":"2018-01-01
+                      T00:00:00Z"
+      }
+   ],
+   "heart_rate":[
+      {
+         "bpm":82,
+         "timestamp":"2018-01-01
+                      T00:00:00Z"
+      }
+   ]
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -510,7 +516,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    success: true, 
+    message: 'Sync successful'
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -525,7 +532,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /indiv/data \\
+            \textbf{Endpoint} & /v1/indiv/data \\
             \hline
             \textbf{Method} & \textbf{GET} \\
             \hline
@@ -565,19 +572,13 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to retrive sensor data from the database \\
             \hline
    \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & GET /v1/indiv/data \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+?auth_token=eyJhbGciOiJ...&begin_date=
+2018-01-01&end_date=2018-01-01
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -587,7 +588,30 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "success":true,
+   "data":{
+      "gps_coordinates":[
+         {
+            "lat":45.473641,
+            "long":9.228704,
+            "timestamp":"2018-01-01T00:00:00Z"
+         }
+      ],
+      "accelerometer":[
+         {
+            "acc_x":0.147145,
+            "acc_y":0.016155,
+            "acc_z":0.917696,
+            "timestamp":"2018-01-01T00:00:00Z"
+         }
+      ],
+      "heart_rate":[
+         {
+            "bpm":82,
+            "timestamp":"2018-01-01T00:00:00Z"
+         }
+      ]
+   }
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -603,7 +627,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /indiv/user \\
+            \textbf{Endpoint} & /v1/indiv/user \\
             \hline
             \textbf{Method} & \textbf{GET} \\
             \hline
@@ -655,19 +679,12 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to retrive user informations \\
             \hline
                \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & GET /v1/indiv/user \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+auth_token: eyJhbGciOiJ...
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -677,7 +694,18 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "success":true,
+   "user":{
+      "email":"example@gmail.com",
+      "verified":true,
+      "ssn":"1234567890123456",
+      "birth_date":"2018-12-27
+                    T00:00:00.000Z",
+      "automated_sos":false,
+      "smartwatch":"TestSmartwatch1",
+      "name":"Nico",
+      "surname":"Fossa"
+   }
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -694,7 +722,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /queries/query \\
+            \textbf{Endpoint} & /v1/queries/query \\
             \hline
             \textbf{URL Params} &  \\
             \hline
@@ -776,18 +804,27 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to create a query \\
             \hline
                \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/queries/query \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "auth_token": "eyJhbGciOiJIUz...",
+    "query": {
+      "type": 'radius',
+      "center_lat": 45.4398241,
+      "center_long": 39.2489133,
+      "radius": 10,
+      "additional_params": {
+        "acceleromete"r: {
+          "acc_x": [-10, 15]
+        },
+        "heart_rate": {
+          "bpm": [120, 160 ]
+        }
+      }
+    }
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -798,7 +835,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "success": true,
+    "message": "Query successfully posted"
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -813,9 +851,9 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /queries/query \\
+            \textbf{Endpoint} & /v1/queries/query \\
             \hline
-            \textbf{method} & \textbf{GET} \\
+            \textbf{Method} & \textbf{GET} \\
             \hline
             \textbf{URL Params} &  auth\_token: String \\
             \hline
@@ -846,26 +884,18 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
 }
                 \end{verbatim}
                 \end{adjustwidth}
-                \par\noindent\rule{\textwidth}{1pt}
                  \vspace{4pt}
               \end{minipage} \\
               \hline
             \textbf{Uses} & Allows the client to retrive the queries created by a company \\
             \hline
                            \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & GET /v1/queries/query \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+?auth\_token=sjHeGbeuUwj...\&query\_id=13 
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -875,7 +905,23 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "success":true,
+    "queries":   {
+    "individual":[{
+    "id":249,
+    "ssn":
+    "1234567890123456",
+    "auth":true,
+    "additional_params":{
+        "accelerometer":{
+            "acc_x":[-19,2000]
+            },
+        "heart_rate":{
+            "bpm":[10,200]
+            }
+        }
+    "subscribed":false
+    }]
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -891,7 +937,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /queries/query/data \\
+            \textbf{Endpoint} & /v1/queries/query/data \\
             \hline
             \textbf{method} & \textbf{GET} \\
             \hline
@@ -906,8 +952,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    success: true, 
-    data: ...data
+    success: true,
+    data: ...
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -932,19 +978,12 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client to perform a query \\
             \hline
                            \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & GET /v1/queries/query/data \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+?auth_token=eKdgNeIegO...&query_id=23
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -954,7 +993,11 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    success: true, 
+    data: {
+    success: true,
+    data: "accelerometer":[{"timestamp":"2019-01-07T00:00:00.000Z","acc_x":0.993751,"acc_y":0.444582,"acc_z":0.464703}..."
+}
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -971,9 +1014,9 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /queries/individual/pending \\
+            \textbf{Endpoint} & /v1/queries/query/individual/pending \\
             \hline
-            \textbf{method} & \textbf{GET} \\
+            \textbf{Method} & \textbf{GET} \\
             \hline
             \textbf{URL Params} &  auth\_token: String \\
             \hline
@@ -1010,19 +1053,12 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Get unapproved individual querie \\
             \hline
                            \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & GET /v1/queries/individual/pending \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+auth_token: eyJhbGciOiJ...
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -1032,7 +1068,21 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "success":true,
+   "queries":[
+      {
+         "id":248,
+         "company_name":"Company1"
+      },
+      {
+         "id":253,
+         "company_name":"Company2"
+      },
+      {
+         "id":250,
+         "company_name":"Company3"
+      }
+   ]
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -1048,9 +1098,9 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /queries/individual/pending \\
+            \textbf{Endpoint} & /v1/queries/query/individual/pending \\
             \hline
-            \textbf{method} & \textbf{POST} \\
+            \textbf{Method} & \textbf{POST} \\
             \hline
             \textbf{URL Params} &  \\
             \hline
@@ -1091,19 +1141,14 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             
             
                            \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/queries/individual/pending \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+auth_token: eyJhbGciOiJ...
+query_id: 21
+decision: true
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -1113,7 +1158,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "success":true,
+   "message":"Response saved"
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -1132,7 +1178,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /subs/plan \\
+            \textbf{Endpoint} & /v1/subs/plan \\
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
@@ -1202,39 +1248,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
               \hline
             \textbf{Uses} & Allows the client buy a subscription to a new plan \\
             \hline
-            
-                           \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
-             & content: \\
-            & \begin{minipage}[t]{0.5\textwidth}
-                \begin{adjustwidth}{1.5cm}{}
-                \begin{verbatim}
-{
-    ...
-}
-                \end{verbatim}
-                \end{adjustwidth}
-              \end{minipage} \\
-            \hline
-             \textbf{Response example} & 
-              \begin{minipage}[t]{0.5\textwidth}
-                \begin{adjustwidth}{1.5cm}{}
-                \begin{verbatim}
-{
-    ...
-}
-                \end{verbatim}
-                \end{adjustwidth}
-              \end{minipage} \\
-              \hline
- 
- 
- 
+          
         \end{longtable}
     \end{adjustwidth} 
     
@@ -1244,7 +1258,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
     \begin{adjustwidth}{1cm}{}
         \begin{longtable}{|c|l|}
             \hline
-            \textbf{Endpoint} & /subs/plan \\
+            \textbf{Endpoint} & /v1/subs/plan \\
             \hline
             \textbf{Method} & \textbf{GET} \\
             \hline
@@ -1299,38 +1313,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
             \textbf{Uses} & Allows the client retrive informations about a subscription plan \\
             \hline
             
-                           \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
-             & content: \\
-            & \begin{minipage}[t]{0.5\textwidth}
-                \begin{adjustwidth}{1.5cm}{}
-                \begin{verbatim}
-{
-    ...
-}
-                \end{verbatim}
-                \end{adjustwidth}
-              \end{minipage} \\
-            \hline
-             \textbf{Response example} & 
-              \begin{minipage}[t]{0.5\textwidth}
-                \begin{adjustwidth}{1.5cm}{}
-                \begin{verbatim}
-{
-    ...
-}
-                \end{verbatim}
-                \end{adjustwidth}
-              \end{minipage} \\
-              \hline
- 
- 
- 
+
         \end{longtable}
     \end{adjustwidth}
     
@@ -1341,7 +1324,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
         \begin{adjustwidth}{1cm}{}
             \begin{longtable}{|c|l|}
                 \hline
-                \textbf{Endpoint} & /runs/run \\
+                \textbf{Endpoint} & /v1/runs/run \\
                 \hline
                 \textbf{Method} & \textbf{POST} \\
                 \hline
@@ -1404,18 +1387,30 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \hline
                 
                                \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/runs/run \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "auth_token":"eyJh...",
+   "time_begin":"2019-01-19
+                 T09:00:00.000",
+   "time_end":"2019-01-19
+               T09:00:00.000",
+   "description":"A simple run",
+   "coordinates":[
+      {
+         "lat":45.476987,
+         "long":9.234592,
+         "description":"0 - 0"
+      },
+      {
+         "lat":45.476987,
+         "long":9.234192,
+         "description":"1 - 1"
+      }
+   ]
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -1426,7 +1421,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "success":true,
+   "run_id":77
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -1444,7 +1440,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
         \begin{adjustwidth}{1cm}{}
             \begin{longtable}{|c|l|}
                 \hline
-                \textbf{Endpoint} & /runs \\
+                \textbf{Endpoint} & /v1/runs \\
                 \hline
                 \textbf{Method} & \textbf{GET} \\
                 \hline
@@ -1485,19 +1481,12 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \hline
                 
                                \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & GET /v1/runs \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+auth_token: eyau...
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -1507,7 +1496,29 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "success":true,
+   "runs":[
+      {
+         "organizer_id":70,
+         "id":62,
+         "start_time":"2019-01-05
+                       T09:25:00.000Z",
+         "description":"Simple test run
+                        that will last 
+                        forevvah",
+         "end_time":"2025-01-05
+                     T10:25:00.000Z",
+         "status":"RUN_STARTED"
+      },
+      {
+         "organizer_id":70,
+         "id":70,
+         "start_time":"2019-01-11T00:03:00.000Z",
+         "description":"A simple run for my love Dani & Sghe",
+         "end_time":"2019-01-13T00:03:00.000Z",
+         "status":"RUN_STARTED"
+      }
+   ]
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -1525,7 +1536,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
         \begin{adjustwidth}{1cm}{}
             \begin{longtable}{|c|l|}
                 \hline
-                \textbf{Endpoint} & /runs/join \\
+                \textbf{Endpoint} & /v1/runs/join \\
                 \hline
                 \textbf{URL Params} &  \\
                 \hline
@@ -1596,19 +1607,13 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \hline
                 
                                \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & POST /v1/runs/join \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+auth_token: eyau...
+run_id: 154
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -1618,7 +1623,8 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+    "success": true, 
+    "message": "Joined run 154"
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -1637,7 +1643,7 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
         \begin{adjustwidth}{1cm}{}
             \begin{longtable}{|c|l|}
                 \hline
-                \textbf{Endpoint} & /runs/positions \\
+                \textbf{Endpoint} & /v1/runs/positions \\
                 \hline
                 \textbf{Method} & \textbf{GET} \\
                 \hline
@@ -1677,19 +1683,13 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \hline
                 
                                \textbf{Request example}
-             & POST /indiv/data \\
-             & Host: addr:80\\
-             & User-Agent: * \\
-             & Content-Type: application/json\\
-             & Accept: application/json\\
-             & Authorization: \\
+             & GET /v1/runs/positions \\
              & content: \\
             & \begin{minipage}[t]{0.5\textwidth}
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
-{
-    ...
-}
+run_id: 154
+auth_token: eyau...
                 \end{verbatim}
                 \end{adjustwidth}
               \end{minipage} \\
@@ -1699,7 +1699,25 @@ Many of the API are also present in the DD, this paragraph aims to describe in m
                 \begin{adjustwidth}{1.5cm}{}
                 \begin{verbatim}
 {
-    ...
+   "success":true,
+   "positions":[
+      {
+         "user_id":59,
+         "id":"Nico Fossa",
+         "lastPosition":{
+            "lat":45.47334,
+            "long":9.228975
+         }
+      },
+      {
+         "user_id":62,
+         "id":"fras Sgherzi",
+         "lastPosition":{
+            "lat":45.472069,
+            "long":9.231138
+         }
+      }
+   ]
 }
                 \end{verbatim}
                 \end{adjustwidth}

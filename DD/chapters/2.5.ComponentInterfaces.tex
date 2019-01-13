@@ -70,10 +70,10 @@
             \hline
             \textbf{Method} & \textbf{POST} \\
             \hline
-            \textbf{Request Data} & username: String \\
+            \textbf{Request Data} & email: String \\
             &                 password: String \\
             &                 company\_name: String \\
-            &                 email: String \\
+
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -103,7 +103,6 @@
                 \texttt{message} can be one of the following: 
                 \begin{itemize}
                     \item \texttt{Email already in use}
-                    \item \texttt{Username already in use}
                 \end{itemize}
               \end{minipage} \\
               \hline
@@ -124,12 +123,10 @@
             \hline
             \textbf{URL Params} &  \\
             \hline
-            \textbf{Request Data} & username: String \\
+            \textbf{Request Data} & email: String \\
             &                 password: String \\
-            &                 SSN: String \\
             &                 name: String \\
             &                 surname: String \\
-            &                 birthday: Date \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -158,7 +155,6 @@
                 \end{adjustwidth}
                 \texttt{message} can be one of the following: 
                 \begin{itemize}
-                    \item \texttt{Username already used}
                     \item \texttt{SSN not valid}
                 \end{itemize}
               \end{minipage} \\
@@ -180,8 +176,9 @@
             \hline
             \textbf{URL Params} &  \\
             \hline
-            \textbf{Request Data} & username: String \\
+            \textbf{Request Data} & email: String \\
             &                 password: String \\
+            &                 type: String \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -238,12 +235,13 @@
             \hline
             \textbf{Endpoint} & /auth/verify \\
             \hline
-            \textbf{Method} & \textbf{POST} \\
+            \textbf{Method} & \textbf{GET} \\
             \hline
-            \textbf{URL Params} &  \\
+            \textbf{URL Params} & mail: String \\
+            &                     code: String \\
+            &                     type: String \\
             \hline
-            \textbf{Request Data} & mail: String \\
-            &                 verification\_code: String \\
+            \textbf{Request Data} & \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -291,7 +289,7 @@
             \textbf{URL Params} &  \\
             \hline
             \textbf{Request Data} & auth\_token: String \\
-            &                 data: Array < Array < SensorData > > \\
+            &                 data: JSON < Array < JSON > > \\
             
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
@@ -352,8 +350,8 @@
             \textbf{Method} & \textbf{GET} \\
             \hline
             \textbf{URL Params} &  auth\_token: String \\
-            & begin\_date: String \\
-            & end\_date: String \\
+            & begin\_date: Date \\
+            & end\_date: Date \\
             \hline
             \textbf{Request Data} &  \\
             \hline
@@ -389,7 +387,67 @@
         \end{longtable}
     \end{adjustwidth}
     
+    \begin{itemize}
+        \item User information retrival
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /indiv/user \\
+            \hline
+            \textbf{Method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            \hline
+            \textbf{Request Data} &  \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    user: ...userInfo
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+              & code: \texttt{404 Not Found} \\
+            &                         content: \\
+            & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'Not found',
+    message: 'The user wasn't found'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to retrive user informations \\
+            \hline
+        \end{longtable}
+    \end{adjustwidth}
    \textbf{Query Manager}
+    
     \begin{itemize}
         \item Query creation
     \end{itemize}
@@ -401,8 +459,7 @@
             \textbf{URL Params} &  \\
             \hline
             \textbf{Request Data} & auth\_token: String \\
-            &                 mail: String \\
-            &                 query: String \\
+            &                 query: json \\
             \hline
             \textbf{Success Response} & code: \texttt{200 OK} \\
             &                           content: \\
@@ -411,7 +468,7 @@
                 \begin{verbatim}
 {
     success: true, 
-    data: UserData
+	message: 'Query successfully posted'
 }
                 \end{verbatim}
                 \end{adjustwidth}
@@ -480,6 +537,201 @@
             \hline
         \end{longtable}
     \end{adjustwidth} 
+    
+    \begin{itemize}
+        \item Query Retrival
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/query \\
+            \hline
+            \textbf{method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    queries: ...totalQueries
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to retrive the queries created by a company \\
+            \hline
+        \end{longtable}
+    \end{adjustwidth} 
+    
+    \begin{itemize}
+        \item Perform Query
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/query/data \\
+            \hline
+            \textbf{method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            &  query\_id: Integer \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    data: ...data
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                \par\noindent\rule{\textwidth}{1pt}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Allows the client to perform a query \\
+            \hline
+        \end{longtable}
+    \end{adjustwidth} 
+    
+    
+        \begin{itemize}
+        \item (still) Unauthorized queries retrieval
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/query/individual/pending\\
+            \hline
+            \textbf{method} & \textbf{GET} \\
+            \hline
+            \textbf{URL Params} &  auth\_token: String \\
+            \hline
+            \textbf{Request Data} & \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    queries: ...queries
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Get unapproved individual querie \\
+            \hline
+        \end{longtable}
+    \end{adjustwidth}
+    
+    \begin{itemize}
+        \item Allow/Negate individual query
+    \end{itemize}
+    \begin{adjustwidth}{1cm}{}
+        \begin{longtable}{|c|l|}
+            \hline
+            \textbf{Endpoint} & /queries/query/individual/pending \\
+            \hline
+            \textbf{method} & \textbf{POST} \\
+            \hline
+            \textbf{URL Params} &  \\
+            \hline
+            \textbf{Request Data} &  auth\_token: String \\
+            & query\_id: Integer \\
+            & decision: Boolean \\
+            \hline
+            \textbf{Success Response} & code: \texttt{200 OK} \\
+            &                           content: \\
+            & \begin{minipage}[t]{0.5\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: true, 
+    message: 'Response Saved'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+              \end{minipage} \\
+              \hline
+            \textbf{Error Response} & code: \texttt{400 BAD REQUEST} \\
+              &                     content: \\
+              & \begin{minipage}[t]{0.7\textwidth}
+                \begin{adjustwidth}{1.5cm}{}
+                \begin{verbatim}
+{
+    success: false, 
+    error: 'InvalidToken',
+    message: 'Token is invalid'
+}
+                \end{verbatim}
+                \end{adjustwidth}
+                 \vspace{4pt}
+              \end{minipage} \\
+              \hline
+            \textbf{Uses} & Specify decision for individual query \\
+            \hline
+        \end{longtable}
+    \end{adjustwidth}
+    
     
     \textbf{Subscription Manager}
     \begin{itemize}
@@ -637,11 +889,11 @@
                 \hline
                 \textbf{URL Params} &  \\
                 \hline
-                \textbf{Request Data} & organizer\_username: String \\
-                &                 organizer\_password: String \\
+                \textbf{Request Data} & auth\_token: String \\
                 &                 time\_begin: Date \\
                 &                 time\_end: Date \\
-                &                 coordinates: Array < Array < Float > > \\
+                &                 description: String \\
+                &                 coordinates: Array < JSON > \\
                 \hline
                 \textbf{Success Response} & code: \texttt{200 OK} \\
                 &                           content: \\
@@ -705,7 +957,8 @@
                 \hline
                 \textbf{Method} & \textbf{GET} \\
                 \hline
-                \textbf{URL Params} &  position:  String \\
+                \textbf{URL Params} &  auth\_token:  String \\
+                &                      organizer\_id? : String\\
                 \hline
                 \textbf{Request Data} &  \\
                 \hline
@@ -722,7 +975,19 @@
                     \end{adjustwidth}
                   \end{minipage} \\
                   \hline
-                \textbf{Error Response} & \\
+                \textbf{Error Response} &  code: \texttt{401 FORBIDDEN} \\
+                &                         content: \\
+                & \begin{minipage}[t]{0.7\textwidth}
+                    \begin{adjustwidth}{1.5cm}{}
+                    \begin{verbatim}
+    {
+        success: false, 
+        error: 'InvalidCredentials',
+        message: 'Invalid Credentials'
+    }
+                    \end{verbatim}
+                    \end{adjustwidth}
+                  \end{minipage} \\\\
                   \hline
                 \textbf{Uses} & Allows the client to list all runs\\ 
                               &  satisfying the parameters above \\
@@ -742,8 +1007,7 @@
                 \hline
                 \textbf{Method} & \textbf{POST} \\
                 \hline
-                \textbf{Request Data} & username: String \\
-                &                 auth\_token: String \\
+                \textbf{Request Data} & auth\_token: String \\
                 &                 run\_id: String \\
                 \hline
                 \textbf{Success Response} & code: \texttt{200 OK} \\
@@ -811,7 +1075,7 @@
     
     
     \begin{itemize}
-            \item Get the position of a Runner
+            \item Get the positions of runners in a run
         \end{itemize}
         \begin{adjustwidth}{1cm}{}
             \begin{longtable}{|c|l|}
@@ -821,6 +1085,7 @@
                 \textbf{Method} & \textbf{GET} \\
                 \hline
                 \textbf{URL Params} &  run\_id: String \\
+                &                      auth\_token: String \\
                 \hline
                 \textbf{Request Data} & \\
                 \hline
@@ -838,21 +1103,6 @@
                   \end{minipage} \\
                   \hline
                 \textbf{Error Response} & code: \texttt{404 NOT FOUND} \\
-                &                         content: \\
-                & \begin{minipage}[t]{0.7\textwidth}
-                    \begin{adjustwidth}{1.5cm}{}
-                    \begin{verbatim}
-    {
-        success: false, 
-        error: 'RunnerNotFound',
-        message: 'Runner not found'
-    }
-                    \end{verbatim}
-                    \end{adjustwidth}
-                     \par\noindent\rule{\textwidth}{1pt}
-                 \vspace{4pt}
-                  \end{minipage} \\
-                  & code: \texttt{404 NOT FOUND} \\
                 &                         content: \\
                 & \begin{minipage}[t]{0.7\textwidth}
                     \begin{adjustwidth}{1.5cm}{}

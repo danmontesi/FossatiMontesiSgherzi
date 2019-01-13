@@ -1,6 +1,104 @@
 \subsection{Database setup}
+\subsubsection{Requirements}
+\begin{itemize}
+    \item Internet connection.
+    \item At least 500MB of storage for the database binaries and the database itself to be free on disk.
+\end{itemize}
+This section explains how to install and setup \texttt{PostgreSQL} and the database image.
+This section assumes that the OS is \textit{Solus Linux}. For installation instruction for other OSes, please visit the \href{https://www.postgresql.org/download/}{download page} on PostgreSQL's website.
+
+\vspace{0.5em}
+\noindent \textbf{Installation}\\
+\texttt{sudo eopkg install postgresql}
+\vspace{0.3em}
+
+\noindent \textbf{Create a new user for postgres}\\
+\texttt{sudo -u postgres createuser \#username}
+\vspace{0.3em}
+
+\noindent \textbf{Create a new database for postgres}\\
+\texttt{sudo -u postgres createdb \#dbname}
+\vspace{0.3em}
+
+\noindent \textbf{Log in into the postgres console for that database}\\
+\texttt{sudo -u postgres psql \#dbname}
+\vspace{0.3em}
+
+\noindent \textbf{Give a secure password to the user}\\
+\texttt{(\#dbname=\#) ALTER USER \#username WITH ENCRYPTED PASSWORD \#password}\\
+
+\noindent \textbf{Give the user all privileges to the database}\\
+\texttt{(\#dbname=\#) GRANT ALL PRIVILEGES ON DATABASE \#dbname TO \#username}\\
+
+\noindent \textbf{After exiting the console (Ctrl+D), restore the provided database image}\\
+\texttt{psql -U \#username \#dbname < dbdump}
+\vspace{0.5em}
 
 \subsection{Backend setup}
+
+This section explains how to install and setup \texttt{NodeJS and npm} and start the backend.
+This section assumes that the OS is \textit{Solus Linux}. Since the only thing that differs between OSes is the \textit{NodeJS} installation, it is advisable to look on the \textit{NodeJS} website for additional installation instruction.
+
+\begin{itemize}
+    \item \href{https://nodejs.org/en/download/package-manager/}{Via package manager}
+    \item \href{https://nodejs.org/en/download/}{Via a graphical installer}
+\end{itemize}
+When installing via package manager note that \texttt{npm} could be present as a separate package in your distribution's repository, if that's the case install it first via the recommended method for your distribution and then proceed in the guide.
+
+\subsubsection{Requirements}
+\begin{itemize}
+    \item Internet connection.
+    \item At least 50MB for the NodeJS binary and 100MB for the dependencies to be free on disk.
+\end{itemize}
+
+\subsubsection{Setup}
+\vspace{0.5em}
+\noindent \textbf{NodeJS and npm installation}\\
+\texttt{sudo eopkg install nodejs}\\
+\vspace{0.3em}
+
+\vspace{0.5em}
+\noindent \textbf{Go into the backend folder}\\
+\texttt{cd IMPLEMENTATION/backend}\\
+\vspace{0.3em}
+
+
+\vspace{0.5em}
+\noindent \textbf{Install the dependencies}\\
+\texttt{npm install }\\
+\vspace{0.3em}
+
+\subsubsection{Run}
+The application expects the following environmental variables to be set in the \texttt{start.sh} script.
+\begin{itemize}
+    \item TEST\_API="enabled"\\ Enables logging and the stub enpoint
+    \item DATABASE\_URL \\ Url of the database in the form of \\\#dbuser:\#password@\#host:\#dbport/\#dbname
+    \item JWT\_SECRET="E9ql4cmZzDNG9qL8xh6F"\\ The secret by which encrypt the jwt
+    \item MAIL\_PROVIDER="gmail"\\ The email provider (\href{https://nodemailer.com/smtp/well-known/}{List of supported mail providers})
+    \item MAIL\_ADDR\\ The mail addres from which send the notification email
+    \item MAIL\_PASSWD\\ The mail password 
+    \item LOCAL="enabled"\\ Local testing 
+    \item PORT=12345 \\ Port on which run the application
+    \item HOST="localhost:\${PORT}"\\ The hostname of the application
+    \item MIN\_USER\_NUMBER=2\\ The minimum number of user from which accept the query
+\end{itemize}
+\vspace{0.3em}
+\noindent \textbf{Run the application (on Linux and MacOS)} \\
+\texttt{bash start.sh}
+
+\subsubsection{Run the tests}
+After installing all the dependencies: \\
+\texttt{./node\_modules/.bin/jest} \\
+Or if preferred, install \texttt{jest} globally: \\
+\texttt{sudo npm install -g jest}\\
+And then run the following command in the backend directory: \\
+\texttt{jest}
+
+
+\subsubsection{Known issues}
+\begin{itemize}
+    \item The only tested email provider is GMail.
+\end{itemize}
 
 \subsection{External services setup}
 \subsubsection{Google Maps API}
@@ -10,10 +108,12 @@ In order to be able to use the Google Maps View in the Flutter project you need 
 You should put the obtained key in the \texttt{AndroidManifest.xml} file. Please refer to the following document to get detailed instruction on how to do so:
 \href{https://pub.dartlang.org/packages/google_maps_flutter}{google\_maps\_flutter | Flutter Packages}.
 
+\newpage
 \subsection{Flutter Application setup}
 In this section will be present all the necessary information to build the Flutter project.
 \subsubsection{Requirements}
 \begin{itemize}
+\item At least 5GB of free space on the disk
     \item Internet connection
 \end{itemize}
 
@@ -22,17 +122,63 @@ In order to install the Flutter SDK with all its dependency, please refer to the
 
 Remember to also install all the needed dependencies to build Android Apps.
 
+
+
+
 \subsubsection{Build the app for Android}
 \begin{itemize}
     \item Download the project into a local folder;
     \item open a terminal and go into the project folder;
     \item launch the command \texttt{flutter doctor} to check that the project is ok;
     \item launch the command \texttt{flutter packages get};
+    \item eventually change the backend's address with your address in \texttt{Config.dart}
     \item launch the command \texttt{flutter build apk} to actually build the apk.
 \end{itemize}
+
+\subsubsection{Run the tests}
+In order to launch the test suite:
+\begin{itemize}
+    \item open a terminal and go into the project folder;
+    \item launch the command \texttt{flutter test} to run all the tests;
+\end{itemize}
+
+You can also run the test through Android Studio, clicking with the right mouse button on the test folder and selecting \texttt{Run tests in test...}
 
 \subsubsection{Known issues}
 \begin{itemize}
     \item the app was developed under Android and has not been tested under iOS, so there can be some problem on this platform.
     \item You should include your personal Google Maps API as stated before, in order to make the Google Maps View work.
 \end{itemize}
+
+
+
+
+
+\newpage 
+\subsection{Website setup}
+In this section will be presented all the necessary information to run the website locally on your device.
+The idea is to run the website locally  on port 8000 using python with the terminal command \\
+\texttt{python -m http.server}
+
+\subsubsection{Requirements}
+\begin{itemize}
+    \item Internet connection;
+    \item Python.
+\end{itemize}
+
+\subsubsection{Python}
+All the instructions to install Python on your device are explained in detail in the following link: \\
+\href{https://wiki.python.org/moin/BeginnersGuide/Download}{Beginner guide: How to download Python}
+
+Here the simple steps are resumed:
+\begin{itemize}
+    \item Click on the python executable based on your OS. (windows, Max OS,...);
+    \item Follow the instructions of installer.
+\end{itemize}
+
+\subsubsection{Starting website on localhost}
+After having downloaded Python on your device you need only to open your terminal or cmd, access to the directory \texttt{frontend/website} present in the source zip, and type:\\
+\texttt{python -m http.server}\\
+
+\noindent Then you only need to open a browser and type \texttt{localhost:8000}. \\
+You will be redirected into the index.html page.

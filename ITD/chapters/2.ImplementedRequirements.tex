@@ -38,7 +38,7 @@ The server first checks the required parameters for registration, depending on t
 \paragraph{Front-end} \mbox{}\\
 
 \begin{itemize}
-    \item \textbf{Application}: 
+    \item \textbf{Application}: A user can register a new account after having decided whether to access the Data4Help service or Track4Run service. 
     \item \textbf{Website}: Company can register through the homepage clicking on a button that opens a modal. After inserting the data, company clicks 'Send' and becomes automatically registered requiring an email verification.
 \end{itemize}
 
@@ -100,10 +100,9 @@ The server checks the required parameters for the request, then proceedes to com
     \item \textbf{[R3$_M$]}: Logged-in users can edit their account info
     \item \textbf{[R5$_W$]}: Logged-in companies can update their account information
     \item \textbf{[R3$_C$]}: Can send online notifications via the Mobile app to its users
-        \end{itemize}
-    %company
     \item \textbf{[R3$_W$]}: Logged-in companies can see their history and account information
-        
+        \end{itemize}
+
 \end{itemize}
 
 \paragraph{Database} \mbox{}\\
@@ -116,8 +115,14 @@ The \texttt{/queries/query/individual/pending} endpoint allows the user to accep
 The server sends online notification to every actor when he registers, in order to verify the email, and to the company that has performed a query when new data are available.
 
 \paragraph{Front-end} \mbox{}\\
-\textbf{Application:} Individual users can accept or decline a company monitoring request by the section reachable through the navigation drawer in the Dashboard.\\
-\textbf{Website:} Company can see all account information in the panel 'Account' accessible via the navbar through all the pages, after having logged in.\\
+\begin{itemize}
+    \item \textbf{Application:} Individual users can accept or decline a company monitoring request by the section reachable through the navigation drawer in the Dashboard.\\
+\item \textbf{Website:} Company can see all account information in the panel 'Account' accessible via the navbar through all the pages, after having logged in.\\
+\end{itemize}
+
+\paragraph{Comment on not implemented requirements} \mbox{}\\ 
+We decided to not implement the editing of registered account because we asked users for details that are less subject to variation (for instance name, surname, company name, SSN...). \\
+Instead of sending SMS/push notification, we decided to send an email to the users since the integration with an external service providing email was easier in this stage of the project.
 
 \subsection{Company plan subscription }
 \begin{itemize}
@@ -134,11 +139,13 @@ The server sends online notification to every actor when he registers, in order 
 
 \paragraph{Database} \mbox{}\\ 
 The server answers with the mockup.
-\paragraph{Back-end} \mbox{}\\  
 \paragraph{Front-end} \mbox{}\\
-\textbf{Web site}: The user can see all subscription plan available by clicking in the panel 'Account' accessible via the nav bar through all the pages, after having logged in.
+\textbf{Web site}: The page is only a mockup, user can see all subscription plan available by clicking in the panel 'Account' accessible via the nav bar through all the pages, after having logged in.
 Company can start the purchasing process after clicking "Purchase" under the respective subscription plan.
 
+\paragraph{Comment on not implemented requirements} \mbox{}\\ 
+We decided not to implement the plan subscription since it required an external payment service that, at this stage of the project, required too much effort.
+For the moment, the component is active but gives just a mockup response
 
 
 \subsection{Data management}
@@ -151,7 +158,7 @@ Company can start the purchasing process after clicking "Purchase" under the res
         \item \textbf{[R4$_C$]}: Can save and store permanently user data
     \item \textbf{[R5$_C$]}: Can receive and store health parameters and geographical position of registered users
      \item \textbf{[R2$_S$]}: App can send data registered locally to Data4Help Mobile App
-
+     
         \end{itemize}
     \item \textbf{Non-implemented} requirements
     \begin{itemize}
@@ -173,9 +180,13 @@ The server inserts the user data into the respective table, if well formatted.
 Then proceedes to notify the company for new data if the user is in one of the previously posted query.
 
 \paragraph{Front-end} \mbox{}\\
-\textbf{Application:} The data is not actually read from the sensors but the app can generate dummy test data and send it to the server, by the Test option in navigator drawer in he Dashboard.\\
-\textbf{Web site: }Company can see data relative to their queries or to their monitored individuals right after having performed a query, clicking in the link provided by the server that redirects the user to a XML file containing the data requested.
+\begin{itemize}
+    \item \textbf{Application:} The data is not actually read from the sensors but the app can generate dummy test data and send it to the server, by the Test option in navigator drawer in the Dashboard.\\
+\item \textbf{Web site: }Company can see data relative to their queries or to their monitored individuals right after having performed a query, clicking in the link provided by the server that redirects the user to a XML file containing the data requested.
+\end{itemize}
 
+\paragraph{Comment on not implemented requirements} \mbox{}\\ 
+For this stage of the project we decided that implement a smart-watch app able to read sensor data was too costly, so we made a stub component that generates data.
 
 \subsection{Query management}
 \begin{itemize}
@@ -189,6 +200,7 @@ Then proceedes to notify the company for new data if the user is in one of the p
 
     %core
     \item \textbf{[R6$_C$]}: Can execute queries of companies on individuals if the user has accepted the monitoring request from the company
+     \item \textbf{[R6bis$_W$]}: Logged-in companies can subscribe to a query data
     \item \textbf{[R7$_C$]}: Can execute queries of companies checking if the searches involve more than 1000 anonimyzed users 
 
         \end{itemize}
@@ -206,33 +218,13 @@ The list of users subjected to the query is stored in the \texttt{query\_user} t
 First, the given query is performed to assess feasibility (i.e on a high enough number of user) and then it is inserted in the database.
 The list of users subjected to the query is inserted into the database as well.
 
-\paragraph{Front-end} \mbox{}\\
-\textbf{Web site}: Company can perform a query for group of individuals in the panel 'Query' accessible via the navbar through all the pages, after having logged in.\\
+\paragraph{Front-end - Website} \mbox{}\\
+Company can perform a query for group of individuals in the panel 'Query' accessible via the navbar through all the pages, after having logged in.\\
 In the Query page it will appear a button to start a query. When clicked, it opens a modal with all fields to filter query parameters.
 If left empty, the filter is just ignored.\\
 The user can click "send" in order to perform the query.\\
 Same works for single individuals: a company can perform a query clicking in the panel 'Monitoring' accessible via the navbar.
 
-\subsection{Query subscription}
-\begin{itemize}
-    \item \textbf{Implemented} requirements
-        \begin{itemize}
- \item \textbf{[R6bis$_W$]}: Logged-in companies can subscribe to a query data
-        \end{itemize}
-    \item \textbf{Non-implemented} requirements
-    \begin{itemize}
-            \item 
-        \end{itemize}
-\end{itemize}
-
-
-\paragraph{Database} \mbox{}\\
-\paragraph{Back-end} \mbox{}\\
-
-
-\paragraph{Front-end} \mbox{}\\
-\textbf{Web site:} In order to subscribe to a query, a company can simply select the tick-box in the subscription tick-box in the form of the 'Query' panel.
-Company can subscribe to a query of group of individuals only, since there is no need to subscribe to single individuals query.
 
 \subsection{Race Management}
 \begin{itemize}
@@ -261,8 +253,11 @@ More specifically:
     \item \textbf{[R9$_W$]}: \texttt{/runs/positions} allows the user to gather informations on the position of the runners in a given run, if exists
     \item \textbf{[R13$_W$]}  \textbf{[R14$_W$]}: \texttt{/runs/} allows a run organizer to create a run, specifying its path, if it is well formed
 \end{itemize}
-\paragraph{Front-end} \mbox{}\\
-\textbf{Application:} The user can register to a nearby run by using the Track4Run functionality reachable from the Dashboard. Here the user can also see the run information. Run Organizers can create a new run from their control panel, clicking the plus icon and defining checkpoints. The run start automatically at the defined time.
+\paragraph{Front-end - Application} \mbox{}\\
+The user can register to a nearby run by using the Track4Run functionality reachable from the Dashboard. Here the user can also see the run information. Run Organizers can create a new run from their control panel, clicking the plus icon and defining checkpoints. The run start automatically at the defined time.
+
+\paragraph{Comment on not implemented requirements} \mbox{}\\ 
+We simply assumed that the run automatically starts at the specified time when it was creates, at this stage of the project.
 
 \subsection{Users Spectating Race}
 \begin{itemize}
@@ -276,7 +271,7 @@ More specifically:
 
         %core
 
-    \item \textbf{[R13$_C$]}: Can send the position and rank of athletes during a run to spectator's devices.
+    \item \textbf{[R13$_C$]}: Can send the position of athletes during a run to spectator's devices.
 
 
         \end{itemize}
@@ -292,5 +287,8 @@ The positions of the users are retrieved exploiting Data4Help functionality, so 
 \paragraph{Back-end} \mbox{}\\
 The server requests the runners position from the database for the given run, if exists.
 
-\paragraph{Front-end} \mbox{}\\
-\textbf{Application:} The users can see the position of participants on a map by clicking on View on the Track4Run section in the dashboard.
+\paragraph{Front-end - Application} \mbox{}\\
+The users can see the position of participants on a map by clicking on View on the Track4Run section in the dashboard.
+
+\paragraph{Comment on not implemented requirements} \mbox{}\\ 
+At this stage of the project, implementing the requirement was too costly.
