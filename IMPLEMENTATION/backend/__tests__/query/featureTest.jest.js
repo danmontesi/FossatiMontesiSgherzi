@@ -29,8 +29,8 @@ describe('Retrive company queries', () => {
     res = await res.json()
     expect(res.success).toBe(true)
     expect(res.queries).not.toBe(undefined)
-    // expect(res.queries.individual).not.toBe(undefined)
-    // expect(res.queries.radius).not.toBe(undefined)
+    expect(res.queries.individual).not.toBe(undefined)
+    expect(res.queries.radius).not.toBe(undefined)
   })
 })
 
@@ -53,9 +53,15 @@ describe('Post an individual query', () => {
       })
     })
     res = await res.json()
+    console.log(res)
     expect(res.success).toBe(true)
     expect(res.message).toBe('Query successfully posted')
     expect(res.query_id).not.toBe(undefined)
+
+    const client = await connect()
+    await client.query('DELETE FROM query WHERE id = $1', [res.query_id])
+    await client.release()
+
   })
 
   test('Post an individual query - missing params', async () => {
@@ -129,6 +135,11 @@ describe('Post an radius query', () => {
     expect(res.success).toBe(true)
     expect(res.message).toBe('Query successfully posted')
     expect(res.query_id).not.toBe(undefined)
+
+    const client = await connect()
+    await client.query('DELETE FROM query WHERE id = $1', [res.query_id])
+    await client.release()
+
   })
 
   test('Post an radius query - too restrictive', async () => {
@@ -214,9 +225,7 @@ describe('Perform a query', () => {
   test('Perform an individual query - correct', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
       'auth_token=' + companyToken + '&' +
-      'query_id=309', {    // const client = await connect()
-      // await client.query('DELETE FROM user_data WHERE user_id = 111')
-      // await client.release()
+      'query_id=309', {
       method: 'GET',
       headers: new fetch.Headers({
         'Content-Type': 'application/json'
@@ -231,9 +240,7 @@ describe('Perform a query', () => {
   test('Perform an individual query - unauthorized', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'queries/query/data?' +
       'auth_token=' + companyToken + '&' +
-      'query_id=310', {    // const client = await connect()
-      // await client.query('DELETE FROM user_data WHERE user_id = 111')
-      // await client.release()
+      'query_id=310', {
       method: 'GET',
       headers: new fetch.Headers({
         'Content-Type': 'application/json'
@@ -298,7 +305,7 @@ describe('Pending individual queries', () => {
 
     const client = await connect()
     await client.query('UPDATE individual_query SET auth = NULL WHERE id = 310')
-    await client.query('DELETE from query_user WHERE user_id = $1 AND query_id = 222', [getActor(userToken).id])
+    await client.query('DELETE from query_user WHERE user_id = $1 AND query_id = 310', [getActor(userToken).id])
     await client.release()
 
   })
@@ -316,10 +323,12 @@ describe('Pending individual queries', () => {
       })
     })
     res = await res.json()
+    console.log(res)
     expect(res.success).toBe(true)
     expect(res.message).toBe('Response saved')
+
     const client = await connect()
-    await client.query('UPDATE individual_query SET auth = NULL WHERE id = 218')
+    await client.query('UPDATE individual_query SET auth = NULL WHERE id = 310')
     await client.release()
   })
 })

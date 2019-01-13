@@ -42,7 +42,7 @@ function sendVerificationMail(mail, code, type) {
   console.log('Sending mail to ' + mail)
 
   const transporter = nm.createTransport({
-    service: 'gmail',
+    service: process.env.MAIL_PROVIDER || 'gmail',
     auth: {
       user: process.env.MAIL_ADDR,
       pass: process.env.MAIL_PASSWD

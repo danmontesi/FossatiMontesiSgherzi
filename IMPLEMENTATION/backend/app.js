@@ -1,13 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const cors = require('cors')
 const routes = require('./routes/router')
+
 const {
-  Client
-} = require('pg')
-const {
-  debugLog
+  checkEnviron
 } = require('./utils/testUtils')
+
+/**
+ * Check the presence of all needed environmental variables
+ */
+checkEnviron()
 
 // Until JavaScript figures out an easier way to work with async iterators
 Array.prototype.forEachAsync = async function (callback) {
@@ -26,8 +28,7 @@ Object.prototype.isEmpty = function () {
 
 if (process.env.TEST_API !== 'enabled') {
   // If not in the test environment, disable logging altogether
-  console.log = () => {
-  }
+  console.log = () => {}
 }
 
 const PORT = process.env.PORT || 12345
@@ -82,5 +83,5 @@ if (process.env.TEST_API) {
 app.listen(PORT, function () {
   console.log(`Data4Help backend ready, listening on port: ${PORT}`)
   console.log('DATABASE ON ' + process.env.DATABASE_URL || process.env.LOCAL_DATABASE_URL)
-  debugLog('DEBUG ACTIVE')
+  console.log('DEBUG ACTIVE')
 })

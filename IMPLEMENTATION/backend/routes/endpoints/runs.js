@@ -71,7 +71,7 @@ runsRouter.get('/', authorizationMiddleware('individual', 'run_organizer'), asyn
 })
 
 /**
- * METHOD: POST
+ * METHOD: GET
  * ENDPOINT: /runs/positions
  * Tries to retrive the position of all the runners in a run.
  *

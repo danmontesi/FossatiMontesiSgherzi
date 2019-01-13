@@ -127,6 +127,9 @@ async function performQuery(query) {
   // Checks the query to see if the user number is still higher than MIN_USER_NUMBER
   const userList = await checkQuery(query)
 
+  // update user list
+  await updateUserList(userList, query.id)
+
   // Takes all user data
   let allData = await Promise.all(userList.map(async (userId) => await getData(userId)))
   console.log('ALL DATA')
@@ -236,7 +239,7 @@ async function performQueryById(queryId) {
  * @returns {Promise<void>}
  */
 async function updateUserList(userIds, queryId) {
-
+  console.log('updating user list for query ' + queryId)
   // if the query is individual I put the user in the query_user database only if he approves
   if (userIds.length === 1) return
 
@@ -372,7 +375,7 @@ async function retriveQueries(company) {
         totalQueries[query.query_type].push(rows[0])
       }
     })
-
+    console.log(totalQueries)
     await client.release()
 
     return {
@@ -423,7 +426,7 @@ function sendNotificationEmail(email, body, subject = 'Data4Help, user confirmed
   console.log('Sending mail to ' + email)
 
   const transporter = nm.createTransport({
-    service: 'gmail',
+    service: process.env.MAIL_PROVIDER || 'gmail',
     auth: {
       user: process.env.MAIL_ADDR,
       pass: process.env.MAIL_PASSWD

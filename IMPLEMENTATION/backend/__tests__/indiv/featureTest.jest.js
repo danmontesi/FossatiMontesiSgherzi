@@ -57,6 +57,7 @@ describe('User sends data', () => {
     expect(res.message).toBe('Sync successful')
 
   })
+
   test('User sends data formatted badly', async () => {
     let res = await fetch(LOCAL_BASE_URL + 'indiv/data', {
       method: 'POST',
@@ -128,7 +129,9 @@ describe('User wants to retrive his data', () => {
       })
     })
     res = await res.json()
-    expect(res.status).toBe(500)
+    console.log(res)
+    expect(res.status).toBe(422)
+    expect(res.message).toMatch(/Malformed\ date/)
   })
 })
 
