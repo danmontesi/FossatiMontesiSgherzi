@@ -16,7 +16,7 @@ const MIN_USER_NUMBER = process.env.MIN_USER_NUMBER
 // process.env.DATABASE_URL + '?ssl=true'
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  max: 100
+  max: 4
 })
 
 /**
