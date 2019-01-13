@@ -6,8 +6,8 @@ const userMail = 'francesco.sgherzi@gmail.com'
 const runOrganizerMail = 'francesco.sgherzi.dev@gmail.com'
 const password = 'asdfasdf'
 
-const LOCAL_BASE_URL = 'http://localhost:12345/'
-const HEROKU_BASE_URL = 'https://data4halp.herokuapp.com/'
+const LOCAL_BASE_URL = 'http://localhost:12345/v1/'
+const HEROKU_BASE_URL = 'https://data4halp.herokuapp.com/v1/'
 
 module.exports = {
   userToken,

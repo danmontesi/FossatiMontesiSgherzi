@@ -1,51 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js" line="299" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js" line="306" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9836d5a5-e2a6-464b-8dcf-83acc8261425" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/__tests__/auth/unitTests.jest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__tests__/indiv/unitTest.jest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__tests__/query/unitTest.jest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__tests__/runs/unitTest.jest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/auth/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/auth/featureTest.jest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" beforeDir="false" afterPath="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/auth/info_GET.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/auth/login.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/auth/login.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/auth/register_company.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/auth/register_company.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/auth/register_run_organizer.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/auth/register_run_organizer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/auth/register_user.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/auth/register_user.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/auth/verify.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/auth/verify.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/indiv/add_POST.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/indiv/data_GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/indiv/data_GET.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/indiv/data_POST.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/indiv/data_POST.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/patients/add_POST.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/patients/add_POST.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/patients/data_POST.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/patients/data_POST.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/patients/list.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/patients/list.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/queries/query_GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/queries/query_GET.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/queries/query_POST.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/queries/query_POST.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/runs/join.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/runs/join.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/runs/positions.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/runs/positions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/runs/root.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/runs/root.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/runs/run.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/runs/run.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/subs/plan_GET.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/subs/plan_GET.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/__tests__/stub_endpoint/subs/plan_POST.json" beforeDir="false" afterPath="$PROJECT_DIR$/stub_endpoint/subs/plan_POST.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/managers/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/individual/IndividualsManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/query/QueriesManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/query/QueriesManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/runs/RunManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/runs/RunManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/runs/requiredParameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/managers/subs/SubsManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/managers/subs/SubsManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/endpoints/subs.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/endpoints/subs.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/router.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -59,37 +20,20 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
+        <entry file="file://$PROJECT_DIR$/__tests__/runs/featureTest.jest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/endpoints/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-228">
-              <caret line="453" column="15" selection-start-line="453" selection-start-column="15" selection-end-line="453" selection-end-column="15" />
+            <state relative-caret-position="414">
+              <caret line="142" column="31" lean-forward="true" selection-start-line="142" selection-start-column="31" selection-end-line="142" selection-end-column="31" />
+              <folding>
+                <element signature="e#209#1025#0" />
+                <element signature="e#305#641#0" />
+                <element signature="e#1060#1908#0" />
+                <element signature="e#1538#1904#0" />
+                <element signature="e#1934#3605#0" />
+                <element signature="e#1979#2577#0" />
+                <element signature="e#2630#3111#0" />
+                <element signature="e#3639#5444#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -97,15 +41,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="37">
-              <caret line="313" column="21" selection-start-line="313" selection-start-column="21" selection-end-line="313" selection-end-column="21" />
-              <folding>
-                <element signature="e#2564#5364#0" />
-                <element signature="e#3425#4036#0" />
-                <element signature="e#4128#4830#0" />
-                <element signature="e#4892#5360#0" />
-                <element signature="e#7306#7648#0" />
-              </folding>
+            <state relative-caret-position="-504">
+              <caret line="221" column="19" selection-start-line="221" selection-start-column="10" selection-end-line="221" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="241" column="55" selection-start-line="241" selection-start-column="55" selection-end-line="241" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -113,17 +59,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
+            <state relative-caret-position="115">
+              <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/testUtils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="28" column="15" lean-forward="true" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="55" column="67" lean-forward="true" selection-start-line="55" selection-start-column="67" selection-end-line="55" selection-end-column="67" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/__tests__/config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
+        <entry file="file://$PROJECT_DIR$/managers/config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+            <state relative-caret-position="414">
+              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -139,19 +112,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createQuery</find>
-      <find>createQ</find>
-      <find>pendin</find>
-      <find>checkRequiredParams</find>
-      <find>checkRe</find>
-      <find>requiredPa</find>
-      <find>toQueryArray</find>
-      <find>if</find>
-      <find>before</find>
-      <find>fromReque</find>
-      <find>isRunIn</find>
-      <find>isRunInRange</find>
-      <find>LAT</find>
       <find>getLastPosition</find>
       <find>update</find>
       <find>updateUserList</find>
@@ -167,8 +127,21 @@
       <find>sendMail</find>
       <find>nm</find>
       <find>new data avail</find>
-      <find>sendNotificationEmail</find>
       <find>transporter</find>
+      <find>sendNotificationEmail</find>
+      <find>getData</find>
+      <find>client.c</find>
+      <find>post</find>
+      <find>francesco</find>
+      <find>const client = await</find>
+      <find>gmail</find>
+      <find>post a radius query -</find>
+      <find>debugLog</find>
+      <find>performQuery</find>
+      <find>update user</find>
+      <find>// update user li</find>
+      <find>perform a</find>
+      <find>process.env.HOST</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,8 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/__runtime_tests__/testEndpoint.js" />
-        <option value="$PROJECT_DIR$/__runtime_tests__/authTokens.js" />
         <option value="$PROJECT_DIR$/__runtime_tests__/config.js" />
         <option value="$PROJECT_DIR$/__runtime_tests__/indiv/test.js" />
         <option value="$PROJECT_DIR$/managers/query/FunctionalQueriesManager.js" />
@@ -201,13 +172,10 @@
         <option value="$PROJECT_DIR$/__tests__/query/test.js" />
         <option value="$PROJECT_DIR$/__tests__/testEndpoint.js" />
         <option value="$PROJECT_DIR$/managers/individual/FunctionalIndividualsManager.js" />
-        <option value="$PROJECT_DIR$/routes/endpoints/runs.js" />
         <option value="$PROJECT_DIR$/__tests__/auth/testUser.js" />
         <option value="$PROJECT_DIR$/__tests__/auth/testRunOrganizer.js" />
         <option value="$PROJECT_DIR$/__tests__/auth/testCompany.js" />
-        <option value="$PROJECT_DIR$/__tests__/config.js" />
         <option value="$PROJECT_DIR$/managers/token/TokenManager.js" />
-        <option value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/routes/endpoints/queries.js" />
         <option value="$PROJECT_DIR$/routes/router.js" />
         <option value="$PROJECT_DIR$/managers/subs/SubsManager.js" />
@@ -216,18 +184,23 @@
         <option value="$PROJECT_DIR$/__tests__/auth/unitTests.js" />
         <option value="$PROJECT_DIR$/jest.config.js" />
         <option value="$PROJECT_DIR$/__tests__/auth/unitTests.jest.js" />
-        <option value="$PROJECT_DIR$/__tests__/auth/featureTest.jest.js" />
-        <option value="$PROJECT_DIR$/managers/config.js" />
         <option value="$PROJECT_DIR$/__tests__/query/unitTest.jest.js" />
         <option value="$PROJECT_DIR$/managers/runs/RunManager.js" />
         <option value="$PROJECT_DIR$/__tests__/runs/unitTest.jest.js" />
-        <option value="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" />
-        <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
-        <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/__tests__/indiv/unitTest.jest.js" />
-        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
+        <option value="$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js" />
+        <option value="$PROJECT_DIR$/routes/endpoints/runs.js" />
+        <option value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
+        <option value="$PROJECT_DIR$/__tests__/auth/featureTest.jest.js" />
+        <option value="$PROJECT_DIR$/__tests__/config.js" />
+        <option value="$PROJECT_DIR$/managers/individual/IndividualsManager.js" />
         <option value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
         <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/start.sh" />
+        <option value="$PROJECT_DIR$/utils/testUtils.js" />
+        <option value="$PROJECT_DIR$/managers/query/QueriesManager.js" />
+        <option value="$PROJECT_DIR$/managers/authentication/AuthenticationManager.js" />
+        <option value="$PROJECT_DIR$/managers/config.js" />
       </list>
     </option>
   </component>
@@ -251,6 +224,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -308,6 +282,12 @@
               <item name="backend" type="b2602c69:ProjectViewProjectNode" />
               <item name="backend" type="462c0819:PsiDirectoryNode" />
               <item name="managers" type="462c0819:PsiDirectoryNode" />
+              <item name="runs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="managers" type="462c0819:PsiDirectoryNode" />
               <item name="token" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -321,11 +301,15 @@
               <item name="routes" type="462c0819:PsiDirectoryNode" />
               <item name="endpoints" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="backend" type="b2602c69:ProjectViewProjectNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -359,17 +343,30 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Jest.Perform a query.Perform a query - radius">
-    <configuration name="Pending individual queries" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Node.js.app.js">
+    <configuration name="Create a run" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/jest" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
+      <test-file value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
       <test-names>
-        <test-name value="Pending individual queries" />
+        <test-name value="Create a run" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="Join" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
+      <test-names>
+        <test-name value="Join" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -387,34 +384,6 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="Perform a query.Perform an individual query - correct" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
-      <test-names>
-        <test-name value="Perform a query" />
-        <test-name value="Perform an individual query - correct" />
-      </test-names>
-      <method v="2" />
-    </configuration>
-    <configuration name="Post an individual query.Post an individual query - correct" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/__tests__/query/featureTest.jest.js" />
-      <test-names>
-        <test-name value="Post an individual query" />
-        <test-name value="Post an individual query - correct" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <configuration name="Post an radius query.Post an radius query - correct" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -429,6 +398,19 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="Runs position" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/__tests__/runs/featureTest.jest.js" />
+      <test-names>
+        <test-name value="Runs position" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="app.js" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="app.js" working-dir="$PROJECT_DIR$">
       <envs>
         <env name="TEST_API" value="enabled" />
@@ -438,6 +420,9 @@
         <env name="MAIL_PASSWD" value="albi1945" />
         <env name="LOCAL" value="enabled" />
         <env name="HOST" value="localhost:12345" />
+        <env name="MIN_USER_NUMBER" value="2" />
+        <env name="MAIL_PROVIDER" value="gmail" />
+        <env name="PORT" value="12345" />
       </envs>
       <method v="2" />
     </configuration>
@@ -451,22 +436,22 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Jest.Runs position" />
+      <item itemvalue="Jest.Join" />
+      <item itemvalue="Jest.Create a run" />
+      <item itemvalue="Jest.Post an radius query.Post an radius query - correct" />
       <item itemvalue="Node.js.app.js" />
       <item itemvalue="Node.js.testEndpoint.js" />
       <item itemvalue="Node.js.test.js" />
-      <item itemvalue="Jest.Pending individual queries" />
       <item itemvalue="Jest.Perform a query.Perform a query - radius" />
-      <item itemvalue="Jest.Post an radius query.Post an radius query - correct" />
-      <item itemvalue="Jest.Perform a query.Perform an individual query - correct" />
-      <item itemvalue="Jest.Post an individual query.Post an individual query - correct" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Jest.Perform a query.Perform a query - radius" />
-        <item itemvalue="Jest.Post an individual query.Post an individual query - correct" />
-        <item itemvalue="Jest.Perform a query.Perform an individual query - correct" />
         <item itemvalue="Jest.Post an radius query.Post an radius query - correct" />
-        <item itemvalue="Jest.Pending individual queries" />
+        <item itemvalue="Jest.Create a run" />
+        <item itemvalue="Jest.Join" />
+        <item itemvalue="Jest.Runs position" />
       </list>
     </recent_temporary>
   </component>
@@ -516,44 +501,48 @@
       <workItem from="1547052083586" duration="21110000" />
       <workItem from="1547140327186" duration="13217000" />
       <workItem from="1547214292093" duration="2155000" />
-      <workItem from="1547233464798" duration="21611000" />
+      <workItem from="1547233464798" duration="25825000" />
+      <workItem from="1547331535880" duration="784000" />
+      <workItem from="1547332576720" duration="8171000" />
+      <workItem from="1547382850776" duration="3297000" />
+      <workItem from="1547386264308" duration="3057000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Pending_individual_queries - 2019.01.12 at 21h 32m 57s.xml">
+    <history-entry file="Perform_a_query - 2019.01.13 at 14h 23m 19s.xml">
+      <configuration name="Perform a query" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Pending_individual_queries - 2019.01.13 at 14h 23m 21s.xml">
       <configuration name="Pending individual queries" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Perform_a_query_Perform_a_query_-_radius - 2019.01.12 at 21h 33m 06s.xml">
-      <configuration name="Perform a query.Perform a query - radius" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Post_an_individual_query_Post_an_individual_query_-_correct - 2019.01.13 at 14h 24m 31s.xml">
+      <configuration name="Post an individual query.Post an individual query - correct" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Perform_a_query_Perform_a_query_-_radius - 2019.01.12 at 21h 33m 31s.xml">
-      <configuration name="Perform a query.Perform a query - radius" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="List_of_runs - 2019.01.13 at 14h 25m 54s.xml">
+      <configuration name="List of runs" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Post_an_radius_query_Post_an_radius_query_-_correct - 2019.01.12 at 21h 35m 00s.xml">
+    <history-entry file="Runs_position - 2019.01.13 at 14h 25m 57s.xml">
+      <configuration name="Runs position" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Join - 2019.01.13 at 14h 26m 03s.xml">
+      <configuration name="Join" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Create_a_run - 2019.01.13 at 14h 26m 07s.xml">
+      <configuration name="Create a run" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="Post_an_radius_query_Post_an_radius_query_-_correct - 2019.01.13 at 14h 28m 44s.xml">
       <configuration name="Post an radius query.Post an radius query - correct" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Perform_a_query_Perform_an_individual_query_-_correct - 2019.01.12 at 21h 35m 20s.xml">
-      <configuration name="Perform a query.Perform an individual query - correct" configurationId="JavaScriptTestRunnerJest" />
+    <history-entry file="Perform_a_query_Perform_a_query_-_radius - 2019.01.13 at 15h 10m 08s.xml">
+      <configuration name="Perform a query.Perform a query - radius" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="Perform_a_query_Perform_an_individual_query_-_correct - 2019.01.12 at 21h 35m 36s.xml">
-      <configuration name="Perform a query.Perform an individual query - correct" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="Post_an_individual_query_Post_an_individual_query_-_correct - 2019.01.12 at 21h 36m 07s.xml">
-      <configuration name="Post an individual query.Post an individual query - correct" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="Perform_a_query_Perform_an_individual_query_-_correct - 2019.01.12 at 21h 37m 06s.xml">
-      <configuration name="Perform a query.Perform an individual query - correct" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="Post_an_individual_query_Post_an_individual_query_-_correct - 2019.01.12 at 21h 37m 17s.xml">
-      <configuration name="Post an individual query.Post an individual query - correct" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="Perform_a_query_Perform_a_query_-_radius - 2019.01.12 at 21h 38m 18s.xml">
+    <history-entry file="Perform_a_query_Perform_a_query_-_radius - 2019.01.13 at 15h 11m 03s.xml">
       <configuration name="Perform a query.Perform a query - radius" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272209000" />
+    <option name="totallyTimeSpent" value="291732000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -566,22 +555,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="40" width="1900" height="1030" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11980831" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24600638" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4978701" weight="0.23878923" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6975506" weight="0.26681614" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4968051" visible="true" weight="0.4058296" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6874334" weight="0.26681614" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49840257" weight="0.39798206" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49893504" weight="0.29035875" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5058573" side_tool="true" visible="true" weight="0.36995515" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4941427" visible="true" weight="0.36995515" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.51757187" side_tool="true" weight="0.40358743" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.4824281" weight="0.353139" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -611,21 +601,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/stub_endpoint/runs/run.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/stub_endpoint/runs/positions.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="2" column="11" selection-start-line="2" selection-start-column="11" selection-end-line="2" selection-end-column="11" />
-          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/pg/lib/connection.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -647,9 +622,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/runs/requiredParameters.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/runs/requiredParameters.json" />
     <entry file="file://$PROJECT_DIR$/utils/parseToken.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/jsonwebtoken/decode.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -666,17 +639,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/managers/query/QueryPerformer.js" />
-    <entry file="file://$PROJECT_DIR$/Procfile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/managers/Individuals/AuthenticationManager.jest.js" />
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -710,25 +673,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/auth/testRunOrganizer.js" />
     <entry file="file://$PROJECT_DIR$/__tests__/auth/testCompany.js" />
-    <entry file="file://$PROJECT_DIR$/__tests__/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/auth/testUser.js" />
-    <entry file="file://$PROJECT_DIR$/__tests__/runs/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1748">
-          <caret line="141" column="31" selection-start-line="141" selection-start-column="31" selection-end-line="141" selection-end-column="31" />
-          <folding>
-            <element signature="e#209#1025#0" />
-            <element signature="e#1060#1908#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/router.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
@@ -750,9 +695,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/auth/badRequiredParams.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/auth/badRequiredParams.json" />
     <entry file="file://$PROJECT_DIR$/jest.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -770,13 +713,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managers/query/requiredParameters.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -784,37 +720,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="219" column="9" selection-start-line="219" selection-start-column="9" selection-end-line="219" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/auth/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="12" column="9" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managers/authentication/requiredParameters.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
           <caret line="24" column="20" lean-forward="true" selection-start-line="22" selection-start-column="6" selection-end-line="24" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/auth/unitTests.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
-          <folding>
-            <element signature="e#193#882#0" />
-            <element signature="e#952#1640#0" />
-            <element signature="e#1719#2567#0" />
-            <element signature="e#2639#3285#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -839,27 +748,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1433">
-          <caret line="40" column="28" lean-forward="true" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="146" column="14" selection-start-line="146" selection-start-column="14" selection-end-line="146" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__tests__/indiv/unitTest.jest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -870,59 +758,168 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
+    <entry file="file://$PROJECT_DIR$/__tests__/auth/unitTests.jest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="453" column="15" selection-start-line="453" selection-start-column="15" selection-end-line="453" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="313" column="21" selection-start-line="313" selection-start-column="21" selection-end-line="313" selection-end-column="21" />
+        <state relative-caret-position="138">
+          <caret line="6" column="60" selection-start-line="6" selection-start-column="60" selection-end-line="6" selection-end-column="60" />
           <folding>
-            <element signature="e#2564#5364#0" />
-            <element signature="e#3425#4036#0" />
-            <element signature="e#4128#4830#0" />
-            <element signature="e#4892#5360#0" />
-            <element signature="e#7306#7648#0" />
+            <element signature="e#193#882#0" />
+            <element signature="e#952#1640#0" />
+            <element signature="e#1719#2567#0" />
+            <element signature="e#2639#3285#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="52" column="12" selection-start-line="52" selection-start-column="12" selection-end-line="52" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="56" column="37" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/endpoints/auth.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="1702">
           <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/auth/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding>
+            <element signature="e#270#1133#0" />
+            <element signature="e#1214#2762#0" />
+            <element signature="e#1247#1722#0" />
+            <element signature="e#1761#2247#0" />
+            <element signature="e#2283#2758#0" />
+            <element signature="e#2806#4312#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/indiv.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="76" column="30" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/indiv/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="137" column="58" lean-forward="true" selection-start-line="137" selection-start-column="58" selection-end-line="137" selection-end-column="58" />
+          <folding>
+            <element signature="e#135#2447#0" />
+            <element signature="e#240#1351#0" />
+            <element signature="e#2499#3445#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/individual/IndividualsManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3036">
+          <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/queries.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="76" column="35" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/runs/RunManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="38" column="6" selection-start-line="36" selection-start-column="4" selection-end-line="38" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/endpoints/runs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1795">
+          <caret line="174" column="32" selection-start-line="174" selection-start-column="32" selection-end-line="174" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="14" column="115" selection-start-line="14" selection-start-column="115" selection-end-line="14" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/runs/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="142" column="31" lean-forward="true" selection-start-line="142" selection-start-column="31" selection-end-line="142" selection-end-column="31" />
+          <folding>
+            <element signature="e#209#1025#0" />
+            <element signature="e#305#641#0" />
+            <element signature="e#1060#1908#0" />
+            <element signature="e#1538#1904#0" />
+            <element signature="e#1934#3605#0" />
+            <element signature="e#1979#2577#0" />
+            <element signature="e#2630#3111#0" />
+            <element signature="e#3639#5444#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/query/QueriesManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="241" column="55" selection-start-line="241" selection-start-column="55" selection-end-line="241" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/query/featureTest.jest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-504">
+          <caret line="221" column="19" selection-start-line="221" selection-start-column="10" selection-end-line="221" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="7" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/testUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="28" column="15" lean-forward="true" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/managers/authentication/AuthenticationManager.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="40" column="9" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+        <state relative-caret-position="202">
+          <caret line="55" column="67" lean-forward="true" selection-start-line="55" selection-start-column="67" selection-end-line="55" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__tests__/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="16" column="2" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/managers/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
         </state>
       </provider>
     </entry>

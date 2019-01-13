@@ -41,6 +41,7 @@ describe('Registration', () => {
       })
     })
     reg = await reg.json()
+    console.log(reg)
     expect(reg.success).toBe(true)
     expect(reg.auth_token).not.toBe(undefined)
 

@@ -130,7 +130,7 @@ function sendNotificationEmail(email) {
   console.log('Sending mail to ' + email)
 
   const transporter = nm.createTransport({
-    service: 'gmail',
+    service: process.env.MAIL_PROVIDER || 'gmail',
     auth: {
       user: process.env.MAIL_ADDR,
       pass: process.env.MAIL_PASSWD
@@ -186,6 +186,8 @@ async function getData(userId, fromDate = undefined, toDate = undefined, isIndiv
       data
     }
   } catch (err) {
+    err.status = 422
+    err.message = 'Malformed date'
     await client.release()
     throw err
   }

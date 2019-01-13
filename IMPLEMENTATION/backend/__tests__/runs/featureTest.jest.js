@@ -100,6 +100,7 @@ describe('Join', () => {
 
     const client = await connect()
     await client.query('DELETE FROM run_subscription WHERE run_id = $1', [runNumber])
+    await client.release()
 
   })
 
