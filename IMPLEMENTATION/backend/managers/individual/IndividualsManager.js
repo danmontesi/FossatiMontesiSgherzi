@@ -93,7 +93,7 @@ async function notifyCompanies(userId) {
     // Look for all companies having a query on that individual
     let {
       rows: companies
-    } = await client.query('SELECT ca.email ' +
+    } = await client.query('SELECT ca.email, qu.query_id ' +
       'FROM query_user as qu, query as q, company_account as ca ' +
       'WHERE qu.user_id = $1 AND qu.query_id = q.id AND q.company_id = ca.id', [userId])
 
@@ -108,13 +108,13 @@ async function notifyCompanies(userId) {
     queries.forEach(q => {
       if (companies.indexOf({ email: q.email }) === -1) companies.push({ email: q.email })
     })
+
     // Send an email to all of them
-    companies.forEach(company => sendNotificationEmail(company.email))
+    queries.forEach(q => sendNotificationEmail(q.email, q.id))
 
     await client.release()
 
   } catch (err) {
-    console.log(err)
     await client.release()
     throw err
   }
@@ -125,9 +125,9 @@ async function notifyCompanies(userId) {
  * Sends the notification email to the companies subscribing a query
  * @param email
  */
-function sendNotificationEmail(email) {
+function sendNotificationEmail(email, id) {
 
-  console.log('Sending mail to ' + email)
+  console.log('Sending mail to ' + email + 'for query with id: ' + id)
 
   const transporter = nm.createTransport({
     service: process.env.MAIL_PROVIDER || 'gmail',
@@ -141,10 +141,11 @@ function sendNotificationEmail(email) {
     from: process.env.MAIL_ADDR,
     to: email,
     subject: 'Data4Help, new data available',
-    html: `<p>New data available for your query, download them on the website</p>`
+    html: `<p>New data available for your query with id: ${id}, download them on the website</p>`
   }
 
   transporter.sendMail(mailOptions, (err, info) => {
+    console.log(err)
   })
 
 }

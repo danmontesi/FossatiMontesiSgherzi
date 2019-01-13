@@ -134,7 +134,7 @@ queryRouter.get('/query/data', authorizationMiddleware('company'), async (req, r
 
 /**
  * METHOD: GET
- * ENDPOINT: /queries/individual/pending
+ * ENDPOINT: /queries/query/individual/pending
  * Tries to retrieve all individual queries the user hasn't answered
  *
  * SUCCESS RESPONSE BODY:
