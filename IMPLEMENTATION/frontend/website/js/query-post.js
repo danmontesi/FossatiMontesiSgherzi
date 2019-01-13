@@ -1,7 +1,8 @@
-
+//Var of path url
+var path_url = "https://data4halp.herokuapp.com/v1/";
 
   function sendQueryRadius() {
-    const url = "https://data4halp.herokuapp.com/queries/query";
+    const url = "queries/query";
     var authtoken = getCookie("auth_token");//get authtoken
     var center_lat = parseFloat($('#center_lat').val());
     var center_long = parseFloat($('#center_long').val());
@@ -10,8 +11,7 @@
     var bpm_min = parseInt($('#min_bpmR').val());
     var bpm_max = parseInt($('#max_bpmR').val());
     var radius = parseInt($('#radius').val());
-    console.log(center_lat, center_long, radius, acc_max, acc_min, bpm_min, bpm_max)
-    fetch(url, {
+    fetch(path_url + url, {
 
       method: 'POST',
       headers: new Headers({
@@ -58,11 +58,11 @@
 
 
   function sendQueryIndividual() {
-    const url = "https://data4halp.herokuapp.com/queries/query";
+    const url = "queries/query";
     var auth_token = getCookie("auth_token");//get authtoken
     var SSN = $('#ssn').val();
 
-    fetch(url, {
+    fetch(path_url + url, {
 
       method: 'POST',
       headers: new Headers({

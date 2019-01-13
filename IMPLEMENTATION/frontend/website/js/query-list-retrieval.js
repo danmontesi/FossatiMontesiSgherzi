@@ -1,4 +1,5 @@
-
+//Var of path url
+var path_url = "https://data4halp.herokuapp.com/v1/";
 
   function getAllQueries() {
 
@@ -10,8 +11,8 @@
                          
                        `;
 
-    const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
-    fetch( url, {
+    const url = "queries/query?auth_token=" + getCookie("auth_token");
+    fetch(path_url + url, {
 
       method: 'GET',
       headers: {
@@ -31,7 +32,6 @@
             //creating inner html to append to the page
             var HtmlToAppend = ""
             decodedResponse = response.queries.radius;
-            console.log(decodedResponse);
 
             for (var i = 0; i < decodedResponse.length; i++) {
 
@@ -85,9 +85,9 @@
                          
                        `;
 
-    const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
+    const url = "queries/query?auth_token=" + getCookie("auth_token");
 
-    fetch(url, {
+    fetch(path_url + url, {
 
       method: 'GET',
       headers: {
@@ -99,23 +99,20 @@
 
       .then(response => response.json())
       .then(response => { //Assign to contents the response
-        console.log("here in response ")
 
-        console.log(response)
         document.getElementById("loading_panel").innerHTML = ``;
         if (response["success"] === true) {
           if (!response.queries.individual) {
             document.getElementById("loading_panel").innerHTML = `You haven't performed any query yet!`;
           }
           else {
-            console.log(response)
             //creating inner html to append to the page
             var HtmlToAppend = ""
             decodedResponse = response.queries.individual;
             if (decodedResponse) {
 
               for (var i = 0; i < decodedResponse.length; i++) {
-                curQuery = decodedResponse[i]; //TODO SOTTO: create query click
+                curQuery = decodedResponse[i]; 
                 HtmlToAppend += `
                         <ul class="collection">
                 <li class="collection-item avatar">
@@ -163,8 +160,8 @@ function getFirst5Query() {
                        
                      `;
                            
-  const url = "https://data4halp.herokuapp.com/queries/query?auth_token=" + getCookie("auth_token");
-  fetch(url, {
+  const url = "queries/query?auth_token=" + getCookie("auth_token");
+  fetch(path_url + url, {
 
     method: 'GET',
     headers: {
@@ -184,7 +181,6 @@ function getFirst5Query() {
         //creating inner html to append to the page
         var HtmlToAppend = ""
         decodedResponse = response.queries.radius;
-        console.log(decodedResponse);
 
         for (var i = 0; i < decodedResponse.length && i<5; i++) {
 
@@ -223,5 +219,5 @@ function getFirst5Query() {
     
     }
     )
-    .catch((e) => console.log("Can’t access " + url + " response. Blocked by browser?" + e))
+    .catch((e) => console.log("Can’t access " + url + " response. " + e))
 }
