@@ -1,0 +1,34 @@
+We have followed the guide in the IT Document.
+The guide was explained in details, even though, we had troubles in testing the system into a unique machine because of RAM limitation.
+Probably it would have been better to have an instance of the server and of the database running online.
+
+
+\subsection{Dependency installation}
+We firstly installed the backend. To accomply this, on a Windows machine, you should first install ERLang and then install the RabbitMQ server.
+
+After this, we proceed to install MySQL server and configure it following the guide linked in the IT Document.
+
+The RabbitMQ server and MySQL server started automatically after the installation.
+
+It is not clearly specified in the IDT but is also necessary to install a compatible version of Java and Maven (to run the tests). We installed, respectively, version \texttt{1.8.0\_191} and version \texttt{3.6.0}.
+
+\subsection{Backend installation}
+We simply extracted the precompiled version of the backend in an empty folder.
+From there we launched each microservice executable, starting from \texttt{service-registry} and then all the other jar executables. 
+
+Each service was launched using the command \texttt{java -jar *servicename*.jar}, exept the \texttt{api-gateway} which needs an additional command line parameter.
+We think that this aspect was not stressed enough in the ITD; in fact in the first place we were not able to start the server correctly because we forgot the above mentioned configuration string.
+
+\subsection{Frontend installation}
+We installed the main Android app from the provided apk package in a new Android Emulator instance.
+We then started the app, configured the IP of the server clicking on the app logo in the main screen.
+
+To test the Bluetooth connection we installed the main app and the Bluetooth client in two different real devices.
+
+The minimum Android version, as specified in the requirements, was 7.0 which made quite difficult to test since some of us had the version 6.0.
+Moreover the app cannot be fully tested through the emulator since it exploit the Bluetooth connection, which cannot be emulated.
+However, all the previous remarks were correctly explained in the ITD Document.
+
+
+
+
