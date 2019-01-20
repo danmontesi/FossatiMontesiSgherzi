@@ -25,11 +25,13 @@ The group has divided the requirements into:
 \item[{[R9]}] Allow a person or company to log into the system as a third party only if he has already registered as such
 \end{itemize}
 
-\noindent The goals and mapped requirements are listed below:
-
+\newpage
+\noindent The goals and mapped requirements are listed below: \\
+\newline
 \textbf{Goal reaching requirements}
 \par
-In this section, each requirement is necessary to satisfy specific goals of the system:
+
+
 \begin{itemize}
 \item [{[G1]}] Allow a user to access its own data
 	\begin{itemize}
@@ -158,7 +160,7 @@ by the customer that he is intending to block.
             \hline
             \textbf{Requirements} & \textbf{Notes} \\
             \hline
-            \textbf{\textcolor{green}{R11}} & Ok, tested logging in using another device with the same username and password of an already existing user and seeing data being in the history. \\
+            \textbf{\textcolor{yellow}{R11}} & Partially, tested logging in using another device with the same username and password of an already existing user and seeing data being in the history. However, location data are not available. \\
             \hline
             
             
@@ -175,9 +177,9 @@ by the customer that he is intending to block.
             \hline
             \textbf{\textcolor{green}{R13}} & Ok, identical to R12, tested inserting data lower to the treshold (1 bpm). The call is performed almost instantaneously.  \\
             \hline
-            \textbf{\textcolor{green}{R15}} & Ok, tested after a call, tried to send twice the same data lower the treshold after 30m, but the call didn't work.  \\
+            \textbf{\textcolor{green}{R15}} & Ok, tested after a call, tried to send twice the same data lower the treshold after 30m, but the call didn't work. Trying after more than one hour results in a correct call being dispatched.  \\
             \hline
-            \textbf{\textcolor{yellow}{R17}} & Automatically done by the Android OS when performing an emergency call.  \\
+            \textbf{\textcolor{green}{R17}} & Automatically done by the Android OS when performing an emergency call.  \\
             \hline            
             
         \end{longtable}
@@ -193,11 +195,11 @@ by the customer that he is intending to block.
             \hline
             \textbf{\textcolor{green}{R27}} & Ok, tested after having generated a requests and checking  the pending request section. \\
             \hline
-            \textbf{\textcolor{green}{R28}} & Ok, tested after having generated a requests and then user rejected it. \\
+            \textbf{\textcolor{green}{R28}} & Ok, tested after having generated a requests and then letting the user reject it. \\
             \hline
-            \textbf{\textcolor{green}{R29}} & Ok, tested after having generated a requests to a specified user that rejected it.\\
+            \textbf{\textcolor{green}{R29}} & Ok, tested after having generated a requests and then letting the user reject it. After that the Third Party isn't allowed to send individual requests to the user anymore. \\
             \hline
-            \textbf{\textcolor{green}{R46}} & Ok, tested proceeding as for R26 and then generated another requests to the same user.  \\
+            \textbf{\textcolor{green}{R46}} & Ok, tested like R26 and R29.  \\
             \hline            
             
             
@@ -210,9 +212,10 @@ by the customer that he is intending to block.
             \hline
             \textbf{Requirements} & \textbf{Notes} \\
             \hline
-            \textbf{\textcolor{red}{R35}} & We couldn't test it as the app stopped responding when tapping on the "Download" icon.  \\
+            \textbf{\textcolor{red}{R35}} & We couldn't test it as the app stopped responding when tapping on the "Download" icon.
+            However, after contacting the developers they promptly released an update for the app that allowed us to download users' data. Still, the data concerning the position of the user aren't available.\\
             \hline
-            \textbf{\textcolor{green}{R36}} &  Ok, tested by performing a query on a pool of 2021 users and downloading the result (which displayed the correct number of users subject to the query) \\
+            \textbf{\textcolor{yellow}{R36}} & Like R35. However, after the update, we checked that this consistency constrain is maintained \\
             \hline
             \textbf{\textcolor{green}{R37}} & Ok, tested by sending an individual request for data and letting the user accept or refuse it. The Third Party user correctly displays the status of the request  \\
             \hline
